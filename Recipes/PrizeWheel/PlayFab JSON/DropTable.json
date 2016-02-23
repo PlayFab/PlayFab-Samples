@@ -1,0 +1,25 @@
+{
+  "TableId": "PrizeWheel1",
+  "Nodes": [
+    {
+      "ResultItemType": "ItemId",
+      "ResultItem": "Card1",
+      "Weight": 10000
+    },
+    {
+      "ResultItemType": "ItemId",
+      "ResultItem": "Card2",
+      "Weight": 10000
+    },
+    {
+      "ResultItemType": "ItemId",
+      "ResultItem": "Card3",
+      "Weight": 10000
+    },
+    {
+      "ResultItemType": "ItemId",
+      "ResultItem": "SpinAgain",
+      "Weight": 303
+    }
+  ]
+}

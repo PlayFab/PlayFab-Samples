@@ -1,0 +1,129 @@
+{
+  "CatalogVersion": "PrizeWheel",
+  "Catalog": [
+    {
+      "ItemId": "Card3",
+      "ItemClass": "Card",
+      "CatalogVersion": "PrizeWheel",
+      "DisplayName": "Card No. 3",
+      "Description": "This card bears three distinct red marks.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": null,
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "Card2",
+      "ItemClass": "Card",
+      "CatalogVersion": "PrizeWheel",
+      "DisplayName": "Card No. 2",
+      "Description": "This card has two holes of equal volume.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": null,
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "Card1",
+      "ItemClass": "Card",
+      "CatalogVersion": "PrizeWheel",
+      "DisplayName": "Card No. 1",
+      "Description": "This card is blank.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": null,
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "SpinAgain",
+      "ItemClass": "VC_Bundle",
+      "CatalogVersion": "PrizeWheel",
+      "DisplayName": "Spin Again!",
+      "Description": "You just got one free Spin Ticket!",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": null,
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": 1,
+        "UsagePeriod": 1,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": {
+          "ST": 1
+        }
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "PrizeWheel1",
+      "ItemClass": "PrizeWheel",
+      "CatalogVersion": "PrizeWheel",
+      "DisplayName": "Prize Wheel No. 1",
+      "Description": "Press your luck at the prize wheel. Every spin is a winner. 1-in-100 win a free spin!",
+      "VirtualCurrencyPrices": {
+        "ST": 1
+      },
+      "RealCurrencyPrices": null,
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": 1,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [],
+        "BundledResultTables": [
+          "PrizeWheel1"
+        ],
+        "BundledVirtualCurrencies": null
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    }
+  ]
+}
