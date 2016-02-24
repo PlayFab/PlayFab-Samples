@@ -10,7 +10,7 @@ handlers.RedeemReferral = function(args) {
 
     if(args == null || typeof args.referralCode === undefined || args.referralCode === "")
     {
-        throw "Failed to redeem. Args.referralCode is undefined or blank";
+        throw "Failed to redeem. args.referralCode is undefined or blank";
     }
     else if(args.referralCode === currentPlayerId)
     {
@@ -95,7 +95,7 @@ function ProcessReferrer(id, referals)
     };
     var AddUserVirtualCurrencyResult = server.AddUserVirtualCurrency(AddUserVirtualCurrencyRequest);
 
-    log.info("VC granted to " + id);
+    log.info(AddUserVirtualCurrencyRequest.Amount + " " + VIRTUAL_CURRENCY_CODE + " granted to " + id);
 }
 
 
