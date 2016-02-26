@@ -10,7 +10,6 @@ public class ReferralCodeDemo : MonoBehaviour {
 	public Button redeem;
 	public InputField inputReferralCode;
 	public Text myReferralCode;
-	public Text itemCount;
 	public Text referredBy;
 	public Transform redeemGroup;
 	public Transform referredGroup;
@@ -90,7 +89,6 @@ public class ReferralCodeDemo : MonoBehaviour {
 			ShowRedeemGroup();
 		}
 		this.redeem.interactable = true;
-		//this.itemCount.gameObject.SetActive(true);
 		
 	}
 	
@@ -99,7 +97,6 @@ public class ReferralCodeDemo : MonoBehaviour {
 		HideRedeemGroup();
 		HideReferredGroup();
 		this.redeem.interactable = false;
-		//this.itemCount.gameObject.SetActive(false);
 	}
 	
 	
@@ -140,32 +137,13 @@ public class ReferralCodeDemo : MonoBehaviour {
 			int gmBalance;
 			result.VirtualCurrency.TryGetValue("GM", out gmBalance);
 			Debug.Log(string.Format("You have {0} Gems.", gmBalance));
-			
-			//TODO set gems UI to gmBalance
-			
-	
+
 		};
 		
 		Debug.Log("Getting the player inventory...");
 		GetUserInventoryRequest request = new GetUserInventoryRequest();
 		PlayFabClientAPI.GetUserInventory(request, OnGetInventoryResult, OnApiCallError);
 	}
-	
-//	void TryToSpin()
-//	{
-//		PlayFabClientAPI.ProcessApiCallback<PurchaseItemResult> OnApiCallSuccess = (PurchaseItemResult result) => { 
-//			Debug.Log("Ticket Accepted! \nSPINNING...");
-//			Debug.Log(string.Format("{0}", result.Items[1].DisplayName));
-//			
-//			// add delta to inventory 
-//			// remove ticket & restate count
-//		};
-//		
-//		Debug.Log("Attempting to spin...");
-//		PurchaseItemRequest request = new PurchaseItemRequest() { ItemId = "PrizeWheel1", VirtualCurrency = "ST", Price = 1 };
-//		PlayFabClientAPI.PurchaseItem(request, OnApiCallSuccess, OnApiCallError);
-//	}
-//	
 
 	void SearchForReferralBadge()
 	{
@@ -183,7 +161,7 @@ public class ReferralCodeDemo : MonoBehaviour {
 	{
 		PlayFabClientAPI.ProcessApiCallback<RunCloudScriptResult> OnCloudScriptSuccess = (RunCloudScriptResult result) => {
 			Debug.Log("SUCCESS!...\nYou Just Recieved:");
-			List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
+			List<ItemInstance> grantedItems =\PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
 			
 			if(grantedItems != null)
 			{

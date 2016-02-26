@@ -32,14 +32,14 @@ handlers.RedeemReferral = function(args) {
     }    
 
     //Before proceeding, validate the provided referal code. Use a Try / Catch block if you want to do more before returning the error to the client.
-    var GetUserInternalDataRequest = {
+    var GetUserReadOnlyDataRequest = {
         "PlayFabId": args.referralCode,
         "Keys": [ PLAYER_REFERRAL_KEY ]
-    } 
-    var GetUserInternalDataResult = server.GetUserInternalData(GetUserInternalDataRequest)
+    }; 
+    var GetUserReadOnlyDataResult = server.GetUserReadOnlyData(GetUserReadOnlyDataRequest);
     var referralValues = [];
 
-    if(!GetUserInternalDataResult.Data.hasOwnProperty(PLAYER_REFERRAL_KEY))
+    if(!GetUserReadOnlyDataResult.Data.hasOwnProperty(PLAYER_REFERRAL_KEY))
     {
         // This was a valid referral code, but this is the first redeemed code.
         referralValues.push(currentPlayerId);
@@ -48,7 +48,7 @@ handlers.RedeemReferral = function(args) {
     else
     {
         // This was a valid referral code, now we need to extract the JSON array
-        referralValues = JSON.parse(GetUserInternalDataResult.Data[PLAYER_REFERRAL_KEY].Value);
+        referralValues = JSON.parse(GetUserReadOnlyDataResult.Data[PLAYER_REFERRAL_KEY].Value);
         if(Array.isArray(referralValues))
         {
             // need to ensure we have not exceded the MAXIMUM_REFERRALS
@@ -80,12 +80,12 @@ handlers.RedeemReferral = function(args) {
 function ProcessReferrer(id, referals)
 {
     // write back data to the referrer
-    var UpdateUserInternalDataRequest = {
+    var UpdateUserReadOnlyDataRequest = {
         "PlayFabId": id,
         "Data": {}
     };
-    UpdateUserInternalDataRequest.Data[PLAYER_REFERRAL_KEY] = JSON.stringify(referals);
-    var UpdateUserInternalDataResult = server.UpdateUserInternalData(UpdateUserInternalDataRequest);
+    UpdateUserReadOnlyDataRequest.Data[PLAYER_REFERRAL_KEY] = JSON.stringify(referals);
+    var UpdateUserReadOnlyDataResult = server.UpdateUserReadOnlyData(UpdateUserReadOnlyDataRequest);
 
     // grant the reward to the referrer
     var AddUserVirtualCurrencyRequest = {
