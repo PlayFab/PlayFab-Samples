@@ -1,6 +1,6 @@
 ## Progressive Reward System
 ### Description:
-Reward players with a reward that increases for consecutive (2, 5, 7 day) log-ins over several days. Cloud-Script logic acts as the authoritative server and performs the grant directly on the player's inventory.   
+Reward players for logging in over consecutive days with progressive item grants.  for consecutive (2, 5, 7 day) log-ins over several days. Cloud-Script logic acts as the authoritative server and performs the grant directly on the player's inventory.   
 
 ### Ingredients:
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
@@ -10,21 +10,25 @@ Reward players with a reward that increases for consecutive (2, 5, 7 day) log-in
   * [Cloud Script](https://api.playfab.com/docs/building-blocks/Cloud_Script)
 
 ### Preparation:
-  * Use / Create Catalog Items to award: "CheckInChestBronze", "CheckInChestilver", "CheckInChestGold"
+  * Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own. 
+    * If using your own ensure that you have items mapping to the three-tier reward table.
   * Add the following TitleData record:
     * **Key** : ProgressiveRewardTable
-    * **Value**:
-
-```javascript
+    * **Value**: ```javascript
 {   
   "Level1" : { 
-      "MinStreak" : 2, "Reward" : "Bronze_CheckInChest" },
+      "MinStreak" : 2, 
+      "Reward" : "Bronze_CheckInChest" },
   "Level2" : { 
-      "MinStreak" : 5, "Reward" : "Silver_CheckInChest" },
+      "MinStreak" : 5, 
+      "Reward" : "Silver_CheckInChest" },
   "Level3" : { 
-      "MinStreak" : 7, "Reward" : "Gold_CheckInChest" } 
+      "MinStreak" : 7, 
+      "Reward" : "Gold_CheckInChest" } 
 }
 ``` 
+  * Upload & deploy[this Cloud Script](/Recipes/ProgressiveRewards/CloudScritp.js), or ensure that yours has a corresponding method.
+
 ### Assembly:
   * Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   * After logging in, the client calls into Cloud Script and executes "CheckIn". 
