@@ -4,11 +4,11 @@ Reward players for logging in over consecutive days with progressive item grants
 
 ### Ingredients:
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
-  * [Player Data](https://api.playfab.com/docs/building-blocks/Player_Data)
-  * [Player Inventory](https://api.playfab.com/docs/building-blocks/Player_Inventory)
-  * [Virtual Currency](https://api.playfab.com/docs/building-blocks/Virtual_Currency)
-  * [Catalog & CatalogItems (Bundle / Container)](https://api.playfab.com/docs/building-blocks/Catalog)
-  * [Cloud Script](https://api.playfab.com/docs/building-blocks/Cloud_Script)
+  * [Player Data](https://api.playfab.com/docs/building-blocks#Player_Data)
+  * [Player Inventory](https://api.playfab.com/docs/building-blocks#Player_Inventory)
+  * [Virtual Currency](https://api.playfab.com/docs/building-blocks#Virtual_Currency)
+  * [Catalog & CatalogItems (Bundle / Container)](https://api.playfab.com/docs/building-blocks#Catalog)
+  * [Cloud Script](https://api.playfab.com/docs/building-blocks#Cloud_Script)
 
 ### Preparation:
   1. Use the Game Manager to configure a Virtual Currency for your title:
