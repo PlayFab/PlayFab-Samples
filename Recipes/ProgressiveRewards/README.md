@@ -19,7 +19,7 @@ Reward players for logging in over consecutive days with progressive item grants
   Name | Gems | Name of our VC
   Initial Deposit | 5 | How many each player gets with a new account
 
-  2. Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own. 
+  2. Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own.
     * If using your own, ensure that you have items mapping to the three-tier reward table.
   3. Upload & deploy [this Cloud Script](/Recipes/ProgressiveRewards/CloudScript.js), or ensure that yours has a corresponding method.
   4. Add the following TitleData record:
