@@ -1,5 +1,5 @@
 # PlayFab Recipes
-### This collection of examples shows familiar patterns and mechanics implemented using PlayFab. 
+##### This collection of examples shows familiar patterns and mechanics implemented using PlayFab. 
 
 ##  Recipes
 

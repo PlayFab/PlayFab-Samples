@@ -1,20 +1,20 @@
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Progressive Reward System -- 
+## Progressive Reward System
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Description:
+### Description:
 Reward players with a reward that increases for consecutive (2, 5, 7 day) log-ins over several days. Cloud-Script logic acts as the authoritative server and performs the grant directly on the player's inventory.   
 
-Ingredients:
-	* Accounts
-	* Player Data
-	* Player Inventory
-	* Catalog & CatalogItems (Bundle / Container)
-	* Cloud Script
+### Ingredients:
+	* [Accounts]()
+	* [Player Data]()
+	* [Player Inventory]()
+	* [Catalog & CatalogItems (Bundle / Container)]()
+	* [Cloud Script]()
 
-Preparation
+### Preparation
   * Use / Create Catalog Items to award: "CheckInChestBronze", "CheckInChestilver", "CheckInChestGold"
 
-Assembly:
+### Assembly:
   * Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   * After logging in, the client calls into Cloud Script and executes "CheckIn". 
   * "CheckIn" does the following:
