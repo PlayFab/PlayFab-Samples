@@ -10,9 +10,17 @@ Reward players for logging in over consecutive days with progressive item grants
   * [Cloud Script](https://api.playfab.com/docs/building-blocks/Cloud_Script)
 
 ### Preparation:
+  * Use the Game Manager to configure a Virtual Currency:
+  | Property | Value | Detail
+  Code | ST | Abbreviation for our VC
+  Name | SpinTicket | Name of our VC
+  Initial Deposit | 1 | Ensure that the player can spin at least once on day one.
+  Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day
+  Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to 
+
   * Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own. 
     * If using your own ensure that you have items mapping to the three-tier reward table.
-  * Upload & deploy[this Cloud Script](/Recipes/ProgressiveRewards/CloudScritp.js), or ensure that yours has a corresponding method.
+  * Upload & deploy [this Cloud Script](/Recipes/ProgressiveRewards/CloudScript.js), or ensure that yours has a corresponding method.
   * Add the following TitleData record:
     * **Key** : ProgressiveRewardTable
     * **Value**: 
