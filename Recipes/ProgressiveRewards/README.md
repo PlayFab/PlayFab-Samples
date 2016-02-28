@@ -3,11 +3,7 @@
 Reward players with a reward that increases for consecutive (2, 5, 7 day) log-ins over several days. Cloud-Script logic acts as the authoritative server and performs the grant directly on the player's inventory.   
 
 ### Ingredients:
-	*  hey [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
-	* [Player Data](https://api.playfab.com/docs/building-blocks/Player_Data)
-	* [Player Inventory](https://api.playfab.com/docs/building-blocks/Player_Inventory)
-	* [Catalog & CatalogItems (Bundle / Container)](https://api.playfab.com/docs/building-blocks/Catalog)
-	* [Cloud Script](https://api.playfab.com/docs/building-blocks/Cloud_Script)
+
 
 ### Preparation:
   * Use / Create Catalog Items to award: "CheckInChestBronze", "CheckInChestilver", "CheckInChestGold"
