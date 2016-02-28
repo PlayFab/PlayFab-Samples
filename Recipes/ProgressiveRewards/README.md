@@ -12,9 +12,11 @@ Reward players for logging in over consecutive days with progressive item grants
 ### Preparation:
   * Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own. 
     * If using your own ensure that you have items mapping to the three-tier reward table.
+  * Upload & deploy[this Cloud Script](/Recipes/ProgressiveRewards/CloudScritp.js), or ensure that yours has a corresponding method.
   * Add the following TitleData record:
     * **Key** : ProgressiveRewardTable
-    * **Value**: ```javascript
+    * **Value**: 
+    ```javascript
 {   
   "Level1" : { 
       "MinStreak" : 2, 
@@ -27,7 +29,7 @@ Reward players for logging in over consecutive days with progressive item grants
       "Reward" : "Gold_CheckInChest" } 
 }
 ``` 
-  * Upload & deploy[this Cloud Script](/Recipes/ProgressiveRewards/CloudScritp.js), or ensure that yours has a corresponding method.
+
 
 ### Assembly:
   * Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
