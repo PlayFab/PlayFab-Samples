@@ -15,11 +15,9 @@ Reward players for logging in over consecutive days with progressive item grants
 
   | Property | Value | Detail
   ---: | :---: | --- 
-  Code | ST | Abbreviation for our VC
-  Name | SpinTicket | Name of our VC
-  Initial Deposit | 1 | Ensure that the player can spin at least once on day one.
-  Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day
-  Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to 
+  Code | GM | Abbreviation for our VC
+  Name | Gems | Name of our VC
+  Initial Deposit | 5 | How many each player gets with a new account
 
   2. Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own. 
     * If using your own, ensure that you have items mapping to the three-tier reward table.
