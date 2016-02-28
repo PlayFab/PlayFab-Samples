@@ -11,7 +11,7 @@ Reward players for logging in over consecutive days with progressive item grants
   * [Cloud Script](https://api.playfab.com/docs/building-blocks/Cloud_Script)
 
 ### Preparation:
-  1. Use the Game Manager to configure a Virtual Currency:
+  1. Use the Game Manager to configure a Virtual Currency for your title:
 
   | Property | Value | Detail
   ---: | :---: | --- 
@@ -47,8 +47,7 @@ Reward players for logging in over consecutive days with progressive item grants
   2. After logging in, the client calls into Cloud Script and executes "CheckIn". 
   3. "CheckIn" performs the following:
     1. Read currentPlayerId's ReadOnlyData: "CheckInTracker"
-    	* - IF: Undefined, create a new {}
-    	* - ELSE IF:
+    	* If this is the first login, create a new record.
     2. Ensure that the player is eligible for an reward:
        * Must have logged in to a streak > 1
        * Must have been > 24 hrs since last grant
