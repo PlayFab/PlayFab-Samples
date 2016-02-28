@@ -24,7 +24,7 @@ Reward players with a reward that increases for consecutive (2, 5, 7 day) log-in
     	* - ELSE:   Reset CheckIn.Credits to 1
     	* Write back changes to "CheckIn"
 	* Grant Item from **AwardMatrix**:
-		* | Level | Streak | Item Grant   
+		| Level | Streak | Item Grant   
       --- | --- | ---
       0 | 1 | *n/a*
       1 | 2 - 4 | Bronze_CheckInChest
