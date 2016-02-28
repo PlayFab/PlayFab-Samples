@@ -1,6 +1,6 @@
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
 ### Progressive Reward System
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
 ### Description:
 Reward players with a reward that increases for consecutive (2, 5, 7 day) log-ins over several days. Cloud-Script logic acts as the authoritative server and performs the grant directly on the player's inventory.   
 
@@ -33,8 +33,5 @@ Reward players with a reward that increases for consecutive (2, 5, 7 day) log-in
  		  * 7 Day = 7 Credits = "Gold_CheckInChest"
   	* Return the details to the client 
 
-{
-  "Level1" : { "MinStreak" : 2, "Reward" : "Bronze_CheckInChest" },
-  "Level2" : { "MinStreak" : 5, "Reward" : "Silver_CheckInChest" },
-  "Level3" : { "MinStreak" : 7, "Reward" : "Gold_CheckInChest" }
-}
+### Cloud Script:
+In this example we use Cloud Script to 
