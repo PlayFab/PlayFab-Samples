@@ -11,6 +11,7 @@ Reward players for logging in over consecutive days with progressive item grants
 
 ### Preparation:
   * Use the Game Manager to configure a Virtual Currency:
+  
   | Property | Value | Detail
   Code | ST | Abbreviation for our VC
   Name | SpinTicket | Name of our VC
