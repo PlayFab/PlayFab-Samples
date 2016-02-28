@@ -23,13 +23,14 @@ Reward players with a reward that increases for consecutive (2, 5, 7 day) log-in
     	  * Increment CheckIn.Credits by 1
     	* - ELSE:   Reset CheckIn.Credits to 1
     	* Write back changes to "CheckIn"
-	* Grant Item from AwardMatrix:
-		* AwardMatrix: 
-		  * 1 Day = 1 Credit = No reward.
-		  * 2 Day = 2 - 4 Credits = "Bronze_CheckInChest"  
-		  * 5 Day = 5 - 6 Credits = "Silver_CheckInChest"
- 		  * 7 Day = 7 Credits = "Gold_CheckInChest"
+	* Grant Item from **AwardMatrix**:
+		* | Level | Streak | Item Grant   
+      --- | --- | ---
+      0 | 1 | *n/a*
+      1 | 2 - 4 | Bronze_CheckInChest
+      2 | 5 - 6 | Silver_CheckInChest
+      3 | 7+    | Gold_CheckInChest     
   	* Return the details to the client 
 
 ### Cloud Script:
-In this example we use Cloud Script to 
+In this example, after authentication, your players would "check in", a process which, calls the corresponding Cloud Script function. **CheckIn** securely calculates the Player's reward state and makes the needed item grants. The results of any actions performed in Cloud Script are then passed back to inform the client.
