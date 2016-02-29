@@ -15,9 +15,6 @@ public class PrizeWheelDemo : MonoBehaviour {
 	// INSPECTOR TWEAKABLES
 	public string playFabTitleId = string.Empty;
 	
-	// PLAYFAB DATA
-	List<ItemInstance> inventory = new List<ItemInstance>();
-	
 	void Awake()
 	{
 		LockUI();
@@ -85,7 +82,6 @@ public class PrizeWheelDemo : MonoBehaviour {
 	{
 		PlayFabClientAPI.ProcessApiCallback<GetUserInventoryResult> OnGetInventoryResult = (GetUserInventoryResult result) => {
 			Debug.Log(string.Format("Inventory retrieved. You have {0} items.", result.Inventory.Count));
-			this.inventory = result.Inventory;
 			
 			int stBalance;
 			result.VirtualCurrency.TryGetValue("ST", out stBalance);
