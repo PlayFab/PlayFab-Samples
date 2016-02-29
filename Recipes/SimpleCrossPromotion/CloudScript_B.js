@@ -1,8 +1,7 @@
 // defining these up top so we can easily change these later if we need to.
-var CURRENT_TITLE_CODE = "632D"; // the TitleId of the current title
-
-var CROSS_PROMOTIONAL_TRACKING = "CrossPromotionalTracking"; // used as a key on the UserPublisherDataReadOnly
-var CROSS_PROMTIONAL_REWARDS = "CrossPromotionalRewards";    // used as a key on TitleData -- contains the item grant table linking the valid titles to items
+var CURRENT_TITLE_CODE = "632D";                                 // the TitleId of the current title
+var CROSS_PROMOTIONAL_TRACKING = "CrossPromotionalTracking";    // used as a key on the UserPublisherDataReadOnly
+var CROSS_PROMTIONAL_REWARDS = "CrossPromotionalRewards";       // used as a key on TitleData -- contains the item grant table linking the valid titles to items
 
 handlers.CheckIn = function(args) {
     var GetUserPublisherReadOnlyDataRequest = {
@@ -112,4 +111,3 @@ function GrantItems(items, titleId)
     var GrantItemsToUserResult = server.GrantItemsToUser(GrantItemsToUserRequest);
     return GrantItemsToUserResult.ItemGrantResults;
 }
-

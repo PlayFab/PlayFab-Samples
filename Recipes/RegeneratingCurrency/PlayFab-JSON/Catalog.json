@@ -1,0 +1,35 @@
+{
+  "CatalogVersion": "RegeneratingCurrency",
+  "Catalog": [
+    {
+      "ItemId": "extraLivesBundle",
+      "ItemClass": "VC_Bundle",
+      "CatalogVersion": "RegeneratingCurrency",
+      "DisplayName": "Extra Lives Bundle",
+      "Description": "3 Extra Lives.",
+      "VirtualCurrencyPrices": {
+        "GM": 50
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": {
+          "LV": 3
+        }
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    }
+  ]
+}

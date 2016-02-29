@@ -4,6 +4,7 @@ Reward players for logging in over consecutive days with progressive item grants
 
 ### Ingredients:
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
+  * [Title Data](https://api.playfab.com/docs/building-blocks#Title_Data)
   * [Player Data](https://api.playfab.com/docs/building-blocks#Player_Data)
   * [Player Inventory](https://api.playfab.com/docs/building-blocks#Player_Inventory)
   * [Virtual Currency](https://api.playfab.com/docs/building-blocks#Virtual_Currency)
@@ -21,7 +22,7 @@ Reward players for logging in over consecutive days with progressive item grants
 
   2. Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own.
     * If using your own, ensure that you have items mapping to the three-tier reward table.
-  3. Upload & deploy [this Cloud Script](/Recipes/ProgressiveRewards/CloudScript.js), or ensure that yours has a corresponding method.
+  3. Upload & deploy [this Cloud Script](/Recipes/ProgressiveRewards/CloudScript.js), or ensure that yours has a corresponding methods.
   4. Add the following TitleData record:
     * **Key** : ProgressiveRewardTable
     * **Value**: 
@@ -39,7 +40,6 @@ Reward players for logging in over consecutive days with progressive item grants
 }
 ``` 
 
-
 ### Process Walkthrough:
   1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   2. After logging in, the client calls into Cloud Script and executes "CheckIn". 
@@ -49,13 +49,25 @@ Reward players for logging in over consecutive days with progressive item grants
     2. Ensure that the player is eligible for an reward:
        * Must have logged in to a streak > 1
        * Must have been > 24 hrs since last grant
-       * Must not have been more than 48 hours after the last grant (otherwise the streak will have been broken)
+       * Must have been < 48 hours after the last grant (otherwise the streak will have been broken)
     3. Increment next grant window
     4. Write back changes to ReadOnlyPlayerData ("CheckInTracker")
     5. Read the "ProgressiveRewardTable" key from TitleData
     6. Look up the reward corresponding to the player's login streak 
     7. Grant item to player
     8. Return the details to the client 
+    9. Testing Level 2 & 3 rewards requires:
+      * Either waithing the specified login period 
+      * or using the Admin API to directly set the Player's data to specific points prior to check-in. 
 
 ### Cloud Script:
 In this example, after authentication, your players would "check in", a process which, calls the corresponding Cloud Script function. **CheckIn** securely calculates the Player's reward state and makes the needed item grants. The results of any actions performed in Cloud Script are then passed back to inform the client.
+
+----
+
+#### Unity 3d Example Setup Instructions:
+  1. Download project assets. 
+  2. Add assets to your project. 
+  3. Open to the ProgressiveRewards scene.
+  4. Add your title ID to the ProgressiveRewards.cs via the Unity Inspector.
+  5. Run the scene and observe the console for call-by-call status updates.

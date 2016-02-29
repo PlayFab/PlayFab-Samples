@@ -1,0 +1,106 @@
+{
+  "CatalogVersion": "ReferralCode",
+  "Catalog": [
+    {
+      "ItemId": "boostSoda",
+      "ItemClass": "Boost",
+      "CatalogVersion": "ReferralCode",
+      "DisplayName": "Boost Soda",
+      "Description": "After drinking Boost Soda your XP gain for 1 hour.",
+      "VirtualCurrencyPrices": {
+        "GM": 5
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": 10,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "referralBadge",
+      "ItemClass": "Badge",
+      "CatalogVersion": "ReferralCode",
+      "DisplayName": "Referral Badge",
+      "Description": "This item is awarded to players who have been referred by another player. Thanks for playing! When others use your referral code you both get rewards!",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "premiumStarterPack",
+      "ItemClass": "Pack",
+      "CatalogVersion": "ReferralCode",
+      "DisplayName": "Premium Starter Pack",
+      "Description": "A collection of items that new players may find helpful. ",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": 1,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [
+          "boostSoda",
+          "healthPotion"
+        ],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": {
+          "GM": 10
+        }
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "healthPotion",
+      "ItemClass": "Potion",
+      "CatalogVersion": "ReferralCode",
+      "DisplayName": "Health Potion",
+      "Description": "Restores a portion of your Hit Points.",
+      "VirtualCurrencyPrices": {
+        "GM": 1
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": 5,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    }
+  ]
+}

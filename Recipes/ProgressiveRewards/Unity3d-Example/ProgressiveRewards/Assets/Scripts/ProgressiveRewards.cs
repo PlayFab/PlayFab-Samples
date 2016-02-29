@@ -62,6 +62,8 @@ public class ProgressiveRewards : MonoBehaviour {
 			Debug.Log("CheckIn Results:");
 			List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
 			
+				PlayFab.SimpleJson.DeserializeObject<>
+				
 			if(grantedItems.Count > 0)
 			{
 				Debug.Log(string.Format("You were granted {0} items:", grantedItems.Count));
