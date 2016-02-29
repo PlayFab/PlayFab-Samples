@@ -9,7 +9,7 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
   * [Player Inventory](https://api.playfab.com/docs/building-blocks#Player_Inventory)
   * [Virtual Currency](https://api.playfab.com/docs/building-blocks#Virtual_Currency)
   * [Catalog & CatalogItems (Bundle / Container)](https://api.playfab.com/docs/building-blocks#Catalog)
-	* [Drop Table](https://api.playfab.com/docs/building-blocks#Drop_Table)
+  * [Drop Table](https://api.playfab.com/docs/building-blocks#Drop_Table)
 
 ###Preparation:
   1. Use the Game Manager to configure a Virtual Currency for your title:
