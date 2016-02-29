@@ -12,18 +12,14 @@ This example shows off how you can use Player Publisher Data to reward players t
   * [Cloud Script](https://api.playfab.com/docs/building-blocks#Cloud_Script)
 
 ### Preparation:
-	1. Use the Game Manager to configure a second Virtual Currency for your title:
-	
+  1. Use the Game Manager to configure a second Virtual Currency for your title:
+  2. Upload [this example catalog](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
+	* If using your own, ensure that you have items that can be granted to players.
 
-
-
-	2. Upload [this example catalog](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
-	  * If using your own, ensure that you have items that can be granted to players.
-
-	3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has a corresponding methods.  
-	4. Add the following TitleData record:
-		* **Key** : CrossPromotionalRewards
-		* **Value**: 
+  3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has a corresponding methods.  
+  4. Add the following TitleData record:
+	* **Key** : CrossPromotionalRewards
+	* **Value**: 
 
 
 
