@@ -42,7 +42,7 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
 #### Unity 3d Example Setup Instructions:
 Open the stand alone project in unity or import our asset packages into your existing project.
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
-  * Ensure you have the recipe files [here](/Recipes/PrizeWheel/Unity3d-Example/PrizeWheel.unitypackage).
+  * Ensure you have the recipe files [here](/Recipes/PrizeWheel/Unity3d-Example/PrizeWheelRecipe.unitypackage).
   
   1. Add assets to your project. 
   2. Open to the PrizeWheel scene.

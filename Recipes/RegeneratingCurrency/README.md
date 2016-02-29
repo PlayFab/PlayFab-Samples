@@ -52,7 +52,7 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 #### Unity 3d Example Setup Instructions:
 Open the stand alone project in unity or import our asset packages into your existing project.
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
-  * Ensure you have the recipe files [here](/Recipes/RegeneratingCurrency/Unity3d-Example/RegeneratingCurrency.unitypackage).
+  * Ensure you have the recipe files [here](/Recipes/RegeneratingCurrency/Unity3d-Example/RegeneratingCurrencyRecipe.unitypackage).
   
   1. Add assets to your project. 
   2. Open to the RegeneratingCurrency scene.
