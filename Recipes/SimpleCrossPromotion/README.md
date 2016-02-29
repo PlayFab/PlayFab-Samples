@@ -25,7 +25,6 @@ This example shows off how you can use Player Publisher Data to reward players t
 	"632D" : "biggerHat" 
 }
 ``` 
-  
   5. To properly test this you will need to have multiple titles with the similar Cloud Scripts. This pattern allows you to have different rewards for each individual catalog.
 
 ### Process Walkthrough:
