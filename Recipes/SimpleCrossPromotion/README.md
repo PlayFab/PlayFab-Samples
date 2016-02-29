@@ -13,6 +13,13 @@ This example shows off how you can use Player Publisher Data to reward players t
 
 ### Preparation:
   1. Use the Game Manager to configure a second Virtual Currency for your title:
+
+  | Property | Value | Detail
+  ---: | :---: | --- 
+  Code | GM | Abbreviation for our VC
+  Name | Gems | Name of our VC
+  Initial Deposit | 5 | How many each player gets with a new account
+
   2. Upload [this example catalog](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
 	* If using your own, ensure that you have items that can be granted to players.
   3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has a corresponding methods.  
