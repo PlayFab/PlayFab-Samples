@@ -27,7 +27,7 @@ This example shows off how you can use Player Publisher Data to reward players t
 	4. Add the following TitleData record:
 		* **Key** : CrossPromotionalRewards
 		* **Value**: 
-
+		
 	```javascript
 { 
 	"E5A" : "chromePaint",  
