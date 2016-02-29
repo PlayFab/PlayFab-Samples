@@ -26,12 +26,7 @@ This example shows off how you can use Player Publisher Data to reward players t
 		* **Value**: 
 
 
-	```javascript
-	{ 
-		"E5A" : "chromePaint",  
-		"632D" : "biggerHat" 
-	}
-	``` 
+
 
 	4. To properly test this you will need to have multiple titles with the similar Cloud Scripts. This pattern allows you to have different rewards for each individual catalog.
 
