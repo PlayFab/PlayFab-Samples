@@ -14,11 +14,13 @@ This example shows off how you can use Player Publisher Data to reward players t
 ### Preparation:
 	1. Use the Game Manager to configure a second Virtual Currency for your title:
 
+
 	| Property | Value | Detail
 	---: | :---: | --- 
 	Code | GM | Abbreviation for our VC
 	Name | Gems | Name of our VC
 	Initial Deposit | 5 | How many each player gets with a new account
+
 
 	2. Upload [this example catalog](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
 	  * If using your own, ensure that you have items that can be granted to players.
@@ -27,12 +29,13 @@ This example shows off how you can use Player Publisher Data to reward players t
 	4. Add the following TitleData record:
 		* **Key** : CrossPromotionalRewards
 		* **Value**: 
+
 		
 	```javascript
-{ 
-	"E5A" : "chromePaint",  
-	"632D" : "biggerHat" 
-}
+	{ 
+		"E5A" : "chromePaint",  
+		"632D" : "biggerHat" 
+	}
 	``` 
 
 	4. To properly test this you will need to have multiple titles with the similar Cloud Scripts. This pattern allows you to have different rewards for each individual catalog.
