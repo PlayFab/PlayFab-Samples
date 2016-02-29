@@ -66,8 +66,11 @@ In this example, after authentication, your players would "check in", a process 
 ----
 
 #### Unity 3d Example Setup Instructions:
-  1. Download project assets. 
-  2. Add assets to your project. 
-  3. Open to the ProgressiveRewards scene.
-  4. Add your title ID to the ProgressiveRewards.cs via the Unity Inspector.
-  5. Run the scene and observe the console for call-by-call status updates.
+Open the stand alone project in unity or import our asset packages into your existing project.
+  * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
+  * Ensure you have the recipe files [here](/Recipes/ProgressiveRewards/Unity3d-Example/ProgressiveRewards.unitypackage).
+  
+  1. Add assets to your project. 
+  2. Open to the ProgressiveRewards scene.
+  3. Add your title ID to the ProgressiveRewards.cs via the Unity Inspector.
+  4. Run the scene and observe the console for call-by-call status updates.
