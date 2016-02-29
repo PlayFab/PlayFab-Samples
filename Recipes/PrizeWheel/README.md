@@ -12,20 +12,20 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
 	* [Drop Table](https://api.playfab.com/docs/building-blocks#Drop_Table)
 
 ###Preparation:
-	  1. Use the Game Manager to configure a Virtual Currency for your title:
+  1. Use the Game Manager to configure a Virtual Currency for your title:
 
-    | Property | Value | Detail
-    ---: | :---: | --- 
-    Code | ST | Abbreviation for our VC
-    Name | Spin Ticket | Name of our VC
-    Initial Deposit | 1 | ensure that the player can spin on their first login
-    Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day
-    Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to bank up to 5 spin tokens at a time
+  | Property | Value | Detail
+  ---: | :---: | --- 
+  Code | ST | Abbreviation for our VC
+  Name | Spin Ticket | Name of our VC
+  Initial Deposit | 1 | ensure that the player can spin on their first login
+  Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day
+  Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to bank up to 5 spin tokens at a time
 
-    2. Upload [this example catalog](/Recipes/PrizeWheel/PlayFab-JSON/Catalog.json) or use your own.
-      * If using your own, ensure that you have items that can be granted to a player. from the wheel.
+  2. Upload [this example catalog](/Recipes/PrizeWheel/PlayFab-JSON/Catalog.json) or use your own. 
+    * If using your own, ensure that you have items that can be granted to a player. from the wheel.
 
-    3. Upload [this drop table](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json) using the Game Manager. The droptable should contain all of the items on the 'wheel'.
+  3. Upload [this drop table](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json) using the Game Manager. The droptable should contain all of the items on the 'wheel'.
 
 ###Process Walkthrough:
   1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)

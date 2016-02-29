@@ -1,0 +1,53 @@
+{
+  "CatalogVersion": "CrossPromotional",
+  "Catalog": [
+    {
+      "ItemId": "biggerHat",
+      "ItemClass": "HeadSlot",
+      "CatalogVersion": "CrossPromotional",
+      "DisplayName": "Bigger Hat",
+      "Description": "This hat is bigger than all the others. \n\nAwarded for logging into title 632D.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "Exclusive"
+      ],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "chromePaint",
+      "ItemClass": "PaintJob",
+      "CatalogVersion": "CrossPromotional",
+      "DisplayName": "Chrome Paint",
+      "Description": "So Shiny!\n\nAwarded for logging into title E5A.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "Exclusive"
+      ],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    }
+  ]
+}
