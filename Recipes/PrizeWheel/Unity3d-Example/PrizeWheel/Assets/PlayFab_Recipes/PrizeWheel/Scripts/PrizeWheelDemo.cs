@@ -15,25 +15,18 @@ public class PrizeWheelDemo : MonoBehaviour {
 	// INSPECTOR TWEAKABLES
 	public string playFabTitleId = string.Empty;
 	
-	void Awake()
-	{
-		LockUI();
-	}
-	
 	// Use this for initialization
 	void Start () 
 	{
+		LockUI();
 		// set TitleID in the SDK
 		PlayFab.PlayFabSettings.TitleId = this.playFabTitleId;
+		if(string.IsNullOrEmpty(PlayFab.PlayFabSettings.TitleId))
+		{
+			Debug.LogWarning("Title Id was not set. To continue, enter your title id in the inspector.");
+		}
 		AuthenticateWithPlayFab();
 	}
-	
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
 	
 	public void OnSpinClicked()
 	{
@@ -64,58 +57,60 @@ public class PrizeWheelDemo : MonoBehaviour {
 	}
 	
 	
-	
 	void AuthenticateWithPlayFab()
 	{
-		PlayFabClientAPI.ProcessApiCallback<LoginResult> OnLoginSuccess = (LoginResult result) => {
-			Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
-			Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
-			GetInventory();
-		};
-		
 		Debug.Log("Logging into PlayFab...");
 		LoginWithCustomIDRequest request = new LoginWithCustomIDRequest() { TitleId = this.playFabTitleId, CustomId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true };
-		PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnApiCallError, null);
+		PlayFabClientAPI.LoginWithCustomID(request, OnLoginCallback, OnApiCallError, null);
+	}
+	
+	void OnLoginCallback (LoginResult result) 
+	{
+		Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
+		Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
+		GetInventory();
 	}
 	
 	void GetInventory()
 	{
-		PlayFabClientAPI.ProcessApiCallback<GetUserInventoryResult> OnGetInventoryResult = (GetUserInventoryResult result) => {
-			Debug.Log(string.Format("Inventory retrieved. You have {0} items.", result.Inventory.Count));
-			
-			int stBalance;
-			result.VirtualCurrency.TryGetValue("ST", out stBalance);
-			Debug.Log(string.Format("You have {0} Spin Tickets.", stBalance));
-			
-			VirtualCurrencyRechargeTime rechargeDetails;
-			DateTime nextFreeTicket = new DateTime();
-			if(result.VirtualCurrencyRechargeTimes.TryGetValue("ST", out rechargeDetails))
-			{
-				nextFreeTicket = DateTime.Now.AddSeconds(rechargeDetails.SecondsToRecharge);
-				Debug.Log(string.Format("Your next free ticket will arrive at: {0}", nextFreeTicket));
-			}
-			
-			SetUI(stBalance, result.Inventory.Count, nextFreeTicket);
-			UnlockUI();
-		};
-		
 		Debug.Log("Getting the player inventory...");
 		GetUserInventoryRequest request = new GetUserInventoryRequest();
-		PlayFabClientAPI.GetUserInventory(request, OnGetInventoryResult, OnApiCallError);
+		PlayFabClientAPI.GetUserInventory(request, GetInventoryCallback, OnApiCallError);
+	}
+	
+	void GetInventoryCallback (GetUserInventoryResult result)
+	{
+		Debug.Log(string.Format("Inventory retrieved. You have {0} items.", result.Inventory.Count));
+		
+		int stBalance;
+		result.VirtualCurrency.TryGetValue("ST", out stBalance);
+		Debug.Log(string.Format("You have {0} Spin Tickets.", stBalance));
+		
+		VirtualCurrencyRechargeTime rechargeDetails;
+		DateTime nextFreeTicket = new DateTime();
+		if(result.VirtualCurrencyRechargeTimes.TryGetValue("ST", out rechargeDetails))
+		{
+			nextFreeTicket = DateTime.Now.AddSeconds(rechargeDetails.SecondsToRecharge);
+			Debug.Log(string.Format("Your next free ticket will arrive at: {0}", nextFreeTicket));
+		}
+		
+		SetUI(stBalance, result.Inventory.Count, nextFreeTicket);
+		UnlockUI();
 	}
 	
 	void TryToSpin()
 	{
-		PlayFabClientAPI.ProcessApiCallback<PurchaseItemResult> OnApiCallSuccess = (PurchaseItemResult result) => { 
-			Debug.Log("Ticket Accepted! \nSPINNING...");
-			Debug.Log(string.Format("{0}", result.Items[1].DisplayName));
-			
-			GetInventory();
-		};
-		
 		Debug.Log("Attempting to spin...");
 		PurchaseItemRequest request = new PurchaseItemRequest() { ItemId = "PrizeWheel1", VirtualCurrency = "ST", Price = 1 };
-		PlayFabClientAPI.PurchaseItem(request, OnApiCallSuccess, OnApiCallError);
+		PlayFabClientAPI.PurchaseItem(request, TryToSpinCallback, OnApiCallError);
+	}
+	
+	void TryToSpinCallback (PurchaseItemResult result) 
+	{ 
+		Debug.Log("Ticket Accepted! \nSPINNING...");
+		Debug.Log(string.Format("{0}", result.Items[1].DisplayName));
+		
+		GetInventory();
 	}
 	
 	
@@ -135,6 +130,8 @@ public class PrizeWheelDemo : MonoBehaviour {
 		
 		Debug.LogError(string.Format("{0}\n {1}\n {2}\n", http, message, details));
 	}
+	
+	
 	
 	
 }

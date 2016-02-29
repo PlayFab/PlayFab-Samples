@@ -24,11 +24,16 @@ public class RegeneratingCurrency : MonoBehaviour {
 	DateTime nextFreeTicket = new DateTime();
 	
 	// Use this for initialization
-	void Start () {
-		PlayFab.PlayFabSettings.TitleId = this.playFabTitleId;
+	void Start () 
+	{
 		LockUI();
-		AuthenticateWithPlayFab();
+		PlayFab.PlayFabSettings.TitleId = this.playFabTitleId;
+		if(string.IsNullOrEmpty(PlayFab.PlayFabSettings.TitleId))
+		{
+			Debug.LogWarning("Title Id was not set. To continue, enter your title id in the inspector.");
+		}
 		
+		AuthenticateWithPlayFab();
 	}
 	
 	// Update is called once per frame
@@ -56,99 +61,102 @@ public class RegeneratingCurrency : MonoBehaviour {
 	}
 	
 	void GetCloudScriptURL()
+	{	
+		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptCallback, OnApiCallError);
+	}
+	
+	void OnGetCloudScriptCallback(GetCloudScriptUrlResult result)
 	{
-		PlayFabClientAPI.ProcessApiCallback<GetCloudScriptUrlResult> OnGetCloudScriptSuccess = (GetCloudScriptUrlResult result) => {
-			PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
-			Debug.Log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
-			UnlockUI();
-		};
-		
-		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptSuccess, OnApiCallError);
+		PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
+		Debug.Log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
+		UnlockUI();
 	}
 	
 	void AuthenticateWithPlayFab()
 	{
-		PlayFabClientAPI.ProcessApiCallback<LoginResult> OnLoginSuccess = (LoginResult result) => {
-			Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
-			Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
-			GetInventory();
-			GetCloudScriptURL();
-		};
-		
 		Debug.Log("Logging into PlayFab...");
 		LoginWithCustomIDRequest request = new LoginWithCustomIDRequest() { TitleId = this.playFabTitleId, CustomId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true };
-		PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnApiCallError, null);
+		PlayFabClientAPI.LoginWithCustomID(request, OnLoginCallback, OnApiCallError, null);
+	}
+	
+	void OnLoginCallback(LoginResult result) 
+	{
+		Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
+		Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
+		GetInventory();
+		GetCloudScriptURL();
 	}
 	
 	void GetInventory()
 	{
-		PlayFabClientAPI.ProcessApiCallback<GetUserInventoryResult> OnGetInventoryResult = (GetUserInventoryResult result) => {
-			Debug.Log(string.Format("Inventory retrieved. You have {0} items.", result.Inventory.Count));
-			
-			int gmBalance;
-			result.VirtualCurrency.TryGetValue(gmCode, out gmBalance);
-			Debug.Log(string.Format("You have {0} Gems.", gmBalance));
-			this.gemsValue.text = string.Format("x{0}", gmBalance);
-			
-			int lvBalance;
-			result.VirtualCurrency.TryGetValue(lvCode, out lvBalance);
-			Debug.Log(string.Format("You have {0} Lives", lvBalance));
-			this.livesValue.text = string.Format("x{0}", lvBalance);
-			
-			VirtualCurrencyRechargeTime rechargeDetails;
-			if(result.VirtualCurrencyRechargeTimes.TryGetValue(lvCode, out rechargeDetails))
-			{
-				this.nextFreeTicket = rechargeDetails.RechargeTime;
-				Debug.Log(string.Format("Your next free ticket will arrive at: {0}", nextFreeTicket));
-				this.livesRegen.text = string.Format("Next life in: {0} seconds", nextFreeTicket.Subtract(DateTime.Now).TotalSeconds);
-			}
-			
-			UnlockUI();
-		};
-		
 		Debug.Log("Getting the player inventory...");
 		GetUserInventoryRequest request = new GetUserInventoryRequest();
-		PlayFabClientAPI.GetUserInventory(request, OnGetInventoryResult, OnApiCallError);
+		PlayFabClientAPI.GetUserInventory(request, OnGetInventoryCallback, OnApiCallError);
+	}
+	
+	void OnGetInventoryCallback(GetUserInventoryResult result)
+	{
+		Debug.Log(string.Format("Inventory retrieved. You have {0} items.", result.Inventory.Count));
+		
+		int gmBalance;
+		result.VirtualCurrency.TryGetValue(gmCode, out gmBalance);
+		Debug.Log(string.Format("You have {0} Gems.", gmBalance));
+		this.gemsValue.text = string.Format("x{0}", gmBalance);
+		
+		int lvBalance;
+		result.VirtualCurrency.TryGetValue(lvCode, out lvBalance);
+		Debug.Log(string.Format("You have {0} Lives", lvBalance));
+		this.livesValue.text = string.Format("x{0}", lvBalance);
+		
+		VirtualCurrencyRechargeTime rechargeDetails;
+		if(result.VirtualCurrencyRechargeTimes.TryGetValue(lvCode, out rechargeDetails))
+		{
+			this.nextFreeTicket = rechargeDetails.RechargeTime;
+			Debug.Log(string.Format("Your next free ticket will arrive at: {0}", nextFreeTicket));
+			this.livesRegen.text = string.Format("Next life in: {0:n0} seconds", nextFreeTicket.Subtract(DateTime.Now).TotalSeconds);
+		}
+		
+		UnlockUI();
 	}
 	
 	public void TryBuyLives()
 	{
-		PlayFabClientAPI.ProcessApiCallback<PurchaseItemResult> OnApiCallSuccess = (PurchaseItemResult result) => { 
-			Debug.Log("Lives Purchased!");
-			Debug.Log(string.Format("{0}", result.Items[1].DisplayName));
-			GetInventory();
-		};
-		
 		Debug.Log("Purchaseing Lives...");
 		PurchaseItemRequest request = new PurchaseItemRequest() { ItemId = extraLivesBundleId, VirtualCurrency = gmCode, Price = livesBundlePrice };
-		PlayFabClientAPI.PurchaseItem(request, OnApiCallSuccess, OnApiCallError);
+		PlayFabClientAPI.PurchaseItem(request, TryBuyLivesCallback, OnApiCallError);
+	}
+	
+	void TryBuyLivesCallback (PurchaseItemResult result)
+	{ 
+		Debug.Log("Lives Purchased!");
+		Debug.Log(string.Format("{0}", result.Items[1].DisplayName));
+		GetInventory();
 	}
 	
 	public void ToBattle()
-	{
-		PlayFabClientAPI.ProcessApiCallback<RunCloudScriptResult> OnCloudScriptSuccess = (RunCloudScriptResult result) => {
-			Debug.Log("BATTLE REPORT:");
-			BattleResults grantedItems = PlayFab.SimpleJson.DeserializeObject<BattleResults>(result.ResultsEncoded);
-			
-			if(grantedItems != null)
-			{
-				Debug.Log(string.Format("You found {0} gems. \n You lost {1} lives.", grantedItems.gemsFound, grantedItems.lostALife ? 1 : 0));
-				//Debug.Log(result.ActionLog); 
-				 
-				GetInventory();
-			}
-			else
-			{
-				Debug.LogError("An error occured when attemtpting to deserialize the BattleResults.");
-			}
-		};
-		
+	{		
 		Debug.Log("BATTLING...");
 		RunCloudScriptRequest request = new RunCloudScriptRequest() { 
 			ActionId = "Battle", 
 		};
 		
-		PlayFabClientAPI.RunCloudScript(request, OnCloudScriptSuccess, OnApiCallError);
+		PlayFabClientAPI.RunCloudScript(request, ToBattleCallback, OnApiCallError);
+	}
+	
+	void ToBattleCallback (RunCloudScriptResult result)
+	{
+		Debug.Log("BATTLE REPORT:");
+		BattleResults grantedItems = PlayFab.SimpleJson.DeserializeObject<BattleResults>(result.ResultsEncoded);
+		
+		if(grantedItems != null)
+		{
+			Debug.Log(string.Format("You found {0} gems. \n You lost {1} lives.", grantedItems.gemsFound, grantedItems.lostALife ? 1 : 0));
+			GetInventory();
+		}
+		else
+		{
+			Debug.LogError("An error occured when attemtpting to deserialize the BattleResults.");
+		}
 	}
 	
 	void OnApiCallError(PlayFabError err)
@@ -169,7 +177,7 @@ public class RegeneratingCurrency : MonoBehaviour {
 	}
 }
 
-
+// helper class used for deserializing cloud script return values.
 public class BattleResults
 {
 	public int gemsFound { get; set; }

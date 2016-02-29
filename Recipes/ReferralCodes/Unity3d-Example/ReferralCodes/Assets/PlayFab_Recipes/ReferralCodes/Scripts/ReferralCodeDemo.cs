@@ -23,37 +23,23 @@ public class ReferralCodeDemo : MonoBehaviour {
 	
 	private bool wasReferralBageFound; 
 	
-	void Awake()
-	{
-		LockUI();
-	}
-	
 	// Use this for initialization
 	void Start () 
 	{
+		LockUI();
 		// set TitleID in the SDK
 		PlayFab.PlayFabSettings.TitleId = this.playFabTitleId;
-		AuthenticateWithPlayFab();
-		// get cloudscript url
-		// login custom id
-		// get inv & check for Referral Badge
-		// unlock UI
-		// await redeem clicked
-		
+		if(string.IsNullOrEmpty(PlayFab.PlayFabSettings.TitleId))
+		{
+			Debug.LogWarning("Title Id was not set. To continue, enter your title id in the inspector.");
+		}
+		AuthenticateWithPlayFab();	
 	}
-	
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
 	
 	public void OnRedeemClicked()
 	{
 		RedeemReferralCode();
 	}
-	
 	
 	void HideRedeemGroup()
 	{
@@ -102,47 +88,49 @@ public class ReferralCodeDemo : MonoBehaviour {
 	
 	
 	void AuthenticateWithPlayFab()
-	{
-		PlayFabClientAPI.ProcessApiCallback<LoginResult> OnLoginSuccess = (LoginResult result) => {
-			Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
-			Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
-			Debug.Log(string.Format("Your friend referral code is: {0}", result.PlayFabId));
-			this.myReferralCode.text = string.Format("REFERRAL CODE [{0}]", result.PlayFabId);
-			GetInventory();
-			GetCloudScriptURL();
-		};
-		
+	{	
 		Debug.Log("Logging into PlayFab...");
 		LoginWithCustomIDRequest request = new LoginWithCustomIDRequest() { TitleId = this.playFabTitleId, CustomId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true };
-		PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnApiCallError, null);
+		PlayFabClientAPI.LoginWithCustomID(request, OnLoginCallback, OnApiCallError, null);
+	}
+	
+	void OnLoginCallback (LoginResult result)
+	{
+		Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
+		Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
+		Debug.Log(string.Format("Your friend referral code is: {0}", result.PlayFabId));
+		this.myReferralCode.text = string.Format("REFERRAL CODE [{0}]", result.PlayFabId);
+		GetInventory();
+		GetCloudScriptURL();
 	}
 	
 	void GetCloudScriptURL()
 	{
-		PlayFabClientAPI.ProcessApiCallback<GetCloudScriptUrlResult> OnGetCloudScriptSuccess = (GetCloudScriptUrlResult result) => {
-			PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
-			Debug.Log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
-			UnlockUI();
-		};
-
-		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptSuccess, OnApiCallError);
+		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptCallback, OnApiCallError);
+	}
+	
+	void OnGetCloudScriptCallback(GetCloudScriptUrlResult result)
+	{
+		PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
+		Debug.Log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
+		UnlockUI();
 	}
 	
 	void GetInventory()
-	{
-		PlayFabClientAPI.ProcessApiCallback<GetUserInventoryResult> OnGetInventoryResult = (GetUserInventoryResult result) => {
-			Debug.Log(string.Format("Inventory retrieved. You have {0} items.", result.Inventory.Count));
-			this.inventory = result.Inventory;
-			
-			int gmBalance;
-			result.VirtualCurrency.TryGetValue("GM", out gmBalance);
-			Debug.Log(string.Format("You have {0} Gems.", gmBalance));
-
-		};
-		
+	{	
 		Debug.Log("Getting the player inventory...");
 		GetUserInventoryRequest request = new GetUserInventoryRequest();
-		PlayFabClientAPI.GetUserInventory(request, OnGetInventoryResult, OnApiCallError);
+		PlayFabClientAPI.GetUserInventory(request, OnGetInventoryCallback, OnApiCallError);
+	}
+	
+	void OnGetInventoryCallback(GetUserInventoryResult result) 
+	{
+		Debug.Log(string.Format("Inventory retrieved. You have {0} items.", result.Inventory.Count));
+		this.inventory = result.Inventory;
+		
+		int gmBalance;
+		result.VirtualCurrency.TryGetValue("GM", out gmBalance);
+		Debug.Log(string.Format("You have {0} Gems.", gmBalance));
 	}
 
 	void SearchForReferralBadge()
@@ -158,32 +146,7 @@ public class ReferralCodeDemo : MonoBehaviour {
 	}
 
 	void RedeemReferralCode()
-	{
-		PlayFabClientAPI.ProcessApiCallback<RunCloudScriptResult> OnCloudScriptSuccess = (RunCloudScriptResult result) => {
-			Debug.Log("SUCCESS!...\nYou Just Recieved:");
-			List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
-			
-			if(grantedItems != null)
-			{
-				string output = string.Empty;
-				foreach(var itemInstance in grantedItems)
-				{			
-					output += string.Format("\t {0} \n", itemInstance.DisplayName); 
-				}
-				
-				this.inventory.AddRange(grantedItems);
-				SearchForReferralBadge();
-				ShowReferredGroup();
-				Debug.Log(output);
-				Debug.Log(result.ActionLog); 
-			}
-			else
-			{
-				Debug.LogError("An error occured when attemtpting to deserialize the granted items.");
-			}
-			
-		};
-		
+	{	
 		Debug.Log("REDEEMING...");
 		RunCloudScriptRequest request = new RunCloudScriptRequest() { 
 			ActionId = "RedeemReferral", 
@@ -191,7 +154,32 @@ public class ReferralCodeDemo : MonoBehaviour {
 				referralCode = this.inputReferralCode.text 
 			}
 		};
-		PlayFabClientAPI.RunCloudScript(request, OnCloudScriptSuccess, OnApiCallError);
+		PlayFabClientAPI.RunCloudScript(request, OnRedeemReferralCodeCallback, OnApiCallError);
+	}
+	
+	void OnRedeemReferralCodeCallback(RunCloudScriptResult result) 
+	{
+		Debug.Log("SUCCESS!...\nYou Just Recieved:");
+		List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
+		
+		if(grantedItems != null)
+		{
+			string output = string.Empty;
+			foreach(var itemInstance in grantedItems)
+			{			
+				output += string.Format("\t {0} \n", itemInstance.DisplayName); 
+			}
+			
+			this.inventory.AddRange(grantedItems);
+			SearchForReferralBadge();
+			ShowReferredGroup();
+			Debug.Log(output);
+			Debug.Log(result.ActionLog); 
+		}
+		else
+		{
+			Debug.LogError("An error occured when attemtpting to deserialize the granted items.");
+		}
 	}
 	
 	void OnApiCallError(PlayFabError err)
