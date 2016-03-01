@@ -14,7 +14,3 @@ This collection of examples shows familiar patterns and mechanics implemented us
 ### Monetization
   * [Regenerating Currency Mechanic](/Recipes/RegeneratingCurrency) - A play-limiting mechanic (similar to Candy Crush lives) that slowly refills to a maximum over time.
 
-### Engagement
-  * [Player-to-Player Messaging](/PlayerToPlayerMessaging) - Send Asynchronous messages between players.
-
-
