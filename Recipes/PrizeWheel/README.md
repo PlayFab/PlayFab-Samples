@@ -4,7 +4,7 @@ A daily prize wheel gives players a 'spin' to recieve a prize in exchange for a 
 
 This technique ensures that players can only 'spin' at most one time per 24 hour period. Additionally, you can easily cap how many 'spin' tickets can be saved through the Virtual Currency settings. In this example we are allowing the player to bank up to 5 spin tickets 
 
-###Ingredients:
+### Ingredients (Building Blocks):
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
   * [Player Inventory](https://api.playfab.com/docs/building-blocks#Player_Inventory)
   * [Virtual Currency](https://api.playfab.com/docs/building-blocks#Virtual_Currency)
@@ -28,7 +28,7 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
   3. Upload [this drop table](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json) using the Game Manager. The droptable should contain all of the items on the 'wheel'.
 
 ### Mechanic Walkthrough:
-  1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
+  1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
   2. After logging-in the client needs a mechanism to trigger a spin
   3. After triggering the spin, the client attempts to purchase a SpinResult in exchange for 1 Spin Ticket
   4. After recieving the client's request, PlayFab will:
@@ -40,7 +40,7 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
 ----
 
 #### Unity 3d Example Setup Instructions:
-Open the stand alone project in unity or import our asset packages into your existing project.
+Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
   * Ensure you have the recipe files [here](/Recipes/PrizeWheel/Unity3d-Example/PrizeWheelRecipe.unitypackage).
   

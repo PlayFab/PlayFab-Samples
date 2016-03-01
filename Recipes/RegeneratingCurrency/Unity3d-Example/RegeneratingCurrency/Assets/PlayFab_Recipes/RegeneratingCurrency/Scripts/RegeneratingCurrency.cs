@@ -12,16 +12,18 @@ public class RegeneratingCurrency : MonoBehaviour {
 	public Text livesValue;
 	public Text gemsValue;
 	public Text livesRegen;
+	private bool areLivesCapped = true;
 	
 	// INSPECTOR TWEAKABLES
 	public string playFabTitleId = string.Empty;
 	
 	// PLAYFAB DATA
-	const string extraLivesBundleId = "extraLifeBundle"; 
+	const string extraLivesBundleId = "extraLivesBundle"; 
 	const int livesBundlePrice = 50;
 	const string gmCode = "GM";
 	const string lvCode = "LV";
 	DateTime nextFreeTicket = new DateTime();
+
 	
 	// Use this for initialization
 	void Start () 
@@ -39,7 +41,19 @@ public class RegeneratingCurrency : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		this.livesRegen.text = string.Format("Next life in: {0:n0} seconds", nextFreeTicket.Subtract(DateTime.Now).TotalSeconds);
+		if(this.areLivesCapped == false)
+		{
+			if(nextFreeTicket.Subtract(DateTime.Now).TotalSeconds <= 0)
+			{
+				this.livesRegen.text = "Fetching timer...";
+				GetInventory();
+			}
+			else
+			{
+				this.livesRegen.text = string.Format("Next life in: {0:n0} seconds", nextFreeTicket.Subtract(DateTime.Now).TotalSeconds);
+			}
+			
+		}
 	}
 	
 	void UnlockUI()
@@ -111,11 +125,23 @@ public class RegeneratingCurrency : MonoBehaviour {
 		VirtualCurrencyRechargeTime rechargeDetails;
 		if(result.VirtualCurrencyRechargeTimes.TryGetValue(lvCode, out rechargeDetails))
 		{
-			this.nextFreeTicket = rechargeDetails.RechargeTime;
-			Debug.Log(string.Format("Your next free ticket will arrive at: {0}", nextFreeTicket));
-			this.livesRegen.text = string.Format("Next life in: {0:n0} seconds", nextFreeTicket.Subtract(DateTime.Now).TotalSeconds);
+			string textOut = string.Empty;
+			if(lvBalance < rechargeDetails.RechargeMax)
+			{
+				this.nextFreeTicket = DateTime.Now.AddSeconds(rechargeDetails.SecondsToRecharge);
+				textOut = string.Format("Next life in: {0:n0} seconds", rechargeDetails.SecondsToRecharge);
+				this.livesRegen.text = textOut;
+				this.areLivesCapped = false;
+			}
+			else
+			{
+				textOut = string.Format("Lives only regenerate to a maximum of {0}, and you currently have {1}.", rechargeDetails.RechargeMax, lvBalance);
+				this.livesRegen.text = string.Empty;
+				this.areLivesCapped = true;
+			}
+			Debug.Log(textOut);
+			
 		}
-		
 		UnlockUI();
 	}
 	
@@ -129,7 +155,6 @@ public class RegeneratingCurrency : MonoBehaviour {
 	void TryBuyLivesCallback (PurchaseItemResult result)
 	{ 
 		Debug.Log("Lives Purchased!");
-		Debug.Log(string.Format("{0}", result.Items[1].DisplayName));
 		GetInventory();
 	}
 	

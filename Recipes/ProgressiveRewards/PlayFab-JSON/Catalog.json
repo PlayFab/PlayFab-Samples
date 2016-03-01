@@ -1,0 +1,89 @@
+{
+  "CatalogVersion": "ProgressiveRewards",
+  "Catalog": [
+    {
+      "ItemId": "Bronze_CheckInChest",
+      "ItemClass": "CheckInChest",
+      "CatalogVersion": "ProgressiveRewards",
+      "DisplayName": "Bronze Check-In Chest",
+      "Description": "Awarded after logging in for over 2+ consecutive days.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": 1,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": {
+          "GM": 5
+        }
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "Silver_CheckInChest",
+      "ItemClass": "CheckInChest",
+      "CatalogVersion": "ProgressiveRewards",
+      "DisplayName": "Silver Check-In Chest",
+      "Description": "Awarded after logging in for over 5+ consecutive days.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": 1,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": {
+          "GM": 10
+        }
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "Gold_CheckInChest",
+      "ItemClass": "CheckInChest",
+      "CatalogVersion": "ProgressiveRewards",
+      "DisplayName": "Gold Check-In Chest",
+      "Description": "Awarded after logging in for over 7+ consecutive days.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "null",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": 1,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": {
+          "GM": 15
+        }
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    }
+  ]
+}

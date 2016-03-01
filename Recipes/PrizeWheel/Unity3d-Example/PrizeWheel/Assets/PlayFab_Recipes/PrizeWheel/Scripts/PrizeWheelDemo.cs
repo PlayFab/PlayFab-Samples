@@ -33,7 +33,7 @@ public class PrizeWheelDemo : MonoBehaviour {
 		TryToSpin();
 	}
 	
-	void SetUI(int tickets, int items, DateTime nextFree)
+	void SetUI(int tickets, int items, string nextFree)
 	{
 		this.spinTicketBalance.text = string.Format("x{0}", tickets);
 		this.itemCount.text = string.Format("{0}", items);
@@ -84,17 +84,29 @@ public class PrizeWheelDemo : MonoBehaviour {
 		
 		int stBalance;
 		result.VirtualCurrency.TryGetValue("ST", out stBalance);
-		Debug.Log(string.Format("You have {0} Spin Tickets.", stBalance));
+		
 		
 		VirtualCurrencyRechargeTime rechargeDetails;
-		DateTime nextFreeTicket = new DateTime();
+		
+		string freeTicketDisplay = string.Format("Capped");
 		if(result.VirtualCurrencyRechargeTimes.TryGetValue("ST", out rechargeDetails))
 		{
-			nextFreeTicket = DateTime.Now.AddSeconds(rechargeDetails.SecondsToRecharge);
-			Debug.Log(string.Format("Your next free ticket will arrive at: {0}", nextFreeTicket));
+			if(stBalance < rechargeDetails.RechargeMax)
+			{
+				DateTime nextFreeTicket = new DateTime();
+				nextFreeTicket = DateTime.Now.AddSeconds(rechargeDetails.SecondsToRecharge);
+				Debug.Log(string.Format("You have {0} Spin Tickets.", stBalance));
+				Debug.Log(string.Format("Your next free ticket will arrive at: {0}", nextFreeTicket));
+				freeTicketDisplay = string.Format("{0}", nextFreeTicket);
+			}
+			else
+			{
+				Debug.Log(string.Format("Tickets only regenerate to a maximum of {0}, and you currently have {1}.", rechargeDetails.RechargeMax, stBalance));
+			}
+			
 		}
 		
-		SetUI(stBalance, result.Inventory.Count, nextFreeTicket);
+		SetUI(stBalance, result.Inventory.Count, freeTicketDisplay);
 		UnlockUI();
 	}
 	

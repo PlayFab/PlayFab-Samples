@@ -1,10 +1,10 @@
-## Energy Mechanic (is this different enough from prize wheel)
+## Regenerating Currency
 ### Description:
 A play-limiting mechanic (similar to lives / hearts from Candy Crush) that slowly refills to a maxiumum over time. This also is often accompanied with a way to purchase additional lives for VC or IAP. PlayFab offers services to enable both. 
 
 In this example we are mimicing gameplay through a Cloud Script method called "Battle". While battling the player can recieve Gems at the cost of sometimes losing a life. Logic in Cloud Script prevents players from battling if they do not have any lives. Extra lives regenerate every five minutes and are also available to purchase in exchange for Gems. 
 
-### Ingredients:
+### Ingredients (Building Blocks):
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
   * [Player Data](https://api.playfab.com/docs/building-blocks#Player_Data)
   * [Player Inventory](https://api.playfab.com/docs/building-blocks#Player_Inventory)
@@ -20,7 +20,7 @@ In this example we are mimicing gameplay through a Cloud Script method called "B
   Code | LV | Abbreviation for our VC
   Name | Lives | Name of our VC
   Initial Deposit | 1 | ensure that the player can spin on their first login
-  Recharge Rate | 288 |  Every 5 minutes: 24*60 / 5)
+  Recharge Rate | 288 |  Every 5 minutes: 24hr*60min / 5min
   Recharge Max | 5 | this caps the regeneration to the specified number
 
   2. Use the Game Manager to configure a second Virtual Currency for your title:
@@ -37,7 +37,7 @@ In this example we are mimicing gameplay through a Cloud Script method called "B
   4. Upload & deploy [this Cloud Script](/Recipes/RegeneratingCurrency/CloudScript.js), or ensure that yours has corresponding methods.  
 
 ### Mechanic Walkthrough:
-  1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
+  1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
   2. Client battles via calling into the Cloud Script method "Battle". 
   3. Cloud Script calculates Battle resultss and makes any Gem Additions, Life Losses and data upadtes to reflect results.
   4. Results passed back to client for updating the player.
@@ -45,12 +45,12 @@ In this example we are mimicing gameplay through a Cloud Script method called "B
 
 
 ### Cloud Script:
-In this example we are using Cloud Script to act as the secure server ensuring that the Battle logic processing and item grants happen on a trusted machine. The results of any actions performed in Cloud Script are then passed back to inform the client.
+In this example we are using Cloud Script to act as the secure server ensuring that the pattle logic processing and item grants happen on a trusted machine. The results of any actions performed in Cloud Script are then passed back to inform the client.
 
 ----
 
 #### Unity 3d Example Setup Instructions:
-Open the stand alone project in unity or import our asset packages into your existing project.
+Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
   * Ensure you have the recipe files [here](/Recipes/RegeneratingCurrency/Unity3d-Example/RegeneratingCurrencyRecipe.unitypackage).
   

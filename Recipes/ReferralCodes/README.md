@@ -1,10 +1,10 @@
-## Invite a Friend Code Reward 
+## Referral Codes
 ### Description:
 Players can enter a code (provided from a friend) to gain a referral award. Additionally, the referring player should also get an award. The referring player can be awarded can be obtainaned multiple times. 
 
  For this demo, we will be awarding the referee a "Premium Starter Pack", a item bundle containing several useful items for new players. Additionally, we want to limit each player to 1 starter pack, to do this we will be using another item "ReferralBadge". After redeeming a referal code, the referree will be granted a "ReferralBadge", a permenant inventory item that signifies that the player has already been referred. Those that refer players get 10 Gems and can capped on how many times they can recieve this bonus.
 
-### Ingredients:
+### Ingredients (Building Blocks):
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
   * [Player Data](https://api.playfab.com/docs/building-blocks#Player_Data)
   * [Player Inventory](https://api.playfab.com/docs/building-blocks#Player_Inventory)
@@ -27,7 +27,7 @@ Players can enter a code (provided from a friend) to gain a referral award. Addi
   3. Upload & deploy [this Cloud Script](/Recipes/ReferralCodes/CloudScript.js), or ensure that yours has corresponding methods.
 
 ### Mechanic Walkthrough:
-  1. Client A obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
+  1. Client A obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
   2. Client A generates a referral code (the player ID) from the game client and gives the code to a friend (Client B). //this is done outside the game
   3. Client B downloads their copy and logs in to obtain a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   4. Client B enters the referral code into their game client and hits redeem
@@ -49,7 +49,7 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 ----
 
 #### Unity 3d Example Setup Instructions:
-Open the stand alone project in unity or import our asset packages into your existing project.
+Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
   * Ensure you have the recipe files [here](/Recipes/ReferralCodes/Unity3d-Example/ReferralCodesRecipe.unitypackage).
   

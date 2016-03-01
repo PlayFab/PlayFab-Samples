@@ -2,7 +2,7 @@
 ### Description:
 Reward players for logging in over consecutive days with progressive item grants.  This example uses a three-tier reward table providing different items for 2, 5, 7 day log-in streaks. Cloud-Script logic acts as the authoritative server and performs the grant directly into the player's inventory.   
 
-### Ingredients:
+### Ingredients (Building Blocks):
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
   * [Title Data](https://api.playfab.com/docs/building-blocks#Title_Data)
   * [Player Data](https://api.playfab.com/docs/building-blocks#Player_Data)
@@ -20,7 +20,7 @@ Reward players for logging in over consecutive days with progressive item grants
   Name | Gems | Name of our VC
   Initial Deposit | 5 | How many each player gets with a new account
 
-  2. Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/RegeneratingCurrency.json) or use your own.
+  2. Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/Catalog.json) or use your own.
     * If using your own, ensure that you have items mapping to the three-tier reward table.
   3. Upload & deploy [this Cloud Script](/Recipes/ProgressiveRewards/CloudScript.js), or ensure that yours has corresponding methods.
   4. Add the following TitleData record:
@@ -41,7 +41,7 @@ Reward players for logging in over consecutive days with progressive item grants
 ``` 
 
 ### Mechanic Walkthrough:
-  1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
+  1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
   2. After logging in, the client calls into Cloud Script and executes "CheckIn". 
   3. "CheckIn" performs the following:
     1. Read currentPlayerId's ReadOnlyData: "CheckInTracker"
@@ -66,7 +66,7 @@ In this example, after authentication, your players would "check in", a process 
 ----
 
 #### Unity 3d Example Setup Instructions:
-Open the stand alone project in unity or import our asset packages into your existing project.
+Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
   * Ensure you have the recipe files [here](/Recipes/ProgressiveRewards/Unity3d-Example/ProgressiveRewardsRecipe.unitypackage).
   
