@@ -50,7 +50,7 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
-  * Ensure you have the recipe files [here](/Recipes/SimpleCrossPromotion/Unity3d-Example/SimpleCrossPromotionRecipe.unitypackage).
+  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/SimpleCrossPromotion/Unity3d-Example/SimpleCrossPromotionRecipe.unitypackage).
   
   1. Add assets to your project. 
   2. Open to the CrossPromotional scene.
