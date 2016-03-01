@@ -22,7 +22,7 @@ This example shows off how you can use Player Publisher Data to reward players t
 
   2. Upload [this example catalog](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
 	* If using your own, ensure that you have items that can be granted to players.
-  3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has a corresponding methods.  
+  3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has corresponding methods.  
   4. Add the following TitleData record:
 	* **Key** : CrossPromotionalRewards
 	* **Value**: 
@@ -34,7 +34,7 @@ This example shows off how you can use Player Publisher Data to reward players t
 ``` 
   5. To properly test this you will need to have multiple titles with the similar Cloud Scripts. This pattern allows you to have different rewards for each individual catalog.
 
-### Process Walkthrough:
+### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   2. Client checks-in via calling into the Cloud Script method "CheckIn". 
   3. Cloud Script reads the Player Publisher Data and determines if the player is elidigible for a reward.

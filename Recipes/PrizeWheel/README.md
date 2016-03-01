@@ -2,7 +2,7 @@
 ### Description:
 A daily prize wheel gives players a 'spin' to recieve a prize in exchange for a ticket. Tickets in this example are using PlayFab's regenerating Virtual Currency to ensure that the player is granted 1 ticket each day. The simplest way to achieve our intened "wheel of prizes' mechanic is to use a bundle or container with a drop table to control the distribution odds to recieving each item. 
 
-This technique ensures that players can only 'spin' at most one time per 24 hour period. Additionally, you can easily cap how many 'spin' tokens can be saved through the Virtual Currency settings. In this example we are allowing the player to bank up to 5 spin tickets 
+This technique ensures that players can only 'spin' at most one time per 24 hour period. Additionally, you can easily cap how many 'spin' tickets can be saved through the Virtual Currency settings. In this example we are allowing the player to bank up to 5 spin tickets 
 
 ###Ingredients:
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
@@ -20,14 +20,14 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
   Name | Spin Ticket | Name of our VC
   Initial Deposit | 1 | ensure that the player can spin on their first login
   Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day
-  Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to bank up to 5 spin tokens at a time
+  Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to bank up to 5 spin tickets at a time
 
   2. Upload [this example catalog](/Recipes/PrizeWheel/PlayFab-JSON/Catalog.json) or use your own. 
     * If using your own, ensure that you have items that can be granted to a player. from the wheel.
 
   3. Upload [this drop table](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json) using the Game Manager. The droptable should contain all of the items on the 'wheel'.
 
-###Process Walkthrough:
+### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   2. After logging-in the client needs a mechanism to trigger a spin
   3. After triggering the spin, the client attempts to purchase a SpinResult in exchange for 1 Spin Ticket
@@ -45,6 +45,6 @@ Open the stand alone project in unity or import our asset packages into your exi
   * Ensure you have the recipe files [here](/Recipes/PrizeWheel/Unity3d-Example/PrizeWheelRecipe.unitypackage).
   
   1. Add assets to your project. 
-  2. Open to the PrizeWheel scene.
+  2. Open the PrizeWheel scene.
   3. Add your title ID to the PrizeWheel.cs script via the Unity Inspector.
   4. Run the scene and observe the console for call-by-call status updates.

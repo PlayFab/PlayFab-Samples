@@ -108,7 +108,7 @@ public class PrizeWheelDemo : MonoBehaviour {
 	void TryToSpinCallback (PurchaseItemResult result) 
 	{ 
 		Debug.Log("Ticket Accepted! \nSPINNING...");
-		Debug.Log(string.Format("{0}", result.Items[1].DisplayName));
+		Debug.Log(string.Format("SPIN RESULT: {0}", result.Items[1].DisplayName));
 		
 		GetInventory();
 	}
@@ -130,8 +130,4 @@ public class PrizeWheelDemo : MonoBehaviour {
 		
 		Debug.LogError(string.Format("{0}\n {1}\n {2}\n", http, message, details));
 	}
-	
-	
-	
-	
 }

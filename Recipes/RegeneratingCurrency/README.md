@@ -34,9 +34,9 @@ In this example we are mimicing gameplay through a Cloud Script method called "B
   3. Upload [this example catalog](/Recipes/RegeneratingCurrency/PlayFab-JSON/Catalog.json) or use your own.
     * If using your own, ensure that you have items that can be granted to a player. from the wheel.
 
-  4. Upload & deploy [this Cloud Script](/Recipes/RegeneratingCurrency/CloudScript.js), or ensure that yours has a corresponding methods.  
+  4. Upload & deploy [this Cloud Script](/Recipes/RegeneratingCurrency/CloudScript.js), or ensure that yours has corresponding methods.  
 
-### Process Walkthrough:
+### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   2. Client battles via calling into the Cloud Script method "Battle". 
   3. Cloud Script calculates Battle resultss and makes any Gem Additions, Life Losses and data upadtes to reflect results.

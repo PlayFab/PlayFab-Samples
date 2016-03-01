@@ -24,9 +24,9 @@ Players can enter a code (provided from a friend) to gain a referral award. Addi
   2. Upload [this example catalog](/Recipes/ReferralCodes/PlayFab-JSON/Catalog.json) or use your own.
     * If using your own, ensure that you have items that can be granted in the referral process.
 
-  3. Upload & deploy [this Cloud Script](/Recipes/ReferralCodes/CloudScript.js), or ensure that yours has a corresponding methods.
+  3. Upload & deploy [this Cloud Script](/Recipes/ReferralCodes/CloudScript.js), or ensure that yours has corresponding methods.
 
-### Process Walkthrough:
+### Mechanic Walkthrough:
   1. Client A obtains a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
   2. Client A generates a referral code (the player ID) from the game client and gives the code to a friend (Client B). //this is done outside the game
   3. Client B downloads their copy and logs in to obtain a valid session ticket via one of the various Authentication pathways (required to make Client API Calls)
@@ -54,6 +54,6 @@ Open the stand alone project in unity or import our asset packages into your exi
   * Ensure you have the recipe files [here](/Recipes/ReferralCodes/Unity3d-Example/ReferralCodesRecipe.unitypackage).
   
   1. Add assets to your project. 
-  2. Open to the ReferraCodes scene.
-  3. Add your title ID to the ReferraCodes.cs script via the Unity Inspector.
+  2. Open to the ReferralCodes scene.
+  3. Add your title ID to the ReferralCodes.cs script via the Unity Inspector.
   4. Run the scene and observe the console for call-by-call status updates.
