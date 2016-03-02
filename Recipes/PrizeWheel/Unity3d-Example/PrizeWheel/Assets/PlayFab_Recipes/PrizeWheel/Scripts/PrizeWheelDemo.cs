@@ -85,7 +85,6 @@ public class PrizeWheelDemo : MonoBehaviour {
 		int stBalance;
 		result.VirtualCurrency.TryGetValue("ST", out stBalance);
 		
-		
 		VirtualCurrencyRechargeTime rechargeDetails;
 		
 		string freeTicketDisplay = string.Format("Capped");
