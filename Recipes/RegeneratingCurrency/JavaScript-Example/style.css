@@ -1,0 +1,146 @@
+body {
+	background-color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFF;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+.center {	
+	margin: 0 auto 0 auto;
+}
+
+.ilBlock {
+	display: inline-block;
+}
+
+
+.playFabLogo {
+	background-image: url("./img/Playfab_logo_RGB.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 100px;
+	width: 200px;
+}
+
+.outputDirections {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 0 0 5px 5px;
+}
+
+.footer {
+	width: 800px;
+	height: 200px;
+}
+
+.exampleCanvas {
+	position: relative;
+	box-sizing: border-box;
+	height: 600px;
+	width: 800px;
+	background-color: #000;
+	padding: 200px 5px 0 5px;
+}
+
+.stdButton {
+	display: inline-block;
+	font-size: 2.2em;
+	background-color: #ff3300;
+	color: #FFF;
+	border: 1px solid #333;
+
+}
+
+.stdButton:hover {
+	background-color: #333;
+	color:#000;
+	border: 1px solid #000;
+}
+
+.loginUI {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	vertical-align: top;
+	line-height: 2em;
+}
+
+.loginUI input {
+	min-width: 250px;
+}
+
+
+.exampleUI {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	line-height: 2em;
+}
+
+
+/* specific  recipe styles */
+.heartIcon
+{
+	background-image: url("./img/icon_life.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 50px;
+	width: 50px;
+}
+
+.gemIcon
+{
+	background-image: url("./img/Gem_Amethyst.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 50px;
+	width: 50px;
+}
+
+#livesGroup {
+	display: inline-block;
+	height: 100%;
+	text-align: right;
+
+	vertical-align: middle;
+	font-size: 24pt;
+	margin-right: 50px;
+}
+
+#gemsGroup {
+	display: inline-block;
+	height: 100%;
+	text-align: right;
+	vertical-align: middle;
+	font-size: 24pt;
+	margin-left: 50px;
+
+}
+
+#buyGroup {
+	display: inline-block;
+	height: 100%;
+}
+
+
+
+.stPlaceholder{
+	display: inline-block;
+	height: 100%;
+	text-align: right;
+	margin-right: 15px;
+
+}
+
+.invPlaceholder {
+	display: inline-block;
+	height: 100%;
+	text-align: right;
+	margin-left: 15px;
+}
+
+
+
+

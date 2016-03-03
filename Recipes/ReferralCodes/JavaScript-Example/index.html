@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+	<head>
+		 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+		 <title>PlayFab Referral Codes Recipe</title>
+
+		 <link rel="stylesheet" type="text/css" href="style.css">
+
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		 <script type="text/javascript" src="./JavaScriptSDK/PlayFabSDK/PlayFabClientApi.js"></script>
+		 <script type="text/javascript" src="code.js"> </script>
+	</head>
+
+
+	<body>
+		<div class="exampleCanvas center">
+
+				<div class="loginUI center">
+					<div class="stPlaceholder"> 
+						<div id="titleIdLabel">Title Id: <input id="inputTitleId" type="text" name="titleId" /></div>
+						<div id="userIdLabel">User Id: <input id="inputUserId" type="text" name="userId" /></div>
+					</div>
+					<button id="login" class="stdButton" style="height:100%;">LOGIN</button>
+				</div>
+
+				<div class="exampleUI center">
+					<div id="referGroup">
+						<div>Referral Code: <span id="referralValue">[000000000000]</span> </div>
+						<div style="width:350px; margin-top:10px">Give this code to your friends. When they redeem the code you will both get a reward. For the purposes of this demo we are using your PlayFab ID as the referral code.</div>
+					</div>
+				
+					<div id="redeemUI">
+						<button id="redeem" class="stdButton" style="height:36px; width:180px; font-size:1.2em; vertical-align:bottom;">Redeem</button>
+							<div class="ilBlock">
+								<div>Referral codes can be retrieved from other PlayFab accounts.</div>
+								<input id="inputReferralCode" type="text" name="inputReferralCode" value="Enter Referral Code" style="height:30px; width:100%;"/>
+							</div>
+					</div>
+					
+					<div id="referredUI" style="display:none;"><span id="referredBy">Referred by: 000000000000</span></div>
+				</div>
+			</div>
+
+			<div class="outputDirections">Observe the developer console for call-by-call status updates.</div>
+		</div>
+		<div class="footer center">
+			<div class="playFabLogo center"></div>
+		</div>
+	</body>
+</html>
+
+
+

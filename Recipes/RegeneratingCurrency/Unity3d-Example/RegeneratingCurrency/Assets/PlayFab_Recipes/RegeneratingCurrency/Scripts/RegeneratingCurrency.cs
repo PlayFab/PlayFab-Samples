@@ -202,6 +202,7 @@ public class RegeneratingCurrency : MonoBehaviour {
 	}
 }
 
+
 // helper class used for deserializing cloud script return values.
 public class BattleResults
 {
