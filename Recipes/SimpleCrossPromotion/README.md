@@ -21,12 +21,12 @@ This example shows off how you can use Player Publisher Data to reward players t
   Initial Deposit | 5 | How many each player gets with a new account
 
   2. Upload [this example catalog](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
-	* If using your own, ensure that you have items that can be granted to players.
+	  * If using your own, ensure that you have items that can be granted to players.
   3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has corresponding methods.  
   4. Add the following TitleData record:
-	* **Key** : CrossPromotionalRewards
-	* **Value**: 
-	```javascript
+	  * **Key** : CrossPromotionalRewards
+	  * **Value**: 
+	  ```javascript
 { 
 	//your title ID : the item to award for playing this title
   "E5A" : "chromePaint",  
@@ -50,10 +50,20 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
-  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/SimpleCrossPromotion/Unity3d-Example/SimpleCrossPromotionRecipe.unitypackage).
+  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/SimpleCrossPromotion/Example-Unity3d/SimpleCrossPromotionRecipe.unitypackage).
   
   1. Add assets to your project. 
   2. Open to the CrossPromotional scene.
   3. Add your title ID to the CrossPromotional.cs script via the Unity Inspector.
   4. Run the scene and observe the console for call-by-call status updates.
+
+----
+
+#### JavaScript Example Setup Instructions:
+  1. Copy [this folder](/Recipes/SimpleCrossPromotion/Example-JavaScript) to your web server. 
+  2. Navigate to index.html  
+  3. Enter in your title ID
+    * This example automatically generates a GUID on login; however, You may choose to any id you like.
+    * After logging in whatever id was used will be saved into your browser's localstorage
+  4. Observe your browser's developer console for call-by-call status updates.
 

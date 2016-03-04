@@ -68,9 +68,19 @@ In this example, after authentication, your players would "check in", a process 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
-  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ProgressiveRewards/Unity3d-Example/ProgressiveRewardsRecipe.unitypackage).
+  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ProgressiveRewards/Example-Unity3d/ProgressiveRewardsRecipe.unitypackage).
   
   1. Add assets to your project. 
   2. Open to the ProgressiveRewards scene.
   3. Add your title ID to the ProgressiveRewards.cs via the Unity Inspector.
   4. Run the scene and observe the console for call-by-call status updates.
+
+----
+
+#### JavaScript Example Setup Instructions:
+  1. Copy [this folder](/Recipes/SimpleCrossPromotion/Example-JavaScript) to your web server. 
+  2. Navigate to index.html  
+  3. Enter in your title ID
+    * This example automatically generates a GUID on login; however, You may choose to any id you like.
+    * After logging in whatever id was used will be saved into your browser's localstorage
+  4. Observe your browser's developer console for call-by-call status updates.
