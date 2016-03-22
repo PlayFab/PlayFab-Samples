@@ -81,6 +81,6 @@ Import the following asset packages into a new or existing Unity project:
   1. Copy [this folder](/Recipes/SimpleCrossPromotion/Example-JavaScript) to your web server. 
   2. Navigate to index.html  
   3. Enter in your title ID
-    * This example automatically generates a GUID on login; however, You may choose to any id you like.
+    * This example automatically generates a GUID on login; however, You may choose any id you like.
     * After logging in whatever id was used will be saved into your browser's localstorage
   4. Observe your browser's developer console for call-by-call status updates.
