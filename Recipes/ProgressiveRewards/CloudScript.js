@@ -1,11 +1,10 @@
 // defining these up top so we can easily change these later if we need to.
-var CHECK_IN_TRACKER = "CheckInTracker";    // used as a key on the UserPublisherDataReadOnly
-var PROGRESSIVE_REWARD_TABLE = "ProgressiveRewardTable";
-var PROGRESSIVE_MIN_CREDITS = "MinStreak";
-var PROGRESSIVE_REWARD = "Reward";
-
-var TRACKER_NEXT_GRANT = "NextEligibleGrant";
-var TRACKER_LOGIN_STREAK = "LoginStreak";
+var CHECK_IN_TRACKER = "CheckInTracker";    				// used as a key on the UserPublisherReadOnlyData
+var PROGRESSIVE_REWARD_TABLE = "ProgressiveRewardTable";	// TitleData key that contains the reward details
+var PROGRESSIVE_MIN_CREDITS = "MinStreak";					// PROGRESSIVE_REWARD_TABLE property denoting the minium number of logins to be eligible for this item 
+var PROGRESSIVE_REWARD = "Reward";							// PROGRESSIVE_REWARD_TABLE property denoting what item gets rewarded at this level
+var TRACKER_NEXT_GRANT = "NextEligibleGrant";				// CHECK_IN_TRACKER property containing the time at which we 
+var TRACKER_LOGIN_STREAK = "LoginStreak";					// CHECK_IN_TRACKER property containing the streak length
 
 
 handlers.CheckIn = function(args) {
@@ -70,14 +69,15 @@ handlers.CheckIn = function(args) {
 	    // ---
 	    if(!GetTitleDataResult.Data.hasOwnProperty(PROGRESSIVE_REWARD_TABLE))
 	    {
-	    	// throw here or silent error?
 	    	log.error("Rewards table could not be found. No rewards will be given. Exiting...");
 	        return [];
 	    }
 	    else
 	    {
+	    	// parse our reward table
 	    	var rewardTable = JSON.parse(GetTitleDataResult.Data[PROGRESSIVE_REWARD_TABLE]);
 	    	
+	    	// find a matching reward 
 	    	var reward;
 	    	for(var level in rewardTable)
 	    	{
@@ -87,6 +87,7 @@ handlers.CheckIn = function(args) {
 	    		}
 	    	}
 
+	    	// make grants and pass info back to the client.
 			var grantedItems = [];
 	    	if(reward)
 			{
