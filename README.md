@@ -5,7 +5,7 @@ This repository currenlty contains our Recipes; moving forward, future example c
 ### [Recipes](/Recipes/):
 This subdirectory contains quick examples that show off how to implement common patterns and mechanics on the PlayFab platform. 
 
-###[Tools & Testing](/ToolsAndTesting/)
+###[Testing Tools](/TestingTools/):
 This subdirectory contains testing tools that are useful for testing areas of the PlayFab platform. 
 
 ### Community Feedback:
