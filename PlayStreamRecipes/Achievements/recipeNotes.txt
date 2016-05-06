@@ -1,0 +1,5 @@
+recipe notes:
+===============
+  * catalog props are disconnected from the Cloud Script evaluation process (could move to Title Data over CatalogItem CustomData)
+  * better (unified) string responses
+  * 
