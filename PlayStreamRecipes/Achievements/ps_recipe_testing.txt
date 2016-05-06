@@ -32,3 +32,12 @@
     "UsesRemaining" : "50"
   }
 }
+
+{
+  "PlayFabId": "2428BB92C73A3E1F",
+  "EventName": "stat_update",
+  "Body": {
+    "StatisticName": "pvp_kills",
+    "StatisticValue" : "100"
+  }
+}
