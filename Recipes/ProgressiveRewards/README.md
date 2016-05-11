@@ -57,7 +57,7 @@ Reward players for logging in over consecutive days with progressive item grants
     7. Grant item to player
     8. Return the details to the client 
     9. Testing Level 2 & 3 rewards requires:
-      * Either waithing the specified login period 
+      * Either waiting the specified login period 
       * or using the Admin API to directly set the Player's data to specific points prior to check-in. 
 
 ### Cloud Script:

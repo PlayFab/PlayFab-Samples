@@ -38,7 +38,7 @@ This example shows off how you can use Player Publisher Data to reward players t
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
   2. Client checks-in via calling into the Cloud Script method "CheckIn". 
-  3. Cloud Script reads the Player Publisher Data and determines if the player is elidigible for a reward.
+  3. Cloud Script reads the Player Publisher Data and determines if the player is eligible for a reward.
   4. Award results passed back to client for updating the player.
 
 

@@ -1,8 +1,8 @@
 ## Regenerating Currency
 ### Description:
-A play-limiting mechanic (similar to lives / hearts from Candy Crush) that slowly refills to a maxiumum over time. This also is often accompanied with a way to purchase additional lives for VC or IAP. PlayFab offers services to enable both. 
+A play-limiting mechanic (similar to lives / hearts from Candy Crush) that slowly refills to a maximum over time. This also is often accompanied with a way to purchase additional lives for VC or IAP. PlayFab offers services to enable both.
 
-In this example we are mimicing gameplay through a Cloud Script method called "Battle". While battling the player can recieve Gems at the cost of sometimes losing a life. Logic in Cloud Script prevents players from battling if they do not have any lives. Extra lives regenerate every five minutes and are also available to purchase in exchange for Gems. 
+In this example we are mimicking gameplay through a Cloud Script method called "Battle". While battling the player can receive Gems at the cost of sometimes losing a life. Logic in Cloud Script prevents players from battling if they do not have any lives. Extra lives regenerate every five minutes and are also available to purchase in exchange for Gems.
 
 ### Ingredients (Building Blocks):
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
@@ -39,13 +39,13 @@ In this example we are mimicing gameplay through a Cloud Script method called "B
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
   2. Client battles via calling into the Cloud Script method "Battle". 
-  3. Cloud Script calculates Battle resultss and makes any Gem Additions, Life Losses and data upadtes to reflect results.
+  3. Cloud Script calculates Battle results and makes any Gem Additions, Life Losses and data updates to reflect results.
   4. Results passed back to client for updating the player.
   5. If a player loses all their lives, they must wait or purchase more in exchange for gems.
 
 
 ### Cloud Script:
-In this example we are using Cloud Script to act as the secure server ensuring that the pattle logic processing and item grants happen on a trusted machine. The results of any actions performed in Cloud Script are then passed back to inform the client.
+In this example we are using Cloud Script to act as the secure server ensuring that the battle logic processing and item grants happen on a trusted machine. The results of any actions performed in Cloud Script are then passed back to inform the client.
 
 ----
 
