@@ -1,5 +1,5 @@
 # PlayFab Samples Repository
-This repository currenlty contains our Recipes; moving forward, future example content will also be found here.  
+This repository currently contains our Recipes; moving forward, future example content will also be found here.  
 
 
 ### [Recipes](/Recipes/):

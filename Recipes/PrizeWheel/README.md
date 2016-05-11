@@ -1,6 +1,6 @@
 ## Daily Prize Wheel
 ### Description:
-A daily prize wheel gives players a 'spin' to recieve a prize in exchange for a ticket. Tickets in this example are using PlayFab's regenerating Virtual Currency to ensure that the player is granted 1 ticket each day. The simplest way to achieve our intened "wheel of prizes' mechanic is to use a bundle or container with a drop table to control the distribution odds to recieving each item. 
+A daily prize wheel gives players a 'spin' to receive a prize in exchange for a ticket. Tickets in this example are using PlayFab's regenerating Virtual Currency to ensure that the player is granted 1 ticket each day. The simplest way to achieve our intended "wheel of prizes' mechanic is to use a bundle or container with a drop table to control the distribution odds to receiving each item.
 
 This technique ensures that players can only 'spin' at most one time per 24 hour period. Additionally, you can easily cap how many 'spin' tickets can be saved through the Virtual Currency settings. In this example we are allowing the player to bank up to 5 spin tickets 
 
@@ -25,17 +25,17 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
   2. Upload [this example catalog](/Recipes/PrizeWheel/PlayFab-JSON/Catalog.json) or use your own. 
     * If using your own, ensure that you have items that can be granted to a player. from the wheel.
 
-  3. Upload [this drop table](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json) using the Game Manager. The droptable should contain all of the items on the 'wheel'.
+  3. Upload [this drop table](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json) using the Game Manager. The drop table should contain all of the items on the 'wheel'.
 
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
   2. After logging-in the client needs a mechanism to trigger a spin
   3. After triggering the spin, the client attempts to purchase a SpinResult in exchange for 1 Spin Ticket
-  4. After recieving the client's request, PlayFab will:
+  4. After receiving the client's request, PlayFab will:
     * Deduct a Spin Ticket from the Player's VC balance  
     * Award the bundle / container to the player's inventory 
     * Send a response with the updated information back to the client
-  5. Upon recieving the response, the client can display the award to the player.
+  5. Upon receiving the response, the client can display the award to the player.
 
 ----
 

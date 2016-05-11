@@ -1,8 +1,8 @@
 ## Referral Codes
 ### Description:
-Players can enter a code (provided from a friend) to gain a referral award. Additionally, the referring player should also get an award. The referring player can be awarded can be obtainaned multiple times. 
+Players can enter a code (provided from a friend) to gain a referral award. Additionally, the referring player should also get an award. The referring player can be awarded can be obtained multiple times.
 
- For this demo, we will be awarding the referee a "Premium Starter Pack", a item bundle containing several useful items for new players. Additionally, we want to limit each player to 1 starter pack, to do this we will be using another item "ReferralBadge". After redeeming a referal code, the referree will be granted a "ReferralBadge", a permenant inventory item that signifies that the player has already been referred. Those that refer players get 10 Gems and can capped on how many times they can recieve this bonus.
+For this demo, we will be awarding the referee a "Premium Starter Pack", a item bundle containing several useful items for new players. Additionally, we want to limit each player to 1 starter pack, to do this we will be using another item "ReferralBadge". After redeeming a referral code, the referree will be granted a "ReferralBadge", a permanent inventory item that signifies that the player has already been referred. Those that refer players get 10 Gems and can capped on how many times they can receive this bonus.
 
 ### Ingredients (Building Blocks):
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
@@ -34,13 +34,13 @@ Players can enter a code (provided from a friend) to gain a referral award. Addi
   5. Client B's game client then passes the referral code to "RedeemReferral" (a Cloud Script) for referral redemption
     * RedeemReferral will:
       1) Check the referree's inventory and ensure that a "ReferralBadge" does not exist
-      2) Before proceeding check the provided referal code to ensure that the code is valid. 
+      2) Before proceeding check the provided referral code to ensure that the code is valid. 
       3) Grant "Premium Starter Pack" to the referree
-      4) Grant "ReferralBadge" to the referree and add the referer's code to the ItemInstance annotation  // added after to ensure container has been awarded.
-      5) Get the referer's PlayerData key "Referals" and ensure that the limit has not been hit
+      4) Grant "ReferralBadge" to the referree and add the referrer's code to the ItemInstance annotation // added after to ensure container has been awarded.
+      5) Get the referrer's PlayerData key "Referrals" and ensure that the limit has not been hit
       6) Grant the referrer the VC 
       7) Add the referree's PlayFab ID to the Referrals array and write the data back to the referrer
-      8) Return the details to the referree's client 
+      8) Return the details to the referree's client
 
 ### Cloud Script:
 In this example we are using Cloud Script to act as the secure server ensuring that the referral processing and item grants happen on a trusted machine. The results of any actions performed in Cloud Script are then passed back to inform the client.
