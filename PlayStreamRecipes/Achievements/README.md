@@ -23,52 +23,32 @@ Track Players' progress based on custom achievement parameters. This example use
     * If using your own, ensure that you have items corresponding to those in the example catalog.
     * These catalog items contain CustomData defining the parameters used to evaluate achievement progress.
   3. Upload & deploy [this Cloud Script](/PlayStreamRecipes/Achievements/CloudScript.js), or ensure that yours has corresponding methods.
-  4. Add the following TitleData record:
-    * **Key** : ProgressiveRewardTable
-    * **Value**: 
 ``` 
 
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
-  2. After logging in, the client calls into Cloud Script and executes "CheckIn". 
-  3. "CheckIn" performs the following:
-    1. Read currentPlayerId's ReadOnlyData: "CheckInTracker"
-    	* If this is the first login, create a new record.
-    2. Ensure that the player is eligible for an reward:
-       * Must have logged in to a streak > 1
-       * Must have been > 24 hrs since last grant
-       * Must have been < 48 hours after the last grant (otherwise the streak will have been broken)
-    3. Increment next grant window
-    4. Write back changes to ReadOnlyPlayerData ("CheckInTracker")
-    5. Read the "ProgressiveRewardTable" key from TitleData
-    6. Look up the reward corresponding to the player's login streak 
-    7. Grant item to player
-    8. Return the details to the client 
-    9. Testing Level 2 & 3 rewards requires:
-      * Either waiting the specified login period 
-      * or using the Admin API to directly set the Player's data to specific points prior to check-in. 
-
+  2. After logging in, the client plays the game which naturally triggers built in PlayStream events. 
+  3. Some events are used to trigger the evaluation and tracking logic which keeps player badge progress up-to-date. These Achievements / Events are: 
+    * Social Player (triggered by: player_linked_account)
+    * Millionaire (triggered by: player_virtual_currency_balance_changed) 
+    * VIP (triggered by: player_vc_item_purchased)
+    * Bottoms Up (triggers by: player_consumed_item)
+    * Brawler (triggered by: player_statistic_changed)
+  4. During evaluation, the event data is compared with the ItemInstance CustomData to determine if any updates are required.
+    * If an achievement is determined to be completed, a time stamp will be added to mark the point of completion. 
+    * If updates are required Cloud Script writes the new values into CustomData.
+ 
 ### Cloud Script:
-In this example, after authentication, your players would "check in", a process which, calls the corresponding Cloud Script function. **CheckIn** securely calculates the Player's reward state and makes the needed item grants. The results of any actions performed in Cloud Script are then passed back to inform the client.
+In this example, these methods are called via PlayStream actions. These actions securely update the corresponding Player's achievement badges. Progress updates are then available after the client refreshes their inventory.
+
+### Testing the Achievements:
+Due to the nature of achievements, they are often unlocked slowly over the course of a player's lifetime. For the sake of expediency, I have included a way to quickly trigger these achievements. See ps_recipe_testing.txt for details on spoofing these events. 
 
 ----
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
-  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ProgressiveRewards/Example-Unity3d/ProgressiveRewardsRecipe.unitypackage).
+  * Ensure you have the recipe files [here]().
   
-  1. Add assets to your project. 
-  2. Open to the ProgressiveRewards scene.
-  3. Add your title ID to the ProgressiveRewards.cs via the Unity Inspector.
-  4. Run the scene and observe the console for call-by-call status updates.
-
-----
-
-#### JavaScript Example Setup Instructions:
-  1. Copy [this folder](/Recipes/SimpleCrossPromotion/Example-JavaScript) to your web server. 
-  2. Navigate to index.html  
-  3. Enter in your title ID
-    * This example automatically generates a GUID on login; however, You may choose any id you like.
-    * After logging in whatever id was used will be saved into your browser's localstorage
-  4. Observe your browser's developer console for call-by-call status updates.
+  1. ...TBD
