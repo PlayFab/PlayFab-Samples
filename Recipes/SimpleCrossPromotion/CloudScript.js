@@ -1,7 +1,8 @@
 // defining these up top so we can easily change these later if we need to.
 var CURRENT_TITLE_CODE = "A87";                                 // the TitleId of the current title
 var CROSS_PROMOTIONAL_TRACKING = "CrossPromotionalTracking";    // used as a key on the UserPublisherDataReadOnly
-var CROSS_PROMTIONAL_REWARDS = "CrossPromotionalRewards";       // used as a key on TitleData -- contains the item grant table linking the valid titles to items
+var CROSS_PROMOTIONAL_REWARDS = "CrossPromotionalRewards";       // used as a key on TitleData -- contains the item grant table linking the valid titles to items
+var CROSS_PROMOTIONAL_CATALOG = "CrossPromotional";
 
 handlers.CheckIn = function(args) {
 	var GetUserPublisherReadOnlyDataRequest = {
@@ -28,12 +29,12 @@ handlers.CheckIn = function(args) {
 
     // get this title's reward table so we know what items to grant. 
 	var GetTitleDataRequest = {
-    	"Keys": [ CROSS_PROMTIONAL_REWARDS ]
+    	"Keys": [ CROSS_PROMOTIONAL_REWARDS ]
     }; 
     var GetTitleDataResult = server.GetTitleData(GetTitleDataRequest);
     
 
-    if(!GetTitleDataResult.Data.hasOwnProperty(CROSS_PROMTIONAL_REWARDS))
+    if(!GetTitleDataResult.Data.hasOwnProperty(CROSS_PROMOTIONAL_REWARDS))
     {
     	// throw here or silent error?
     	log.error("Rewards table could not be found. No rewards will be given. Exiting...");
@@ -44,7 +45,7 @@ handlers.CheckIn = function(args) {
     }
     else
     {
-    	var rewardTable = JSON.parse(GetTitleDataResult.Data[CROSS_PROMTIONAL_REWARDS]);
+    	var rewardTable = JSON.parse(GetTitleDataResult.Data[CROSS_PROMOTIONAL_REWARDS]);
     	var grantedItems = [];
 
     	// loop through each title logged to the tracker and make the neccessacery item grants given this title's settings
@@ -74,11 +75,10 @@ handlers.CheckIn = function(args) {
     		}
     	}
 
-
 	    // write back updated data to PlayFab
         UpdatePromoTracking(trackedTitles);
-    	
-    	return grantedItems;
+
+    	return JSON.stringify(grantedItems);
     }
 };
 
@@ -103,6 +103,7 @@ function GrantItems(items, titleId)
     var parsed = Array.isArray(items) ? items : [ items ];
 
     var GrantItemsToUserRequest = {
+        "CatalogVersion" : CROSS_PROMOTIONAL_CATALOG, 
         "PlayFabId" : currentPlayerId,
         "ItemIds" : parsed,
         "Annotation" : "Granted for logging into: " + titleId

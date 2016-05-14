@@ -76,7 +76,6 @@ function AuthenticationCallback(response, error)
 		$("#referralValue").text("[" + result.PlayFabId + "]");
 
 		$(".loginUI").hide();
-		GetCloudScript();
 		GetInventory();
 	}
 }
@@ -107,34 +106,17 @@ function GetInventoryCallback(response, error)
 	}
 }
 
-function GetCloudScript()
-{
-	PlayFabClientSDK.GetCloudScriptUrl({}, GetCloudScriptCallback);
-}
-
-function GetCloudScriptCallback(response, error)
-{
-	if(error)
-	{
-		OutputError(error);
-	}	
-	else
-	{
-		console.log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
-	}
-}
-
 function RedeemReferralCode()
 {
 	console.log("REDEEMING...");
-	var RunCloudScriptRequest = {
-		"ActionId" : "RedeemReferral",
-		"Params" : {
+	var ExecuteCloudScriptRequest = {
+		"FunctionName" : "RedeemReferral",
+		"FunctionParameter" : {
 			"referralCode" : $("#inputReferralCode").val()
 		}
 	};
 
-	PlayFabClientSDK.RunCloudScript(RunCloudScriptRequest, RedeemReferralCodeCallback);
+	PlayFabClientSDK.ExecuteCloudScript(ExecuteCloudScriptRequest, RedeemReferralCodeCallback);
 }
 
 function RedeemReferralCodeCallback(response, error)
@@ -143,6 +125,11 @@ function RedeemReferralCodeCallback(response, error)
 	{
 		OutputError(error);
 	}	
+	else if(response.data.Error)
+	{
+		// Output any errors that occured in Cloud Script
+		OutputError(response.data.Error);
+	}
 	else
 	{
 		console.log("SUCCESS!...\nYou Just Recieved:");
@@ -158,7 +145,11 @@ function RedeemReferralCodeCallback(response, error)
 			inventory.push(grantedItems);
 
 			console.log(output);
-			console.log(response.data.ActionLog);
+			
+			for(var z in response.data.Logs)
+			{
+				console.log(response.data.Logs[z]);
+			}
 
 			SearchForReferralBadge();
 
@@ -189,7 +180,7 @@ function SearchForReferralBadge()
 
 function OutputError(error)
 {
-	console.log(error);
+	console.error(error);
 }
 
 // creates a standard GUID string that will be used as our custom ID

@@ -21,6 +21,10 @@ body {
 	background-size: contain;
 	height: 100px;
 	width: 200px;
+
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
 }
 
 .outputDirections {
@@ -55,7 +59,7 @@ body {
 
 .stdButton:hover {
 	background-color: #333;
-	color:#000;
+	color:#FFF;
 	border: 1px solid #000;
 }
 

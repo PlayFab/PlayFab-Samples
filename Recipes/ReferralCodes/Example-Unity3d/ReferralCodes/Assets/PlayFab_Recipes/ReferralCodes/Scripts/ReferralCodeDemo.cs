@@ -101,19 +101,6 @@ public class ReferralCodeDemo : MonoBehaviour {
 		Debug.Log(string.Format("Your friend referral code is: {0}", result.PlayFabId));
 		this.myReferralCode.text = string.Format("REFERRAL CODE [{0}]", result.PlayFabId);
 		GetInventory();
-		GetCloudScriptURL();
-	}
-	
-	void GetCloudScriptURL()
-	{
-		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptCallback, OnApiCallError);
-	}
-	
-	void OnGetCloudScriptCallback(GetCloudScriptUrlResult result)
-	{
-		PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
-		Debug.Log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
-		UnlockUI();
 	}
 	
 	void GetInventory()
@@ -131,6 +118,7 @@ public class ReferralCodeDemo : MonoBehaviour {
 		int gmBalance;
 		result.VirtualCurrency.TryGetValue("GM", out gmBalance);
 		Debug.Log(string.Format("You have {0} Gems.", gmBalance));
+		UnlockUI();
 	}
 
 	void SearchForReferralBadge()
@@ -148,22 +136,28 @@ public class ReferralCodeDemo : MonoBehaviour {
 	void RedeemReferralCode()
 	{	
 		Debug.Log("REDEEMING...");
-		RunCloudScriptRequest request = new RunCloudScriptRequest() { 
-			ActionId = "RedeemReferral", 
-			Params = new { 
+		ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest() { 
+			FunctionName = "RedeemReferral", 
+			FunctionParameter = new { 
 				referralCode = this.inputReferralCode.text 
 			}
 		};
-		PlayFabClientAPI.RunCloudScript(request, OnRedeemReferralCodeCallback, OnApiCallError);
+		PlayFabClientAPI.ExecuteCloudScript(request, OnRedeemReferralCodeCallback, OnApiCallError);
 	}
 	
-	void OnRedeemReferralCodeCallback(RunCloudScriptResult result) 
+	void OnRedeemReferralCodeCallback(ExecuteCloudScriptResult result) 
 	{
-		Debug.Log("SUCCESS!...\nYou Just Recieved:");
-		List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
-		
+		// output any errors that happend within cloud script
+		if(result.Error != null)
+		{
+			Debug.LogError(string.Format("{0} -- {1}", result.Error, result.Error.Message));
+			return;
+		}
+
+		List<ItemInstance> grantedItems = (List<ItemInstance>)result.FunctionResult;
 		if(grantedItems != null)
 		{
+			Debug.Log("SUCCESS!...\nYou Just Recieved:");
 			string output = string.Empty;
 			foreach(var itemInstance in grantedItems)
 			{			
@@ -174,7 +168,10 @@ public class ReferralCodeDemo : MonoBehaviour {
 			SearchForReferralBadge();
 			ShowReferredGroup();
 			Debug.Log(output);
-			Debug.Log(result.ActionLog); 
+			foreach(var statement in result.Logs)
+			{
+				Debug.Log(statement.Message);
+			}
 		}
 		else
 		{

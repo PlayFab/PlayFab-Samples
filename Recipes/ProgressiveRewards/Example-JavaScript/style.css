@@ -21,6 +21,10 @@ body {
 	background-size: contain;
 	height: 100px;
 	width: 200px;
+
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
 }
 
 .outputDirections {
@@ -79,7 +83,12 @@ body {
 	line-height: 2em;
 }
 
-
+.stPlaceholder {
+    display: inline-block;
+    height: 100%;
+    text-align: right;
+    margin-right: 15px;
+}
 /* specific  recipe styles */
 
 

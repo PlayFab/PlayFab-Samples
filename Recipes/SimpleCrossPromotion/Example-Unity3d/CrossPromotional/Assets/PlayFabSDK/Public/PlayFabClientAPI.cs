@@ -32,12 +32,8 @@ namespace PlayFab
         public delegate void LoginWithKongregateResponseCallback(string urlPath, int callId, LoginWithKongregateRequest request, LoginResult result, PlayFabError error, object customData);
         public delegate void LoginWithPlayFabRequestCallback(string urlPath, int callId, LoginWithPlayFabRequest request, object customData);
         public delegate void LoginWithPlayFabResponseCallback(string urlPath, int callId, LoginWithPlayFabRequest request, LoginResult result, PlayFabError error, object customData);
-        public delegate void LoginWithPSNRequestCallback(string urlPath, int callId, LoginWithPSNRequest request, object customData);
-        public delegate void LoginWithPSNResponseCallback(string urlPath, int callId, LoginWithPSNRequest request, LoginResult result, PlayFabError error, object customData);
         public delegate void LoginWithSteamRequestCallback(string urlPath, int callId, LoginWithSteamRequest request, object customData);
         public delegate void LoginWithSteamResponseCallback(string urlPath, int callId, LoginWithSteamRequest request, LoginResult result, PlayFabError error, object customData);
-        public delegate void LoginWithXboxRequestCallback(string urlPath, int callId, LoginWithXboxRequest request, object customData);
-        public delegate void LoginWithXboxResponseCallback(string urlPath, int callId, LoginWithXboxRequest request, LoginResult result, PlayFabError error, object customData);
         public delegate void RegisterPlayFabUserRequestCallback(string urlPath, int callId, RegisterPlayFabUserRequest request, object customData);
         public delegate void RegisterPlayFabUserResponseCallback(string urlPath, int callId, RegisterPlayFabUserRequest request, RegisterPlayFabUserResult result, PlayFabError error, object customData);
         public delegate void AddUsernamePasswordRequestCallback(string urlPath, int callId, AddUsernamePasswordRequest request, object customData);
@@ -52,8 +48,6 @@ namespace PlayFab
         public delegate void GetPlayFabIDsFromGoogleIDsResponseCallback(string urlPath, int callId, GetPlayFabIDsFromGoogleIDsRequest request, GetPlayFabIDsFromGoogleIDsResult result, PlayFabError error, object customData);
         public delegate void GetPlayFabIDsFromKongregateIDsRequestCallback(string urlPath, int callId, GetPlayFabIDsFromKongregateIDsRequest request, object customData);
         public delegate void GetPlayFabIDsFromKongregateIDsResponseCallback(string urlPath, int callId, GetPlayFabIDsFromKongregateIDsRequest request, GetPlayFabIDsFromKongregateIDsResult result, PlayFabError error, object customData);
-        public delegate void GetPlayFabIDsFromPSNAccountIDsRequestCallback(string urlPath, int callId, GetPlayFabIDsFromPSNAccountIDsRequest request, object customData);
-        public delegate void GetPlayFabIDsFromPSNAccountIDsResponseCallback(string urlPath, int callId, GetPlayFabIDsFromPSNAccountIDsRequest request, GetPlayFabIDsFromPSNAccountIDsResult result, PlayFabError error, object customData);
         public delegate void GetPlayFabIDsFromSteamIDsRequestCallback(string urlPath, int callId, GetPlayFabIDsFromSteamIDsRequest request, object customData);
         public delegate void GetPlayFabIDsFromSteamIDsResponseCallback(string urlPath, int callId, GetPlayFabIDsFromSteamIDsRequest request, GetPlayFabIDsFromSteamIDsResult result, PlayFabError error, object customData);
         public delegate void GetUserCombinedInfoRequestCallback(string urlPath, int callId, GetUserCombinedInfoRequest request, object customData);
@@ -72,12 +66,10 @@ namespace PlayFab
         public delegate void LinkIOSDeviceIDResponseCallback(string urlPath, int callId, LinkIOSDeviceIDRequest request, LinkIOSDeviceIDResult result, PlayFabError error, object customData);
         public delegate void LinkKongregateRequestCallback(string urlPath, int callId, LinkKongregateAccountRequest request, object customData);
         public delegate void LinkKongregateResponseCallback(string urlPath, int callId, LinkKongregateAccountRequest request, LinkKongregateAccountResult result, PlayFabError error, object customData);
-        public delegate void LinkPSNAccountRequestCallback(string urlPath, int callId, LinkPSNAccountRequest request, object customData);
-        public delegate void LinkPSNAccountResponseCallback(string urlPath, int callId, LinkPSNAccountRequest request, LinkPSNAccountResult result, PlayFabError error, object customData);
         public delegate void LinkSteamAccountRequestCallback(string urlPath, int callId, LinkSteamAccountRequest request, object customData);
         public delegate void LinkSteamAccountResponseCallback(string urlPath, int callId, LinkSteamAccountRequest request, LinkSteamAccountResult result, PlayFabError error, object customData);
-        public delegate void LinkXboxAccountRequestCallback(string urlPath, int callId, LinkXboxAccountRequest request, object customData);
-        public delegate void LinkXboxAccountResponseCallback(string urlPath, int callId, LinkXboxAccountRequest request, LinkXboxAccountResult result, PlayFabError error, object customData);
+        public delegate void ReportPlayerRequestCallback(string urlPath, int callId, ReportPlayerClientRequest request, object customData);
+        public delegate void ReportPlayerResponseCallback(string urlPath, int callId, ReportPlayerClientRequest request, ReportPlayerClientResult result, PlayFabError error, object customData);
         public delegate void SendAccountRecoveryEmailRequestCallback(string urlPath, int callId, SendAccountRecoveryEmailRequest request, object customData);
         public delegate void SendAccountRecoveryEmailResponseCallback(string urlPath, int callId, SendAccountRecoveryEmailRequest request, SendAccountRecoveryEmailResult result, PlayFabError error, object customData);
         public delegate void UnlinkAndroidDeviceIDRequestCallback(string urlPath, int callId, UnlinkAndroidDeviceIDRequest request, object customData);
@@ -94,12 +86,8 @@ namespace PlayFab
         public delegate void UnlinkIOSDeviceIDResponseCallback(string urlPath, int callId, UnlinkIOSDeviceIDRequest request, UnlinkIOSDeviceIDResult result, PlayFabError error, object customData);
         public delegate void UnlinkKongregateRequestCallback(string urlPath, int callId, UnlinkKongregateAccountRequest request, object customData);
         public delegate void UnlinkKongregateResponseCallback(string urlPath, int callId, UnlinkKongregateAccountRequest request, UnlinkKongregateAccountResult result, PlayFabError error, object customData);
-        public delegate void UnlinkPSNAccountRequestCallback(string urlPath, int callId, UnlinkPSNAccountRequest request, object customData);
-        public delegate void UnlinkPSNAccountResponseCallback(string urlPath, int callId, UnlinkPSNAccountRequest request, UnlinkPSNAccountResult result, PlayFabError error, object customData);
         public delegate void UnlinkSteamAccountRequestCallback(string urlPath, int callId, UnlinkSteamAccountRequest request, object customData);
         public delegate void UnlinkSteamAccountResponseCallback(string urlPath, int callId, UnlinkSteamAccountRequest request, UnlinkSteamAccountResult result, PlayFabError error, object customData);
-        public delegate void UnlinkXboxAccountRequestCallback(string urlPath, int callId, UnlinkXboxAccountRequest request, object customData);
-        public delegate void UnlinkXboxAccountResponseCallback(string urlPath, int callId, UnlinkXboxAccountRequest request, UnlinkXboxAccountResult result, PlayFabError error, object customData);
         public delegate void UpdateUserTitleDisplayNameRequestCallback(string urlPath, int callId, UpdateUserTitleDisplayNameRequest request, object customData);
         public delegate void UpdateUserTitleDisplayNameResponseCallback(string urlPath, int callId, UpdateUserTitleDisplayNameRequest request, UpdateUserTitleDisplayNameResult result, PlayFabError error, object customData);
         public delegate void GetFriendLeaderboardRequestCallback(string urlPath, int callId, GetFriendLeaderboardRequest request, object customData);
@@ -116,6 +104,8 @@ namespace PlayFab
         public delegate void GetLeaderboardAroundPlayerResponseCallback(string urlPath, int callId, GetLeaderboardAroundPlayerRequest request, GetLeaderboardAroundPlayerResult result, PlayFabError error, object customData);
         public delegate void GetPlayerStatisticsRequestCallback(string urlPath, int callId, GetPlayerStatisticsRequest request, object customData);
         public delegate void GetPlayerStatisticsResponseCallback(string urlPath, int callId, GetPlayerStatisticsRequest request, GetPlayerStatisticsResult result, PlayFabError error, object customData);
+        public delegate void GetPlayerStatisticVersionsRequestCallback(string urlPath, int callId, GetPlayerStatisticVersionsRequest request, object customData);
+        public delegate void GetPlayerStatisticVersionsResponseCallback(string urlPath, int callId, GetPlayerStatisticVersionsRequest request, GetPlayerStatisticVersionsResult result, PlayFabError error, object customData);
         public delegate void GetUserDataRequestCallback(string urlPath, int callId, GetUserDataRequest request, object customData);
         public delegate void GetUserDataResponseCallback(string urlPath, int callId, GetUserDataRequest request, GetUserDataResult result, PlayFabError error, object customData);
         public delegate void GetUserPublisherDataRequestCallback(string urlPath, int callId, GetUserDataRequest request, object customData);
@@ -136,6 +126,8 @@ namespace PlayFab
         public delegate void UpdateUserStatisticsResponseCallback(string urlPath, int callId, UpdateUserStatisticsRequest request, UpdateUserStatisticsResult result, PlayFabError error, object customData);
         public delegate void GetCatalogItemsRequestCallback(string urlPath, int callId, GetCatalogItemsRequest request, object customData);
         public delegate void GetCatalogItemsResponseCallback(string urlPath, int callId, GetCatalogItemsRequest request, GetCatalogItemsResult result, PlayFabError error, object customData);
+        public delegate void GetPublisherDataRequestCallback(string urlPath, int callId, GetPublisherDataRequest request, object customData);
+        public delegate void GetPublisherDataResponseCallback(string urlPath, int callId, GetPublisherDataRequest request, GetPublisherDataResult result, PlayFabError error, object customData);
         public delegate void GetStoreItemsRequestCallback(string urlPath, int callId, GetStoreItemsRequest request, object customData);
         public delegate void GetStoreItemsResponseCallback(string urlPath, int callId, GetStoreItemsRequest request, GetStoreItemsResult result, PlayFabError error, object customData);
         public delegate void GetTitleDataRequestCallback(string urlPath, int callId, GetTitleDataRequest request, object customData);
@@ -160,8 +152,6 @@ namespace PlayFab
         public delegate void PurchaseItemResponseCallback(string urlPath, int callId, PurchaseItemRequest request, PurchaseItemResult result, PlayFabError error, object customData);
         public delegate void RedeemCouponRequestCallback(string urlPath, int callId, RedeemCouponRequest request, object customData);
         public delegate void RedeemCouponResponseCallback(string urlPath, int callId, RedeemCouponRequest request, RedeemCouponResult result, PlayFabError error, object customData);
-        public delegate void ReportPlayerRequestCallback(string urlPath, int callId, ReportPlayerClientRequest request, object customData);
-        public delegate void ReportPlayerResponseCallback(string urlPath, int callId, ReportPlayerClientRequest request, ReportPlayerClientResult result, PlayFabError error, object customData);
         public delegate void StartPurchaseRequestCallback(string urlPath, int callId, StartPurchaseRequest request, object customData);
         public delegate void StartPurchaseResponseCallback(string urlPath, int callId, StartPurchaseRequest request, StartPurchaseResult result, PlayFabError error, object customData);
         public delegate void SubtractUserVirtualCurrencyRequestCallback(string urlPath, int callId, SubtractUserVirtualCurrencyRequest request, object customData);
@@ -198,22 +188,24 @@ namespace PlayFab
         public delegate void ValidateGooglePlayPurchaseResponseCallback(string urlPath, int callId, ValidateGooglePlayPurchaseRequest request, ValidateGooglePlayPurchaseResult result, PlayFabError error, object customData);
         public delegate void LogEventRequestCallback(string urlPath, int callId, LogEventRequest request, object customData);
         public delegate void LogEventResponseCallback(string urlPath, int callId, LogEventRequest request, LogEventResult result, PlayFabError error, object customData);
+        public delegate void WriteCharacterEventRequestCallback(string urlPath, int callId, WriteClientCharacterEventRequest request, object customData);
+        public delegate void WriteCharacterEventResponseCallback(string urlPath, int callId, WriteClientCharacterEventRequest request, WriteEventResponse result, PlayFabError error, object customData);
+        public delegate void WritePlayerEventRequestCallback(string urlPath, int callId, WriteClientPlayerEventRequest request, object customData);
+        public delegate void WritePlayerEventResponseCallback(string urlPath, int callId, WriteClientPlayerEventRequest request, WriteEventResponse result, PlayFabError error, object customData);
+        public delegate void WriteTitleEventRequestCallback(string urlPath, int callId, WriteTitleEventRequest request, object customData);
+        public delegate void WriteTitleEventResponseCallback(string urlPath, int callId, WriteTitleEventRequest request, WriteEventResponse result, PlayFabError error, object customData);
         public delegate void AddSharedGroupMembersRequestCallback(string urlPath, int callId, AddSharedGroupMembersRequest request, object customData);
         public delegate void AddSharedGroupMembersResponseCallback(string urlPath, int callId, AddSharedGroupMembersRequest request, AddSharedGroupMembersResult result, PlayFabError error, object customData);
         public delegate void CreateSharedGroupRequestCallback(string urlPath, int callId, CreateSharedGroupRequest request, object customData);
         public delegate void CreateSharedGroupResponseCallback(string urlPath, int callId, CreateSharedGroupRequest request, CreateSharedGroupResult result, PlayFabError error, object customData);
-        public delegate void GetPublisherDataRequestCallback(string urlPath, int callId, GetPublisherDataRequest request, object customData);
-        public delegate void GetPublisherDataResponseCallback(string urlPath, int callId, GetPublisherDataRequest request, GetPublisherDataResult result, PlayFabError error, object customData);
         public delegate void GetSharedGroupDataRequestCallback(string urlPath, int callId, GetSharedGroupDataRequest request, object customData);
         public delegate void GetSharedGroupDataResponseCallback(string urlPath, int callId, GetSharedGroupDataRequest request, GetSharedGroupDataResult result, PlayFabError error, object customData);
         public delegate void RemoveSharedGroupMembersRequestCallback(string urlPath, int callId, RemoveSharedGroupMembersRequest request, object customData);
         public delegate void RemoveSharedGroupMembersResponseCallback(string urlPath, int callId, RemoveSharedGroupMembersRequest request, RemoveSharedGroupMembersResult result, PlayFabError error, object customData);
         public delegate void UpdateSharedGroupDataRequestCallback(string urlPath, int callId, UpdateSharedGroupDataRequest request, object customData);
         public delegate void UpdateSharedGroupDataResponseCallback(string urlPath, int callId, UpdateSharedGroupDataRequest request, UpdateSharedGroupDataResult result, PlayFabError error, object customData);
-        public delegate void ConsumePSNEntitlementsRequestCallback(string urlPath, int callId, ConsumePSNEntitlementsRequest request, object customData);
-        public delegate void ConsumePSNEntitlementsResponseCallback(string urlPath, int callId, ConsumePSNEntitlementsRequest request, ConsumePSNEntitlementsResult result, PlayFabError error, object customData);
-        public delegate void RefreshPSNAuthTokenRequestCallback(string urlPath, int callId, RefreshPSNAuthTokenRequest request, object customData);
-        public delegate void RefreshPSNAuthTokenResponseCallback(string urlPath, int callId, RefreshPSNAuthTokenRequest request, EmptyResult result, PlayFabError error, object customData);
+        public delegate void ExecuteCloudScriptRequestCallback(string urlPath, int callId, ExecuteCloudScriptRequest request, object customData);
+        public delegate void ExecuteCloudScriptResponseCallback(string urlPath, int callId, ExecuteCloudScriptRequest request, ExecuteCloudScriptResult result, PlayFabError error, object customData);
         public delegate void GetCloudScriptUrlRequestCallback(string urlPath, int callId, GetCloudScriptUrlRequest request, object customData);
         public delegate void GetCloudScriptUrlResponseCallback(string urlPath, int callId, GetCloudScriptUrlRequest request, GetCloudScriptUrlResult result, PlayFabError error, object customData);
         public delegate void RunCloudScriptRequestCallback(string urlPath, int callId, RunCloudScriptRequest request, object customData);
@@ -381,7 +373,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Signs the user in using a Google account access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+        /// Signs the user in using a Google account access token(https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods), returning a session identifier that can subsequently be used for API calls which require an authenticated user
         /// </summary>
         public static void LoginWithGoogleAccount(LoginWithGoogleAccountRequest request, ProcessApiCallback<LoginResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -469,28 +461,6 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Signs the user in using a PlayStation Network authentication code, returning a session identifier that can subsequently be used for API calls which require an authenticated user
-        /// </summary>
-        public static void LoginWithPSN(LoginWithPSNRequest request, ProcessApiCallback<LoginResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            request.TitleId = request.TitleId ?? PlayFabSettings.TitleId;
-            if (request.TitleId == null) throw new Exception("Must be have PlayFabSettings.TitleId set to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<LoginResult>.HandleResults(requestContainer, resultCallback, errorCallback, LoginWithPSNResultAction);
-            };
-            PlayFabHTTP.Post("/Client/LoginWithPSN", serializedJson, null, null, callback, request, customData);
-        }
-        public static void LoginWithPSNResultAction(LoginResult result, CallRequestContainer requestContainer)
-        {
-            _authKey = result.SessionTicket ?? _authKey;
-            MultiStepClientLogin(result.SettingsForUser.NeedsAttribution);
-
-        }
-
-        /// <summary>
         /// Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for API calls which require an authenticated user
         /// </summary>
         public static void LoginWithSteam(LoginWithSteamRequest request, ProcessApiCallback<LoginResult> resultCallback, ErrorCallback errorCallback, object customData = null)
@@ -506,28 +476,6 @@ namespace PlayFab
             PlayFabHTTP.Post("/Client/LoginWithSteam", serializedJson, null, null, callback, request, customData);
         }
         public static void LoginWithSteamResultAction(LoginResult result, CallRequestContainer requestContainer)
-        {
-            _authKey = result.SessionTicket ?? _authKey;
-            MultiStepClientLogin(result.SettingsForUser.NeedsAttribution);
-
-        }
-
-        /// <summary>
-        /// Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
-        /// </summary>
-        public static void LoginWithXbox(LoginWithXboxRequest request, ProcessApiCallback<LoginResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            request.TitleId = request.TitleId ?? PlayFabSettings.TitleId;
-            if (request.TitleId == null) throw new Exception("Must be have PlayFabSettings.TitleId set to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<LoginResult>.HandleResults(requestContainer, resultCallback, errorCallback, LoginWithXboxResultAction);
-            };
-            PlayFabHTTP.Post("/Client/LoginWithXbox", serializedJson, null, null, callback, request, customData);
-        }
-        public static void LoginWithXboxResultAction(LoginResult result, CallRequestContainer requestContainer)
         {
             _authKey = result.SessionTicket ?? _authKey;
             MultiStepClientLogin(result.SettingsForUser.NeedsAttribution);
@@ -647,21 +595,6 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
-        /// </summary>
-        public static void GetPlayFabIDsFromPSNAccountIDs(GetPlayFabIDsFromPSNAccountIDsRequest request, ProcessApiCallback<GetPlayFabIDsFromPSNAccountIDsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            if (_authKey == null) throw new Exception("Must be logged in to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<GetPlayFabIDsFromPSNAccountIDsResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
-            };
-            PlayFabHTTP.Post("/Client/GetPlayFabIDsFromPSNAccountIDs", serializedJson, "X-Authorization", _authKey, callback, request, customData);
-        }
-
-        /// <summary>
         /// Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
         /// </summary>
         public static void GetPlayFabIDsFromSteamIDs(GetPlayFabIDsFromSteamIDsRequest request, ProcessApiCallback<GetPlayFabIDsFromSteamIDsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
@@ -752,7 +685,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Links the currently signed-in user account to the Google account specified by the Google account access token
+        /// Links the currently signed-in user account to the Google account specified by the Google account access token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
         /// </summary>
         public static void LinkGoogleAccount(LinkGoogleAccountRequest request, ProcessApiCallback<LinkGoogleAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -797,21 +730,6 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
-        /// </summary>
-        public static void LinkPSNAccount(LinkPSNAccountRequest request, ProcessApiCallback<LinkPSNAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            if (_authKey == null) throw new Exception("Must be logged in to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<LinkPSNAccountResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
-            };
-            PlayFabHTTP.Post("/Client/LinkPSNAccount", serializedJson, "X-Authorization", _authKey, callback, request, customData);
-        }
-
-        /// <summary>
         /// Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
         /// </summary>
         public static void LinkSteamAccount(LinkSteamAccountRequest request, ProcessApiCallback<LinkSteamAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
@@ -827,18 +745,18 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+        /// Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
         /// </summary>
-        public static void LinkXboxAccount(LinkXboxAccountRequest request, ProcessApiCallback<LinkXboxAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
+        public static void ReportPlayer(ReportPlayerClientRequest request, ProcessApiCallback<ReportPlayerClientResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
             if (_authKey == null) throw new Exception("Must be logged in to call this method");
 
             string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
             Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
             {
-                ResultContainer<LinkXboxAccountResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
+                ResultContainer<ReportPlayerClientResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
             };
-            PlayFabHTTP.Post("/Client/LinkXboxAccount", serializedJson, "X-Authorization", _authKey, callback, request, customData);
+            PlayFabHTTP.Post("/Client/ReportPlayer", serializedJson, "X-Authorization", _authKey, callback, request, customData);
         }
 
         /// <summary>
@@ -916,7 +834,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Unlinks the related Google account from the user's PlayFab account
+        /// Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
         /// </summary>
         public static void UnlinkGoogleAccount(UnlinkGoogleAccountRequest request, ProcessApiCallback<UnlinkGoogleAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -961,21 +879,6 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Unlinks the related PSN account from the user's PlayFab account
-        /// </summary>
-        public static void UnlinkPSNAccount(UnlinkPSNAccountRequest request, ProcessApiCallback<UnlinkPSNAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            if (_authKey == null) throw new Exception("Must be logged in to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<UnlinkPSNAccountResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
-            };
-            PlayFabHTTP.Post("/Client/UnlinkPSNAccount", serializedJson, "X-Authorization", _authKey, callback, request, customData);
-        }
-
-        /// <summary>
         /// Unlinks the related Steam account from the user's PlayFab account
         /// </summary>
         public static void UnlinkSteamAccount(UnlinkSteamAccountRequest request, ProcessApiCallback<UnlinkSteamAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
@@ -988,21 +891,6 @@ namespace PlayFab
                 ResultContainer<UnlinkSteamAccountResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
             };
             PlayFabHTTP.Post("/Client/UnlinkSteamAccount", serializedJson, "X-Authorization", _authKey, callback, request, customData);
-        }
-
-        /// <summary>
-        /// Unlinks the related Xbox Live account from the user's PlayFab account
-        /// </summary>
-        public static void UnlinkXboxAccount(UnlinkXboxAccountRequest request, ProcessApiCallback<UnlinkXboxAccountResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            if (_authKey == null) throw new Exception("Must be logged in to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<UnlinkXboxAccountResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
-            };
-            PlayFabHTTP.Post("/Client/UnlinkXboxAccount", serializedJson, "X-Authorization", _authKey, callback, request, customData);
         }
 
         /// <summary>
@@ -1111,7 +999,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Retrieves the current version and values for the indicated statistics, for the local player.
+        /// Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
         /// </summary>
         public static void GetPlayerStatistics(GetPlayerStatisticsRequest request, ProcessApiCallback<GetPlayerStatisticsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -1123,6 +1011,21 @@ namespace PlayFab
                 ResultContainer<GetPlayerStatisticsResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
             };
             PlayFabHTTP.Post("/Client/GetPlayerStatistics", serializedJson, "X-Authorization", _authKey, callback, request, customData);
+        }
+
+        /// <summary>
+        /// Retrieves the information on the available versions of the specified statistic.
+        /// </summary>
+        public static void GetPlayerStatisticVersions(GetPlayerStatisticVersionsRequest request, ProcessApiCallback<GetPlayerStatisticVersionsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
+        {
+            if (_authKey == null) throw new Exception("Must be logged in to call this method");
+
+            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
+            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
+            {
+                ResultContainer<GetPlayerStatisticVersionsResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
+            };
+            PlayFabHTTP.Post("/Client/GetPlayerStatisticVersions", serializedJson, "X-Authorization", _authKey, callback, request, customData);
         }
 
         /// <summary>
@@ -1201,7 +1104,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Updates the values of the specified title-specific statistics for the user
+        /// Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
         /// </summary>
         public static void UpdatePlayerStatistics(UpdatePlayerStatisticsRequest request, ProcessApiCallback<UpdatePlayerStatisticsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -1246,7 +1149,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Updates the values of the specified title-specific statistics for the user
+        /// Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
         /// </summary>
         public static void UpdateUserStatistics(UpdateUserStatisticsRequest request, ProcessApiCallback<UpdateUserStatisticsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -1273,6 +1176,21 @@ namespace PlayFab
                 ResultContainer<GetCatalogItemsResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
             };
             PlayFabHTTP.Post("/Client/GetCatalogItems", serializedJson, "X-Authorization", _authKey, callback, request, customData);
+        }
+
+        /// <summary>
+        /// Retrieves the key-value store of custom publisher settings
+        /// </summary>
+        public static void GetPublisherData(GetPublisherDataRequest request, ProcessApiCallback<GetPublisherDataResult> resultCallback, ErrorCallback errorCallback, object customData = null)
+        {
+            if (_authKey == null) throw new Exception("Must be logged in to call this method");
+
+            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
+            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
+            {
+                ResultContainer<GetPublisherDataResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
+            };
+            PlayFabHTTP.Post("/Client/GetPublisherData", serializedJson, "X-Authorization", _authKey, callback, request, customData);
         }
 
         /// <summary>
@@ -1453,21 +1371,6 @@ namespace PlayFab
                 ResultContainer<RedeemCouponResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
             };
             PlayFabHTTP.Post("/Client/RedeemCoupon", serializedJson, "X-Authorization", _authKey, callback, request, customData);
-        }
-
-        /// <summary>
-        /// Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
-        /// </summary>
-        public static void ReportPlayer(ReportPlayerClientRequest request, ProcessApiCallback<ReportPlayerClientResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            if (_authKey == null) throw new Exception("Must be logged in to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<ReportPlayerClientResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
-            };
-            PlayFabHTTP.Post("/Client/ReportPlayer", serializedJson, "X-Authorization", _authKey, callback, request, customData);
         }
 
         /// <summary>
@@ -1741,6 +1644,51 @@ namespace PlayFab
         }
 
         /// <summary>
+        /// Writes a character-based event into PlayStream.
+        /// </summary>
+        public static void WriteCharacterEvent(WriteClientCharacterEventRequest request, ProcessApiCallback<WriteEventResponse> resultCallback, ErrorCallback errorCallback, object customData = null)
+        {
+            if (_authKey == null) throw new Exception("Must be logged in to call this method");
+
+            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
+            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
+            {
+                ResultContainer<WriteEventResponse>.HandleResults(requestContainer, resultCallback, errorCallback, null);
+            };
+            PlayFabHTTP.Post("/Client/WriteCharacterEvent", serializedJson, "X-Authorization", _authKey, callback, request, customData);
+        }
+
+        /// <summary>
+        /// Writes a player-based event into PlayStream.
+        /// </summary>
+        public static void WritePlayerEvent(WriteClientPlayerEventRequest request, ProcessApiCallback<WriteEventResponse> resultCallback, ErrorCallback errorCallback, object customData = null)
+        {
+            if (_authKey == null) throw new Exception("Must be logged in to call this method");
+
+            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
+            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
+            {
+                ResultContainer<WriteEventResponse>.HandleResults(requestContainer, resultCallback, errorCallback, null);
+            };
+            PlayFabHTTP.Post("/Client/WritePlayerEvent", serializedJson, "X-Authorization", _authKey, callback, request, customData);
+        }
+
+        /// <summary>
+        /// Writes a title-based event into PlayStream.
+        /// </summary>
+        public static void WriteTitleEvent(WriteTitleEventRequest request, ProcessApiCallback<WriteEventResponse> resultCallback, ErrorCallback errorCallback, object customData = null)
+        {
+            if (_authKey == null) throw new Exception("Must be logged in to call this method");
+
+            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
+            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
+            {
+                ResultContainer<WriteEventResponse>.HandleResults(requestContainer, resultCallback, errorCallback, null);
+            };
+            PlayFabHTTP.Post("/Client/WriteTitleEvent", serializedJson, "X-Authorization", _authKey, callback, request, customData);
+        }
+
+        /// <summary>
         /// Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users in the group can add new members.
         /// </summary>
         public static void AddSharedGroupMembers(AddSharedGroupMembersRequest request, ProcessApiCallback<AddSharedGroupMembersResult> resultCallback, ErrorCallback errorCallback, object customData = null)
@@ -1768,21 +1716,6 @@ namespace PlayFab
                 ResultContainer<CreateSharedGroupResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
             };
             PlayFabHTTP.Post("/Client/CreateSharedGroup", serializedJson, "X-Authorization", _authKey, callback, request, customData);
-        }
-
-        /// <summary>
-        /// Retrieves the key-value store of custom publisher settings
-        /// </summary>
-        public static void GetPublisherData(GetPublisherDataRequest request, ProcessApiCallback<GetPublisherDataResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            if (_authKey == null) throw new Exception("Must be logged in to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<GetPublisherDataResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
-            };
-            PlayFabHTTP.Post("/Client/GetPublisherData", serializedJson, "X-Authorization", _authKey, callback, request, customData);
         }
 
         /// <summary>
@@ -1831,33 +1764,18 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
+        /// Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
         /// </summary>
-        public static void ConsumePSNEntitlements(ConsumePSNEntitlementsRequest request, ProcessApiCallback<ConsumePSNEntitlementsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
+        public static void ExecuteCloudScript(ExecuteCloudScriptRequest request, ProcessApiCallback<ExecuteCloudScriptResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
             if (_authKey == null) throw new Exception("Must be logged in to call this method");
 
             string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
             Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
             {
-                ResultContainer<ConsumePSNEntitlementsResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
+                ResultContainer<ExecuteCloudScriptResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
             };
-            PlayFabHTTP.Post("/Client/ConsumePSNEntitlements", serializedJson, "X-Authorization", _authKey, callback, request, customData);
-        }
-
-        /// <summary>
-        /// Uses the supplied OAuth code to refresh the internally cached player PSN auth token
-        /// </summary>
-        public static void RefreshPSNAuthToken(RefreshPSNAuthTokenRequest request, ProcessApiCallback<EmptyResult> resultCallback, ErrorCallback errorCallback, object customData = null)
-        {
-            if (_authKey == null) throw new Exception("Must be logged in to call this method");
-
-            string serializedJson = SimpleJson.SerializeObject(request, Util.ApiSerializerStrategy);
-            Action<CallRequestContainer> callback = delegate(CallRequestContainer requestContainer)
-            {
-                ResultContainer<EmptyResult>.HandleResults(requestContainer, resultCallback, errorCallback, null);
-            };
-            PlayFabHTTP.Post("/Client/RefreshPSNAuthToken", serializedJson, "X-Authorization", _authKey, callback, request, customData);
+            PlayFabHTTP.Post("/Client/ExecuteCloudScript", serializedJson, "X-Authorization", _authKey, callback, request, customData);
         }
 
         /// <summary>
@@ -1911,7 +1829,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Lists all of the characters that belong to a specific user.
+        /// Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
         /// </summary>
         public static void GetAllUsersCharacters(ListUsersCharactersRequest request, ProcessApiCallback<ListUsersCharactersResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -1986,7 +1904,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Grants the specified character type to the user.
+        /// Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
         /// </summary>
         public static void GrantCharacterToUser(GrantCharacterToUserRequest request, ProcessApiCallback<GrantCharacterToUserResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -2001,7 +1919,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Updates the values of the specified title-specific statistics for the specific character
+        /// Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
         /// </summary>
         public static void UpdateCharacterStatistics(UpdateCharacterStatisticsRequest request, ProcessApiCallback<UpdateCharacterStatisticsResult> resultCallback, ErrorCallback errorCallback, object customData = null)
         {
@@ -2206,7 +2124,7 @@ namespace PlayFab
             try
             {
 #if UNITY_ANDROID && !UNITY_EDITOR
-                AndroidJavaClass advertIdGetter = new AndroidJavaClass("com.playfab.unityplugin.PlayFabGetAdvertId");
+                AndroidJavaClass advertIdGetter = new AndroidJavaClass("com.playfab.unityadinfoplugin.PlayFabGetAdvertId");
 
                 AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer"); 
                 AndroidJavaObject context = jc.GetStatic<AndroidJavaObject>("currentActivity");

@@ -35,19 +35,7 @@ public class ProgressiveRewards : MonoBehaviour {
 		this.checkInBtn.interactable = false;
 		this.directions.gameObject.SetActive(false);
 	}
-	
-	void GetCloudScriptURL()
-	{
-		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptCallback, OnApiCallError);
-	}
-	
-	void OnGetCloudScriptCallback(GetCloudScriptUrlResult result)
-	{
-		PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
-		Debug.Log("LogicServer ( A.K.A. Cloud Script) Endpoint retrived.");
-		UnlockUI();
-	}
-	
+
 	void AuthenticateWithPlayFab()
 	{
 		Debug.Log("Logging into PlayFab...");
@@ -59,25 +47,32 @@ public class ProgressiveRewards : MonoBehaviour {
 	{
 		Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
 		Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
-		GetCloudScriptURL();
+		UnlockUI();
 	}
 	
 	public void CheckIn()
 	{
 		Debug.Log("Checking-in with Server...");
-		RunCloudScriptRequest request = new RunCloudScriptRequest() { 
-			ActionId = "CheckIn", 
+		ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest() { 
+			FunctionName = "CheckkkkIn", 
 		};
 		
-		PlayFabClientAPI.RunCloudScript(request, OnCheckInCallback, OnApiCallError);
+		PlayFabClientAPI.ExecuteCloudScript(request, OnCheckInCallback, OnApiCallError);
 	}
 	
-	void OnCheckInCallback(RunCloudScriptResult result)
+	void OnCheckInCallback(ExecuteCloudScriptResult result)
 	{
+		// output any errors that happend within cloud script
+		if(result.Error != null)
+		{
+			Debug.LogError(string.Format("{0} -- {1}", result.Error, result.Error.Message));
+			return;
+		}	
+
 		Debug.Log("CheckIn Results:");
-		List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
+		List<ItemInstance> grantedItems = (List<ItemInstance>)result.FunctionResult;
 		
-		if(grantedItems.Count > 0)
+		if(grantedItems != null && grantedItems.Count > 0)
 		{
 			Debug.Log(string.Format("You were granted {0} items:", grantedItems.Count));
 			
@@ -88,9 +83,16 @@ public class ProgressiveRewards : MonoBehaviour {
 			}
 			Debug.Log(output);
 		}
+		else if(result.Logs.Count > 0)
+		{
+			foreach(var statement in result.Logs)
+			{
+				Debug.Log(statement.Message);
+			}
+		}
 		else
 		{
-			Debug.Log("CheckIn Successful! No items granted. \n" + result.ActionLog);
+			Debug.Log("CheckIn Successful! No items granted.");
 		}
 	}
 	

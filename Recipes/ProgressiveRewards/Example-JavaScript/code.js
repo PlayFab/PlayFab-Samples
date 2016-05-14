@@ -70,24 +70,6 @@ function AuthenticationCallback(response, error)
 		console.log("Your session ticket is: " + result.SessionTicket);
 
 		$(".loginUI").hide();
-		GetCloudScript();
-	}
-}
-
-function GetCloudScript()
-{
-	PlayFabClientSDK.GetCloudScriptUrl({}, GetCloudScriptCallback);
-}
-
-function GetCloudScriptCallback(response, error)
-{
-	if(error)
-	{
-		OutputError(error);
-	}	
-	else
-	{
-		console.log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
 		$(".exampleUI").show();
 	}
 }
@@ -95,11 +77,11 @@ function GetCloudScriptCallback(response, error)
 function CheckIn()
 {
 	console.log("Checking-in with Server...");
-	var RunCloudScriptRequest = {
-		"ActionId" : "CheckIn"
+	var ExecuteCloudScriptRequest = {
+		"FunctionName" : "CheckIn"
 	};
 
-	PlayFabClientSDK.RunCloudScript(RunCloudScriptRequest, CheckInCallback);
+	PlayFabClientSDK.ExecuteCloudScript(ExecuteCloudScriptRequest, CheckInCallback);
 }
 
 function CheckInCallback(response, error)
@@ -108,10 +90,15 @@ function CheckInCallback(response, error)
 	{
 		OutputError(error);
 	}	
+	else if(response.data.Error)
+	{
+		// Output any errors that occured in Cloud Script
+		OutputError(response.data.Error);
+	}
 	else
 	{
 		console.log("CheckIn Results:");
-		var grantedItems = response.data.Results;
+		var grantedItems = response.data.FunctionResult;
 
 		if(grantedItems.length > 0)
 		{
@@ -126,14 +113,18 @@ function CheckInCallback(response, error)
 		}
 		else
 		{
-			console.log("CheckIn Successful! No items granted. \n" + response.data.ActionLog);
+			console.log("CheckIn Successful! No items granted.");
+			for(var z in response.data.Logs)
+			{
+				console.log(response.data.Logs[z]);
+			}
 		}
 	}
 }
 
 function OutputError(error)
 {
-	console.log(error);
+	console.error(error);
 }
 
 // creates a standard GUID string that will be used as our custom ID

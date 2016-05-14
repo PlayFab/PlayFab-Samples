@@ -36,18 +36,6 @@ public class CrossPromotional : MonoBehaviour {
 		this.checkInBtn.interactable = false;
 		this.directions.gameObject.SetActive(false);
 	}
-	
-	void GetCloudScriptURL()
-	{	
-		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptCallback, OnApiCallError);
-	}
-
-	void OnGetCloudScriptCallback(GetCloudScriptUrlResult result)
-	{
-		PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
-		Debug.Log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
-		UnlockUI();
-	}
 		
 	void AuthenticateWithPlayFab()
 	{
@@ -58,40 +46,52 @@ public class CrossPromotional : MonoBehaviour {
 	
 	void OnLoginCallback(LoginResult result)
 	{
-		Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
+		Debug.Log(string.Format("Login Successful. Welcome Player: {0}!", result.PlayFabId));
 		Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
-		GetCloudScriptURL();
+		UnlockUI();
 	}
 	
 	public void CheckIn()
 	{
 		Debug.Log("Checking-in with Server...");
-		RunCloudScriptRequest request = new RunCloudScriptRequest() { 
-			ActionId = "CheckIn", 
+		ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest() { 
+			FunctionName = "CheckIn", 
 		};
 		
-		PlayFabClientAPI.RunCloudScript(request, OnCheckInCallback, OnApiCallError);
+		PlayFabClientAPI.ExecuteCloudScript(request, OnCheckInCallback, OnApiCallError);
 	}
 	
-	void OnCheckInCallback(RunCloudScriptResult result) 
+	void OnCheckInCallback(ExecuteCloudScriptResult result) 
 	{
-		Debug.Log("CheckIn Results:");
-		List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.ResultsEncoded);
-		
-		if(grantedItems.Count > 0)
+		// output any errors that happend within cloud script
+		if(result.Error != null)
 		{
+			Debug.LogError(string.Format("{0} -- {1}", result.Error, result.Error.Message));
+			return;
+		}
+
+		Debug.Log("CheckIn Results:");
+		List<ItemInstance> grantedItems;
+		
+		if(result.FunctionResult != null)
+		{
+			grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
 			Debug.Log(string.Format("You were granted {0} items:", grantedItems.Count));
 			
 			string output = string.Empty;
 			foreach(var item in grantedItems)
 			{
-				output += string.Format("\t {0}: {1}\n", item.ItemId, item.Annotation);
+				output += string.Format("{0}: {1}\n", item.ItemId, item.Annotation);
 			}
 			Debug.Log(output);
 		}
 		else
 		{
 			Debug.Log("CheckIn Successful! No items granted.");
+			foreach(var statement in result.Logs)
+			{
+				Debug.Log(statement.Message);
+			}
 		}
 	}
 	
