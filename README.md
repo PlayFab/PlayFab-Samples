@@ -1,8 +1,7 @@
 # PlayFab Samples Repository
-
-
 This repository currently contains our Recipes; moving forward, future example content will also be found here.  
-----
+
+
 
 ### [Recipes](/Recipes/):
 This subdirectory contains quick examples that show off how to implement common patterns and mechanics on the PlayFab platform. 
