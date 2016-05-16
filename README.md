@@ -5,7 +5,7 @@ This repository is a one-stop location for PlayFab Documentation. In addition to
 ====
 
 ### [Guides](/Guides/):
-This subdirectory contains basic, advanced and quick start guides for learning the PlayFab platform.
+This subdirectory contains basic, intermediate and advanced and quick start guides for learning the PlayFab platform.
 
 ### [Recipes](/Recipes/):
 This subdirectory contains quick examples that show off how to implement common patterns and mechanics on the PlayFab platform. 
@@ -18,12 +18,6 @@ This subdirectory contains examples featuring the PlayStream.
 
 ### [Testing Tools](/TestingTools/):
 This subdirectory contains testing tools that are useful for testing areas of the PlayFab platform. 
-
-### [Building Blocks]():
-Definitions of frequently used terms within the scope of PlayFab.
-
-### Assets:
-This subdirectory contains raw assets used to make this readme / wiki work properly.
 
 
 # Community Feedback:
