@@ -96,6 +96,7 @@ handlers.CheckIn = function(args) {
 			return grantedItems;
 	    }
 	}
+
 	return [];
 };
 

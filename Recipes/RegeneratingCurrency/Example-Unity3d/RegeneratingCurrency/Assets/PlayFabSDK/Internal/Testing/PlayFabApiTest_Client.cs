@@ -1,8 +1,10 @@
 using PlayFab.ClientModels;
 using PlayFab.Internal;
+using PlayFab.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading;
 
 namespace PlayFab.UUnit
@@ -16,10 +18,10 @@ namespace PlayFab.UUnit
     /// </summary>
     public class PlayFabApiTest : UUnitTestCase
     {
+        // Test-data constants
         private const int TEST_STAT_BASE = 10;
         private const string TEST_STAT_NAME = "str";
         private const string TEST_DATA_KEY = "testCounter";
-
 
         // Functional
         private static bool EXEC_ONCE = true;
@@ -37,7 +39,7 @@ namespace PlayFab.UUnit
 
         // This test operates multi-threaded, so keep some thread-transfer varaibles
         private string lastReceivedMessage;
-        private ClientModels.UserDataRecord testCounterReturn;
+        private UserDataRecord testCounterReturn;
         private int testStatReturn;
         CharacterResult targetCharacter = null;
 
@@ -82,7 +84,8 @@ namespace PlayFab.UUnit
                 string filename = "C:/depot/pf-main/tools/SDKBuildScripts/testTitleData.json"; // TODO: Figure out how to not hard code this
                 if (File.Exists(filename))
                 {
-                    string testInputsFile = File.ReadAllText(filename);
+
+                    string testInputsFile = Util.ReadAllFileText(filename);
 
                     var testInputs = SimpleJson.DeserializeObject<Dictionary<string, string>>(testInputsFile, Util.ApiSerializerStrategy);
                     SetTitleInfo(testInputs);
@@ -117,9 +120,16 @@ namespace PlayFab.UUnit
             UUnitAssert.NotNull(lastReceivedMessage, "Unexpected internal error within PlayFab api, or test suite");
         }
 
+        private static readonly StringBuilder TempSb = new StringBuilder();
         private void SharedErrorCallback(PlayFabError error)
         {
-            lastReceivedMessage = error.ErrorMessage;
+            TempSb.Length = 0;
+            TempSb.Append(error.ErrorMessage);
+            if (error.ErrorDetails != null)
+                foreach (var pair in error.ErrorDetails)
+                    foreach (var msg in pair.Value)
+                        TempSb.Append("\n").Append(pair.Key).Append(": ").Append(msg);
+            lastReceivedMessage = TempSb.ToString();
         }
 
         /// <summary>
@@ -131,7 +141,7 @@ namespace PlayFab.UUnit
         public void InvalidLogin()
         {
             // If the setup failed to log in a user, we need to create one.
-            var request = new ClientModels.LoginWithEmailAddressRequest();
+            var request = new LoginWithEmailAddressRequest();
             request.TitleId = PlayFabSettings.TitleId;
             request.Email = USER_EMAIL;
             request.Password = USER_PASSWORD + "INVALID";
@@ -149,6 +159,28 @@ namespace PlayFab.UUnit
 
         /// <summary>
         /// CLIENT API
+        /// Try to deliberately register a character with an invalid email and password.
+        ///   Verify that errorDetails are populated correctly.
+        /// </summary>
+        [UUnitTest]
+        public void InvalidRegistration()
+        {
+            var registerRequest = new RegisterPlayFabUserRequest();
+            registerRequest.TitleId = PlayFabSettings.TitleId;
+            registerRequest.Username = "x"; // Provide invalid inputs for multiple parameters, which will show up in errorDetails
+            registerRequest.Email = "x"; // Provide invalid inputs for multiple parameters, which will show up in errorDetails
+            registerRequest.Password = "x"; // Provide invalid inputs for multiple parameters, which will show up in errorDetails
+            PlayFabClientAPI.RegisterPlayFabUser(registerRequest, RegisterCallback, SharedErrorCallback);
+            WaitForApiCalls();
+
+            var expectedEmailMsg = "email address is not valid.";
+            var expectedPasswordMsg = "password must be between";
+            UUnitAssert.True(lastReceivedMessage.ToLower().Contains(expectedEmailMsg), lastReceivedMessage);
+            UUnitAssert.True(lastReceivedMessage.ToLower().Contains(expectedPasswordMsg), lastReceivedMessage);
+        }
+
+        /// <summary>
+        /// CLIENT API
         /// Log in or create a user, track their PlayFabId
         /// </summary>
         [UUnitTest]
@@ -156,7 +188,7 @@ namespace PlayFab.UUnit
         {
             if (!PlayFabClientAPI.IsClientLoggedIn()) // If we haven't already logged in...
             {
-                var loginRequest = new ClientModels.LoginWithEmailAddressRequest();
+                var loginRequest = new LoginWithEmailAddressRequest();
                 loginRequest.Email = USER_EMAIL;
                 loginRequest.Password = USER_PASSWORD;
                 loginRequest.TitleId = PlayFabSettings.TitleId;
@@ -170,7 +202,7 @@ namespace PlayFab.UUnit
                 return; // Success, already logged in
 
             // If the setup failed to log in a user, we need to create one.
-            var registerRequest = new ClientModels.RegisterPlayFabUserRequest();
+            var registerRequest = new RegisterPlayFabUserRequest();
             registerRequest.TitleId = PlayFabSettings.TitleId;
             registerRequest.Username = USER_NAME;
             registerRequest.Email = USER_EMAIL;
@@ -198,7 +230,7 @@ namespace PlayFab.UUnit
             PlayFabSettings.AdvertisingIdType = PlayFabSettings.AD_TYPE_ANDROID_ID;
             PlayFabSettings.AdvertisingIdValue = "PlayFabTestId";
 
-            var loginRequest = new ClientModels.LoginWithEmailAddressRequest();
+            var loginRequest = new LoginWithEmailAddressRequest();
             loginRequest.Email = USER_EMAIL;
             loginRequest.Password = USER_PASSWORD;
             loginRequest.TitleId = PlayFabSettings.TitleId;
@@ -220,7 +252,7 @@ namespace PlayFab.UUnit
         {
             int testCounterValueExpected, testCounterValueActual;
 
-            var getRequest = new ClientModels.GetUserDataRequest();
+            var getRequest = new GetUserDataRequest();
             PlayFabClientAPI.GetUserData(getRequest, GetUserDataCallback, SharedErrorCallback);
             WaitForApiCalls();
 
@@ -228,7 +260,7 @@ namespace PlayFab.UUnit
             int.TryParse(testCounterReturn.Value, out testCounterValueExpected);
             testCounterValueExpected = (testCounterValueExpected + 1) % 100; // This test is about the expected value changing - but not testing more complicated issues like bounds
 
-            var updateRequest = new ClientModels.UpdateUserDataRequest();
+            var updateRequest = new UpdateUserDataRequest();
             updateRequest.Data = new Dictionary<string, string>();
             updateRequest.Data[TEST_DATA_KEY] = testCounterValueExpected.ToString();
             PlayFabClientAPI.UpdateUserData(updateRequest, UpdateUserDataCallback, SharedErrorCallback);
@@ -236,7 +268,7 @@ namespace PlayFab.UUnit
 
             UUnitAssert.StringEquals("User Data Updated", lastReceivedMessage);
 
-            getRequest = new ClientModels.GetUserDataRequest();
+            getRequest = new GetUserDataRequest();
             PlayFabClientAPI.GetUserData(getRequest, GetUserDataCallback, SharedErrorCallback);
             WaitForApiCalls();
 
@@ -258,7 +290,7 @@ namespace PlayFab.UUnit
 
             if (!result.Data.TryGetValue(TEST_DATA_KEY, out testCounterReturn))
             {
-                testCounterReturn = new ClientModels.UserDataRecord();
+                testCounterReturn = new UserDataRecord();
                 testCounterReturn.Value = "0";
             }
         }
@@ -279,14 +311,14 @@ namespace PlayFab.UUnit
         {
             int testStatExpected, testStatActual;
 
-            var getRequest = new ClientModels.GetUserStatisticsRequest();
+            var getRequest = new GetUserStatisticsRequest();
             PlayFabClientAPI.GetUserStatistics(getRequest, GetUserStatsCallback, SharedErrorCallback);
             WaitForApiCalls();
 
             UUnitAssert.Equals("User Stats Received", lastReceivedMessage);
             testStatExpected = ((testStatReturn + 1) % TEST_STAT_BASE) + TEST_STAT_BASE; // This test is about the expected value changing (incrementing through from TEST_STAT_BASE to TEST_STAT_BASE * 2 - 1)
 
-            var updateRequest = new ClientModels.UpdateUserStatisticsRequest();
+            var updateRequest = new UpdateUserStatisticsRequest();
             updateRequest.UserStatistics = new Dictionary<string, int>();
             updateRequest.UserStatistics[TEST_STAT_NAME] = testStatExpected;
             PlayFabClientAPI.UpdateUserStatistics(updateRequest, UpdateUserStatsCallback, SharedErrorCallback);
@@ -303,7 +335,7 @@ namespace PlayFab.UUnit
                 UUnitAssert.Equals("User Stats Updated", lastReceivedMessage);
             }
 
-            getRequest = new ClientModels.GetUserStatisticsRequest();
+            getRequest = new GetUserStatisticsRequest();
             PlayFabClientAPI.GetUserStatistics(getRequest, GetUserStatsCallback, SharedErrorCallback);
             WaitForApiCalls();
 
@@ -355,7 +387,7 @@ namespace PlayFab.UUnit
         [UUnitTest]
         public void LeaderBoard()
         {
-            var clientRequest = new ClientModels.GetLeaderboardRequest();
+            var clientRequest = new GetLeaderboardRequest();
             clientRequest.MaxResultsCount = 3;
             clientRequest.StatisticName = TEST_STAT_NAME;
             PlayFabClientAPI.GetLeaderboard(clientRequest, GetClientLbCallback, SharedErrorCallback);
@@ -364,7 +396,7 @@ namespace PlayFab.UUnit
             UUnitAssert.Equals("Get Client Leaderboard Successful", lastReceivedMessage);
             // Testing anything more would be testing actual functionality of the Leaderboard, which is outside the scope of this test.
         }
-        public void GetClientLbCallback(PlayFab.ClientModels.GetLeaderboardResult result)
+        public void GetClientLbCallback(GetLeaderboardResult result)
         {
             if (result.Leaderboard.Count > 0)
                 lastReceivedMessage = "Get Client Leaderboard Successful";
@@ -410,7 +442,7 @@ namespace PlayFab.UUnit
             {
                 PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), CloudScriptUrlCallback, SharedErrorCallback);
                 WaitForApiCalls();
-                UUnitAssert.True(lastReceivedMessage.StartsWith("CloudScript setup complete: "));
+                UUnitAssert.True(lastReceivedMessage.StartsWith("CloudScript setup complete: "), lastReceivedMessage);
             }
 
             var request = new RunCloudScriptRequest();
@@ -429,6 +461,29 @@ namespace PlayFab.UUnit
             UUnitAssert.NotNull(result.Results);
             var jobj = result.Results as JsonObject;
             lastReceivedMessage = jobj["messageValue"] as string;
+        }
+
+        /// <summary>
+        /// CLIENT API
+        /// Test that the client can publish custom PlayStream events
+        /// </summary>
+        [UUnitTest]
+        private void WriteEvent()
+        {
+            var request = new WriteClientPlayerEventRequest();
+            request.EventName = "ForumPostEvent";
+            request.Timestamp = DateTime.UtcNow;
+            request.Body = new Dictionary<string, object>();
+            request.Body["Subject"] = "My First Post";
+            request.Body["Body"] = "My awesome post.";
+
+            PlayFabClientAPI.WritePlayerEvent(request, WriteEventCallback, SharedErrorCallback);
+            WaitForApiCalls();
+            UUnitAssert.StringEquals("WriteEvent posted successfully.", lastReceivedMessage);
+        }
+        private void WriteEventCallback(WriteEventResponse result)
+        {
+            lastReceivedMessage = "WriteEvent posted successfully.";
         }
     }
 }

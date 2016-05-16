@@ -50,7 +50,7 @@ body {
 	height: 600px;
 	width: 800px;
 	background-color: #000;
-	padding: 300px 5px 0 5px;
+	padding: 200px 5px 0 5px;
 }
 
 
@@ -116,15 +116,16 @@ body {
 }
 
 
-
-
-.playFabLogo
-{
-	background-image: url("/img/Playfab_logo_RGB.png");
+.playFabLogo {
+	background-image: url("./img/Playfab_logo_RGB.png");
 	background-repeat: no-repeat;
 	background-size: contain;
 	height: 100px;
 	width: 200px;
+
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
 }
 
 

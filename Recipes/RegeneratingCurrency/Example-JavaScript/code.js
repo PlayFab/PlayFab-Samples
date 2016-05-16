@@ -79,7 +79,6 @@ function AuthenticationCallback(response, error)
 		console.log("Your session ticket is: " + result.SessionTicket);
 
 		$(".loginUI").hide();
-		GetCloudScript();
 		GetInventory();
 	}
 }
@@ -138,23 +137,6 @@ function GetInventoryCallback(response, error)
 	}
 }
 
-function GetCloudScript()
-{
-	PlayFabClientSDK.GetCloudScriptUrl({}, GetCloudScriptCallback);
-}
-
-function GetCloudScriptCallback(response, error)
-{
-	if(error)
-	{
-		OutputError(error);
-	}	
-	else
-	{
-		console.log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
-	}
-}
-
 function TryBuyLives()
 {
 	console.log("Purchaseing Lives...");
@@ -183,11 +165,11 @@ function TryBuyLivesCallback(request, error)
 function ToBattle()
 {
 	console.log("Battling...");
-	var RunCloudScriptRequest = {
-		"ActionId" : "Battle"
+	var ExecuteCloudScriptRequest = {
+		"FunctionName" : "Batttttle"
 	};
 
-	PlayFabClientSDK.RunCloudScript(RunCloudScriptRequest, ToBattleCallback);
+	PlayFabClientSDK.ExecuteCloudScript(ExecuteCloudScriptRequest, ToBattleCallback);
 }
 
 function ToBattleCallback(response, error)
@@ -196,10 +178,15 @@ function ToBattleCallback(response, error)
 	{
 		OutputError(error);
 	}	
+	else if(response.data.Error)
+	{
+		// Output any errors that occured in Cloud Script
+		OutputError(response.data.Error);
+	}
 	else
 	{
 		console.log("BATTLE REPORT:");
-		var grantedItems = response.data.Results;
+		var grantedItems = response.data.FunctionResult;
 
 		if(grantedItems)
 		{
@@ -233,7 +220,7 @@ function UpdateLoop()
 
 function OutputError(error)
 {
-	console.log(error);
+	console.error(error);
 }
 
 // creates a standard GUID string that will be used as our custom ID

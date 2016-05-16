@@ -74,18 +74,6 @@ public class RegeneratingCurrency : MonoBehaviour {
 		this.livesValue.gameObject.SetActive(false);
 	}
 	
-	void GetCloudScriptURL()
-	{	
-		PlayFabClientAPI.GetCloudScriptUrl(new GetCloudScriptUrlRequest(), OnGetCloudScriptCallback, OnApiCallError);
-	}
-	
-	void OnGetCloudScriptCallback(GetCloudScriptUrlResult result)
-	{
-		PlayFab.PlayFabSettings.LogicServerUrl = result.Url;
-		Debug.Log("LogicServer ( A.K.A. Cloud Script)  Endpoint retrived.");
-		UnlockUI();
-	}
-	
 	void AuthenticateWithPlayFab()
 	{
 		Debug.Log("Logging into PlayFab...");
@@ -98,7 +86,7 @@ public class RegeneratingCurrency : MonoBehaviour {
 		Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
 		Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
 		GetInventory();
-		GetCloudScriptURL();
+		UnlockUI();
 	}
 	
 	void GetInventory()
@@ -161,17 +149,24 @@ public class RegeneratingCurrency : MonoBehaviour {
 	public void ToBattle()
 	{		
 		Debug.Log("BATTLING...");
-		RunCloudScriptRequest request = new RunCloudScriptRequest() { 
-			ActionId = "Battle", 
+		ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest() { 
+			FunctionName = "Battle", 
 		};
 		
-		PlayFabClientAPI.RunCloudScript(request, ToBattleCallback, OnApiCallError);
+		PlayFabClientAPI.ExecuteCloudScript(request, ToBattleCallback, OnApiCallError);
 	}
 	
-	void ToBattleCallback (RunCloudScriptResult result)
+	void ToBattleCallback (ExecuteCloudScriptResult result)
 	{
+		// output any errors that happend within cloud script
+		if(result.Error != null)
+		{
+			Debug.LogError(string.Format("{0} -- {1}", result.Error, result.Error.Message));
+			return;
+		}
+
 		Debug.Log("BATTLE REPORT:");
-		BattleResults grantedItems = PlayFab.SimpleJson.DeserializeObject<BattleResults>(result.ResultsEncoded);
+		BattleResults grantedItems = PlayFab.SimpleJson.DeserializeObject<BattleResults>(result.FunctionResult.ToString());
 		
 		if(grantedItems != null)
 		{
