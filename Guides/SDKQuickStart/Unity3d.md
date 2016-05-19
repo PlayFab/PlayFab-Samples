@@ -18,19 +18,30 @@ First you will create a new PlayFab game, and make a note of the Title ID for la
 2. Create a new game by clicking **Create a new game**, and name it **Getting Started**.  You can fill in the rest of the information on this page, or leave it blank.  Click **Create Game** to add this game to your PlayFab account.  
 3. Return to the main view in the Game Manager by clicking the PlayFab logo in the upper left corner of the screen. You will see a tile for your new game showing the game title and Title ID. The Title ID is a unique value used by PlayFab to identify this game. Make a note of the Title ID since you will need it later.
 
+
+![PlayFab Title Tile](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/TitleTile.png "PlayFab Title Tile in Game Manager")
+
+
 ### Add the PlayFab Unity package to Unity ###
 
 You can program the PlayFab API in two ways:
 
 - Directly through a HTTP web API, which is described in [PlayFab API documentation](https://api.playfab.com/Documentation).
 - Through platform specific libraries which are listed in [Available SDKs](https://api.playfab.com/sdks). These SDKs do the work of making API calls and handling responses.
+
+![API Calling Pattern](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/pf_callingPattern.png "Most SDKs follow a similar Call / Response Pattern")
+
 You can access the PlayFab Client, Server and Administrative APIs using these SDKs. For Unity developers using the Client API, the easiest way to get started is to import the PlayFab Unity Package.
+
+![API Sets](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/pf_apiSets.png "Import the SDK into your Unity project")
 
 1.  From the [Unity SDK](https://api.playfab.com/sdks/unity) page click **Download Unity Package**, and save the package to a location that you can find later.
 2.  Open Unity and create a new project named **Getting Started with PlayFab**. Click **Create Project**, which will create the project and open it in Unity.
 3.  In Unity, import the package you just downloaded.  Click on the **Assets** menu, click **Import Package**, then **Custom Package**.
 4.  In the **Import Package** dialog, navigate to the location of the downloaded package and select it.
 5.  The next window you see is the **Import Unity Package** dialog, and it shows a list of the contents of the package.  Make certain that everything is checked, and then click Import.
+
+![Unity AssetPackage Import](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/UnityImportSDK.png "Import the SDK into your Unity project")
 
 ### Create a Unity script ###
 Click the **Play** button in Unity, and note that nothing happens.  No behavior has been added to the game objects in the Unity project yet, so no code runs when you click **Play**.  In this section you will add code that will be executed when you run your project. 
@@ -100,8 +111,11 @@ The script will not execute unless it is added to a game object.  In the Unity e
 Click the run button at the top of the screen.  If all goes according to plan, you will see debug trace in the console window that will tell you the result of the logon attempt. If successful, the player will be logged in to PlayFab with a session ticket that's valid for 24 hours. The returned PlayFab ID in the Login method can now be used for subsequent API calls while the player interacts with your game. 
 Once you have created a PlayFab account for a player from any game in your studio, their PlayFab account ID is available for all of the games in your studio.
 ### Confirm the new player in the Game Manager ###
-You can now return to the Game Manager and confirm that the player has been created. It may take up to 15 minutes for the new player to appear in Game Manager.
+You can now return to the Game Manager and confirm that the player has been created. Your new player should be immediately visible from the PlayStream Debugger. 
 
+![PlayStream Debugger](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/PlayStreamDebugger.png "Clicking the Player ID will take you to the corresponding player details.")
+
+**To view recently logged in players**:
 1.  Open [Game Manager](https://developer.playfab.com/en-us/studios).
 2.  Click on your title, **Getting Started**.
 3.  In the left sidebar, click on the **Players** tab.  You will see a list of players who have been added to your Getting Started game.
