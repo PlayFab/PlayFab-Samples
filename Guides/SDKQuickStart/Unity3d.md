@@ -132,7 +132,7 @@ One of the parameters, **CustomId** was set by calling the Unity API call **Syst
 ![Unity Output](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/UnityConsoleOutput.png "Our output shows our Player ID and account creation status.")
 
 ## Next steps ##
-Congratulations on your first PlayFab API call.  Expand on what you have learned and explore what else PlayFab can do for you by exploring [Recipes](https://api.playfab.com/docs/recipe-index), [Tutorials and Guides](https://api.playfab.com/docs/tutorials).  The [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK) on GitHub also has useful information, including  “PlayFabClientSample” and “PlayFabCombinedTestingSample” which contain more examples of how to make calls to PlayFab from Unity. 
+Congratulations on your first PlayFab API call.  Expand on what you have learned and explore what else PlayFab can do for you by exploring [Recipes](https://api.playfab.com/docs/recipe-index), [Tutorials and Guides](https://api.playfab.com/docs/tutorials).  The [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK) on GitHub also has useful information, including  "PlayFabClientSample" and "PlayFabCombinedTestingSample" which contain more examples of how to make calls to PlayFab from Unity. 
 To continue what you have been learning see these tutorials:
 
 - [Using Player Data](https://api.playfab.com/docs/using-player-data)
