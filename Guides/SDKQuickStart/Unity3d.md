@@ -64,7 +64,8 @@ Add a global property at the start of the PlayFabManager class to keep track of 
 
 Set the PlayFab TitleID in the Start method.  Use the title ID for your game that you made a note of earlier in this document.
 
-    void Start () {
+    void Start () 
+    {
         PlayFabSettings.TitleId = "{your title id}";
     } 
 
@@ -127,6 +128,9 @@ You used **LoginWithCustomID** to establish a connection with PlayFab and connec
 The class **LoginWithCustomIDRequest** was created to hold the parameters for the call. 
 One of the parameters, **CustomId** was set by calling the Unity API call **SystemInfo.deviceUniqueIdentifier**. This call returns a unique value based on properties of the hardware the player is using. On a given device it will always return the same result, making it easy to identify the player between sessions.
 **LoginWithCustomID** returns a session identifier which you will use to identify this player for the remainder of this game session.  The session identifier is stored for later use in the global **PlayFabId**.
+
+![Unity Output](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/UnityConsoleOutput.png "Our output shows our Player ID and account creation status.")
+
 ## Next steps ##
 Congratulations on your first PlayFab API call.  Expand on what you have learned and explore what else PlayFab can do for you by exploring [Recipes](https://api.playfab.com/docs/recipe-index), [Tutorials and Guides](https://api.playfab.com/docs/tutorials).  The [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK) on GitHub also has useful information, including  ‘PlayFabClientSample” and “PlayFabCombinedTestingSample” which contain more examples of how to make calls to PlayFab from Unity. 
 To continue what you have been learning see these tutorials:
