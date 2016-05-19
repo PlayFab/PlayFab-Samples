@@ -72,38 +72,40 @@ Create a new method to hold the Login code. It’s recommended that you use the 
 
 All SDK calls follow a common pattern using a request and a result class.  You pass in the request and you get a callback with the result or error. This example uses lambda notation, however you can also pass in explicit delegates for the result and error callbacks.
 
-    void Login(string titleId)  {
-        LoginWithCustomIDRequest request = new LoginWithCustomIDRequest()
-        {
-            TitleId = titleId,
-            CreateAccount = true,
-            CustomId = SystemInfo.deviceUniqueIdentifier
-        };
-    
-        PlayFabClientAPI.LoginWithCustomID(request, (result) => {
-            PlayFabId = result.PlayFabId;
-
-            if(result.NewlyCreated)
-            {
-                Debug.Log("Got PlayFabID: " + PlayFabId + "(new account)");
-            }
-            else
-            {
-                Debug.Log("Got PlayFabID: " + PlayFabId + "(existing account)");
-            }
-        },
-        (error) => {
-            Debug.Log("Error logging in player with custom ID:");
-            Debug.Log(error.ErrorMessage);
-        })
-    } 
+	void Login(string titleId)  
+	{
+	    LoginWithCustomIDRequest request = new LoginWithCustomIDRequest()
+	    {
+	        TitleId = titleId,
+	        CreateAccount = true,
+	        CustomId = SystemInfo.deviceUniqueIdentifier
+	    };
+	
+	    PlayFabClientAPI.LoginWithCustomID(request, (result) => {
+	        string PlayFabId = result.PlayFabId;
+	
+	        if(result.NewlyCreated)
+	        {
+	            Debug.Log("Got PlayFabID: " + PlayFabId + "(new account)");
+	        }
+	        else
+	        {
+	            Debug.Log("Got PlayFabID: " + PlayFabId + "(existing account)");
+	        }
+	    },
+	    (error) => {
+	        Debug.Log("Error logging in player with custom ID:");
+	        Debug.Log(error.ErrorMessage);
+	    });
+	} 
 
 And finally add a call to your new Login method in the Start method. The Start method now looks like this:
 
-    void Start () {
+    void Start () 
+    {
         PlayFabSettings.TitleId = "{your title id}";
         Login (PlayFabSettings.TitleId);
-        } 
+    } 
 
 ### Add the script to a game object ###
 The script will not execute unless it is added to a game object.  In the Unity editor, drag and drop the script to the **PlayFabManager** game object that you made earlier, which is visible in the hierarchy pane.
