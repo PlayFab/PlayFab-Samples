@@ -1,0 +1,215 @@
+{
+  "CatalogVersion": "Achievements",
+  "Catalog": [
+    {
+      "ItemId": "badge_01",
+      "ItemClass": "AchievementBadge",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Social Player Badge",
+      "Description": "Link your account to Facebook.\n",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"Threshold\":1,\"CurrentValue\":0,\"DateAchieved\":0,\"DateStarted\":0,\"Icon\":\"Social\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "badge_02",
+      "ItemClass": "AchievementBadge",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Millionaire Badge",
+      "Description": "Accrue over 1,000,000 Gold. ",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"Threshold\":\"1000000\",\"CurrentValue\":\"0\",\"DateStarted\":\"0\",\"DateAchieved\":\"0\",\"Icon\":\"Money\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "badge_03",
+      "ItemClass": "AchievementBadge",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "V.I.P. Customer Badge",
+      "Description": "Spend over 1 million Gold in a single purchase.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"DateStarted\":\"0\",\"DateAchieved\":\"0\",\"Icon\":\"user-plus\",\"Best\":\"0\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "badge_04",
+      "ItemClass": "AchievementBadge",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Bottom's Up Badge",
+      "Description": "Drink over 100 potions.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"Threshold\":\"100\",\"CurrentValue\":\"0\",\"DateStarted\":\"0\",\"DateAchieved\":\"0\",\"Icon\":\"RainbowPotion\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "badge_05",
+      "ItemClass": "AchievementBadge",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Brawler Badge",
+      "Description": "Damage your enemies.",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"Threshold\":\"10000\",\"CurrentValue\":\"0\",\"DateStarted\":\"0\",\"DateAchieved\":\"0\",\"Icon\":\"Battle\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "health_potion",
+      "ItemClass": "Potion",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Health Potion",
+      "Description": "Restores a small % of HP",
+      "VirtualCurrencyPrices": {
+        "Au": 100
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"icon\":\"RedPotion\"}",
+      "Consumable": {
+        "UsageCount": 1,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "mana_potion",
+      "ItemClass": "Potion",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Mana Potion",
+      "Description": "Restores a small % of MP.",
+      "VirtualCurrencyPrices": {
+        "Au": 100
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"icon\":\"BluePotion\"}",
+      "Consumable": {
+        "UsageCount": 1,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "millionaire",
+      "ItemClass": "VC_Bundle",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Millionaire Bundle",
+      "Description": "They say making the first million is the hardest...",
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"icon\":\"royalChest\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": 5,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": {
+        "BundledItems": [],
+        "BundledResultTables": [],
+        "BundledVirtualCurrencies": {
+          "Au": 1250000
+        }
+      },
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    },
+    {
+      "ItemId": "bigTicket",
+      "ItemClass": "Item",
+      "CatalogVersion": "Achievements",
+      "DisplayName": "Big Ticket",
+      "Description": "This item is really expensive.",
+      "VirtualCurrencyPrices": {
+        "Au": 1100000
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [],
+      "CustomData": "{\"icon\":\"BlackChest\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null
+    }
+  ]
+}
