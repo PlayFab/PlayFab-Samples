@@ -15,7 +15,7 @@ Follow these steps to create your first PlayFab / Unity project. By the way, in 
 First you will create a new PlayFab game, and make a note of the Title ID for later use in PlayFab calls.
 
 1. Open the [Game Manager](https://developer.playfab.com/en-us/studios), PlayFab’s web based tool for adding, viewing and changing your games. You should see your games listed by studio.  If you just created your account, you will see a default studio called **My Game Studio**, and a default game called **My Game**. 
-2. Create a new game by clicking **Create a new game**, and name it **Getting Started**.  You can fill in the rest of the information on this page, or leave it blank.  Click **Create Game** to add this game to your PlayFab account.  
+2. Create a new game by clicking **Create a new game**, and name it "Getting Started".  You can fill in the rest of the information on this page, or leave it blank.  Click **Create Game** to add this game to your PlayFab account.  
 3. Return to the main view in the Game Manager by clicking the PlayFab logo in the upper left corner of the screen. You will see a tile for your new game showing the game title and Title ID. The Title ID is a unique value used by PlayFab to identify this game. Make a note of the Title ID since you will need it later.
 
 
@@ -132,7 +132,7 @@ One of the parameters, **CustomId** was set by calling the Unity API call **Syst
 ![Unity Output](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/UnityConsoleOutput.png "Our output shows our Player ID and account creation status.")
 
 ## Next steps ##
-Congratulations on your first PlayFab API call.  Expand on what you have learned and explore what else PlayFab can do for you by exploring [Recipes](https://api.playfab.com/docs/recipe-index), [Tutorials and Guides](https://api.playfab.com/docs/tutorials).  The [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK) on GitHub also has useful information, including  ‘PlayFabClientSample” and “PlayFabCombinedTestingSample” which contain more examples of how to make calls to PlayFab from Unity. 
+Congratulations on your first PlayFab API call.  Expand on what you have learned and explore what else PlayFab can do for you by exploring [Recipes](https://api.playfab.com/docs/recipe-index), [Tutorials and Guides](https://api.playfab.com/docs/tutorials).  The [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK) on GitHub also has useful information, including  "PlayFabClientSample" and "PlayFabCombinedTestingSample" which contain more examples of how to make calls to PlayFab from Unity. 
 To continue what you have been learning see these tutorials:
 
 - [Using Player Data](https://api.playfab.com/docs/using-player-data)
