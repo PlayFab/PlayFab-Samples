@@ -58,7 +58,7 @@ Add a reference to your copy of the PlayFab SDK. Place this line of code after t
 
 		   <script type="text/javascript" src="/JavaScriptSDK-versioned/PlayFabSDK/PlayFabClientApi.js"></script>
 
-Immediately after that add a reference to the code.js file you just made.
+Next add a reference to the code.js file you just made. Place it immediately after the other script tags.
 
            <script type="text/javascript" src="code.js"> </script>
 
