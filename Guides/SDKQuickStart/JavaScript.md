@@ -34,7 +34,7 @@ You can access the PlayFab Client, Server and Administrative APIs using these SD
 ![API Sets](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/pf_apiSets.png "Import the SDK into your Unity project")
 
 1.	From the [JavaScript SDK](https://api.playfab.com/sdks/javascript) page click **Download PlayFab SDK**. Unzip the folder, and add the unzipped folder to the root of your web-server.
-2.	The SDK contains several sample test files that can be deleted. Follow the instructions in the [PlayFab JavaScript SDK](https://github.com/PlayFab/JavaScriptSDK) GitHub project.
+2.	For more information on the SDK see the readme for the [PlayFab JavaScript SDK](https://github.com/PlayFab/JavaScriptSDK). Otherwise continue with these steps.
 
 ### Create a simple web project ###
 
@@ -58,18 +58,37 @@ Add a reference to your copy of the PlayFab SDK. Place this line of code after t
 
 		   <script type="text/javascript" src="/JavaScriptSDK-versioned/PlayFabSDK/PlayFabClientApi.js"></script>
 
-Now add a reference to the code.js file you just made.
+Immediately after that add a reference to the code.js file you just made.
 
            <script type="text/javascript" src="code.js"> </script>
 
-Now add a control to the body so that you can make an API call.
+Now add a control to the body section so that you can make an API call.
 
 		   <button id="login" class="stdButton" style="height:100%;">LOGIN</button>
+
+The final HTML file should look like this.
+
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <html lang="en">
+
+	    <head>
+		   <meta http-equiv="content-type" content="text/html; charset=utf-8">
+		   <title>Getting Started with PlayFab</title>
+		   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		   <script type="text/javascript" src="/JavaScriptSDK-versioned/PlayFabSDK/PlayFabClientApi.js"></script>
+           <script type="text/javascript" src="code.js"> </script>
+	    </head>
+
+	    <body>
+		   <button id="login" class="stdButton" style="height:100%;">LOGIN</button>
+	    </body>
+    </html>
+
 
 ### Add PlayFab specific JavaScript to the .js file ###
 
 This code will be used to authenticate the player.
-Normally you would add code to create a unique ID and save that unique ID in **localStorage** (see the [PlayFab PrizeWheel Recipe](https://github.com/PlayFab/PlayFab-Samples/tree/master/Recipes/PrizeWheel) for an example of how that works), but for now you will use a pre-generated identifier to keep the code simple. 
+Normally you would add code to create a unique ID and save that unique ID in **localStorage** (see the [PlayFab PrizeWheel Recipe](https://github.com/PlayFab/PlayFab-Samples/tree/master/Recipes/PrizeWheel) for an example of how that works), but for now you will use **[LoginWithCustomID](https://api.playfab.com/Documentation/Client/method/LoginWithCustomID)** with a pre-generated identifier to keep the code simple.
 
 Every time the game logs into PlayFab this unique value is used to find the user in the Studio's user database.  The first time you log in with this identifier a user will be created in PlayFab, and from that point onward every time you log in with this id you will be connected to the same user.
 
@@ -106,7 +125,7 @@ This is also where you use the title ID that you made note of earlier in the Gam
 	    }
     }
 
-Finally you need to wire up the button you added in the html file to the **Authenticate** function. Do this by adding code to the top of the code.js file.
+Finally you need to wire up the button you added in the html file to the **Authenticate** function. Do this by adding this jQuery code to the top of the code.js file.
 
     $( document ).ready(function() {
         console.log( "ready!" );
@@ -124,6 +143,8 @@ Open the developer tools in your browser, and open the console window. In Chrome
 Click the **login** button at the top of the screen.  If all goes according to plan, you will see debug trace in the console window that will tell you the result of the logon attempt. If successful, the player will be logged in to PlayFab with a session ticket that is valid for 24 hours. The returned PlayFab ID in the Login method can now be used for subsequent API calls while the player interacts with your game. 
 Once you have created a PlayFab account for a player from any game in your studio, their PlayFab account ID is available for all of the games in your studio.
 
+![Chrome console](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/Chromeconsole.png "The result of your logon will be shown in the browser console.")
+
 ### Confirm the new player in the Game Manager ###
 You can now return to the Game Manager and confirm that the player has been created. Your new player should be immediately visible from the PlayStream Debugger. 
 
@@ -136,10 +157,10 @@ You can now return to the Game Manager and confirm that the player has been crea
 3.	In the left sidebar, click on the **Players** tab.  You will see a list of players who have been added to your Getting Started game.
 
 ### What just happened? ###
-You used **LoginWithCustomID** to establish a connection with PlayFab and connect to a unique player for one of your titles.  If no player was found, a new player was created and associated with the unique ID that you passed in.
+You used **[LoginWithCustomID](https://api.playfab.com/Documentation/Client/method/LoginWithCustomID)** to establish a connection with PlayFab and connect to a unique player for one of your titles.  If no player was found, a new player was created and associated with the unique ID that you passed in.
 **LoginWithCustomIDRequest** was created to hold the parameters for the call, and **AuthenticationCallback** was created to handle the returned data. 
 
-**LoginWithCustomID** returns a session identifier which you will use to identify this player for the remainder of this game session.  The session identifier is stored for later use in the global **PlayFabId**.
+**[LoginWithCustomID](https://api.playfab.com/Documentation/Client/method/LoginWithCustomID)** returns a session identifier which you will use to identify this player for the remainder of this game session.  The session identifier is stored for later use in the global **PlayFabId**.
 
 ## Next steps ##
 Congratulations on your first PlayFab API call.  Expand on what you have learned and explore what else PlayFab can do for you by exploring [Recipes](https://api.playfab.com/docs/recipe-index), [Tutorials and Guides](https://api.playfab.com/docs/tutorials).  The [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK) on GitHub also has useful information, including  "PlayFabClientSample" and "PlayFabCombinedTestingSample" which contain more examples of how to make calls to PlayFab from JavaScript. 
