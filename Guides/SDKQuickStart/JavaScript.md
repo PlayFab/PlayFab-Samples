@@ -143,7 +143,7 @@ Open the developer tools in your browser, and open the console window. In Chrome
 Click the **login** button at the top of the screen.  If all goes according to plan, you will see debug trace in the console window that will tell you the result of the logon attempt. If successful, the player will be logged in to PlayFab with a session ticket that is valid for 24 hours. The returned PlayFab ID in the Login method can now be used for subsequent API calls while the player interacts with your game. 
 Once you have created a PlayFab account for a player from any game in your studio, their PlayFab account ID is available for all of the games in your studio.
 
-![Chrome console](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/Chromeconsole.png "The result of your logon will be shown in the browser console.")
+![Chrome console](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/ChromeConsole.png "The result of your logon will be shown in the browser console.")
 
 ### Confirm the new player in the Game Manager ###
 You can now return to the Game Manager and confirm that the player has been created. Your new player should be immediately visible from the PlayStream Debugger. 
