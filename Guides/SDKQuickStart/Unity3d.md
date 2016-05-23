@@ -124,10 +124,10 @@ You can now return to the Game Manager and confirm that the player has been crea
 3.  In the left sidebar, click on the **Players** tab.  You will see a list of players who have been added to your Getting Started game.
 
 ### What just happened? ###
-You used **LoginWithCustomID** to establish a connection with PlayFab and connect to a unique player for one of your titles.  If no player was found, a new player was created and associated with the unique ID that you passed in.
+You used **[LoginWithCustomID](https://api.playfab.com/Documentation/Client/method/LoginWithCustomID)** to establish a connection with PlayFab and connect to a unique player for one of your titles.  If no player was found, a new player was created and associated with the unique ID that you passed in.
 The class **LoginWithCustomIDRequest** was created to hold the parameters for the call. 
 One of the parameters, **CustomId** was set by calling the Unity API call **SystemInfo.deviceUniqueIdentifier**. This call returns a unique value based on properties of the hardware the player is using. On a given device it will always return the same result, making it easy to identify the player between sessions.
-**LoginWithCustomID** returns a session identifier which you will use to identify this player for the remainder of this game session.  The session identifier is stored for later use in the global **PlayFabId**.
+**[LoginWithCustomID](https://api.playfab.com/Documentation/Client/method/LoginWithCustomID)** returns a session identifier which you will use to identify this player for the remainder of this game session.  The session identifier is stored for later use in the global **PlayFabId**.
 
 ![Unity Output](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/recipe_dev/Guides/SDKQuickStart/Assets/images/UnityConsoleOutput.png "Our output shows our Player ID and account creation status.")
 
