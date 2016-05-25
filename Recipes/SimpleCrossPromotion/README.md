@@ -25,11 +25,11 @@ This example shows off how you can use Player Publisher Data to reward players t
   3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has corresponding methods.  
   4. Add the following TitleData record:
 	  * **Key** : CrossPromotionalRewards
-	  * **Value**: 
-	  ```javascript
+	  * **Value**:
+
+```JavaScript
 { 
-	//your title ID : the item to award for playing this title
-  "E5A" : "chromePaint",  
+  	"E5A" : "chromePaint",  
 	"632D" : "biggerHat" 
 }
 ``` 
