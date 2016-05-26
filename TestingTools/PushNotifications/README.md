@@ -16,7 +16,7 @@
     *  Google Project Id is only required when using Google Cloud Messaging (GCM).
     *  Apple Devices(APNS & APNS_SANDBOX) do not require additional project settings.  
 
-4. To send test push notifications from the client, you will need to add the following method to your title's Cloud Script. 
+  4. To send test push notifications from the client, you will need to add the following method to your title's Cloud Script. 
 
  ```JavaScript
  //Called from postman, successful push notification moments later
@@ -31,12 +31,11 @@ handlers.SendPushNote = function (args)
 }
 ```
 
-5. Build & deploy to your target device
+  5. Build & deploy to your target device
 ![Push Debugger UI](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/master/TestingTools/Assets/Images/PushRegistered.png "You should see something like this on your device.") 
 
-6. Register and send test notifications as needed.
-
-  * By default iOS devices "eat" messages sent while an app is the active app. To see messages come in, ensure that your app is in the background when you send the push notification. This requires you to send the message from an external source.
-  * For Android, our Unity plugin provides overrides for routing the message in-game or to the notification bar. In-game messages will appear like the screenshot below. 
+  6. Register and send test notifications as needed.
+	  * By default iOS devices "eat" messages sent while an app is the active app. To see messages come in, ensure that your app is in the background when you send the push notification. This requires you to send the message from an external source.
+	  * For Android, our Unity plugin provides overrides for routing the message in-game or to the notification bar. In-game messages will appear like the screenshot below. 
    
 ![Push Notifications](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/master/TestingTools/Assets/Images/TestPushConfirmation.png "A confirmation handled in-game") 
