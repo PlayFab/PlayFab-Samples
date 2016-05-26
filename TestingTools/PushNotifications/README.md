@@ -15,9 +15,8 @@
     ![Unity Inspector](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/master/TestingTools/Assets/Images/PushInspector.png "Enter your Title Id & Google Project Id")
     *  Google Project Id is only required when using Google Cloud Messaging (GCM).
     *  Apple Devices(APNS & APNS_SANDBOX) do not require additional project settings.  
- 
- 
- 4. To send test push notifications from the client, you will need to add the following method to your title's Cloud Script. 
+
+4. To send test push notifications from the client, you will need to add the following method to your title's Cloud Script. 
 
  ```JavaScript
  //Called from postman, successful push notification moments later
