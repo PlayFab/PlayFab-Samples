@@ -9,7 +9,7 @@
 
 ###Setup:
 
-  1. Import the [asset package](https://github.com/PlayFab/PlayFab-Samples/blob/master/TestingTools/PushNotifications/PushDebuggerProject.unitypackage) into a new or existing Unity Project.
+  1. Import the [asset package](https://github.com/PlayFab/PlayFab-Samples/raw/master/TestingTools/PushNotifications/PushDebuggerProject.unitypackage) into a new or existing Unity Project.
   2. Open the Debugger scene (PlayFabExamples/PushNotifications/Debugger.unity).
   3. Enter your Title ID & Google Project Id into the PlayFabLoginManager's Inspector.
     ![Unity Inspector](https://raw.githubusercontent.com/PlayFab/PlayFab-Samples/master/TestingTools/Assets/Images/PushInspector.png "Enter your Title Id & Google Project Id")
