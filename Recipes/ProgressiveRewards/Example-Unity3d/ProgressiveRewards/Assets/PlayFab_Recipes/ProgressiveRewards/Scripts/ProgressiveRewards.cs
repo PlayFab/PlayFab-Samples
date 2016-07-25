@@ -54,7 +54,7 @@ public class ProgressiveRewards : MonoBehaviour {
 	{
 		Debug.Log("Checking-in with Server...");
 		ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest() { 
-			FunctionName = "CheckkkkIn", 
+			FunctionName = "CheckIn", 
 		};
 		
 		PlayFabClientAPI.ExecuteCloudScript(request, OnCheckInCallback, OnApiCallError);
@@ -70,7 +70,8 @@ public class ProgressiveRewards : MonoBehaviour {
 		}	
 
 		Debug.Log("CheckIn Results:");
-		List<ItemInstance> grantedItems = (List<ItemInstance>)result.FunctionResult;
+
+		List<ItemInstance> grantedItems = PlayFab.SimpleJson.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
 		
 		if(grantedItems != null && grantedItems.Count > 0)
 		{
