@@ -53,7 +53,6 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 Import the following asset packages into a new or existing Unity project:
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/RegeneratingCurrency/Example-Unity3d/RegeneratingCurrencyRecipe.unitypackage).
-  * 
   
   1. Add assets to your project. 
   2. Open to the RegeneratingCurrency scene.
