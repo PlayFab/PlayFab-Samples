@@ -67,7 +67,7 @@ In this example, after authentication, your players would "check in", a process 
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
-  * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
+  * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ProgressiveRewards/Example-Unity3d/ProgressiveRewardsRecipe.unitypackage).
   
   1. Add assets to your project. 
