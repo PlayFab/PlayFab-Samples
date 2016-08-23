@@ -1,6 +1,6 @@
 // defining these up top so we can easily change these later if we need to.
 var VIRTUAL_CURRENCY_CODE = "GM";                           // currency code for our Gems VC
-var PLAYER_REFERRAL_KEY = "Referals";                       // PlayerDataReadOnly key to retrieve referral information 
+var PLAYER_REFERRAL_KEY = "Referrals";                      // PlayerDataReadOnly key to retrieve referral information 
 var MAXIMUM_REFERRALS = 10;                                 // this could also be set in TitleData
 var REFERRAL_BONUS_BUNDLE = "premiumStarterPack";           // the item to grant to referees
 var REFERRAL_BADGE = "referralBadge";                       // the itemId for the item that signifies that a player has been referred
@@ -67,7 +67,7 @@ handlers.RedeemReferral = function(args) {
         }
         else
         {
-            throw "An error occured when parsing the referrer's player data.";
+            throw "An error occurred when parsing the referrer's player data.";
         }
     }
 
