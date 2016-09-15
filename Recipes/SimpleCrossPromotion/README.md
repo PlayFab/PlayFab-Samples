@@ -25,11 +25,11 @@ This example shows off how you can use Player Publisher Data to reward players t
   3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has corresponding methods.  
   4. Add the following TitleData record:
 	  * **Key** : CrossPromotionalRewards
-	  * **Value**: 
-	  ```javascript
+	  * **Value**:
+
+```JavaScript
 { 
-	//your title ID : the item to award for playing this title
-  "E5A" : "chromePaint",  
+  	"E5A" : "chromePaint",  
 	"632D" : "biggerHat" 
 }
 ``` 
@@ -49,7 +49,7 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
-  * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
+  * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/SimpleCrossPromotion/Example-Unity3d/SimpleCrossPromotionRecipe.unitypackage).
   
   1. Add assets to your project. 

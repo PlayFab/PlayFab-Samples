@@ -1,8 +1,10 @@
 ## Referral Codes
 ### Description:
-Players can enter a code (provided from a friend) to gain a referral award. Additionally, the referring player should also get an award. The referring player can be awarded can be obtained multiple times.
+Players can enter a code (provided from a friend) to gain a referral award. Additionally, the referring player is also rewarded. Players can obtain rewards from referring players multiple times up to a maximum limit; however, each player account may only be referred one time.  
 
-For this demo, we will be awarding the referee a "Premium Starter Pack", a item bundle containing several useful items for new players. Additionally, we want to limit each player to 1 starter pack, to do this we will be using another item "ReferralBadge". After redeeming a referral code, the referree will be granted a "ReferralBadge", a permanent inventory item that signifies that the player has already been referred. Those that refer players get 10 Gems and can capped on how many times they can receive this bonus.
+For this demo, we will be awarding the referee a "Premium Starter Pack", an item bundle containing several items usefule to new players. Additionally, we want to limit each player to 1 starter pack. 
+
+After redeeming a referral code, the referree will be granted a "ReferralBadge", a permanent inventory item that signifies that the player has already been referred. Those that refer players get 10 Gems, an award that can be redeemed a limited number of times.
 
 ### Ingredients (Building Blocks):
   * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
@@ -50,8 +52,8 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
-  * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/PlayFabClientSDK.unitypackage).
-  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ReferralCodes/Unity3d-Example/ReferralCodesRecipe.unitypackage).
+  * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
+  * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ReferralCodes/Example-Unity3d/ReferralCodesRecipe.unitypackage).
   
   1. Add assets to your project. 
   2. Open to the ReferralCodes scene.
