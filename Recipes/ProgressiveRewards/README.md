@@ -12,33 +12,35 @@ Reward players for logging in over consecutive days with progressive item grants
   * [Cloud Script](https://api.playfab.com/docs/building-blocks#Cloud_Script)
 
 ### Preparation:
-  1. Use the Game Manager to configure a Virtual Currency for your title:
+  1. Under the **Economy &gt; Currencies** section of the Game Manager add a second Virtual Currency to match the following parameters:
 
   | Property | Value | Detail
   ---: | :---: | --- 
   Code | GM | Abbreviation for our VC
   Name | Gems | Name of our VC
   Initial Deposit | 5 | How many each player gets with a new account
-
-  2. Upload [this example catalog](/Recipes/ProgressiveRewards/PlayFab-JSON/Catalog.json) or use your own.
+  
+  3. Next, under the Catalog tab, add a new catalog called **ProgressiveRewards**.
+  2. Navigate back to the top-level catalogs view and click on the small black arrow in the top-right corner of the "ProgressiveRewards Catalog". Choose the Upload JSON option and provide [this catalog file](/Recipes/ProgressiveRewards/PlayFab-JSON/Catalog.json) or use your own.
     * If using your own, ensure that you have items mapping to the three-tier reward table.
-  3. Upload & deploy [this Cloud Script](/Recipes/ProgressiveRewards/CloudScript.js), or ensure that yours has corresponding methods.
-  4. Add the following TitleData record:
+  3. Under the **Servers &gt; CloudScript** section of the Game Manager, upload & deploy [this .js file](/Recipes/ProgressiveRewards/CloudScript.js), or ensure that yours has corresponding methods.
+  4. Under the **Content &gt; Title Data** section of the Game Manager, add the following TitleData record:
     * **Key** : ProgressiveRewardTable
     * **Value**: 
-    ```javascript
-{   
-  "Level1" : { 
-      "MinStreak" : 2, 
-      "Reward" : "Bronze_CheckInChest" },
-  "Level2" : { 
-      "MinStreak" : 5, 
-      "Reward" : "Silver_CheckInChest" },
-  "Level3" : { 
-      "MinStreak" : 7, 
-      "Reward" : "Gold_CheckInChest" } 
-}
-``` 
+		    
+		```javascript
+		{   
+		  "Level1" : { 
+		      "MinStreak" : 2, 
+		      "Reward" : "Bronze_CheckInChest" },
+		  "Level2" : { 
+		      "MinStreak" : 5, 
+		      "Reward" : "Silver_CheckInChest" },
+		  "Level3" : { 
+		      "MinStreak" : 7, 
+		      "Reward" : "Gold_CheckInChest" } 
+		}
+		``` 
 
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
@@ -67,6 +69,7 @@ In this example, after authentication, your players would "check in", a process 
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
+
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ProgressiveRewards/Example-Unity3d/ProgressiveRewardsRecipe.unitypackage).
   

@@ -2,7 +2,7 @@
 ### Description:
 Players can enter a code (provided from a friend) to gain a referral award. Additionally, the referring player is also rewarded. Players can obtain rewards from referring players multiple times up to a maximum limit; however, each player account may only be referred one time.  
 
-For this demo, we will be awarding the referee a "Premium Starter Pack", an item bundle containing several items usefule to new players. Additionally, we want to limit each player to 1 starter pack. 
+For this demo, we will be awarding the referee a "Premium Starter Pack", an item bundle containing several items useful to new players. Additionally, we want to limit each player to 1 starter pack. 
 
 After redeeming a referral code, the referree will be granted a "ReferralBadge", a permanent inventory item that signifies that the player has already been referred. Those that refer players get 10 Gems, an award that can be redeemed a limited number of times.
 
@@ -15,18 +15,19 @@ After redeeming a referral code, the referree will be granted a "ReferralBadge",
   * [Cloud Script](https://api.playfab.com/docs/building-blocks#Cloud_Script)
 
 ### Preparation:
-  1. Use the Game Manager to configure a Virtual Currency for your title:
+  1. Under the **Economy &gt; Currencies** section of the Game Manager add a Virtual Currency to match the following parameters:
 
   | Property | Value | Detail
   ---: | :---: | --- 
   Code | GM | Abbreviation for our VC
   Name | Gems | Name of our VC
   Initial Deposit | 5 | How many each player gets with a new account
-
-  2. Upload [this example catalog](/Recipes/ReferralCodes/PlayFab-JSON/Catalog.json) or use your own.
+  
+  2. Next, under the Catalog tab, add a new catalog called **ReferralCode**.
+  3. Navigate back to the top-level catalogs view and click on the small black arrow in the top-right corner of the "ReferralCode Catalog". Choose the Upload JSON option and provide [this example catalog](/Recipes/ReferralCodes/PlayFab-JSON/Catalog.json) or use your own.
     * If using your own, ensure that you have items that can be granted in the referral process.
 
-  3. Upload & deploy [this Cloud Script](/Recipes/ReferralCodes/CloudScript.js), or ensure that yours has corresponding methods.
+  4. Under the **Servers &gt; CloudScript** section of the Game Manager, upload & deploy [this .js file](/Recipes/ReferralCodes/CloudScript.js), or ensure that yours has corresponding methods.
 
 ### Mechanic Walkthrough:
   1. Client A obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
@@ -52,6 +53,7 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
+
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ReferralCodes/Example-Unity3d/ReferralCodesRecipe.unitypackage).
   

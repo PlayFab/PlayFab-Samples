@@ -12,28 +12,30 @@ This example shows off how you can use Player Publisher Data to reward players t
   * [Cloud Script](https://api.playfab.com/docs/building-blocks#Cloud_Script)
 
 ### Preparation:
-  1. Use the Game Manager to configure a second Virtual Currency for your title:
+  1. Under the **Economy &gt; Currencies** section of the Game Manager add a Virtual Currency to match the following parameters:
 
   | Property | Value | Detail
   ---: | :---: | --- 
   Code | GM | Abbreviation for our VC
   Name | Gems | Name of our VC
   Initial Deposit | 5 | How many each player gets with a new account
-
-  2. Upload [this example catalog](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
+  
+  2. Next, under the Catalog tab, add a new catalog called **CrossPromotional**.
+  3. Navigate back to the top-level catalogs view and click on the small black arrow in the top-right corner of the "CrossPromotional Catalog". Choose the Upload JSON option and provide [this catalog file](/Recipes/SimpleCrossPromotion/PlayFab-JSON/Catalog.json) or use your own.
 	  * If using your own, ensure that you have items that can be granted to players.
-  3. Upload & deploy [this Cloud Script](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has corresponding methods.  
-  4. Add the following TitleData record:
+  4. Under the **Servers &gt; CloudScript** section of the Game Manager, upload & deploy [this .js file](/Recipes/SimpleCrossPromotion/CloudScript.js), or ensure that yours has corresponding methods.  
+  5. Under the **Content &gt; Title Data** section of the Game Manager, add the following TitleData record:
 	  * **Key** : CrossPromotionalRewards
 	  * **Value**:
-
-```JavaScript
-{ 
-  	"E5A" : "chromePaint",  
-	"632D" : "biggerHat" 
-}
-``` 
-  5. To properly test this you will need to have multiple titles with the similar Cloud Scripts & TitleData. This pattern allows you to have different rewards for each individual catalog. Ensure that your 2nd and third titles match the values in your TitleData:CrossPromotionalRewards (See step #4).
+	  
+		```JavaScript
+		{ 
+		  	"E5A" : "chromePaint",  
+			"632D" : "biggerHat" 
+		}
+		``` 
+		
+  6. To fully test this recipe you will need to have multiple titles with the similar Cloud Scripts & TitleData. This pattern allows you to have different rewards for each individual catalog. Ensure that your 2nd and third titles match the values in your TitleData:CrossPromotionalRewards (See step #5).
 
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
@@ -49,6 +51,7 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
+
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/SimpleCrossPromotion/Example-Unity3d/SimpleCrossPromotionRecipe.unitypackage).
   
