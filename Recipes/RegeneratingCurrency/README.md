@@ -13,7 +13,7 @@ In this example we are mimicking gameplay through a Cloud Script method called "
   * [Cloud Script](https://api.playfab.com/docs/building-blocks#Cloud_Script)
 
 ### Preparation:
-  1. Use the Game Manager to configure a Virtual Currency for your title:
+  1. Under the **Economy &gt; Currencies** section of the Game Manager add a Virtual Currency to match the following parameters:
 
   | Property | Value | Detail
   ---: | :---: | --- 
@@ -23,18 +23,18 @@ In this example we are mimicking gameplay through a Cloud Script method called "
   Recharge Rate | 288 |  Every 5 minutes: 24hr*60min / 5min
   Recharge Max | 5 | this caps the regeneration to the specified number
 
-  2. Use the Game Manager to configure a second Virtual Currency for your title:
+  2. Under the **Economy &gt; Currencies** section of the Game Manager add a second Virtual Currency to match the following parameters:
 
   | Property | Value | Detail
   ---: | :---: | --- 
   Code | GM | Abbreviation for our VC
   Name | Gems | Name of our VC
   Initial Deposit | 5 | How many each player gets with a new account
-
-  3. Upload [this example catalog](/Recipes/RegeneratingCurrency/PlayFab-JSON/Catalog.json) or use your own.
-    * If using your own, ensure that you have items that can be granted to a player. from the wheel.
-
-  4. Upload & deploy [this Cloud Script](/Recipes/RegeneratingCurrency/CloudScript.js), or ensure that yours has corresponding methods.  
+  
+  3. Next, under the Catalog tab, add a new catalog called **RegeneratingCurrency**.
+  4. Navigate back to the top-level catalogs view and click on the small black arrow in the top-right corner of the "RegeneratingCurrency Catalog". Choose the Upload JSON option and provide [this catalog file](/Recipes/RegeneratingCurrency/PlayFab-JSON/Catalog.json) or use your own.
+    * If using your own, ensure that you have items that can be granted to a player.
+  5. Under the **Servers &gt; CloudScript** section of the Game Manager, upload & deploy [this .js file](/Recipes/RegeneratingCurrency/CloudScript.js), or ensure that yours has corresponding methods.  
 
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
@@ -51,6 +51,7 @@ In this example we are using Cloud Script to act as the secure server ensuring t
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
+
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/RegeneratingCurrency/Example-Unity3d/RegeneratingCurrencyRecipe.unitypackage).
   

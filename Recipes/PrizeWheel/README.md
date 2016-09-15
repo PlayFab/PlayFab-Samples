@@ -12,7 +12,7 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
   * [Drop Table](https://api.playfab.com/docs/building-blocks#Drop_Table)
 
 ###Preparation:
-  1. Use the Game Manager to configure a Virtual Currency for your title:
+  1. Under the **Economy &gt; Currencies** section of the Game Manager add a Virtual Currency to match the following parameters:
 
   | Property | Value | Detail
   ---: | :---: | --- 
@@ -22,10 +22,11 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
   Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day
   Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to bank up to 5 spin tickets at a time
 
-  2. Upload [this example catalog](/Recipes/PrizeWheel/PlayFab-JSON/Catalog.json) or use your own. 
-    * If using your own, ensure that you have items that can be granted to a player. from the wheel.
-
-  3. Upload [this drop table](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json) using the Game Manager. The drop table should contain all of the items on the 'wheel'.
+  2. Next, under the Catalog tab, add a new catalog called **PrizeWheel**.
+  3. After the catalog is created, navigate within the catalog to the **Drop Tables** tab.
+  4. Upload [this JSON file](/Recipes/PrizeWheel/PlayFab-JSON/DropTable.json). The drop table should contain all of the items on the 'wheel'.
+  5. Finally, navigate back to the top-level catalogs view and click on the small black arrow in the top-right corner of the "PrizeWheel Catalog". Choose the Upload JSON option and provide [this catalog file](/Recipes/PrizeWheel/PlayFab-JSON/Catalog.json) or use your own. 
+    * If using your own, ensure that you have items that can be granted to a player.
 
 ### Mechanic Walkthrough:
   1. Client obtains a valid session ticket via one of the various authentication pathways (required to make Client API Calls)
@@ -41,6 +42,7 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
 
 #### Unity 3d Example Setup Instructions:
 Import the following asset packages into a new or existing Unity project:
+
   * Ensure you have the latest SDK [here](https://github.com/PlayFab/UnitySDK/raw/versioned/Packages/UnitySDK.unitypackage).
   * Ensure you have the recipe files [here](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/PrizeWheel/Example-Unity3d/PrizeWheelRecipe.unitypackage)
   

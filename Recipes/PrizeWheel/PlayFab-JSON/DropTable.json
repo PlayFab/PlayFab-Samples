@@ -1,4 +1,4 @@
-{
+[{
   "TableId": "PrizeWheel1",
   "Nodes": [
     {
@@ -22,4 +22,4 @@
       "Weight": 303
     }
   ]
-}
+}]
