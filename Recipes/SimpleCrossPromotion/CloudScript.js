@@ -1,5 +1,5 @@
 // defining these up top so we can easily change these later if we need to.
-var CURRENT_TITLE_CODE = "A87";                                 // the TitleId of the current title
+var CURRENT_TITLE_CODE = "";                                 // the TitleId of the current title
 var CROSS_PROMOTIONAL_TRACKING = "CrossPromotionalTracking";    // used as a key on the UserPublisherDataReadOnly
 var CROSS_PROMOTIONAL_REWARDS = "CrossPromotionalRewards";       // used as a key on TitleData -- contains the item grant table linking the valid titles to items
 var CROSS_PROMOTIONAL_CATALOG = "CrossPromotional";
