@@ -17,10 +17,18 @@ handlers.Battle = function(args) {
 	var userVcRecharge = GetUserInventoryResult.VirtualCurrencyRechargeTimes;
 
 	// make sure the player has > 0 lives before proceeding. 
-	if(!CheckLives(userVcBalances))
+	try
 	{
-		throw "No lives remaining. Purchase additional lives or wait: " + userVcRecharge[LIVES_CURRENCY_CODE].SecondsToRecharge + " seconds.";
+		if(!CheckLives(userVcBalances))
+		{
+			throw "No lives remaining. Purchase additional lives or wait: " + userVcRecharge[LIVES_CURRENCY_CODE].SecondsToRecharge + " seconds.";
+		}
 	}
+	catch(ex)
+	{
+		return JSON.stringify(ex);
+	}
+
 
 	// calculate the battle using our 'global' params...
 	var gemsFound = Math.floor(Math.random() * (GEM_MAX - GEM_MIN + 1) + GEM_MIN);
@@ -40,7 +48,7 @@ handlers.Battle = function(args) {
 		battleResults.gemsFound = gemsFound;
 		battleResults.lostALife = lostALife;
 
-	return battleResults;
+	return JSON.stringify(battleResults);
 };
 
 

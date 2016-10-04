@@ -29,7 +29,7 @@ handlers.CheckIn = function(args) {
   		UpdateTrackerData(tracker);
 
   		log.info("This was your first login, Login tomorrow to get a bonus!");
-  		return [];
+  		return JSON.stringify([]);
     }
 	
 
@@ -47,7 +47,7 @@ handlers.CheckIn = function(args) {
 			UpdateTrackerData(tracker);
 
 			log.info("Your consecutive login streak has been broken. Login tomorrow to get a bonus!");
-			return [];
+			return JSON.stringify([]);
 		}
 
 		// streak continues
@@ -70,7 +70,7 @@ handlers.CheckIn = function(args) {
 	    if(!GetTitleDataResult.Data.hasOwnProperty(PROGRESSIVE_REWARD_TABLE))
 	    {
 	    	log.error("Rewards table could not be found. No rewards will be given. Exiting...");
-	        return [];
+	        return JSON.stringify([]);
 	    }
 	    else
 	    {
@@ -93,11 +93,11 @@ handlers.CheckIn = function(args) {
 			{
 				grantedItems = GrantItems(reward, tracker[TRACKER_LOGIN_STREAK]);
 			}
-			return grantedItems;
+			return JSON.stringify(grantedItems);
 	    }
 	}
 
-	return [];
+	return JSON.stringify([]);
 };
 
 
@@ -111,7 +111,7 @@ function ResetTracker()
 	dateObj.setDate(dateObj.getDate() + 1); // add one day 
 
 	reset[TRACKER_NEXT_GRANT] = dateObj.getTime();
-	return reset;
+	return JSON.stringify(reset);
 }
 
 
@@ -139,5 +139,5 @@ function GrantItems(items, count)
     };
 
     var GrantItemsToUserResult = server.GrantItemsToUser(GrantItemsToUserRequest);
-    return GrantItemsToUserResult.ItemGrantResults;
+    return JSON.stringify(GrantItemsToUserResult.ItemGrantResults);
 }
