@@ -3,13 +3,13 @@
 Reward players for logging in over consecutive days with progressive item grants.  This example uses a three-tier reward table providing different items for 2, 5, 7 day log-in streaks. Cloud-Script logic acts as the authoritative server and performs the grant directly into the player's inventory.   
 
 ### Ingredients (Building Blocks):
-  * [Accounts](https://api.playfab.com/docs/building-blocks#Accounts)
-  * [Title Data](https://api.playfab.com/docs/building-blocks#Title_Data)
-  * [Player Data](https://api.playfab.com/docs/building-blocks#Player_Data)
-  * [Player Inventory](https://api.playfab.com/docs/building-blocks#Player_Inventory)
-  * [Virtual Currency](https://api.playfab.com/docs/building-blocks#Virtual_Currency)
-  * [Catalog & CatalogItems (Bundle / Container)](https://api.playfab.com/docs/building-blocks#Catalog)
-  * [Cloud Script](https://api.playfab.com/docs/building-blocks#Cloud_Script)
+  * [Accounts](https://api.playfab.com/docs/tutorials/building-blocks#Accounts)
+  * [Title Data](https://api.playfab.com/docs/tutorials/building-blocks#Title_Data)
+  * [Player Data](https://api.playfab.com/docs/tutorials/building-blocks#Player_Data)
+  * [Player Inventory](https://api.playfab.com/docs/tutorials/building-blocks#Player_Inventory)
+  * [Virtual Currency](https://api.playfab.com/docs/tutorials/building-blocks#Virtual_Currency)
+  * [Catalog & CatalogItems (Bundle / Container)](https://api.playfab.com/docs/tutorials/building-blocks#Catalog)
+  * [Cloud Script](https://api.playfab.com/docs/tutorials/building-blocks#Cloud_Script)
 
 ### Preparation:
   1. Under the **Economy &gt; Currencies** section of the Game Manager add a second Virtual Currency to match the following parameters:
