@@ -15,15 +15,21 @@ public class DefaultBehaviour : MonoBehaviour {
 
     public void Start()
     {
+#if UNITY_IOS || UNITY_IPHONE
+        UnityEngine.iOS.NotificationServices.RegisterForNotifications(UnityEngine.iOS.NotificationType.Alert | UnityEngine.iOS.NotificationType.Badge | UnityEngine.iOS.NotificationType.Sound, true);
+#endif
+
         PlayFabAndroidPushPlugin.OnGcmSetupStep += OnGcmSetupSteps;
         PlayFabAndroidPushPlugin.OnGcmMessage += OnGcmMessage;
         PlayFabAndroidPushPlugin.Init();
 
+        var device_id = SystemInfo.deviceUniqueIdentifier;
+#if UNITY_ANDROID
         AndroidJavaClass up = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject currentActivity = up.GetStatic<AndroidJavaObject>("currentActivity");
         AndroidJavaObject contentResolver = currentActivity.Call<AndroidJavaObject>("getContentResolver");
         AndroidJavaClass secure = new AndroidJavaClass("android.provider.Settings$Secure");
-        string device_id = secure.CallStatic<string>("getString", contentResolver, "android_id");
+        device_id = secure.CallStatic<string>("getString", contentResolver, "android_id");
 
         var req = new LoginWithAndroidDeviceIDRequest()
         {
@@ -53,6 +59,52 @@ public class DefaultBehaviour : MonoBehaviour {
             }, null);
 
         }, ErrorCallback);
+#endif
+#if Unity_IOS || UNITY_IPHONE
+        var req = new LoginWithIOSDeviceIDRequest()
+        {
+            DeviceId = device_id,
+            DeviceModel = SystemInfo.deviceModel,
+            OS = SystemInfo.operatingSystem,
+            TitleId = PlayFabSettings.TitleId,
+            CreateAccount = true,
+            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
+            {
+                GetUserInventory = true
+            }
+        };
+        PlayFabClientAPI.LoginWithIOSDeviceID(req, (result) => {
+            Debug.Log("Login With IOS Successful");
+
+            string hexToken = string.Empty;
+            byte[] token = UnityEngine.iOS.NotificationServices.deviceToken;
+            if (token != null)
+            {
+                RegisterForIOSPushNotificationRequest request = new RegisterForIOSPushNotificationRequest();
+                request.DeviceToken = System.BitConverter.ToString(token).Replace("-", "").ToLower();
+                hexToken = request.DeviceToken;
+                Debug.Log(hexToken);
+                PlayFabClientAPI.RegisterForIOSPushNotification(request, null, null);
+            }
+            else
+            {
+                Debug.Log("Push Token was null!");
+            }
+
+            PlayFabClientAPI.GetCatalogItems(new GetCatalogItemsRequest()
+            {
+                CatalogVersion = "Items"
+            }, (catalogResult) => {
+                IAPService.CatalogItems = catalogResult.Catalog;
+                IAPService.InitializePurchasing();
+
+                var itemCount = result.InfoResultPayload.UserInventory.Count;
+                ItemCountText.text = string.Format("{0}", itemCount);
+
+            }, null);
+        }, null);
+#endif
+
     }
 
     private void OnGcmMessage(PlayFabNotificationPackage package)
