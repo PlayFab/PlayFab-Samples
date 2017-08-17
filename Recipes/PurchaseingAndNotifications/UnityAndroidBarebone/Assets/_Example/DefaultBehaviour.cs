@@ -1,11 +1,14 @@
 ﻿using PlayFab;
-using PlayFab.Android;
 using PlayFab.ClientModels;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+
+#if UNITY_ANDROID
+using PlayFab.Android;
+#endif
 
 public class DefaultBehaviour : MonoBehaviour {
     public Text PushMessageText;
