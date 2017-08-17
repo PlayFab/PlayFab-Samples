@@ -22,9 +22,11 @@ public class DefaultBehaviour : MonoBehaviour {
         UnityEngine.iOS.NotificationServices.RegisterForNotifications(UnityEngine.iOS.NotificationType.Alert | UnityEngine.iOS.NotificationType.Badge | UnityEngine.iOS.NotificationType.Sound, true);
 #endif
 
+#if UNITY_ANDROID
         PlayFabAndroidPushPlugin.OnGcmSetupStep += OnGcmSetupSteps;
         PlayFabAndroidPushPlugin.OnGcmMessage += OnGcmMessage;
         PlayFabAndroidPushPlugin.Init();
+#endif
 
         var device_id = SystemInfo.deviceUniqueIdentifier;
 #if UNITY_ANDROID
@@ -110,6 +112,7 @@ public class DefaultBehaviour : MonoBehaviour {
 
     }
 
+#if UNITY_ANDROID
     private void OnGcmMessage(PlayFabNotificationPackage package)
     {
         PushMessageText.text = package.Message;
@@ -119,6 +122,7 @@ public class DefaultBehaviour : MonoBehaviour {
     {
         Debug.LogFormat("OnGCMLog: {0}", status);
     }
+#endif
 
     public void ErrorCallback(PlayFabError error)
     {
