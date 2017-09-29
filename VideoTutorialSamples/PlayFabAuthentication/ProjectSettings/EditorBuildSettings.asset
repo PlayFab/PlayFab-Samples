@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/PlayFabUI/Demo/DemoScene2.unity
+    guid: 96299e5feb9d81b45a9c8fa71df4b452
