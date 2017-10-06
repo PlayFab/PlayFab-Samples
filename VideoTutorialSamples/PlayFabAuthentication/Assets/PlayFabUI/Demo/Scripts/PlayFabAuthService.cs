@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using System;
 
 public enum Authtypes
 {
@@ -10,6 +11,7 @@ public enum Authtypes
     Silent,
     UsernameAndPassword,
     EmailAndPassword,
+    RegisterPlayFabAccount,
     Facebook,
     Google
 }
@@ -28,7 +30,20 @@ public class PlayFabAuthService  {
     public string Email;
     public string Username;
     public string Password;
+    public string AuthTicket;
+    public GetPlayerCombinedInfoRequestParams InfoRequestParams;
+    
+    public static string PlayFabId;
 
+
+    public bool RememberMe {
+        get {
+            return PlayerPrefs.GetInt("PlayFabLoginRemember", 0) == 0 ? false : true;
+        }
+        set {
+            PlayerPrefs.SetInt("PlayFabLoginRemember", value ? 1 : 0);
+        }
+    }  
     
     public Authtypes AuthType {
         get {
@@ -37,6 +52,18 @@ public class PlayFabAuthService  {
         set {
 
             PlayerPrefs.SetInt("PlayFabAuthType", (int) value);
+        }
+    }
+
+    private string RememberMeId
+    {
+        get {
+            return PlayerPrefs.GetString("PlayFabIdPassGuid", "");
+        }
+        set
+        {
+            var guid = string.IsNullOrEmpty(value) ? Guid.NewGuid().ToString() : value;
+            PlayerPrefs.SetString("PlayFabIdPassGuid", guid);
         }
     }
 
@@ -63,11 +90,11 @@ public class PlayFabAuthService  {
                 SilentlyAuthenticate();
                 break;
 
-            case Authtypes.UsernameAndPassword:
-                break;
-
             case Authtypes.EmailAndPassword:
-                AuthenticateUsernamePassword();
+                AuthenticateEmailPassword();
+                break;
+            case Authtypes.RegisterPlayFabAccount:
+                AddAccountAndPassword();
                 break;
 
             case Authtypes.Facebook:
@@ -75,20 +102,59 @@ public class PlayFabAuthService  {
 
             case Authtypes.Google:
                 break;
+
         }
 
 
     }
 
-    private void AuthenticateUsernamePassword()
+    private void AuthenticateEmailPassword()
     {
+        if (RememberMe && !string.IsNullOrEmpty(RememberMeId))
+        {
+            PlayFabClientAPI.LoginWithCustomID(new LoginWithCustomIDRequest()
+            {
+                TitleId = PlayFabSettings.TitleId,
+                CustomId = RememberMeId,
+                CreateAccount = true,
+                InfoRequestParameters = InfoRequestParams
+            }, (result) =>
+            {
+                if (OnLoginSuccess != null)
+                {
+                    OnLoginSuccess.Invoke(result);
+                }
+            }, (error) =>
+            {
+                if (OnPlayFabError != null)
+                {
+                    OnPlayFabError.Invoke(error);
+                }
+            });
+            return;
+        }
+
+        //a good catch:  
+        if (!RememberMe && string.IsNullOrEmpty(Email) && string.IsNullOrEmpty(Password))
+        {
+            OnDisplayAuthentication.Invoke();
+            return;
+        }
+
         PlayFabClientAPI.LoginWithEmailAddress(new LoginWithEmailAddressRequest()
         {
             TitleId = PlayFabSettings.TitleId,
             Email = Email,
             Password = Password,
+            InfoRequestParameters = InfoRequestParams
         }, (result) =>
         {
+            if (RememberMe)
+            {
+                RememberMeId = Guid.NewGuid().ToString();
+                AuthType = Authtypes.EmailAndPassword;
+            }
+
             if (OnLoginSuccess != null)
             {
                 OnLoginSuccess.Invoke(result);
@@ -102,8 +168,34 @@ public class PlayFabAuthService  {
         });
     }
 
+    private void AddAccountAndPassword()
+    {
+        SilentlyAuthenticate((loginResult) => {
+            PlayFabClientAPI.AddUsernamePassword(new AddUsernamePasswordRequest() {
+                Username = !string.IsNullOrEmpty(Username) ? Username : loginResult.PlayFabId, //Because it is required & Unique and not supplied by User.
+                Email = Email,
+                Password = Password,
+            }, (addResult) => {
+                if (OnLoginSuccess != null)
+                {
+                    if (RememberMe)
+                    {
+                        RememberMeId = Guid.NewGuid().ToString();
+                    }
+                    AuthType = Authtypes.EmailAndPassword;
+                    OnLoginSuccess.Invoke(loginResult);
+                }
+            }, (error) => {
+                if (OnPlayFabError != null)
+                {
+                    OnPlayFabError.Invoke(error);
+                }
+            });
 
-    private void SilentlyAuthenticate()
+        });
+    }
+
+    private void SilentlyAuthenticate(System.Action<LoginResult> callback = null)
     {
 #if UNITY_ANDROID  && !UNITY_EDITOR
         AndroidJavaClass up = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -117,15 +209,16 @@ public class PlayFabAuthService  {
             AndroidDevice = SystemInfo.deviceModel,
             OS = SystemInfo.operatingSystem,
             AndroidDeviceId = deviceId,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = InfoRequestParams
         }, (result) => {
-            Debug.LogFormat("LoginSuccess is Null?", OnLoginSuccess == null);
-            if(OnLoginSuccess != null)
+            if (callback == null && OnLoginSuccess != null)
             {
-                Debug.Log("Login Success Triggered");
                 OnLoginSuccess.Invoke(result);
+            }else if (callback != null)
+            {
+                callback.Invoke(result);
             }
-
         }, (error) => {
             if(OnPlayFabError != null)
             {
@@ -139,11 +232,15 @@ public class PlayFabAuthService  {
             DeviceModel = SystemInfo.deviceModel, 
             OS = SystemInfo.operatingSystem,
             DeviceId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = InfoRequestParams
         }, (result) => {
-            if (OnLoginSuccess != null)
+            if (callback == null && OnLoginSuccess != null)
             {
                 OnLoginSuccess.Invoke(result);
+            }else if (callback != null)
+            {
+                callback.Invoke(result);
             }
         }, (error) => {
             if (OnPlayFabError != null)
@@ -156,11 +253,15 @@ public class PlayFabAuthService  {
         {
             TitleId = PlayFabSettings.TitleId,
             CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = InfoRequestParams
         }, (result) => {
-            if (OnLoginSuccess != null)
+            if (callback == null && OnLoginSuccess != null)
             {
                 OnLoginSuccess.Invoke(result);
+            }else if (callback != null)
+            {
+                callback.Invoke(result);
             }
         }, (error) => {
             if (OnPlayFabError != null)

@@ -18,6 +18,7 @@ public class LoginWindowView : MonoBehaviour {
     public Button LoginWithGoogle;
     public Button RegisterButton;
     public Button CancelRegisterButton;
+    public Toggle RememberMe;
 
     public PlayFab.UI.ProgressBarView ProgressBar;
 
@@ -25,13 +26,23 @@ public class LoginWindowView : MonoBehaviour {
     public GameObject Panel;
     public GameObject Next;
 
+    public GetPlayerCombinedInfoRequestParams InfoRequestParams;
 
-    private string _PlayFabId;
+
+    public string _PlayFabId;
     public string _SessionTicket;
 
     private PlayFabAuthService _AuthService = new PlayFabAuthService();
 
     public void Awake()
+    {
+        RememberMe.onValueChanged.AddListener((toggle) =>
+        {
+            _AuthService.RememberMe = toggle;
+        });
+    }
+
+    public void Start()
     {
         if (ClearPlayerPrefs)
         {
@@ -55,10 +66,10 @@ public class LoginWindowView : MonoBehaviour {
         RegisterButton.onClick.AddListener(OnRegisterButtonClicked);
         CancelRegisterButton.onClick.AddListener(OnCancelRegisterButtonClicked);
 
+        _AuthService.InfoRequestParams = InfoRequestParams;
+
         _AuthService.Authenticate();
     }
-
-
 
     private void OnLoginSuccess(LoginResult result)
     {
@@ -129,38 +140,11 @@ public class LoginWindowView : MonoBehaviour {
             return;
         }
 
-        //Unsubscribe from the default success of login silently.
-        PlayFabAuthService.OnLoginSuccess -= OnLoginSuccess;
-        //Register New handler
-        PlayFabAuthService.OnLoginSuccess += OnLoginSuccessToRegister;
-        
-        _AuthService.AuthType = Authtypes.Silent;
+        _AuthService.AuthType = Authtypes.RegisterPlayFabAccount;
+        _AuthService.Email = Username.text;
+        _AuthService.Password = Password.text;
         _AuthService.Authenticate();
     }
-
-    private void OnLoginSuccessToRegister(LoginResult result)
-    {
-        PlayFabAuthService.OnLoginSuccess -= OnLoginSuccessToRegister;
-        PlayFabAuthService.OnLoginSuccess += OnLoginSuccess;
-                
-        _AuthService.AuthType = Authtypes.EmailAndPassword;
-        PlayFabClientAPI.AddUsernamePassword(new AddUsernamePasswordRequest() {
-            Email = Username.text,
-            Username = result.PlayFabId, //Using this because we don't have a username field.
-            Password = Password.text
-        }, (addUserResult) => {
-            Debug.LogFormat("Logged In as: {0}", result.PlayFabId);
-            _PlayFabId = result.PlayFabId;
-            _SessionTicket = result.SessionTicket;
-
-            Panel.SetActive(false);
-            Next.SetActive(true);
-        }, (error) => {
-            ProgressBar.UpdateLabel(error.ErrorMessage);
-            Debug.LogError(error.GenerateErrorReport());
-        });
-    }
-
 
     private void OnCancelRegisterButtonClicked()
     {
