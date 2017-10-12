@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using LoginResult = PlayFab.ClientModels.LoginResult;
 using System;
+
+#if FACEBOOK
+using Facebook.Unity;
+#endif
 
 /// <summary>
 /// Supported Authentication types
 /// Note: Add types to there to support more AuthTypes
-/// See - https://api.playfab.com/documentation/client#Account-Management
+/// See - https://api.playfab.com/documentation/client#Authentication
 /// </summary>
 public enum Authtypes
 {
@@ -160,6 +165,7 @@ public class PlayFabAuthService  {
                 AuthenticateSteam();
                 break;
             case Authtypes.Facebook:
+                AuthenticateFacebook();
                 break;
 
             case Authtypes.Google:
@@ -323,6 +329,51 @@ public class PlayFabAuthService  {
 
         });
     }
+
+    private void AuthenticateFacebook()
+    {
+#if FACEBOOK
+        if (FB.IsInitialized && FB.IsLoggedIn && !string.IsNullOrEmpty(AuthTicket))
+        {
+            PlayFabClientAPI.LoginWithFacebook(new LoginWithFacebookRequest()
+            {
+                TitleId = PlayFabSettings.TitleId,
+                AccessToken = AuthTicket,
+                CreateAccount = true,
+                InfoRequestParameters = InfoRequestParams
+            }, (result) =>
+            {
+                //Store Identity and session
+                _playFabId = result.PlayFabId;
+                _sessionTicket = result.SessionTicket;
+
+                //check if we want to get this callback directly or send to event subscribers.
+                if (OnLoginSuccess != null)
+                {
+                    //report login result back to the subscriber
+                    OnLoginSuccess.Invoke(result);
+                }
+            }, (error) =>
+            {
+
+                //report errro back to the subscriber
+                if (OnPlayFabError != null)
+                {
+                    OnPlayFabError.Invoke(error);
+                }
+            });
+        }
+        else
+        {
+            if (OnDisplayAuthentication != null)
+            {
+                OnDisplayAuthentication.Invoke();
+            }
+        }
+#endif 
+    }
+
+
 
     private void AuthenticateSteam()
     {

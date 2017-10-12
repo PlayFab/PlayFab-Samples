@@ -1,0 +1,8 @@
+<linker>
+  <assembly fullname="Facebook.Unity.Android" ignoreIfMissing="1">
+    <type fullname="Facebook.Unity.Android.*" preserve="all"/>
+  </assembly>
+  <assembly fullname="Facebook.Unity.IOS" ignoreIfMissing="1">
+    <type fullname="Facebook.Unity.IOS.*" preserve="all"/>
+  </assembly>
+</linker>

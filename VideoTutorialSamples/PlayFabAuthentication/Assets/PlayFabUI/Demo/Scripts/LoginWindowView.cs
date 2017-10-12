@@ -6,6 +6,10 @@ using UnityEngine.UI;
 using PlayFab;
 using PlayFab.ClientModels;
 
+#if FACEBOOK 
+using Facebook.Unity;
+#endif
+
 public class LoginWindowView : MonoBehaviour {
     //Debug Flag to simulate a reset
     public bool ClearPlayerPrefs;
@@ -39,6 +43,11 @@ public class LoginWindowView : MonoBehaviour {
 
     public void Awake()
     {
+
+#if FACEBOOK
+        FB.Init(OnFBInitComplete, OnFBHideUnity);
+#endif
+
         if (ClearPlayerPrefs)
         {
             _AuthService.UnlinkSilentAuth();
@@ -90,7 +99,7 @@ public class LoginWindowView : MonoBehaviour {
     /// Login Successfully - Goes to next screen.
     /// </summary>
     /// <param name="result"></param>
-    private void OnLoginSuccess(LoginResult result)
+    private void OnLoginSuccess(PlayFab.ClientModels.LoginResult result)
     {
         Debug.LogFormat("Logged In as: {0}", result.PlayFabId);
         
@@ -134,9 +143,25 @@ public class LoginWindowView : MonoBehaviour {
     /// </summary>
     private void OnDisplayAuthentication()
     {
+
+#if FACEBOOK
+        if (FB.IsInitialized)
+        {
+            Debug.LogFormat("FB is Init: AccessToken:{0} IsLoggedIn:{1}",AccessToken.CurrentAccessToken.TokenString, FB.IsLoggedIn);
+            if (AccessToken.CurrentAccessToken == null || !FB.IsLoggedIn)
+            {
+                Panel.SetActive(true);
+            }
+        }
+        else
+        {
+            Panel.SetActive(true);
+            Debug.Log("FB Not Init");
+        }
+#else
         //Here we have choses what to do when AuthType is None.
         Panel.SetActive(true);
-
+#endif
         /*
          * Optionally we could Not do the above and force login silently
          * 
@@ -235,8 +260,50 @@ public class LoginWindowView : MonoBehaviour {
     /// </summary>
     private void OnLoginWithFacebookClicked()
     {
-
+        ProgressBar.UpdateLabel("Logging In to Facebook..");
+        FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" }, OnHandleFBResult);
     }
+
+    private void OnHandleFBResult(ILoginResult result)
+    {
+        if (result.Cancelled)
+        {
+            ProgressBar.UpdateLabel("Facebook Login Cancelled.");
+            ProgressBar.UpdateProgress(0);
+        }
+        else if(result.Error != null) {
+            ProgressBar.UpdateLabel(result.Error);
+            ProgressBar.UpdateProgress(0);
+        }
+        else
+        {
+            ProgressBar.AnimateProgress(0, 1, () => {
+                //second loop
+                ProgressBar.UpdateProgress(0f);
+                ProgressBar.AnimateProgress(0, 1, () => {
+                    ProgressBar.UpdateLabel(string.Empty);
+                    ProgressBar.UpdateProgress(0f);
+                });
+            });
+            _AuthService.AuthTicket = result.AccessToken.TokenString;
+            _AuthService.Authenticate(Authtypes.Facebook);
+        }
+    }
+
+    private void OnFBInitComplete()
+    {
+        if(AccessToken.CurrentAccessToken != null)
+        {
+            _AuthService.AuthTicket = AccessToken.CurrentAccessToken.TokenString;
+            _AuthService.Authenticate(Authtypes.Facebook);
+        }
+    }
+
+    private void OnFBHideUnity(bool isUnityShown)
+    {
+        //do nothing.
+    }
+
 
 
     /// <summary>
