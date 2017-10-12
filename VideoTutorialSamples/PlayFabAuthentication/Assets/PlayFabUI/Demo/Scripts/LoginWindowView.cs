@@ -261,9 +261,11 @@ public class LoginWindowView : MonoBehaviour {
     private void OnLoginWithFacebookClicked()
     {
         ProgressBar.UpdateLabel("Logging In to Facebook..");
+#if FACEBOOK
         FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" }, OnHandleFBResult);
+#endif
     }
-
+#if FACEBOOK
     private void OnHandleFBResult(ILoginResult result)
     {
         if (result.Cancelled)
@@ -303,7 +305,7 @@ public class LoginWindowView : MonoBehaviour {
     {
         //do nothing.
     }
-
+#endif
 
 
     /// <summary>
