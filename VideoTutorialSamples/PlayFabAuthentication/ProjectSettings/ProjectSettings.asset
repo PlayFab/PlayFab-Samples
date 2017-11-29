@@ -143,7 +143,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.playfab.authexample
   buildNumber: {}
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -217,8 +217,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/depot/pf-main/tools/UB Keystore/UB.keystore
+  AndroidKeyaliasName: unicornbattle
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1
@@ -498,7 +498,7 @@ PlayerSettings:
   webGLUseWasm: 0
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
-    7: FACEBOOK
+    7: FACEBOOK;GOOGLEGAMES
   platformArchitecture: {}
   scriptingBackend: {}
   incrementalIl2cppBuild: {}

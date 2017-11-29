@@ -169,6 +169,7 @@ public class PlayFabAuthService  {
                 break;
 
             case Authtypes.Google:
+                AuthenticateGooglePlayGames();
                 break;
 
         }
@@ -373,7 +374,38 @@ public class PlayFabAuthService  {
 #endif 
     }
 
+    private void AuthenticateGooglePlayGames()
+    {
+#if GOOGLEGAMES
+        PlayFabClientAPI.LoginWithGoogleAccount(new LoginWithGoogleAccountRequest()
+        {
+            TitleId = PlayFabSettings.TitleId,
+            ServerAuthCode = AuthTicket,
+            InfoRequestParameters = InfoRequestParams,
+            CreateAccount = true
+        }, (result) =>
+        {
+            //Store Identity and session
+            _playFabId = result.PlayFabId;
+            _sessionTicket = result.SessionTicket;
 
+            //check if we want to get this callback directly or send to event subscribers.
+            if (OnLoginSuccess != null)
+            {
+                //report login result back to the subscriber
+                OnLoginSuccess.Invoke(result);
+            }
+        }, (error) =>
+        {
+
+            //report errro back to the subscriber
+            if (OnPlayFabError != null)
+            {
+                OnPlayFabError.Invoke(error);
+            }
+        });
+#endif
+    }
 
     private void AuthenticateSteam()
     {

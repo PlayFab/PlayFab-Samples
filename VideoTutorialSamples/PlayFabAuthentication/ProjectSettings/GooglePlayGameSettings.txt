@@ -1,0 +1,8 @@
+lastUpgrade=00940
+proj.pluginVersion=0.9.40
+proj.AppId=842596720812
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--+app_id+--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e842596720812%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
+and.ClientId=842596720812-er7lmlqur4gq0tjifvijgvun39u5448j.apps.googleusercontent.com
+android.SetupDone=true

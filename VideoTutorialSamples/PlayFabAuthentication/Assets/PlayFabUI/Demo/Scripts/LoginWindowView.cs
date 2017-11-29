@@ -10,6 +10,12 @@ using PlayFab.ClientModels;
 using Facebook.Unity;
 #endif
 
+#if GOOGLEGAMES
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+#endif
+
+
 public class LoginWindowView : MonoBehaviour {
     //Debug Flag to simulate a reset
     public bool ClearPlayerPrefs;
@@ -46,6 +52,18 @@ public class LoginWindowView : MonoBehaviour {
 
 #if FACEBOOK
         FB.Init(OnFBInitComplete, OnFBHideUnity);
+#endif
+
+#if GOOGLEGAMES
+        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+            .AddOauthScope("profile")
+            .RequestServerAuthCode(false)
+            .Build();
+        PlayGamesPlatform.InitializeInstance(config);
+
+        PlayGamesPlatform.DebugLogEnabled = true;
+
+        PlayGamesPlatform.Activate();
 #endif
 
         if (ClearPlayerPrefs)
@@ -313,7 +331,15 @@ public class LoginWindowView : MonoBehaviour {
     /// </summary>
     private void OnLoginWithGoogleClicked()
     {
-
+        Social.localUser.Authenticate((success) =>
+        {
+            if (success)
+            {
+                var serverAuthCode = PlayGamesPlatform.Instance.GetServerAuthCode();
+                _AuthService.AuthTicket = serverAuthCode;
+                _AuthService.Authenticate(Authtypes.Google);
+            }
+        });
     }
 
 }
