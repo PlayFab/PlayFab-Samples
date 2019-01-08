@@ -12,7 +12,7 @@ Got ideas for samples that you would like to see developed? Let us know at [devr
 # Licensing
 **Important:** Please note that the license for this project has changed! The changes are as follows:
 
-* Previous versions of this repository and its contents, those prior to V2.0.0, are licensed under **Apache-2.0**
+* Previous versions of this repository and its contents (ie. those prior to V2.0.0) are licensed under **Apache-2.0**
 * Beginning with V2.0.0 and later, this repository and its contents are licensed under **MIT**
 
 Please see [LICENSE](/LICENSE) for specific details of the current **MIT** license.
