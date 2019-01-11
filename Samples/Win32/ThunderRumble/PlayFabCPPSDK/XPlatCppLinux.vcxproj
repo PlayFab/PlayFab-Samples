@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{f34f32a5-802c-4abf-9e17-dc009e02df97}</ProjectGuid>
+    <Keyword>Linux</Keyword>
+    <RootNamespace>XPlatCppLinux</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <ApplicationType>Linux</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
+    <LinuxProjectType>{2238F9CD-F817-4ECC-BD14-2524D2669B35}</LinuxProjectType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)include;/usr/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>ENABLE_PLAYFABADMIN_API;ENABLE_PLAYFABSERVER_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-I $(RemoteProjectDir) -I $(RemoteProjectDir)/include %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>/usr/lib/x86_64-linux-gnu;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>curl;jsoncpp;pthread</LibraryDependencies>
+    </Link>
+    <Lib>
+      <Verbose>true</Verbose>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)include;/usr/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>ENABLE_PLAYFABADMIN_API;ENABLE_PLAYFABSERVER_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-I $(RemoteProjectDir) -I $(RemoteProjectDir)/include %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>/usr/lib/x86_64-linux-gnu;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>curl;jsoncpp;pthread</LibraryDependencies>
+    </Link>
+    <Lib>
+      <Verbose>true</Verbose>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\playfab\PlayFabBaseModel.h" />
+
+    <ClInclude Include="include\playfab\PlayFabAdminApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabAdminDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabClientApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabClientDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabMatchmakerApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabMatchmakerDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabServerApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabServerDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabAuthenticationApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabAuthenticationDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabCloudScriptApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabCloudScriptDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabDataApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabDataDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabEventsApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabEventsDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabGroupsApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabGroupsDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabLocalizationApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabLocalizationDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabMultiplayerApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabMultiplayerDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabProfilesApi.h"/>
+    <ClInclude Include="include\playfab\PlayFabProfilesDataModels.h"/>
+
+    <ClInclude Include="include\playfab\PlayFabError.h" />
+    <ClInclude Include="include\playfab\PlayFabHttp.h" />
+    <ClInclude Include="include\playfab\PlayFabSettings.h" />
+    <ClInclude Include="include\playfab\PlayFabCallRequestContainer.h" />
+    <ClInclude Include="include\playfab\PlayFabCallRequestContainerBase.h" />
+    <ClInclude Include="include\playfab\PlayFabPluginManager.h" />
+    <ClInclude Include="include\playfab\QoS\DataCenterResult.h" />
+    <ClInclude Include="include\playfab\QoS\PingResult.h" />
+    <ClInclude Include="include\playfab\QoS\PlayFabQoSApi.h" />
+    <ClInclude Include="include\playfab\QoS\QoS.h" />
+    <ClInclude Include="include\playfab\QoS\QoSResult.h" />
+    <ClInclude Include="include\playfab\QoS\QoSSocket.h" />
+    <ClInclude Include="include\playfab\QoS\XPlatSocket.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+
+    <ClInclude Include="source\playfab\PlayFabAdminApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabClientApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabMatchmakerApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabServerApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabAuthenticationApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabCloudScriptApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabDataApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabEventsApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabGroupsApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabLocalizationApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabMultiplayerApi.cpp"/>
+
+    <ClInclude Include="source\playfab\PlayFabProfilesApi.cpp"/>
+
+    <ClCompile Include="source\playfab\PlayFabError.cpp" />
+    <ClCompile Include="source\playfab\PlayFabHttp.cpp" />
+    <ClCompile Include="source\playfab\PlayFabSettings.cpp" />
+    <ClCompile Include="source\playfab\PlayFabCallRequestContainer.cpp" />
+    <ClCompile Include="source\playfab\PlayFabCallRequestContainerBase.cpp" />
+    <ClCompile Include="source\playfab\PlayFabPluginManager.cpp" />
+    <ClCompile Include="source\playfab\QoS\DataCenterResult.cpp" />
+    <ClCompile Include="source\playfab\QoS\PlayFabQoSApi.cpp" />
+    <ClCompile Include="source\playfab\QoS\QoSResult.cpp" />
+    <ClCompile Include="source\playfab\QoS\QoSSocket.cpp" />
+    <ClCompile Include="source\playfab\QoS\XPlatSocket.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="configLinux.json">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

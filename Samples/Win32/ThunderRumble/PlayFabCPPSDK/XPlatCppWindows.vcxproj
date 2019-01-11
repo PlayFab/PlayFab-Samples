@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\openssl.1.0.1.21\build\native\openssl.props" Condition="Exists('..\packages\openssl.1.0.1.21\build\native\openssl.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{92F6EC5F-B66C-4572-A74D-79329AFF3129}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>XPlatCppWindows</RootNamespace>
+    <OutputSubDir>XPlatCppWindows</OutputSubDir>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(OutputSubDir)\</OutDir>
+    <ProjectName>XPlatCppWindows</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;ENABLE_PLAYFABADMIN_API;ENABLE_PLAYFABSERVER_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)/include;$(SolutionDir)playfab_dependencies\jsoncpp\include\;$(SolutionDir)playfab_dependencies\libcurl\include\</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/Zc:__cplusplus /bigobj /wd4996 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <ProjectReference />
+    <ProjectReference />
+    <Lib>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_LIB;ENABLE_PLAYFABADMIN_API;ENABLE_PLAYFABSERVER_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)/include;$(SolutionDir)playfab_dependencies\jsoncpp\include\;$(SolutionDir)playfab_dependencies\libcurl\include\</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/Zc:__cplusplus /bigobj /wd4996 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <ProjectReference />
+    <ProjectReference />
+    <Lib>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\playfab\PlayFabBaseModel.h" />
+    <ClInclude Include="include\playfab\PlayFabAdminApi.h" />
+    <ClInclude Include="include\playfab\PlayFabAdminDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabClientApi.h" />
+    <ClInclude Include="include\playfab\PlayFabClientDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabMatchmakerApi.h" />
+    <ClInclude Include="include\playfab\PlayFabMatchmakerDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabServerApi.h" />
+    <ClInclude Include="include\playfab\PlayFabServerDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabAuthenticationApi.h" />
+    <ClInclude Include="include\playfab\PlayFabAuthenticationDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabCloudScriptApi.h" />
+    <ClInclude Include="include\playfab\PlayFabCloudScriptDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabDataApi.h" />
+    <ClInclude Include="include\playfab\PlayFabDataDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabEventsApi.h" />
+    <ClInclude Include="include\playfab\PlayFabEventsDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabGroupsApi.h" />
+    <ClInclude Include="include\playfab\PlayFabGroupsDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabLocalizationApi.h" />
+    <ClInclude Include="include\playfab\PlayFabLocalizationDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabMultiplayerApi.h" />
+    <ClInclude Include="include\playfab\PlayFabMultiplayerDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabProfilesApi.h" />
+    <ClInclude Include="include\playfab\PlayFabProfilesDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabError.h" />
+    <ClInclude Include="include\playfab\PlayFabHttp.h" />
+    <ClInclude Include="include\playfab\PlayFabSettings.h" />
+    <ClInclude Include="include\playfab\PlayFabCallRequestContainer.h" />
+    <ClInclude Include="include\playfab\PlayFabCallRequestContainerBase.h" />
+    <ClInclude Include="include\playfab\PlayFabPluginManager.h" />
+    <ClInclude Include="include\playfab\QoS\DataCenterResult.h" />
+    <ClInclude Include="include\playfab\QoS\PingResult.h" />
+    <ClInclude Include="include\playfab\QoS\PlayFabQoSApi.h" />
+    <ClInclude Include="include\playfab\QoS\QoS.h" />
+    <ClInclude Include="include\playfab\QoS\QoSResult.h" />
+    <ClInclude Include="include\playfab\QoS\QoSSocket.h" />
+    <ClInclude Include="include\playfab\QoS\XPlatSocket.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\playfab\PlayFabAdminApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabClientApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabMatchmakerApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabServerApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabAuthenticationApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabCloudScriptApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabDataApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabEventsApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabGroupsApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabLocalizationApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabMultiplayerApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabProfilesApi.cpp" />
+    <ClCompile Include="source\playfab\PlayFabError.cpp" />
+    <ClCompile Include="source\playfab\PlayFabHttp.cpp" />
+    <ClCompile Include="source\playfab\PlayFabSettings.cpp" />
+    <ClCompile Include="source\playfab\PlayFabCallRequestContainerBase.cpp" />
+    <ClCompile Include="source\playfab\PlayFabCallRequestContainer.cpp" />
+    <ClCompile Include="source\playfab\PlayFabPluginManager.cpp" />
+    <ClCompile Include="source\playfab\QoS\DataCenterResult.cpp" />
+    <ClCompile Include="source\playfab\QoS\PlayFabQoSApi.cpp" />
+    <ClCompile Include="source\playfab\QoS\QoSResult.cpp" />
+    <ClCompile Include="source\playfab\QoS\QoSSocket.cpp" />
+    <ClCompile Include="source\playfab\QoS\XPlatSocket.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="configWindows.json">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+  <Target Name="CopyDependencies" AfterTargets="AfterBuild">
+    <ItemGroup>
+    </ItemGroup>
+    <Copy SourceFiles="@(Dependency)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>
