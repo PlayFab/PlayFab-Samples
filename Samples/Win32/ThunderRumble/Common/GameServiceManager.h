@@ -3,7 +3,6 @@
 #include <ppltasks.h>
 
 #include "OnlineManager.h"
-#include "ComputeTypes.h"
 #include "GameServiceManagerTypes.h"
 
 #include <playfab/PlayFabMultiplayerDataModels.h>
