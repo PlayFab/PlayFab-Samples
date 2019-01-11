@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{FCDA3B96-1AD4-4349-9C82-8FBFE9C1C494}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ThunderRumbleServer</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories);..\Common;..\Kits\DirectXTK\Inc;..\Kits\DirectXTK\Audio;..\Kits\PeerMeshForSamples\PeerMeshForSamples;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64"</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)PlayFabCPPSDK/include;$(SolutionDir)PlayFabCPPSDK;%(AdditionalIncludeDirectories);..\Common;..\Kits\DirectXTK\Inc;..\Kits\DirectXTK\Audio;..\Kits\PeerMeshForSamples\PeerMeshForSamples;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;..\Kits\ATGTK;$(SolutionDir)playfab_dependencies\jsoncpp\include\;$(SolutionDir)playfab_dependencies\libcurl\include\;$(SolutionDir)Common\Renderer\Null</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/wd4996 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>XPlatCppWindows.lib;jsoncpp.lib;libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TFS_BinariesDirectory)\;%(AdditionalLibraryDirectories);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(SolutionDir)$(Platform)\$(Configuration)\XPlatCppWindows;$(SolutionDir)\playfab_dependencies\jsoncpp\lib\$(Platform)\$(Configuration)\;$(SolutionDir)\playfab_dependencies\libcurl\lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories);..\Common;..\Kits\DirectXTK\Inc;..\Kits\DirectXTK\Audio;..\Kits\PeerMeshForSamples\PeerMeshForSamples;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64"</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)PlayFabCPPSDK/include;$(SolutionDir)PlayFabCPPSDK;%(AdditionalIncludeDirectories);..\Common;..\Kits\DirectXTK\Inc;..\Kits\DirectXTK\Audio;..\Kits\PeerMeshForSamples\PeerMeshForSamples;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;..\Kits\ATGTK;$(SolutionDir)playfab_dependencies\jsoncpp\include\;$(SolutionDir)playfab_dependencies\libcurl\include\;$(SolutionDir)Common\Renderer\Null</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/wd4996 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>XPlatCppWindows.lib;jsoncpp.lib;libcurl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TFS_BinariesDirectory)\;%(AdditionalLibraryDirectories);C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(SolutionDir)$(Platform)\$(Configuration)\XPlatCppWindows;$(SolutionDir)\playfab_dependencies\jsoncpp\lib\$(Platform)\$(Configuration)\;$(SolutionDir)\playfab_dependencies\libcurl\lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Kits\ATGTK\Texture.h" />
+    <ClInclude Include="..\Common\Asteroid.h" />
+    <ClInclude Include="..\Common\AudioManager.h" />
+    <ClInclude Include="..\Common\BatchRemovalCollection.h" />
+    <ClInclude Include="..\Common\CollisionManager.h" />
+    <ClInclude Include="..\Common\CollisionMath.h" />
+    <ClInclude Include="..\Common\ComputeTypes.h" />
+    <ClInclude Include="..\Common\DataBuffer.h" />
+    <ClInclude Include="..\Common\Debug.h" />
+    <ClInclude Include="..\Common\DoubleLaserPowerUp.h" />
+    <ClInclude Include="..\Common\DoubleLaserWeapon.h" />
+    <ClInclude Include="..\Common\GameplayObject.h" />
+    <ClInclude Include="..\Common\InputManager.h" />
+    <ClInclude Include="..\Common\LaserProjectile.h" />
+    <ClInclude Include="..\Common\LaserWeapon.h" />
+    <ClInclude Include="..\Common\Manager.h" />
+    <ClInclude Include="..\Common\Managers.h" />
+    <ClInclude Include="..\Common\MineProjectile.h" />
+    <ClInclude Include="..\Common\MineWeapon.h" />
+    <ClInclude Include="..\Common\NetworkMessages.h" />
+    <ClInclude Include="..\Common\OnlineManager.h" />
+    <ClInclude Include="..\Common\PlayerState.h" />
+    <ClInclude Include="..\Common\PowerUp.h" />
+    <ClInclude Include="..\Common\Projectile.h" />
+    <ClInclude Include="..\Common\RandomMath.h" />
+    <ClInclude Include="..\Common\Renderer\Null\ContentManager.h" />
+    <ClInclude Include="..\Common\Renderer\Null\RenderContext.h" />
+    <ClInclude Include="..\Common\RocketPowerUp.h" />
+    <ClInclude Include="..\Common\RocketProjectile.h" />
+    <ClInclude Include="..\Common\RocketWeapon.h" />
+    <ClInclude Include="..\Common\Ship.h" />
+    <ClInclude Include="..\Common\ShipInput.h" />
+    <ClInclude Include="..\Common\StepTimer.h" />
+    <ClInclude Include="..\Common\Timer.h" />
+    <ClInclude Include="..\Common\TripleLaserPowerUp.h" />
+    <ClInclude Include="..\Common\TripleLaserWeapon.h" />
+    <ClInclude Include="..\Common\Weapon.h" />
+    <ClInclude Include="..\Common\World.h" />
+    <ClInclude Include="Compute\IPC.h" />
+    <ClInclude Include="ServerContentManager.h" />
+    <ClInclude Include="GameServer.h" />
+    <ClCompile Include="..\Kits\ATGTK\Texture.cpp" />
+    <ClCompile Include="..\Common\Renderer\Null\ContentManager.cpp" />
+    <ClCompile Include="..\Common\Renderer\Null\RenderContext.cpp" />
+    <ClCompile Include="Compute\IPC.cpp" />
+    <ClCompile Include="GameServiceManager.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="NetworkManager.cpp" />
+    <ClCompile Include="ParticleManager.cpp" />
+    <ClInclude Include="pch.h" />
+    <ClCompile Include="Starfield.cpp" />
+    <ClInclude Include="ServerGameStateManager.h" />
+    <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Common\Asteroid.cpp" />
+    <ClCompile Include="..\Common\AudioManager.cpp" />
+    <ClCompile Include="..\Common\CollisionManager.cpp" />
+    <ClCompile Include="..\Common\DataBuffer.cpp" />
+    <ClCompile Include="..\Common\Debug.cpp" />
+    <ClCompile Include="..\Common\DoubleLaserPowerUp.cpp" />
+    <ClCompile Include="..\Common\DoubleLaserWeapon.cpp" />
+    <ClCompile Include="..\Common\GameplayObject.cpp" />
+    <ClCompile Include="..\Common\InputManager.cpp" />
+    <ClCompile Include="..\Common\LaserProjectile.cpp" />
+    <ClCompile Include="..\Common\LaserWeapon.cpp" />
+    <ClCompile Include="..\Common\Managers.cpp" />
+    <ClCompile Include="..\Common\MineProjectile.cpp" />
+    <ClCompile Include="..\Common\MineWeapon.cpp" />
+    <ClCompile Include="..\Common\NetworkMessages.cpp" />
+    <ClCompile Include="..\Common\PlayerState.cpp" />
+    <ClCompile Include="..\Common\PowerUp.cpp" />
+    <ClCompile Include="..\Common\Projectile.cpp" />
+    <ClCompile Include="..\Common\RocketPowerUp.cpp" />
+    <ClCompile Include="..\Common\RocketProjectile.cpp" />
+    <ClCompile Include="..\Common\RocketWeapon.cpp" />
+    <ClCompile Include="..\Common\Ship.cpp" />
+    <ClCompile Include="..\Common\ShipInput.cpp" />
+    <ClCompile Include="..\Common\TripleLaserPowerUp.cpp" />
+    <ClCompile Include="..\Common\TripleLaserWeapon.cpp" />
+    <ClCompile Include="..\Common\Weapon.cpp" />
+    <ClCompile Include="..\Common\World.cpp" />
+    <ClCompile Include="GameServer.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ThunderRumbleServer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kits\DirectXTK\Audio\DirectXTKAudio_Desktop_2017_DXSDK.vcxproj">
+      <Project>{4f150a30-cecb-49d1-8283-6a3f57438cf5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Kits\DirectXTK\DirectXTK_Desktop_2017.vcxproj">
+      <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Kits\PeerMeshForSamples\PeerMeshForSamples\PeerMeshForSamples.vcxproj">
+      <Project>{0fe5b6a3-e57c-46e5-8656-bda171fd81a2}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Target Name="CopyDependencies" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <Dependency Include="$(TFS_BinariesDirectory)\$(Configuration)\$(Platform)\XPlatCppWindows\*.dll" />
+      <Dependency Include="$(SolutionDir)\playfab_dependencies\libcurl\dll\$(Platform)\$(Configuration)\*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Dependency)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+</Project>

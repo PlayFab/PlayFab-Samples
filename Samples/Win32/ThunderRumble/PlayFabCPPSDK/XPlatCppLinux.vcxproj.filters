@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{c7401a51-d5db-44a8-9af8-ee206a68f2d7}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{84a82bea-d897-4f6e-b6f3-154bc61aac6f}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\playfab">
+      <UniqueIdentifier>{d14ed5bc-9de9-4073-bdbf-ccfeacd164d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\playfab">
+      <UniqueIdentifier>{92e0782c-b801-4c3a-8f75-1e2a7e511201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\playfab\QoS">
+      <UniqueIdentifier>{488a68e1-cad5-40a9-9845-959990ae1ae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\playfab\QoS">
+      <UniqueIdentifier>{83c411f7-bfae-4798-8b14-d42ce2337023}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\playfab\PlayFabBaseModel.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabAdminAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabAdminDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabClientAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabClientDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabMatchmakerAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabMatchmakerDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabServerAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabServerDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabAuthenticationAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabAuthenticationDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabCloudScriptAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabCloudScriptDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabDataAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabDataDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabEventsAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabEventsDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabGroupsAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabGroupsDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabLocalizationAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabLocalizationDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabMultiplayerAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabMultiplayerDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabProfilesAPI.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabProfilesDataModels.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabHttp.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabSettings.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabError.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabCallRequestContainerBase.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabCallRequestContainer.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\PlayFabPluginManager.h">
+      <Filter>Header Files\playfab</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\QoS\DataCenterResult.h">
+      <Filter>Header Files\playfab\QoS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\QoS\PingResult.h">
+      <Filter>Header Files\playfab\QoS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\QoS\PlayFabQoSApi.h">
+      <Filter>Header Files\playfab\QoS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\QoS\QoS.h">
+      <Filter>Header Files\playfab\QoS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\QoS\QoSResult.h">
+      <Filter>Header Files\playfab\QoS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\QoS\QoSSocket.h">
+      <Filter>Header Files\playfab\QoS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\playfab\QoS\XPlatSocket.h">
+      <Filter>Header Files\playfab\QoS</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabAdminApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabClientApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabMatchmakerApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabServerApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabAuthenticationApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabCloudScriptApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabDataApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabEventsApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabGroupsApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabLocalizationApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabMultiplayerApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabProfilesApi.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabError.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabHttp.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabSettings.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabCallRequestContainerBase.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabCallRequestContainer.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\PlayFabPluginManager.cpp">
+      <Filter>Source Files\playfab</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\QoS\XPlatSocket.cpp">
+      <Filter>Source Files\playfab\QoS</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\QoS\QoSSocket.cpp">
+      <Filter>Source Files\playfab\QoS</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\QoS\QoSResult.cpp">
+      <Filter>Source Files\playfab\QoS</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\QoS\PlayFabQoSApi.cpp">
+      <Filter>Source Files\playfab\QoS</Filter>
+    </ClCompile>
+    <ClCompile Include="source\playfab\QoS\DataCenterResult.cpp">
+      <Filter>Source Files\playfab\QoS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="configLinux.json" />
+  </ItemGroup>
+</Project>

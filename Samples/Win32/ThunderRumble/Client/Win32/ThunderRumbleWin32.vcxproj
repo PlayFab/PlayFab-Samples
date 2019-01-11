@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <RootNamespace>ThunderRumble</RootNamespace>
+    <ProjectGuid>{bb73ed29-0ea3-4488-aad6-6759434a0edf}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(ProjectDir)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(ProjectDir)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalIncludeDirectories>$(SolutionDir)PlayFabCPPSDK/include;$(SolutionDir)PlayFabCPPSDK;$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)..\..\Common;%(AdditionalIncludeDirectories);..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(ProjectDir)..\..\PlayFabSDK\Include;..\..\Kits\DirectXTK11\Inc;$(DXSDK_DIR)\Include;..\..\Kits\ATGTK</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(DXSDK_DIR)Lib\x64\x3daudio.lib;$(DXSDK_DIR)Lib\x64\xapofx.lib;d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)"</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;ENABLE_PLAYFABENTITY_API;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(SolutionDir)PlayFabCPPSDK/include;$(SolutionDir)PlayFabCPPSDK;$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)..\..\Common;%(AdditionalIncludeDirectories);..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(ProjectDir)..\..\PlayFabSDK\Include;..\..\Kits\DirectXTK\Inc;$(DXSDK_DIR)\Include;..\..\Kits\ATGTK;$(SolutionDir)playfab_dependencies\jsoncpp\include\;$(SolutionDir)playfab_dependencies\libcurl\include\;$(ProjectDir)..\..\Common\Renderer\DX11</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(DXSDK_DIR)Lib\x64\x3daudio.lib;$(DXSDK_DIR)Lib\x64\xapofx.lib;libcurl.lib;jsoncpp.lib;XPlatCppWindows.lib;d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TFS_BinariesDirectory)\;$(SolutionDir)$(Platform)\$(Configuration)\XPlatCppWindows;$(SolutionDir)\playfab_dependencies\jsoncpp\lib\$(Platform)\$(Configuration)\;$(SolutionDir)\playfab_dependencies\libcurl\lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;ENABLE_PLAYFABENTITY_API;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>$(SolutionDir)PlayFabCPPSDK/include;$(SolutionDir)PlayFabCPPSDK;$(WindowsSDK_IncludePath);$(ProjectDir);$(ProjectDir)..\..\Common;%(AdditionalIncludeDirectories);..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(ProjectDir)..\..\PlayFabSDK\Include;..\..\Kits\DirectXTK\Inc;$(DXSDK_DIR)\Include;..\..\Kits\ATGTK;$(SolutionDir)playfab_dependencies\jsoncpp\include\;$(SolutionDir)playfab_dependencies\libcurl\include\;$(ProjectDir)..\..\Common\Renderer\DX11</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ConformanceMode>false</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>$(DXSDK_DIR)Lib\x64\x3daudio.lib;$(DXSDK_DIR)Lib\x64\xapofx.lib;jsoncpp.lib;libcurl.lib;d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TFS_BinariesDirectory)\;$(SolutionDir)$(Platform)\$(Configuration)\XPlatCppWindows;$(SolutionDir)\playfab_dependencies\jsoncpp\lib\$(Platform)\$(Configuration)\;$(SolutionDir)\playfab_dependencies\libcurl\lib\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Kits\ATGTK\Texture.h" />
+    <ClInclude Include="..\..\Common\Asteroid.h" />
+    <ClInclude Include="..\..\Common\AudioManager.h" />
+    <ClInclude Include="..\..\Common\BatchRemovalCollection.h" />
+    <ClInclude Include="..\..\Common\CollisionManager.h" />
+    <ClInclude Include="..\..\Common\CollisionMath.h" />
+    <ClInclude Include="..\..\Common\ComputeTypes.h" />
+    <ClInclude Include="..\..\Common\DataBuffer.h" />
+    <ClInclude Include="..\..\Common\Debug.h" />
+    <ClInclude Include="..\..\Common\DebugOverlayScreen.h" />
+    <ClInclude Include="..\..\Common\DoubleLaserPowerUp.h" />
+    <ClInclude Include="..\..\Common\DoubleLaserWeapon.h" />
+    <ClInclude Include="..\..\Common\ErrorScreen.h" />
+    <ClInclude Include="..\..\Common\GameLobbyScreen.h" />
+    <ClInclude Include="..\..\Common\GameplayObject.h" />
+    <ClInclude Include="..\..\Common\GamePlayScreen.h" />
+    <ClInclude Include="..\..\Common\GameScreen.h" />
+    <ClInclude Include="..\..\Common\GameServiceHTTPRequest.h" />
+    <ClInclude Include="..\..\Common\GameServiceManager.h" />
+    <ClInclude Include="..\..\Common\GameServiceManagerTypes.h" />
+    <ClInclude Include="..\..\Common\GameStateManager.h" />
+    <ClInclude Include="..\..\Common\InputManager.h" />
+    <ClInclude Include="..\..\Common\LaserProjectile.h" />
+    <ClInclude Include="..\..\Common\LaserWeapon.h" />
+    <ClInclude Include="..\..\Common\LobbyPlayer.h" />
+    <ClInclude Include="..\..\Common\MainMenuScreen.h" />
+    <ClInclude Include="..\..\Common\Manager.h" />
+    <ClInclude Include="..\..\Common\Managers.h" />
+    <ClInclude Include="..\..\Common\MenuScreen.h" />
+    <ClInclude Include="..\..\Common\MineProjectile.h" />
+    <ClInclude Include="..\..\Common\MineWeapon.h" />
+    <ClInclude Include="..\..\Common\NetworkManager.h" />
+    <ClInclude Include="..\..\Common\NetworkMessages.h" />
+    <ClInclude Include="..\..\Common\OnlineManager.h" />
+    <ClInclude Include="..\..\Common\ParticleManager.h" />
+    <ClInclude Include="..\..\Common\PlayerState.h" />
+    <ClInclude Include="..\..\Common\PlayFabManager.h" />
+    <ClInclude Include="..\..\Common\PowerUp.h" />
+    <ClInclude Include="..\..\Common\Projectile.h" />
+    <ClInclude Include="..\..\Common\RandomMath.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX11\ContentManager.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX11\DeviceResources.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX11\RenderContext.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX11\RenderManager.h" />
+    <ClInclude Include="..\..\Common\RocketPowerUp.h" />
+    <ClInclude Include="..\..\Common\RocketProjectile.h" />
+    <ClInclude Include="..\..\Common\RocketWeapon.h" />
+    <ClInclude Include="..\..\Common\Ship.h" />
+    <ClInclude Include="..\..\Common\ShipInput.h" />
+    <ClInclude Include="..\..\Common\Starfield.h" />
+    <ClInclude Include="..\..\Common\StarfieldScreen.h" />
+    <ClInclude Include="..\..\Common\Timer.h" />
+    <ClInclude Include="..\..\Common\TitleBackgroundScreen.h" />
+    <ClInclude Include="..\..\Common\TripleLaserPowerUp.h" />
+    <ClInclude Include="..\..\Common\TripleLaserWeapon.h" />
+    <ClInclude Include="..\..\Common\Weapon.h" />
+    <ClInclude Include="..\..\Common\WelcomeScreen.h" />
+    <ClInclude Include="..\..\Common\World.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\..\Common\StepTimer.h" />
+    <ClInclude Include="..\..\Common\ScreenManager.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Kits\ATGTK\Texture.cpp" />
+    <ClCompile Include="..\..\Common\Asteroid.cpp" />
+    <ClCompile Include="..\..\Common\AudioManager.cpp" />
+    <ClCompile Include="..\..\Common\CollisionManager.cpp" />
+    <ClCompile Include="..\..\Common\DataBuffer.cpp" />
+    <ClCompile Include="..\..\Common\Debug.cpp" />
+    <ClCompile Include="..\..\Common\DebugOverlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\DoubleLaserPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\DoubleLaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\ErrorScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameLobbyScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameplayObject.cpp" />
+    <ClCompile Include="..\..\Common\GamePlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameServiceManager.cpp" />
+    <ClCompile Include="..\..\Common\GameStateManager.cpp" />
+    <ClCompile Include="..\..\Common\InputManager.cpp" />
+    <ClCompile Include="..\..\Common\LaserProjectile.cpp" />
+    <ClCompile Include="..\..\Common\LaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\MainMenuScreen.cpp" />
+    <ClCompile Include="..\..\Common\Managers.cpp" />
+    <ClCompile Include="..\..\Common\MenuScreen.cpp" />
+    <ClCompile Include="..\..\Common\MineProjectile.cpp" />
+    <ClCompile Include="..\..\Common\MineWeapon.cpp" />
+    <ClCompile Include="..\..\Common\NetworkManager.cpp" />
+    <ClCompile Include="..\..\Common\NetworkMessages.cpp" />
+    <ClCompile Include="..\..\Common\ParticleManager.cpp" />
+    <ClCompile Include="..\..\Common\PlayerState.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabManager.cpp" />
+    <ClCompile Include="..\..\Common\PowerUp.cpp" />
+    <ClCompile Include="..\..\Common\Projectile.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX11\ContentManager.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX11\DeviceResources.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX11\RenderContext.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX11\RenderManager.cpp" />
+    <ClCompile Include="..\..\Common\RocketPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\RocketProjectile.cpp" />
+    <ClCompile Include="..\..\Common\RocketWeapon.cpp" />
+    <ClCompile Include="..\..\Common\Ship.cpp" />
+    <ClCompile Include="..\..\Common\ShipInput.cpp" />
+    <ClCompile Include="..\..\Common\Starfield.cpp" />
+    <ClCompile Include="..\..\Common\StarfieldScreen.cpp" />
+    <ClCompile Include="..\..\Common\TitleBackgroundScreen.cpp" />
+    <ClCompile Include="..\..\Common\TripleLaserPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\TripleLaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\Weapon.cpp" />
+    <ClCompile Include="..\..\Common\WelcomeScreen.cpp" />
+    <ClCompile Include="..\..\Common\World.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\ScreenManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Textures\blank.png">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </Image>
+    <Image Include="..\Assets\Textures\title.png">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </Image>
+    <Image Include="directx.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="settings.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Kits\DirectXTK\Audio\DirectXTKAudio_Desktop_2017_DXSDK.vcxproj">
+      <Project>{4f150a30-cecb-49d1-8283-6a3f57438cf5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Kits\DirectXTK\DirectXTK_Desktop_2017.vcxproj">
+      <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Kits\PeerMeshForSamples\PeerMeshForSamples\PeerMeshForSamples.vcxproj">
+      <Project>{0fe5b6a3-e57c-46e5-8656-bda171fd81a2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PlayFabCPPSDK\XPlatCppWindows.vcxproj">
+      <Project>{92f6ec5f-b66c-4572-a74d-79329aff3129}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Assets\Fonts\Consolas_32.spritefont">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="..\Assets\Fonts\NetRumble.spritefont">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="..\Assets\Fonts\SegoeUI_64.spritefont">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Target Name="CopyDependencies" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <Dependency Include="$(TFS_BinariesDirectory)\$(Configuration)\$(Platform)\XPlatCppWindows\*.dll" />
+      <Dependency Include="$(SolutionDir)\playfab_dependencies\libcurl\dll\$(Platform)\$(Configuration)\*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Dependency)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+</Project>
