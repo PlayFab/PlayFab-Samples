@@ -16,7 +16,6 @@ An administration tool is also included to demonstrate how to integrate the mana
 
 **Build Requirements**
 
-Build Requirements
 * Visual Studio 2017 (15.7 update) or later
 * Windows 10 April 2018 Update SDK (17134)
 * PlayFab XPlatCPPSDK
