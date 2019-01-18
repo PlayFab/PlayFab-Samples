@@ -73,16 +73,16 @@ into PlayFab with the Google identity.
 2.  Credentials \> Create credentials \> OAuth client ID
 3.  Configure OAuth consent screen if prompted
     * Add playfabapi.com and playfab.com to Authorized domains\
-        ![](file://media/image1.png)
+        ![](./media/image1.png)
 4.  Create OAuth for Google Sign-in with debug builds (e.g. debugging in
     Android Studio to AVD)
     1.  Create credentials \> OAuth client ID
     2.  Application type: Android
     3.  In order to allow debug build Google Sign in, obtain SHA-1
         signing certificate fingerprint from debug.keystore, e.g.
-    ![](file://media/imagea.png)
+    ![](./media/imagea.png)
     4.  Enter this under Signing-certificate fingerprint
-    ![](file://media/image2.png)
+    ![](./media/image2.png)
     5.  Note `%HOMEPATH%\.android` (or `\$HOME/.android` for Linux) is the
     default location for debug.keystore and this file (and therefore the
     fingerprint) is different per user/device. You may opt to use a
@@ -102,11 +102,11 @@ into PlayFab with the Google identity.
         Features
     4. For Authorized redirect URIs, enter in
         https://oauth.playfab.com/oauth2.google
-        ![](file://media/image3.png)
+        ![](./media/image3.png)
     5. Note the client ID and secret in this resulting screen that
         shows. This will be used when enabling Google addon in PlayFab
         Game Manager.\
-        ![](file://media/image4.png)
+        ![](./media/image4.png)
 
 ### Create a title in PlayFab and enable Google addon
 
@@ -119,14 +119,14 @@ device ID) go to Add-ons in Game Manager
     for this application (Base64-encoded RSA public key)
 3.  **Google OAuth Client ID, Client secret**: from previous step for the
     Web application OAuth client ID
-    ![](file://media/image5.png)
+    ![](./media/image5.png)
 
 ### Create in-app products on Google Play Console
 
 The only thing that needs to be noted when creating the products is the
 product ID. This is the identifier PlayFab uses to reconcile purchases.
 
-![](file://media/image6.png)
+![](./media/image6.png)
 
 Note that there is no way to designate a free price so by default your
 published in-app products will invoke a real money purchase. More on how
@@ -154,7 +154,7 @@ The actual granting of the PlayFab items corresponding to the real money
 Google purchases is done with the ValidateGooglePlayPurchase API; more
 details on this below.
 
-![](file://media/image7.png)
+![](./media/image7.png)
 
 Code integration
 ----------------
@@ -260,7 +260,7 @@ Once this API returns successfully the user will be signed into PlayFab
 using the Google account. At this point you should be able see the
 player logged on the PlayStream; note the Google Play icon.
 
-![](file://media/image8.png)
+![](./media/image8.png)
 
 Now other PlayFab API can be called, including `GetCatalogItems` and
 `PurchaseItem` required to enumerate and purchase PlayFab items.
@@ -363,7 +363,7 @@ caveat in the code comments above.
 Purchase validation and resulting actions (changes to inventory items,
 currencies, etc.) can be seen in the PlayStream:
 
-![](file://media/image9.png)
+![](./media/image9.png)
 
 Once successful validation is confirmed, and if the granted PlayFab
 items are intended to be stackable consumables, then as mentioned
