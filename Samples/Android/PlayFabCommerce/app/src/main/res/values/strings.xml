@@ -1,0 +1,5 @@
+<resources>
+    <string name="server_client_id">858987003262-qio1p0t7j7krvh7pa8c2qau099tdjhea.apps.googleusercontent.com</string>
+    <string name="app_name">Fun with PlayFabCommerce</string>
+    <string name="purchase_confirmation_msg">Purchase</string>
+</resources>
