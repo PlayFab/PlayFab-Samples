@@ -1,0 +1,10 @@
+[
+  {
+    "CurrencyCode": "SC",
+    "DisplayName": "Sample Currency",
+    "InitialDeposit": 0,
+    "RechargeRate": 0,
+    "RechargeMax": 0,
+    "CurrencyCodeFull": "SC (Sample Currency)"
+  }
+]
