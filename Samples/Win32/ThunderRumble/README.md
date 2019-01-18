@@ -110,7 +110,7 @@ The sample consists of the following components:
 
 ### Update History
 
-* January 11, 2018
+* January 11, 2019
   * Initial release
  
 ### Privacy Statement
