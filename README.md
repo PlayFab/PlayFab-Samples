@@ -16,3 +16,5 @@ Got ideas for samples that you would like to see developed? Let us know at [devr
 * Beginning with V2.0.0 and later, this repository and its contents are licensed under **MIT**
 
 Please see [LICENSE](/LICENSE) for specific details of the current **MIT** license.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
