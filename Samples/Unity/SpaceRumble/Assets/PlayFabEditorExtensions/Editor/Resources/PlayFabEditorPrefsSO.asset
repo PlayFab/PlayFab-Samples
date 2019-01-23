@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
+  m_Name: PlayFabEditorPrefsSO
+  m_EditorClassIdentifier: 
+  DevAccountEmail: sspiller@microsoft.com
+  DevAccountToken: i4fkfdqe79y7sd1eaoub6u9bdwh1jjqqh1dq7m4cex6ot34nudjw9fsoz9og9yqiopc8sx4yephwxgfpwc41dcy1u71ofpieapuga6qo57xixz9e7sk4qf9zjw3sb57m8xd5k8y35kdebdx6gy8d449hickyx9wn6pjjgo1snpi1cxytz1mqzakaje35aq3rkt8u9cch
+  SelectedStudio: Microsoft Xbox ATG
+  SdkPath: Assets/PlayFabSdk
+  EdExPath: 
+  LocalCloudScriptPath: 
+  PanelIsShown: 0
+  curMainMenuIdx: 1
+  curSubMenuIdx: 0
