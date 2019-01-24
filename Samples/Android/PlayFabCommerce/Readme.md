@@ -9,10 +9,10 @@ The app can be deployed from Android Studio to a compatible AVD, supporting SDK 
 
 Due to signing requirements, the deployed app may not successfully launch the real money billing flow, resulting in responseCode 4 for onPurchasesUpdated(). If this occurs, try installing the Play Store version prior to deploying the development version.
 
-The app can also be installed from the Play Store after joining the [PlayFabCommerce test group][1]. After joining (approval required, please contact [PlayFab developer relations][2]), go to the [opt-in link][3] and follow the steps to install the app on your device.
+The app can also be installed from the Play Store after joining the [PlayFabCommerce test group][1]. After joining (approval required, please contact [ATG Marketplace team][2]), go to the [opt-in link][3] and follow the steps to install the app on your device.
 
 [1]: https://groups.google.com/forum/#!forum/playfabcommerce-test-group
-[2]: mailto:devrel@playfab.com?subject=Request%20access%20to%20PlayFabCommerce%20Google%20group(ATG)
+[2]: mailto:xboxatgservices@gmail.com?subject=Request%20access%20to%20PlayFabCommerce%20Google%20group
 [3]: https://play.google.com/apps/testing/atg.xbox.PlayFabCommerce
 
 ## Usage

@@ -181,7 +181,7 @@ console; this is the same one that was filled in when enabling PlayFab's
 Google addon. `RC_SIGN_IN` is just a static constant that is used in
 the activity handler.
 
-```java
+```
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -246,7 +246,7 @@ if your device.
 Note the authCode that is returned in the `GoogleSignInAccount`. This is
 what `LoginWithGoogleAccountRequest` to know what Google identity is
 communicating with PlayFab.
-```java
+```
     // https://api.playfab.com/documentation/Client/method/LoginWithGoogleAccount
     PlayFabClientModels.LoginWithGoogleAccountRequest req = new PlayFabClientModels.LoginWithGoogleAccountRequest();
 
@@ -275,7 +275,7 @@ When the user successfully purchases an in-app product, the purchase
 update handler will receive a response code of
 `BillingClient.BillingResponse.OK`. This will be when to kick
 off PlayFab's purchase validation.
-```java
+```
     mBillingClient = BillingClient.newBuilder(activity).setListener(new PurchasesUpdatedListener()
     {
         @Override
@@ -295,7 +295,7 @@ consumable behavior. To allow an owned product to be re-purchased, it
 must first be consumed, otherwise it will act as a permanent durable and
 thus be unpurchasable
 (`BillingClient.BillingResponse.ITEM_ALREADY_OWNED`).
-```java
+```
     // There is no distinction between durable and consumable in Google Play
     // A consumable is simply a purchase that has been consumed, so it can be purchased again
     // An unconsumed owned product will return ITEM_ALREADY_OWNED by launchBillingFlow
@@ -331,7 +331,7 @@ purchase update handler or BillingClient.queryPurchases result contains
 Purchase entries, these are unconsumed or permanently owned items that
 the user owns. This is where the purchase fields are passed to
 `ValidateGooglePlayPurchase` for validation.
-```java
+```
     if (responseCode == BillingClient.BillingResponse.OK)
     {
         for (Purchase purchase : Objects.requireNonNull(purchases))
@@ -381,8 +381,8 @@ to set up in-app products from both platforms and how the purchase
 validation flow works in order to set up a typical app economy
 consisting of items purchasable with real money and virtual currencies.
 
-For any further questions, please feel free to post to the forums or
-contact devrel to get in touch with the tutorial author in the Advanced
+For any further questions, please feel free to post to the [forums](https://community.playfab.com/index.html) or
+contact xboxatgservices@gmail.com(subject: PlayFabCommerce) to get in touch with the tutorial author in the Advanced
 Technology Group.
 
 Appendix A: How to manage keystores
