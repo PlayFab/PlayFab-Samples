@@ -1,4 +1,4 @@
-![PlayFab logo](https://images/logo_playfab.png "PlayFab logo")
+![PlayFab logo](/images/logo_playfab.png "PlayFab logo")
 
 # PlayFab Documentation & Sample Repository
 This repository is a one-stop location for PlayFab Documentation. In addition to our samples, we also keep our raw documentation contents. This content can be best viewed on our [main&nbsp;page](https://api.playfab.com).
