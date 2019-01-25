@@ -1,3 +1,5 @@
+![PlayFab logo](/images/logo_playfab.png "PlayFab logo")
+
 # PlayFab Documentation & Sample Repository
 This repository is a one-stop location for PlayFab Documentation. In addition to our samples, we also keep our raw documentation contents. This content can be best viewed on our [main&nbsp;page](https://api.playfab.com).
 
@@ -11,6 +13,10 @@ The [Samples](/Samples/) subdirectory contains complete working samples that dem
 
 # Community Feedback
 Got ideas for samples that you would like to see developed? Let us know at [devrel@playfab.com](mailto:devrel@playfab.com). We are building a community driven library of game developer resources. Feel free to sumbit pull requests or issues on any of our documentation / sample content.
+
+# Contributing
+
+We welcome contributions from the PlayFab developer community! For details on how to participate please see [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 # Licensing
 **Important:** Please note that the license for this project has changed! The changes are as follows:
