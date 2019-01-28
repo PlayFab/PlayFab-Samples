@@ -12,7 +12,7 @@ The [Recipes](/Recipes/) subdirectory contains quick examples that show off how 
 The [Samples](/Samples/) subdirectory contains complete working samples that demonstrate best-practice usage patterns for PlayFab features.
 
 # Community Feedback
-Got ideas for samples that you would like to see developed? Let us know at [devrel@playfab.com](mailto:devrel@playfab.com). We are building a community driven library of game developer resources. Feel free to sumbit pull requests or issues on any of our documentation / sample content.
+Got ideas for samples that you would like to see developed? Let us know at [devrel@playfab.com](mailto:devrel@playfab.com). We are building a community-driven library of game developer resources. Feel free to sumbit pull requests or issues on any of our documentation / sample content.
 
 # Contributing
 
