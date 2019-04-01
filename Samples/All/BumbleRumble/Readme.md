@@ -107,7 +107,7 @@ handlers.clear_game_network = function (args, context) {
 };
 ```
  
-### UpdateHistory
+### Update History
 
  - Apr 2019, Initial release
 
