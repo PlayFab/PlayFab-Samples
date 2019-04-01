@@ -10,7 +10,7 @@ PlayFab Matchmaking: https://docs.microsoft.com/en-us/gaming/playfab/features/mu
 
 ### Known Issues
  
-There are no konwn issues.
+There are no known issues.
  
 ### Building the Sample
  
