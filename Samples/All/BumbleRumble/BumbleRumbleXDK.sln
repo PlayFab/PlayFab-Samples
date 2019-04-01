@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BumbleRumbleXDK", "Client\XDK\BumbleRumbleXDK.vcxproj", "{49BEAD44-FF89-459A-9C15-DA3F4B7CF97F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTK_XboxOneXDK_2017", "External\DirectXTK\DirectXTK_XboxOneXDK_2017.vcxproj", "{4FDFDCCD-EE2E-415C-B458-1E8FDB0D85F2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XPlatXbox", "External\XPlatCppSdk\build\Xbox\XPlatXbox.vcxproj", "{EBC5FCF3-886B-4098-82EA-8C038E48A921}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_json", "External\XPlatCppSdk\external\jsoncpp-xdk-build\lib_json.vcxproj", "{1E6C2C1C-6453-4129-AE3F-0EE8E6599C89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Durango = Debug|Durango
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49BEAD44-FF89-459A-9C15-DA3F4B7CF97F}.Debug|Durango.ActiveCfg = Debug|Durango
+		{49BEAD44-FF89-459A-9C15-DA3F4B7CF97F}.Debug|Durango.Build.0 = Debug|Durango
+		{49BEAD44-FF89-459A-9C15-DA3F4B7CF97F}.Debug|Durango.Deploy.0 = Debug|Durango
+		{4FDFDCCD-EE2E-415C-B458-1E8FDB0D85F2}.Debug|Durango.ActiveCfg = Debug|Durango
+		{4FDFDCCD-EE2E-415C-B458-1E8FDB0D85F2}.Debug|Durango.Build.0 = Debug|Durango
+		{EBC5FCF3-886B-4098-82EA-8C038E48A921}.Debug|Durango.ActiveCfg = Debug|Durango
+		{EBC5FCF3-886B-4098-82EA-8C038E48A921}.Debug|Durango.Build.0 = Debug|Durango
+		{1E6C2C1C-6453-4129-AE3F-0EE8E6599C89}.Debug|Durango.ActiveCfg = Debug|Durango
+		{1E6C2C1C-6453-4129-AE3F-0EE8E6599C89}.Debug|Durango.Build.0 = Debug|Durango
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA2E2532-FEBA-4C7E-931A-BEAF18FD284C}
+	EndGlobalSection
+EndGlobal

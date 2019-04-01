@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest"
+         xmlns:mx="http://schemas.microsoft.com/appx/2013/xbox/manifest"
+         IgnorableNamespaces="mx">
+  
+  <Identity Name="49bead44-ff89-459a-9c15-da3f4b7cf97f"
+            Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+            Version="1.0.0.0" />
+  
+  <Properties>
+    <DisplayName>BumbleRumbleXDK</DisplayName>
+    <PublisherDisplayName>Xbox Advanced Technology Group</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>BumbleRumbleXDK</Description>
+  </Properties>
+  
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  
+  <Resources>
+    <Resource Language="en-us"/>
+  </Resources>
+  
+  <Applications>
+    <Application Id="App" 
+        Executable="$targetnametoken$.exe" 
+        EntryPoint="BumbleRumbleXDK.App">
+        <VisualElements 
+            DisplayName="BumbleRumbleXDK"
+            Logo="Assets\Logo.png"
+            SmallLogo="Assets\SmallLogo.png"
+            Description="BumbleRumbleXDK"
+            ForegroundText="dark"
+            BackgroundColor="#000000">
+            <SplashScreen Image="Assets\SplashScreen.png" />
+            <DefaultTile WideLogo="Assets\WideLogo.png" />
+        </VisualElements>
+        <Extensions>
+          <mx:Extension Category="xbox.system.resources">
+            <mx:XboxSystemResources resourceConfiguration="extended">
+              <mx:GpuAvailability>variable</mx:GpuAvailability>
+              </mx:XboxSystemResources>
+          </mx:Extension>
+          <mx:Extension Category="xbox.live">
+              <mx:XboxLive TitleId="0A6D2730" PrimaryServiceConfigId="5deb0100-042c-41d9-9ec5-55580a6d2730" />
+          </mx:Extension>
+          <mx:Extension Category="windows.xbox.networking">
+            <mx:XboxNetworkingManifest>
+              <mx:SocketDescriptions>
+                <mx:SocketDescription Name="BumblelionControllerLocalInitiatorTcp" SecureIpProtocol="Tcp" BoundPort="0">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceSocketUsage Type="Initiate" />
+                    <mx:SecureDeviceSocketUsage Type="SendDebug" />
+                    <mx:SecureDeviceSocketUsage Type="ReceiveDebug" />
+                  </mx:AllowedUsages>
+                </mx:SocketDescription>
+                <mx:SocketDescription Name="BumblelionXRNMLocalInitiatorUdp" SecureIpProtocol="Udp" BoundPort="0">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceSocketUsage Type="Initiate" />
+                    <mx:SecureDeviceSocketUsage Type="SendDebug" />
+                    <mx:SecureDeviceSocketUsage Type="ReceiveDebug" />
+                  </mx:AllowedUsages>
+                </mx:SocketDescription>
+                <mx:SocketDescription Name="PlayFabQosApiClient" SecureIpProtocol="Udp" BoundPort="0">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceSocketUsage Type="Initiate" />
+                    <mx:SecureDeviceSocketUsage Type="SendDebug" />
+                    <mx:SecureDeviceSocketUsage Type="ReceiveDebug" />
+                  </mx:AllowedUsages>
+                </mx:SocketDescription>
+                <mx:SocketDescription Name="BumblelionControllerRemoteAcceptorTcp" SecureIpProtocol="Tcp" BoundPort="27016">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceSocketUsage Type="Accept" />
+                    <mx:SecureDeviceSocketUsage Type="SendDebug" />
+                    <mx:SecureDeviceSocketUsage Type="ReceiveDebug" />
+                  </mx:AllowedUsages>
+                </mx:SocketDescription>
+                <mx:SocketDescription Name="BumblelionXRNMRemoteAcceptorUdp" SecureIpProtocol="Udp" BoundPort="17181">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceSocketUsage Type="Initiate" />
+                    <mx:SecureDeviceSocketUsage Type="Accept" />
+                    <mx:SecureDeviceSocketUsage Type="SendDebug" />
+                    <mx:SecureDeviceSocketUsage Type="ReceiveDebug" />
+                  </mx:AllowedUsages>
+                </mx:SocketDescription>
+                <mx:SocketDescription Name="PlayFabQosApiServer" SecureIpProtocol="Udp" BoundPort="3075">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceSocketUsage Type="Accept" />
+                    <mx:SecureDeviceSocketUsage Type="SendDebug" />
+                    <mx:SecureDeviceSocketUsage Type="ReceiveDebug" />
+                  </mx:AllowedUsages>
+                </mx:SocketDescription>
+              </mx:SocketDescriptions>
+              <mx:SecureDeviceAssociationTemplates>
+                <mx:SecureDeviceAssociationTemplate Name="BumblelionControllerOutboundTcp" InitiatorSocketDescription="BumblelionControllerLocalInitiatorTcp" AcceptorSocketDescription="BumblelionControllerRemoteAcceptorTcp" MultiplayerSessionRequirement="None">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceAssociationUsage Type="InitiateFromMicrosoftConsole" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnMicrosoftConsole" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnXboxLiveCompute" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnWindowsDesktop" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnOtherDevice" />
+                  </mx:AllowedUsages>
+                </mx:SecureDeviceAssociationTemplate>
+                <mx:SecureDeviceAssociationTemplate Name="BumblelionXRNMUdp" InitiatorSocketDescription="BumblelionXRNMLocalInitiatorUdp" AcceptorSocketDescription="BumblelionXRNMRemoteAcceptorUdp" MultiplayerSessionRequirement="None">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceAssociationUsage Type="InitiateFromMicrosoftConsole" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnMicrosoftConsole" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnWindowsDesktop" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnOtherDevice" />
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnXboxLiveCompute" />
+                  </mx:AllowedUsages>
+                </mx:SecureDeviceAssociationTemplate>
+                <mx:SecureDeviceAssociationTemplate Name="PlayFabQosApiTraffic" InitiatorSocketDescription="PlayFabQosApiClient" AcceptorSocketDescription="PlayFabQosApiServer" MultiplayerSessionRequirement="None">
+                  <mx:AllowedUsages>
+                    <mx:SecureDeviceAssociationUsage Type="InitiateFromMicrosoftConsole"/>
+                    <mx:SecureDeviceAssociationUsage Type="InitiateFromWindowsDesktop"/>
+                    <mx:SecureDeviceAssociationUsage Type="AcceptOnOtherDevice"/>
+                  </mx:AllowedUsages>
+                </mx:SecureDeviceAssociationTemplate>
+              </mx:SecureDeviceAssociationTemplates>
+            </mx:XboxNetworkingManifest>
+          </mx:Extension>
+        </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClientServer" />
+    <DeviceCapability Name="microphone" />
+  </Capabilities>
+  <Extensions>
+    <mx:PackageExtension Category="windows.kinect">
+      <mx:Kinect IsVersionLocked="false">
+        <mx:AudioPipeline Version="1.14.8" />
+        <mx:SpeechPipeline Version="1.14.8" />
+        <mx:VisionPipeline Version="1.14.8" />
+      </mx:Kinect>
+    </mx:PackageExtension>
+  </Extensions>
+</Package>

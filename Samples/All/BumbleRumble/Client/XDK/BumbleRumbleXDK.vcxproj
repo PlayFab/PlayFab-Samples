@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Durango">
+      <Configuration>Debug</Configuration>
+      <Platform>Durango</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <RootNamespace>BumbleRumbleXDK</RootNamespace>
+    <ProjectGuid>{49bead44-ff89-459a-9c15-da3f4b7cf97f}</ProjectGuid>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <Keyword>Win32Proj</Keyword>
+    <ApplicationEnvironment>title</ApplicationEnvironment>
+    <!-- - - - -->
+    <PlatformToolset>v141</PlatformToolset>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <TargetRuntime>Native</TargetRuntime>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(TargetPlatformSdkPath)\ExtensionSDKs\Xbox.Services.API.Cpp\8.0\DesignTime\CommonConfiguration\Neutral\Xbox.Services.API.Cpp.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'">
+    <ReferencePath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</ReferencePath>
+    <LibraryPath>$(Console_SdkLibPath)</LibraryPath>
+    <LibraryWPath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</LibraryWPath>
+    <IncludePath>$(Console_SdkIncludeRoot)</IncludePath>
+    <ExecutablePath>$(Console_SdkRoot)bin;$(VCInstallDir)bin\x86_amd64;$(VCInstallDir)bin;$(WindowsSDK_ExecutablePath_x86);$(VSInstallDir)Common7\Tools\bin;$(VSInstallDir)Common7\tools;$(VSInstallDir)Common7\ide;$(ProgramFiles)\HTML Help Workshop;$(MSBuildToolsPath32);$(FxCopDir);$(PATH);</ExecutablePath>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'">
+    <Link>
+      <AdditionalDependencies>pixEvt.lib;d3d11_x.lib;combase.lib;kernelx.lib;uuid.lib;etwplus.lib;XPlatXbox.lib;%(XboxExtensionsDependencies);</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);..\..\Common;..\..\Kits\ATGTK;..\..\Kits\LiveTK;$(SolutionDir)External\XPlatCppSdk\code\Include;$(SolutionDir)External\XPlatCppSdk\external\jsoncpp\include;$(SolutionDir)External\DirectXTK\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalUsingDirectories>$(Console_SdkPackagesRoot);$(Console_SdkWindowsMetadataPath);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;ENABLE_PLAYFABENTITY_API;__WRL_NO_DEFAULT_LIB__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <FXCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FXCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\Asteroid.h" />
+    <ClInclude Include="..\..\Common\AudioManager.h" />
+    <ClInclude Include="..\..\Common\BatchRemovalCollection.h" />
+    <ClInclude Include="..\..\Common\CollisionManager.h" />
+    <ClInclude Include="..\..\Common\CollisionMath.h" />
+    <ClInclude Include="..\..\Common\ComputeTypes.h" />
+    <ClInclude Include="..\..\Common\ContentManager.h" />
+    <ClInclude Include="..\..\Common\DataBuffer.h" />
+    <ClInclude Include="..\..\Common\Debug.h" />
+    <ClInclude Include="..\..\Common\DebugOverlayScreen.h" />
+    <ClInclude Include="..\..\Common\DoubleLaserPowerUp.h" />
+    <ClInclude Include="..\..\Common\DoubleLaserWeapon.h" />
+    <ClInclude Include="..\..\Common\ErrorScreen.h" />
+    <ClInclude Include="..\..\Common\GameLobbyScreen.h" />
+    <ClInclude Include="..\..\Common\GameplayObject.h" />
+    <ClInclude Include="..\..\Common\GamePlayScreen.h" />
+    <ClInclude Include="..\..\Common\GameScreen.h" />
+    <ClInclude Include="..\..\Common\GameStateManager.h" />
+    <ClInclude Include="..\..\Common\InputManager.h" />
+    <ClInclude Include="..\..\Common\LaserProjectile.h" />
+    <ClInclude Include="..\..\Common\LaserWeapon.h" />
+    <ClInclude Include="..\..\Common\MainMenuScreen.h" />
+    <ClInclude Include="..\..\Common\Manager.h" />
+    <ClInclude Include="..\..\Common\Managers.h" />
+    <ClInclude Include="..\..\Common\MenuScreen.h" />
+    <ClInclude Include="..\..\Common\MineProjectile.h" />
+    <ClInclude Include="..\..\Common\MineWeapon.h" />
+    <ClInclude Include="..\..\Common\NetworkManager.h" />
+    <ClInclude Include="..\..\Common\NetworkMessages.h" />
+    <ClInclude Include="..\..\Common\OnlineManager.h" />
+    <ClInclude Include="..\..\Common\OptionsPopUpScreen.h" />
+    <ClInclude Include="..\..\Common\ParticleManager.h" />
+    <ClInclude Include="..\..\Common\PlayerState.h" />
+    <ClInclude Include="..\..\Common\PlayFabManager.h" />
+    <ClInclude Include="..\..\Common\PowerUp.h" />
+    <ClInclude Include="..\..\Common\Projectile.h" />
+    <ClInclude Include="..\..\Common\RandomMath.h" />
+    <ClInclude Include="..\..\Common\RenderContext.h" />
+    <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="..\..\Common\RocketPowerUp.h" />
+    <ClInclude Include="..\..\Common\RocketProjectile.h" />
+    <ClInclude Include="..\..\Common\RocketWeapon.h" />
+    <ClInclude Include="..\..\Common\ScreenManager.h" />
+    <ClInclude Include="..\..\Common\Ship.h" />
+    <ClInclude Include="..\..\Common\ShipInput.h" />
+    <ClInclude Include="..\..\Common\Starfield.h" />
+    <ClInclude Include="..\..\Common\StarfieldScreen.h" />
+    <ClInclude Include="..\..\Common\StringConv.h" />
+    <ClInclude Include="..\..\Common\STTOverlayScreen.h" />
+    <ClInclude Include="..\..\Common\Texture.h" />
+    <ClInclude Include="..\..\Common\Timer.h" />
+    <ClInclude Include="..\..\Common\TitleBackgroundScreen.h" />
+    <ClInclude Include="..\..\Common\TripleLaserPowerUp.h" />
+    <ClInclude Include="..\..\Common\TripleLaserWeapon.h" />
+    <ClInclude Include="..\..\Common\Weapon.h" />
+    <ClInclude Include="..\..\Common\WelcomeScreen.h" />
+    <ClInclude Include="..\..\Common\World.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\..\Common\StepTimer.h" />
+    <ClInclude Include="DeviceResources.h" />
+    <ClInclude Include="..\..\Kits\ATGTK\ATGColors.h" />
+    <ClInclude Include="..\..\Kits\LiveTK\LiveResourcesXDK.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\Asteroid.cpp" />
+    <ClCompile Include="..\..\Common\AudioManager.cpp" />
+    <ClCompile Include="..\..\Common\CollisionManager.cpp" />
+    <ClCompile Include="..\..\Common\ContentManager.cpp" />
+    <ClCompile Include="..\..\Common\DataBuffer.cpp" />
+    <ClCompile Include="..\..\Common\Debug.cpp" />
+    <ClCompile Include="..\..\Common\DebugOverlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\DoubleLaserPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\DoubleLaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\ErrorScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameLobbyScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameplayObject.cpp" />
+    <ClCompile Include="..\..\Common\GamePlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameStateManager.cpp" />
+    <ClCompile Include="..\..\Common\InputManager.cpp" />
+    <ClCompile Include="..\..\Common\LaserProjectile.cpp" />
+    <ClCompile Include="..\..\Common\LaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\MainMenuScreen.cpp" />
+    <ClCompile Include="..\..\Common\Managers.cpp" />
+    <ClCompile Include="..\..\Common\MenuScreen.cpp" />
+    <ClCompile Include="..\..\Common\MineProjectile.cpp" />
+    <ClCompile Include="..\..\Common\MineWeapon.cpp" />
+    <ClCompile Include="..\..\Common\NetworkManager.cpp" />
+    <ClCompile Include="..\..\Common\NetworkMessages.cpp" />
+    <ClCompile Include="..\..\Common\OptionsPopUpScreen.cpp" />
+    <ClCompile Include="..\..\Common\ParticleManager.cpp" />
+    <ClCompile Include="..\..\Common\PlayerState.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabManager.cpp" />
+    <ClCompile Include="..\..\Common\PowerUp.cpp" />
+    <ClCompile Include="..\..\Common\Projectile.cpp" />
+    <ClCompile Include="..\..\Common\RenderContext.cpp" />
+    <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="..\..\Common\RocketPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\RocketProjectile.cpp" />
+    <ClCompile Include="..\..\Common\RocketWeapon.cpp" />
+    <ClCompile Include="..\..\Common\ScreenManager.cpp" />
+    <ClCompile Include="..\..\Common\Ship.cpp" />
+    <ClCompile Include="..\..\Common\ShipInput.cpp" />
+    <ClCompile Include="..\..\Common\Starfield.cpp" />
+    <ClCompile Include="..\..\Common\StarfieldScreen.cpp" />
+    <ClCompile Include="..\..\Common\StringConv.cpp" />
+    <ClCompile Include="..\..\Common\STTOverlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\Texture.cpp" />
+    <ClCompile Include="..\..\Common\TitleBackgroundScreen.cpp" />
+    <ClCompile Include="..\..\Common\TripleLaserPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\TripleLaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\Weapon.cpp" />
+    <ClCompile Include="..\..\Common\WelcomeScreen.cpp" />
+    <ClCompile Include="..\..\Common\World.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="DeviceResources.cpp" />
+    <ClCompile Include="..\..\Kits\LiveTK\LiveResourcesXDK.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Logo.png" />
+    <Image Include="Assets\SmallLogo.png" />
+    <Image Include="Assets\SplashScreen.png" />
+    <Image Include="Assets\StoreLogo.png" />
+    <Image Include="Assets\WideLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Assets\Audio\asteroid_touch.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\explosion_large.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\explosion_medium.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\explosion_shockwave.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\fire_laser1.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\fire_laser2.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\fire_laser3.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\fire_rocket1.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\fire_rocket2.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\menu_scroll.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\menu_select.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\player_spawn.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\powerup_spawn.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\powerup_touch.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\rocket.wav">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+    <Media Include="..\Assets\Audio\OneStepBeyond.xwma">
+      <Link>Assets\Audio\%(Filename)%(Extension)</Link>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Textures\asteroid0.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\asteroid1.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\asteroid2.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\asteroidX.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\asteroidX2.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\barrierEnd.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\barrierPurple.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\barrierRed.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\blank.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\chatAble.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\chatMute.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\chatTalking.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\clouds.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\dreadnaught1.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\dreadnaught1Overlay.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\laser.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\mic.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\mine.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\Particles\defaultParticle.PNG">
+      <Link>Assets\Textures\Particles\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\Particles\particle.png">
+      <Link>Assets\Textures\Particles\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\Particles\smoke.png">
+      <Link>Assets\Textures\Particles\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\Particles\spark.png">
+      <Link>Assets\Textures\Particles\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\powerupDoubleLaser.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\powerupRocket.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\powerupTripleLaser.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ready.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\rocket.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship0.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship0Overlay.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship1.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship1Overlay.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship2.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship2Overlay.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship3.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship3Overlay.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship4.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\ship4Overlay.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\shipShields.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\titleCP.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\text.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Textures\Xbox_One_Controller_Front.png">
+      <Link>Assets\Textures\%(Filename)%(Extension)</Link>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Fonts\segoeui_64.spritefont">
+      <Link>Assets\Fonts\%(Filename)%(Extension)</Link>
+    </Image>
+    <Image Include="..\Assets\Fonts\netrumble.spritefont">
+      <Link>Assets\Fonts\%(Filename)%(Extension)</Link>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\External\DirectXTK\DirectXTK_XboxOneXDK_2017.vcxproj">
+      <Project>{4FDFDCCD-EE2E-415C-B458-1E8FDB0D85F2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\External\XPlatCppSdk\build\Xbox\XPlatXbox.vcxproj">
+      <Project>{EBC5FCF3-886B-4098-82EA-8C038E48A921}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\External\XPlatCppSdk\external\jsoncpp-xdk-build\lib_json.vcxproj">
+      <Project>{1e6c2c1c-6453-4129-ae3f-0ee8e6599c89}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.0.1.1-prerelease\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.targets" Condition="Exists('..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.0.1.1-prerelease\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.0.1.1-prerelease\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.0.1.1-prerelease\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.XboxOneXDK.targets'))" />
+  </Target>
+</Project>

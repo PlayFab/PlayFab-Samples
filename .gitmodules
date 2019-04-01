@@ -1,0 +1,6 @@
+[submodule "Samples/All/BumbleRumble/External/DirectXTK"]
+	path = Samples/All/BumbleRumble/External/DirectXTK
+	url = https://github.com/Microsoft/DirectXTK.git
+[submodule "Samples/All/BumbleRumble/External/XPlatCppSdk"]
+	path = Samples/All/BumbleRumble/External/XPlatCppSdk
+	url = https://github.com/PlayFab/XPlatCppSdk.git
