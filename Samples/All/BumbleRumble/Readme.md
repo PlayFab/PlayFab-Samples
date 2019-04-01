@@ -35,7 +35,7 @@ git submodule update --init --recursive
 
 **Config Requirements**
    
- The project is configured to expect specific title configuration.  The sample is pre-configured to work as-is but if you wish to adapt it to your own title, you will need to update the Title ID that is specified in `config.cpp`
+ The project is configured to expect specific PlayFab Title configuration.  The sample is pre-configured to work as-is but if you wish to adapt it to your own title, you will need to update the PlayFab Title ID that is specified in `config.cpp`
 ```
     const char* c_pfTitleId = "86E2";
 ```    
@@ -46,7 +46,7 @@ To debug the sample through Visual Studio on Windows, you will need to set your 
 
 Once you progress past the welcome screen, you will be signed in to PlayFab and taken to the main menu.
 
-Selecting 'Play a Game' from the menu will begin matchmaking and attempt to find other players. If a match can be made, the matched players will be create and join a BumbleLion network and enable voice chat with full transcriptions.
+Selecting 'Play a Game' from the menu will begin matchmaking and attempt to find other players. If a match can be made, the matched players will be create and join a PlayFab Party network and enable voice chat with full transcriptions.
 
 At this point all users' voice chat will be transcripted to text and displayed.  Pressing the `TAB` key or `View` button will bring up a simple text input box which will allow entry of text to be transcribed to voice.
 
@@ -56,7 +56,7 @@ Speech-to-Text and Text-to-Speech are enabled and used by default.  The language
 
 ### PlayFab Configuration
 
-This sample requires the title be configured for Matchmaking and Party on the Multiplayer tab of Game Manager and relies the following being configured in the PlayFab developer portal.
+This sample requires the title be configured for Matchmaking and Party on the Multiplayer tab of Game Manager and relies on the following settings being configured in the PlayFab developer portal.
 
 **Matchmaking Queue**
 
@@ -109,7 +109,7 @@ handlers.clear_game_network = function (args, context) {
  
 ### UpdateHistory
 
- - Mar 2019, Initial release
+ - Apr 2019, Initial release
 
 ### Privacy Statement
 
