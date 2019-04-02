@@ -1,0 +1,9 @@
+lastUpgrade=00962
+proj.pluginVersion=0.9.62
+proj.AppId=628794384582
+and.BundleId=atg.xbox.PlayFabCommerce
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3cresources%3e%0d%0a%3cstring+name%3d%22app_id%22%3e628794384582%3c%2fstring%3e%0d%0a%3cstring+name%3d%22package_name%22%3eatg.xbox.PlayFabCommerce%3c%2fstring%3e%0d%0a%3c%2fresources%3e
+and.ClientId=628794384582-nmi8cqkkq71m802lpmbas1a0mkrli249.apps.googleusercontent.com
+android.SetupDone=true
