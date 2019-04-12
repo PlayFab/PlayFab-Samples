@@ -53,8 +53,10 @@ void NetworkManager::Initialize()
 
     if (m_cofaInitialized == false)
     {
-        // Initialize the communication fabric with our developer secret key
-        err = cofa.Initialize();
+        extern const char* c_pfTitleId;
+
+        // Initialize PlayFab Party
+        err = cofa.Initialize(c_pfTitleId);
         if (PARTY_FAILED(err))
         {
             DEBUGLOG("Initialize failed: %hs\n", GetErrorMessage(err));
