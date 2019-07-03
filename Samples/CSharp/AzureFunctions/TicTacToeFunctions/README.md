@@ -37,11 +37,104 @@ Once the app is created, head over to the Overview page and click on "Configurat
 You can now deploy the functions found in this repository to this app [through the VS Code Extension](https://code.visualstudio.com/tutorials/functions-extension/deploy-app) or [other methods not discussed here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#publish-to-azure).
 Please note that you will need to re-deploy your app every time you want to see changes made to the app locally get reflected in your remote deployment.
 
+## Local Setup in VS Code
+There are certain steps that we will cover here exclusively for VS Code. These steps must be carried out regardless of which IDE you are using but we highly recomend you use VS Code to be able to follow along.
+
+#### Open TicTacToeFunctions in VS Code
+
+Open the VS Code IDE and navigate to the location you've cloned this repository to open the following folder:
+```
+PlayFab-Samples/Samples/CSharp/AzureFunctions/TicTacToeFunctions
+```
+
+#### Required Extensions
+Click on the `Extensions` button on the left bar or hit `Ctrl+Shift+X`. Search for and install the following extensions:
+1. [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+2. [C#](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+3. [Nuget Package Manager](https://marketplace.visualstudio.com/items?itemName=jmrog.vscode-nuget-package-manager)
+
+#### Configure the Functions App through the Azure Extension
+
+1. Click on the Azure Extension on the left bar (`Ctrl+Shift+A`)
+2. Click `Sign in to Azure...`. This will open a web-page where you can sign-in to your Azure account and will automatically authenticate it with VS Code.
+
+![Azure Functions Extension Sign-in](docs/AzureFunctionsExtensionSignIn.png)
+
+Once signed in, you'll be able to see your subscription and the Functions App you created earlier.
+3. Click on the `Create new project...` button on the top bar of the Azure Functions Extension.
+
+![Create new Azure Functions App project](docs/CreateNewProject.png)
+
+4. On the folder finder window that opens, navigate to the folder you cloned this functions app to and select the folder as your project directory.
+```
+PlayFab-Samples/Samples/CSharp/AzureFunctions/TicTacToeFunctions
+```
+
+5. On the Project Language dropdown that pops after you select the `TicTacToeFunctions` folder, select `C#`
+
+![Project Language Selection](docs/ProjectLanguage.png)
+
+6. On the Function Template dropdown select `Skip for now`
+
+![Function Template Selection](docs/FunctionTemplate.png)
+
+The extension will then initialize this folder for you as an Azure Functions app locally. It adds a `.vscode` folder containing the run configuration(s), a [`host.json` file](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json), a [`local.settings.json` file](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#local-settings-file), and a `.csproj` corresponding to your project.
+
+7. Open the `local.settings.json` file and under `Values` create two new fields: 1) `"PLAYFAB_TITLE_ID": [Enter your PlayFab Title ID here]` and 2) `"PLAYFAB_DEV_SECRET_KEY": [Enter your PlayFab developer secret key here]`. **This step is necessary for the functions to run locally.** The contents of your `local.settings.json` file will ultimately look similar to this:
+```
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "PLAYFAB_TITLE_ID": "[title Id]",
+        "PLAYFAB_DEV_SECRET_KEY": "[secret key]"
+    }
+}
+```
+
+#### Adding NuGet Package Dependencies
+1. Open the command palette (`Ctrl+Shift+P`) and type in "NuGet" and select `NuGet Package Manager: Add Package`.
+
+![Add Nuget Package](docs/NuGetAddPackageSelection.png)
+
+2. Search for "PlayFab", select `PlayFabAllSDK`, and add the latest version.
+3. Similarly, search for "PlayFab", select `PlayFabCloudScriptPlugin`, and add the latest version.
+4. A pop-up should appear on your screen stating that there are unresolved dependencies. Click `Restore`.
+
+![Unresolved Dependencies Popup](docs/UnresolvedDependencies.png)
+
+This will pull and download the packages you just added to your project.
+
+
+#### Build and deploy
+
+You can now perform a build by pressing `Ctrl+Shift+B` or entering `dotnet clean` followed by a `dotnet-build` in the terminal.
+
+The Functions App is now ready to be run locally (`F5`) or deployed to Azure from the VS Code extension. To deploy, follow these steps:
+1. Go to the Azure Functions Extension (`Ctrl+Shift+A`)
+2. Find the Functions App you created on the [Azure Portal](https://portal.azure.com) earlier.
+
+![Select Your Azure Functions App](docs/SelectFunctionsApp.png)
+
+3. Right click the app and select `Deploy To Functions App`
+
+![Deploy To Functions App](docs/DeployToFunctionsApp.png)
+
+You will get a popup asking you if you want to overwrite the existing deployment on the app if any. Click `Deploy`.
+Once the deployment is completed, you will be able to see your functions under the app.
+
+![Deployed Functions view](docs/DeployedFunctions.png)
+
+You can easily get the URL of any of these functions to register with PlayFab later (explained below) by right clicking the function and selecting `Copy Function URL`.
+
+You can also upload all local application settings set in `local.settings.json` from here by right clicking the `Application Settings` tab of your Azure Functions App, click `Upload Local Settings`, and select the `local.settings.json` file in the local folder of this app. **Note that this will overwrite remote settings that are different locally, as well as ignore all settings that are the same or do not exist locally but exist remotely.
+
 ## Setup on PlayFab
 The setup process on PlayFab is explained in both this repository and the [Tic Tac Toe Unity Game repository](https://github.com/PlayFab/PlayFab-Samples/tree/master/Samples/Unity/TicTacToe). This setup however must only be done once.
 
 #### Create a New PlayFab Title
-Create a new PlayFab Title and call it TicTacToe. More instructions on how to do this can be found [here](https://docs.microsoft.com/en-us/gaming/playfab/personas/pfab-account). Take note of the **Title ID** and **Developer Secret Key** of your new title as you'll need to enter them in both the game (Title ID only) and the Azure Functions app (Title ID and Developer Secret Key as mentioned above).
+Create a new PlayFab Title and call it TicTacToe. More instructions on how to do this can be found [here](https://docs.microsoft.com/en-us/gaming/playfab/personas/pfab-account). Take note of the **Title ID** and **Developer Secret Key** of your new title as you'll need to enter them in both the game (Title ID only) and the Azure Functions app.
 
 ![New PlayFab Title](docs/NewTitle.png)
 
