@@ -9,7 +9,7 @@ namespace PlayFab.TicTacToeDemo.Util
     {
         public static WinCheckResult Check(TicTacToeState state)
         {
-            int[,] state2D = Util.Make2DArray(state.Data, 3, 3);
+            int[,] state2D = ArrayUtil.Make2DArray(state.Data, 3, 3);
             // For all but NONE occupant types, check to see if there is a winner in the game at the moment
             foreach (var occupantType in (OccupantType[])Enum.GetValues(typeof(OccupantType)))
             {
@@ -20,10 +20,43 @@ namespace PlayFab.TicTacToeDemo.Util
                     || CheckColWin(occupantType, state2D)
                     || CheckDiagWin(occupantType, state2D))
                 {
-                    return new WinCheckResult() { Winner = occupantType };
+                    return new WinCheckResult
+                    {
+                        Winner = (GameWinnerType) occupantType
+                    };
                 }
             }
-            return new WinCheckResult() { Winner = OccupantType.NONE };
+
+            // Check for a draw, otherwise game is not over yet: no winner
+            if (CheckDraw(state2D))
+            {
+                return new WinCheckResult
+                {
+                    Winner = GameWinnerType.DRAW
+                };
+            }
+
+            return new WinCheckResult
+            {
+                Winner = GameWinnerType.NONE 
+            };
+        }
+
+        private static bool CheckDraw(int[,] state)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    // There's an unoccupied space so game cannot be draw
+                    if (state[i, j] == 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private static bool CheckRowWin(OccupantType occupantType, int[,] state)

@@ -1,10 +1,10 @@
-﻿// Copyright (C) Microsoft Corporation. All rights reserved.
+// Copyright (C) Microsoft Corporation. All rights reserved.
 
 namespace PlayFab.TicTacToeDemo.Models
 {
     public class TicTacToeMove
     {
-        public int Row { get ;set; }
-        public int Col { get; set; }
+        public int row { get ;set; }
+        public int col { get; set; }
     }
 }

@@ -1,317 +1,97 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
-using PlayFab;
-using PlayFab.CloudScriptModels;
-using PlayFab.Json;
-using System.Linq;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Board : MonoBehaviour
+namespace PlayFab.TicTacToeDemo
 {
-    
-    public TokenRow[] Rows = new TokenRow[3];
-
-    public bool CanPlay { get; private set; }
-    public bool GameOver { get; private set; }
-    
-    private Player Player;
-    
-    // Prefabs
-    public Player PlayerPrefab;
-    public GameObject XPrefab;
-    public GameObject OPrefab;
-
-    public Text WinText;
-    public Text LossText;
-    public Text DrawText;
-
-    public Button RestartButton;
-
-    private void Start()
+    public class Board : MonoBehaviour
     {
-        Player = Instantiate(PlayerPrefab);
-        Player.name = Constants.PLAYER;
-        Player.Board = this;
-    }
+        private bool _canPlay { get; set; }
 
-    public void OnPlayerLoginCompleted()
-    {
-        CanPlay = true;
-    }
+        public TokenRow[] Rows = new TokenRow[3];
+        public GameObject XPrefab;
+        public GameObject OPrefab;
 
-    public void PlaceHumanToken(TokenPlaceholder placeholder)
-    {
-        // Safety against duplication of tokens and out of turn move(s)
-        if (placeholder.Token != null)
-            return;
+        public TicTacToeMove LatestPlayerMove { get; private set; }
 
-        // Disable game actions until a move has been made or a winner announced
-        CanPlay = false;
-
-        // Instantiate the token object from the prefab, nest it in the placeholder, and position it correctly
-        PlaceTokenOnPlaceholder(placeholder, XPrefab, OccupantType.HUMAN);
-        
-        var state = GetBoardState();
-
-        // Check if this move was a win and end game if so, don't send a move request to server
-        CheckWinRemote(state, true);
-    }
-
-    private void MakeAIMove()
-    {
-        var state = GetBoardState();
-        
-        // Create a request object to send to server that includes the board state
-        var request = new ExecuteFunctionRequest
+        private void Start()
         {
-            FunctionName = Constants.MOVE_FUNCTION_NAME,
-            FunctionParameter = state,
-            AuthenticationContext = new PlayFabAuthenticationContext
-            {
-                EntityToken = Player.EntityToken
-            }
-        };
-
-        // Execute the request
-        PlayFabCloudScriptAPI.ExecuteFunction(request,
-            // Success callback: server responds with a valid/invalid move
-            (result) =>
-            {
-                // Extract the move out of the server response
-                var move = PlayFabSimpleJson.DeserializeObject<TicTacToeMove>(result.FunctionResult?.ToString());
-
-                // Perform the steps needed to process the AI's move
-                PostAIMoveActions(move);
-            }, 
-            // Failure callback
-            (error) => 
-            {
-                Util.DisplayHttpError(error);
-            });
-    }
-
-    private void PostAIMoveActions(TicTacToeMove move)
-    {
-        // Check if game ended without any winner
-        if (move.Invalid)
-        {
-            DrawText.GetComponent<Text>().enabled = true;
-            GameOver = true;
-            RestartButton.gameObject.SetActive(true);
-            return;
+            SetEnabled(false);
         }
 
-        // Place the AI's token on the appropriate placeholder with necessary positioning & nesting
-        PlaceTokenOnPlaceholder(this[move.row, move.col], OPrefab, OccupantType.AI);
-        
-        var state = GetBoardState();
-
-        // Check for a win from the AI
-        CheckWinRemote(state, false);
-    }
-
-    private TicTacToeState GetBoardState()
-    {
-        // Create a 2D array of ints representing the current state of the board
-        int[,] state = new int[3, 3];
-        for (int i = 0; i < 3; i++)
+        public IEnumerator WaitForNextMove()
         {
-            for (int j = 0; j < 3; j++)
+            // Enable the board
+            SetEnabled(true);
+            while (true)
             {
-                switch(this[i, j].OccupantType)
+                for (int i = 0; i < Rows.Length; i++)
                 {
-                    case OccupantType.NONE:
-                        state[i, j] = (int) OccupantType.NONE;
-                        break;
-                    case OccupantType.HUMAN:
-                        state[i, j] = (int) OccupantType.HUMAN;
-                        break;
-                    case OccupantType.AI:
-                        state[i, j] = (int) OccupantType.AI;
-                        break;
-                }
-            }
-        }
-        int[] flatState = state.Cast<int>().ToArray();
-        return new TicTacToeState() { Data = flatState };
-    }
+                    // Query the row for the next move on it
+                    StartCoroutine(Rows[i].GetNextMove());
 
-
-    private void CheckWin(TicTacToeState state, bool movePending)
-    {
-        var result = WinChecker.Check(state);
-        GameOver = ProcessWinResults(result.winner);
-
-        if (!GameOver)
-        {
-            // If an AI move is pending, perform it
-            if (movePending)
-            {
-                MakeAIMove();
-            }
-            // Otherwise allow the player to make a move as AI move just finished
-            else
-            {
-                CanPlay = true;
-            }
-        }
-        else
-        {
-            // Game is over so update the player's stats based on whether they won or lost
-            UpdateLeaderboard(Player.SessionTicket, result.winner);
-
-            // Allow the user to restart the game if they wish to do so
-            RestartButton.gameObject.SetActive(true);
-        }
-    }
-
-    private void CheckWinRemote(TicTacToeState state, bool movePending)
-    {
-        var functionRequest = new ExecuteFunctionRequest
-        {
-            FunctionName = Constants.WIN_CHECK_FUNCTION_NAME,
-            FunctionParameter = new WinCheckRequest 
-            {
-                State = state,
-                PlayFabId = Player.PlayFabId
-            },
-            AuthenticationContext = new PlayFabAuthenticationContext
-            {
-                EntityToken = Player.EntityToken
-            }
-        };
-
-        PlayFabCloudScriptAPI.ExecuteFunction(functionRequest,
-            (functionResult) => {
-                var result = PlayFabSimpleJson.DeserializeObject<WinCheckResult>(functionResult.FunctionResult?.ToString());
-                GameOver = ProcessWinResults(result.winner);
-
-                if (!GameOver)
-                {
-                    if (movePending)
+                    // On the first row that gets clicked
+                    if (Rows[i].ColumnClicked != -1)
                     {
-                        MakeAIMove();
-                    }
-                    else
-                    {
-                        CanPlay = true;
+                        // Get the move that was requested
+                        LatestPlayerMove = new TicTacToeMove
+                        {
+                            row = i,
+                            col = Rows[i].ColumnClicked
+                        };
+
+                        // Reset the row
+                        Rows[i].ColumnClicked = -1;
+
+                        // Disable the board
+                        SetEnabled(false);
+                        yield break;
                     }
                 }
-                else
-                {
-                    RestartButton.gameObject.SetActive(true); 
-                }
-            },
-            (functionError) => {
-                Util.DisplayHttpError(functionError);
-            });
-    }
-
-    private bool ProcessWinResults(OccupantType winner)
-    {
-        bool gameOver = false;
-        switch (winner)
-        {
-            case OccupantType.HUMAN:
-                {
-                    WinText.GetComponent<Text>().enabled = true;
-                    gameOver = true;
-                    break;
-                }
-            case OccupantType.AI:
-                {
-                    LossText.GetComponent<Text>().enabled = true;
-                    gameOver = true;
-                    break;
-                }
-            case OccupantType.NONE:
-                {
-                    break;
-                }
-        }
-        return gameOver;
-    }
-
-    
-
-    private static void UpdateLeaderboard(string sessionTicket, OccupantType winner)
-    {
-        switch (winner)
-        {
-            case OccupantType.HUMAN:
-                {
-                    // Add a win to player's record
-                    WinChecker.UpdateStatValue(sessionTicket, "wins", 1);
-                    break;
-                }
-            case OccupantType.AI:
-                {
-                    // Add a loss to player's record
-                    WinChecker.UpdateStatValue(sessionTicket, "losses", 1);
-                    break;
-                }
-            default:
-                {
-                    break;
-                }
-        }
-    }
-
-    public void Reset()
-    {
-        WinText.GetComponent<Text>().enabled = false;
-        LossText.GetComponent<Text>().enabled = false;
-        DrawText.GetComponent<Text>().enabled = false;
-
-        foreach (var row in Rows)
-        {
-            foreach (var placeholder in row.Columns)
-            {
-                Destroy(placeholder.Token);
-                placeholder.OccupantType = OccupantType.NONE;
-
-                if (placeholder.Token != null)
-                {
-                    placeholder.Token = null;
-                }
-
-                CanPlay = true;
-                GameOver = false;
+                yield return null;
             }
         }
 
-        RestartButton.gameObject.SetActive(false);
-    }
-
-    private void PlaceTokenOnPlaceholder(TokenPlaceholder placeholder, GameObject prefab, OccupantType occupantType)
-    {
-        placeholder.Token = Instantiate(prefab);
-        placeholder.Token.transform.SetParent(placeholder.transform);
-        placeholder.Token.transform.position = placeholder.transform.position;
-        placeholder.OccupantType = occupantType;
-        var renderer = placeholder.GetComponent<Renderer>();
-        renderer.enabled = false;
-    }
-
-    public TokenRow this[int index]
-    {
-        get
+        public TicTacToeMove GetAndResetMove()
         {
-            return Rows[index];
+            var move = LatestPlayerMove;
+            LatestPlayerMove = null;
+            return move;
         }
 
-        set
+        public void PlacePlayerToken(int row, int col)
         {
-            Rows[index] = value;
+            Rows[row].Columns[col].PlaceToken(XPrefab);
         }
-    }
 
-    public TokenPlaceholder this[int firstDim, int secondDim]
-    {
-        get
+        public void PlaceAIToken(int row, int col)
         {
-            return Rows[firstDim][secondDim];
+            Rows[row].Columns[col].PlaceToken(OPrefab);
+        }
+
+        private void SetEnabled(bool enabled)
+        {
+            foreach (var row in Rows)
+            {
+                foreach (var token in row.Columns)
+                {
+                    token.IsEnabled = enabled;
+                }
+            }
+        }
+
+        public void Reset()
+        {
+            SetEnabled(true);
+
+            foreach (var row in Rows)
+            {
+                foreach (var token in row.Columns)
+                {
+                    token.Reset();
+                }
+            }
         }
     }
 }

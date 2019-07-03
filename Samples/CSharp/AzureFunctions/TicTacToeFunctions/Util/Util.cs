@@ -2,7 +2,7 @@
 
 namespace PlayFab.TicTacToeDemo.Util
 {
-    public class Util
+    public class ArrayUtil
     {
         public static T[,] Make2DArray<T>(T[] input, int height, int width)
         {

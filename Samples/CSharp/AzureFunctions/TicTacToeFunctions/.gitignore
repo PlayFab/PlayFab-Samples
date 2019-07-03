@@ -266,3 +266,6 @@ __pycache__/
 
 # VS Code
 .vscode/
+
+# PlayFab Local Execute Function
+**/ExecuteFunction.cs

@@ -20,20 +20,33 @@ namespace PlayFab.TicTacToeDemo.Functions
             ILogger log)
         {
             // Extract the context from the incoming request
-            var context = await FunctionContext<WinCheckRequest>.Create(entityRequest);
+            var context = await FunctionContext<PlayFabIdRequest>.Create(entityRequest);
 
-            // TODO: check if can be done with currentplayerid directly from context
-            // Extract the Player's PlayFabId from the request
             string playFabId = context.FunctionArgument.PlayFabId;
 
-            // Determine the winner (if any)
-            var winResult = WinCheckUtil.Check(context.FunctionArgument.State);
+            Settings.TrySetSecretKey(context.ApiSettings);
+            Settings.TrySetCloudName(context.ApiSettings);
 
-            // Update the leaderboard accordingly
-            await LeaderboardUtils.UpdateLeaderboard(playFabId, winResult.Winner);
+            // Grab the current player's game state
+            var state = await GameStateUtil.GetCurrentGameState(playFabId, context.ApiSettings, context.AuthenticationContext);
+            
+            var winCheckResult = WinCheckUtil.Check(state);
 
-            return winResult;
+            if (winCheckResult.Winner != GameWinnerType.NONE)
+            {
+                // Update the leaderboard accordingly
+                await LeaderboardUtils.UpdateLeaderboard(playFabId, winCheckResult.Winner);
 
+                // Store the game history
+                await GameStateUtil.AddGameStateHistory(state, playFabId, context.ApiSettings, context.AuthenticationContext);
+
+                // Clear the current game state
+                await GameStateUtil.UpdateCurrentGameState(new TicTacToeState(), playFabId, context.ApiSettings, context.AuthenticationContext);
+            }
+
+            
+
+            return winCheckResult;
         }
     }
 }

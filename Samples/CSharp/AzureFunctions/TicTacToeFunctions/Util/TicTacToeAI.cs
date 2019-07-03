@@ -21,16 +21,16 @@ namespace PlayFab.TicTacToeDemo.Util
                 // Turn the index into 2D board coordinates and return as a move
                 return new TicTacToeMove
                 {
-                    Row = randomIndex / 3,
-                    Col = randomIndex % 3
+                    row = randomIndex / 3,
+                    col = randomIndex % 3
                 };
             }
 
             // Return sentinel (-1, -1) move coordinates to indicate no more moves are possible
             return new TicTacToeMove
             {
-                Row = -1,
-                Col = -1
+                row = -1,
+                col = -1
             };
         }
 
@@ -39,8 +39,8 @@ namespace PlayFab.TicTacToeDemo.Util
             var move = Minimax(state, OccupantType.AI);
             return new TicTacToeMove
             {
-                Row = move.Index != null ? move.Index.Value / 3 : -1,
-                Col = move.Index != null ? move.Index.Value % 3 : -1
+                row = move.Index != null ? move.Index.Value / 3 : -1,
+                col = move.Index != null ? move.Index.Value % 3 : -1
             };
         }
 
@@ -53,20 +53,20 @@ namespace PlayFab.TicTacToeDemo.Util
         private static MinimaxMove Minimax(TicTacToeState state, OccupantType player)
         {
             var emptyIndices = EmptyIndices(state);
-            
+
             var winningResult = WinCheckUtil.Check(state);
-            
-            if (winningResult.Winner.Equals(OccupantType.HUMAN))
+
+            if (winningResult.Winner.Equals(GameWinnerType.PLAYER))
             {
-                return new MinimaxMove{Score = -10};
+                return new MinimaxMove { Score = -10 };
             }
-            else if (winningResult.Winner.Equals(OccupantType.AI))
+            else if (winningResult.Winner.Equals(GameWinnerType.AI))
             {
-                return new MinimaxMove{Score = 10};
+                return new MinimaxMove { Score = 10 };
             }
             else if (emptyIndices.Count == 0)
             {
-                return new MinimaxMove{Score = 0};
+                return new MinimaxMove { Score = 0 };
             }
 
             var moves = new List<MinimaxMove>();
@@ -78,10 +78,10 @@ namespace PlayFab.TicTacToeDemo.Util
                     Index = emptyIndices[i]
                 };
 
-                state.Data[emptyIndices[i]] = (int) player;
+                state.Data[emptyIndices[i]] = (int)player;
 
                 var result = player.Equals(OccupantType.AI) ?
-                    Minimax(state, OccupantType.HUMAN) :
+                    Minimax(state, OccupantType.PLAYER) :
                     Minimax(state, OccupantType.AI);
                 move.Score = result.Score;
 
@@ -103,7 +103,7 @@ namespace PlayFab.TicTacToeDemo.Util
                     }
                 }
             }
-            else 
+            else
             {
                 var bestScore = 10000;
                 for (int i = 0; i < moves.Count; i++)
@@ -121,7 +121,7 @@ namespace PlayFab.TicTacToeDemo.Util
 
         private static List<int> EmptyIndices(TicTacToeState state)
         {
-            List<int> emptyIndices = new List<int>();
+            var emptyIndices = new List<int>();
             for (int i = 0; i < 9; i++)
             {
                 if (state.Get(i).Equals((int) OccupantType.NONE))
@@ -129,7 +129,7 @@ namespace PlayFab.TicTacToeDemo.Util
                     emptyIndices.Add(i);
                 }
             }
-            
+
             return emptyIndices;
         }
     }

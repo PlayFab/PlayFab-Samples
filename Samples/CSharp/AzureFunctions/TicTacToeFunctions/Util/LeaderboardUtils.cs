@@ -11,24 +11,26 @@ namespace PlayFab.TicTacToeDemo.Util
 {
     public class LeaderboardUtils
     {
-        public static async Task UpdateLeaderboard(string playFabId, OccupantType winner)
+        public static async Task UpdateLeaderboard(string playFabId, GameWinnerType winner)
         {
             switch (winner)
             {
-                case OccupantType.HUMAN:
+                case GameWinnerType.PLAYER:
                     {
                         // Add a win to player's record
                         await UpdateStatValue(playFabId, "wins", 1);
                         break;
                     }
-                case OccupantType.AI:
+                case GameWinnerType.AI:
                     {
                         // Add a loss to player's record
                         await UpdateStatValue(playFabId, "losses", 1);
                         break;
                     }
-                default:
+                case GameWinnerType.DRAW:
                     {
+                        // Add a draw to player's record
+                        await UpdateStatValue(playFabId, "draws", 1);
                         break;
                     }
             }
