@@ -89,7 +89,7 @@ To run your Azure Functions locally, all you have to do is create a run-configur
 
 To "enable" local debugging and redirect the `ExecuteFunction` calls in your game client to not send requests to PlayFab and instead send them locally there are a few steps to follow:
 
-1) Download and insert an Azure Function called `ExecuteFunction` [found here]() into the same folder you decide to keep the rest of your functions in your Azure Functions app. In this case it would be `/Functions`.
+1) Download and insert an Azure Function called `ExecuteFunction` [found here](https://github.com/PlayFab/pf-af-devfuncs/blob/master/csharp/ExecuteFunction.cs) into the same folder you decide to keep the rest of your functions in your Azure Functions app. In this case it would be `/Functions`.
     * You should not make modifications to this Azure Function.
     * You should not deploy this Azure Function to your app on Azure, it's only useful when run locally.
     * It is adviced to not check-in this Azure Function to a VCS.

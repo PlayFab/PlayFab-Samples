@@ -12,7 +12,7 @@ To get this game running you need to setup the Azure Functions App provided for 
 
 ## Setup on PlayFab
 
-The setup process on PlayFab is explained in both this repository and the [Tic Tac Toe Functions repository](https://github.com/PlayFab/PlayFab-Samples/tree/master/Samples/CSharp/AzureFunctions/TicTacToeFunctionse). This setup however must only be done once.
+The setup process on PlayFab is explained in both this repository and the [Tic Tac Toe Functions repository](https://github.com/PlayFab/PlayFab-Samples/tree/master/Samples/CSharp/AzureFunctions/TicTacToeFunctions). This setup however must only be done once.
 
 #### Create a New PlayFab Title
 Create a new PlayFab Title and call it TicTacToe. More instructions on how to do this can be found [here](https://docs.microsoft.com/en-us/gaming/playfab/personas/pfab-account). Take note of the **Title ID** as you will need to enter it in the game's API clients. You can set this in `/Assets/Scripts/Constants.cs`
@@ -74,7 +74,7 @@ Within `/Models` you will find a series of data-structures that the game uses to
 
 **Note** that as practiced here, it is important for your types shared among your game client and Azure Functions to match.
 
-Although Azure Functions are able to receive fields in the payload with their names either capitalized or not, using the default serializer they will always respond with lower-cased field names. This can cause serialization issues and so your models must be constructed with this in mind. You will see an example of this in `TicTacToeMove` where both fields (`row` and `col`) are lower-cased as the type is the response type of `MakeRandomAIMove` and `MakeMinimaxAIMove` functions in the [Azure Functions App](https://github.com/PlayFab/PlayFab-Samples/tree/master/Samples/CSharp/AzureFunctions/TicTacToeFunctionse).
+Although Azure Functions are able to receive fields in the payload with their names either capitalized or not, using the default serializer they will always respond with lower-cased field names. This can cause serialization issues and so your models must be constructed with this in mind. You will see an example of this in `TicTacToeMove` where both fields (`row` and `col`) are lower-cased as the type is the response type of `MakeRandomAIMove` and `MakeMinimaxAIMove` functions in the [Azure Functions App](https://github.com/PlayFab/PlayFab-Samples/tree/master/Samples/CSharp/AzureFunctions/TicTacToeFunctions).
 
 ## Game Flow
 
