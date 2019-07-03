@@ -128,7 +128,7 @@ Once the deployment is completed, you will be able to see your functions under t
 
 You can easily get the URL of any of these functions to register with PlayFab later (explained below) by right clicking the function and selecting `Copy Function URL`.
 
-You can also upload all local application settings set in `local.settings.json` from here by right clicking the `Application Settings` tab of your Azure Functions App, click `Upload Local Settings`, and select the `local.settings.json` file in the local folder of this app. **Note that this will overwrite remote settings that are different locally, as well as ignore all settings that are the same or do not exist locally but exist remotely.
+You can also upload all local application settings set in `local.settings.json` from here by right clicking the `Application Settings` tab of your Azure Functions App, click `Upload Local Settings`, and select the `local.settings.json` file in the local folder of this app. **Note that this will overwrite remote settings that are different locally, as well as ignore all settings that are the same or do not exist locally but exist remotely**.
 
 ## Setup on PlayFab
 The setup process on PlayFab is explained in both this repository and the [Tic Tac Toe Unity Game repository](https://github.com/PlayFab/PlayFab-Samples/tree/master/Samples/Unity/TicTacToe). This setup however must only be done once.
@@ -180,6 +180,8 @@ For example in this case when running locally we would either have to change the
 ## Local Debugging
 To run your Azure Functions locally, all you have to do is create a run-configuration (which is done automatically by VS Code and Visual Studio once you open an Azure Functions App), and hit `F5` in the IDE. This will start up a new Azure Functions run-time locally, and host your functions by default on `http://localhost:7071/api/[function name]`.
 
+While running functions locally, it is important to have `PLAYFAB_TITLE_ID` and `PLAYFAB_DEV_SECRET_KEY` defined in your `local.settings.json` file, under the `Values` field.
+
 To "enable" local debugging and redirect the `ExecuteFunction` calls in your game client to not send requests to PlayFab and instead send them locally there are a few steps to follow:
 
 1) Download and insert an Azure Function called `ExecuteFunction` [found here](https://github.com/PlayFab/pf-af-devfuncs/blob/master/csharp/ExecuteFunction.cs) into the same folder you decide to keep the rest of your functions in your Azure Functions app. In this case it would be `/Functions`.
@@ -196,21 +198,22 @@ To "enable" local debugging and redirect the `ExecuteFunction` calls in your gam
         "LocalApiServer": "http://localhost:7071/api/"
     }
     ```
-    * The value of `LocalApiServer` must match the URL your function app is being hosted on. By default, the Azure Functions run-time sets this to `http://localhost:7071/api/` and hence [unless you change it manually](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json#http) in the app's `host.json` file, the above file contents will work.
-    * If you do want to change the route prefix to be something other than `/api/`, the app's `host.json` file will look like:
+    * The value of `LocalApiServer` must match the URL your function app is being hosted on. By default, the Azure Functions run-time sets this to `http://localhost:7071/api/`. However, it will not explicitly specify it in `host.json` which is why the next step is crucial to local-debugging.
+3. Edit the `host.json` file to look like the following:
     ```
     {
         "version": "2.0",
         "extensions": {
             "http": {
-                "routePrefix": "foo"
+                "routePrefix": "api"
             }
         }
     }
     ```
-    and the `playfab.local.settings.json` file must be updated accordingly. **It is important that you end the `LocalApiServer` string with a forward slash `/`**.
+    If you wish to have something other than `api` as your route prefix, you must update `playfab.local.settings.json` to account for it. **It is important that you end the `LocalApiServer` string with a forward slash `/`**.
     * Unless absolutely necessary we suggest taking the default values of both the `routePrefix` and `port` ([how to change the port](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#local-settings-file)).
-    * (Note that the following step will be done automatically through the PlayFab VS Code extension once it is released)
+
+(Note that the above steps will be done automatically through the PlayFab VS Code extension once it is released)
 
 ## PlayFab API Calls from Azure Functions
 A good example for where this is useful is stat updates and player data. Let's take the `MakePlayerMove` Azure Function in this app as an example. At it's core, this function takes the coordinates of a move a player wants to make on a 3x3 Tic Tac Toe board, loads the state of that player's board from [PlayFab's Player Data](https://docs.microsoft.com/en-us/gaming/playfab/features/data/playerdata/quickstart) validates that the move requested can be made, and changes the state of the coordinates specified in the request to indicate the player placed a token there.
