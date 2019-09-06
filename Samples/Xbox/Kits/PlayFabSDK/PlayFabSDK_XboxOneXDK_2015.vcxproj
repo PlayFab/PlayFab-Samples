@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Durango">
+      <Configuration>Release</Configuration>
+      <Platform>Durango</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Durango">
+      <Configuration>Profile</Configuration>
+      <Platform>Durango</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Durango">
+      <Configuration>Debug</Configuration>
+      <Platform>Durango</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <RootNamespace>PlayFabSDK_XboxOneXDK_2017</RootNamespace>
+    <ProjectGuid>{006ecb8d-9e81-4423-a923-b7b53c336d67}</ProjectGuid>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <Keyword>Win32Proj</Keyword>
+    <ApplicationEnvironment>title</ApplicationEnvironment>
+    <!-- - - - -->
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <TargetRuntime>Native</TargetRuntime>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Durango'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Durango'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Durango'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(TargetPlatformSdkPath)\ExtensionSDKs\Xbox.Services.API.Cpp\8.0\DesignTime\CommonConfiguration\Neutral\Xbox.Services.API.Cpp.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Durango'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(TargetPlatformSdkPath)\ExtensionSDKs\Xbox.Services.API.Cpp\8.0\DesignTime\CommonConfiguration\Neutral\Xbox.Services.API.Cpp.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(TargetPlatformSdkPath)\ExtensionSDKs\Xbox.Services.API.Cpp\8.0\DesignTime\CommonConfiguration\Neutral\Xbox.Services.API.Cpp.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Durango'">
+    <ReferencePath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</ReferencePath>
+    <LibraryPath>$(Console_SdkLibPath)</LibraryPath>
+    <LibraryWPath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</LibraryWPath>
+    <IncludePath>$(Console_SdkIncludeRoot)</IncludePath>
+    <ExecutablePath>$(Console_SdkRoot)bin;$(VCInstallDir)bin\x86_amd64;$(VCInstallDir)bin;$(WindowsSDK_ExecutablePath_x86);$(VSInstallDir)Common7\Tools\bin;$(VSInstallDir)Common7\tools;$(VSInstallDir)Common7\ide;$(ProgramFiles)\HTML Help Workshop;$(MSBuildToolsPath32);$(FxCopDir);$(PATH);</ExecutablePath>
+    <OutDir>Bin\XboxOneXDK_2015\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>Bin\XboxOneXDK_2015\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Durango'">
+    <ReferencePath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</ReferencePath>
+    <LibraryPath>$(Console_SdkLibPath)</LibraryPath>
+    <LibraryWPath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</LibraryWPath>
+    <IncludePath>$(Console_SdkIncludeRoot)</IncludePath>
+    <ExecutablePath>$(Console_SdkRoot)bin;$(VCInstallDir)bin\x86_amd64;$(VCInstallDir)bin;$(WindowsSDK_ExecutablePath_x86);$(VSInstallDir)Common7\Tools\bin;$(VSInstallDir)Common7\tools;$(VSInstallDir)Common7\ide;$(ProgramFiles)\HTML Help Workshop;$(MSBuildToolsPath32);$(FxCopDir);$(PATH);</ExecutablePath>
+    <IntDir>Bin\XboxOneXDK_2015\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>Bin\XboxOneXDK_2015\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'">
+    <ReferencePath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</ReferencePath>
+    <LibraryPath>$(Console_SdkLibPath)</LibraryPath>
+    <LibraryWPath>$(Console_SdkLibPath);$(Console_SdkWindowsMetadataPath)</LibraryWPath>
+    <IncludePath>$(Console_SdkIncludeRoot)</IncludePath>
+    <ExecutablePath>$(Console_SdkRoot)bin;$(VCInstallDir)bin\x86_amd64;$(VCInstallDir)bin;$(WindowsSDK_ExecutablePath_x86);$(VSInstallDir)Common7\Tools\bin;$(VSInstallDir)Common7\tools;$(VSInstallDir)Common7\ide;$(ProgramFiles)\HTML Help Workshop;$(MSBuildToolsPath32);$(FxCopDir);$(PATH);</ExecutablePath>
+    <OutDir>Bin\XboxOneXDK_2015\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>Bin\XboxOneXDK_2015\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Durango'">
+    <Link>
+      <AdditionalDependencies>combase.lib;kernelx.lib;uuid.lib;</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+    <ClCompile>
+      <AdditionalUsingDirectories>$(Console_SdkPackagesRoot);$(Console_SdkWindowsMetadataPath);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>NDEBUG;__WRL_NO_DEFAULT_LIB__;_LIB;%(PreprocessorDefinitions);ENABLE_PLAYFABENTITY_API</PreprocessorDefinitions>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Durango'">
+    <Link>
+      <AdditionalDependencies>combase.lib;kernelx.lib;uuid.lib;</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+    <ClCompile>
+      <AdditionalUsingDirectories>$(Console_SdkPackagesRoot);$(Console_SdkWindowsMetadataPath);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>NDEBUG;__WRL_NO_DEFAULT_LIB__;_LIB;PROFILE;%(PreprocessorDefinitions);ENABLE_PLAYFABENTITY_API</PreprocessorDefinitions>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'">
+    <Link>
+      <AdditionalDependencies>combase.lib;kernelx.lib;uuid.lib;</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+    <ClCompile>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalUsingDirectories>$(Console_SdkPackagesRoot);$(Console_SdkWindowsMetadataPath);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;__WRL_NO_DEFAULT_LIB__;_LIB;%(PreprocessorDefinitions);ENABLE_PLAYFABENTITY_API</PreprocessorDefinitions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\playfab\PlayFabAdminApi.h" />
+    <ClInclude Include="include\playfab\PlayFabAdminDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabAuthenticationApi.h" />
+    <ClInclude Include="include\playfab\PlayFabAuthenticationDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabBaseModel.h" />
+    <ClInclude Include="include\playfab\PlayFabClientApi.h" />
+    <ClInclude Include="include\playfab\PlayFabClientDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabCloudScriptApi.h" />
+    <ClInclude Include="include\playfab\PlayFabCloudScriptDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabDataApi.h" />
+    <ClInclude Include="include\playfab\PlayFabDataDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabEntityApi.h" />
+    <ClInclude Include="include\playfab\PlayFabEntityDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabError.h" />
+    <ClInclude Include="include\playfab\PlayFabEventsApi.h" />
+    <ClInclude Include="include\playfab\PlayFabEventsDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabGroupsApi.h" />
+    <ClInclude Include="include\playfab\PlayFabGroupsDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabHttp.h" />
+    <ClInclude Include="include\playfab\PlayFabMatchmakerApi.h" />
+    <ClInclude Include="include\playfab\PlayFabMatchmakerDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabProfilesApi.h" />
+    <ClInclude Include="include\playfab\PlayFabProfilesDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabServerApi.h" />
+    <ClInclude Include="include\playfab\PlayFabServerDataModels.h" />
+    <ClInclude Include="include\playfab\PlayFabSettings.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\PlayFabAdminApi.cpp" />
+    <ClCompile Include="source\PlayFabAuthenticationApi.cpp" />
+    <ClCompile Include="source\PlayFabClientApi.cpp" />
+    <ClCompile Include="source\PlayFabCloudScriptApi.cpp" />
+    <ClCompile Include="source\PlayFabDataApi.cpp" />
+    <ClCompile Include="source\PlayFabEntityApi.cpp" />
+    <ClCompile Include="source\PlayFabError.cpp" />
+    <ClCompile Include="source\PlayFabEventsApi.cpp" />
+    <ClCompile Include="source\PlayFabGroupsApi.cpp" />
+    <ClCompile Include="source\PlayFabHttp.cpp" />
+    <ClCompile Include="source\PlayFabMatchmakerApi.cpp" />
+    <ClCompile Include="source\PlayFabProfilesApi.cpp" />
+    <ClCompile Include="source\PlayFabServerApi.cpp" />
+    <ClCompile Include="source\PlayFabSettings.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

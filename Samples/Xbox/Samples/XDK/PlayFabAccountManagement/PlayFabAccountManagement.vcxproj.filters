@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>2686a3c2-ad92-4ee8-8fd4-d49d386bb00d</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>66a0c368-4ff5-4069-ae2b-7162dffd092e</UniqueIdentifier>
+      <Extensions>bmp;dds;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="ATG Tool Kit">
+      <UniqueIdentifier>81e7c37c-4040-4744-8c19-9d61851c0fb6</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Xbox Live Tool Kit">
+      <UniqueIdentifier>00351bae-e3f0-439f-bcf7-12315e993b18</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayFab">
+      <UniqueIdentifier>3285c470-746f-4e64-b5bb-e773316255fe</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{8ba7e6ff-8c8f-4215-ace7-f1b336ade8fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="PlayFabAccountManagement.h" />
+    <ClInclude Include="StepTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Telemetry.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\ATGColors.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\LiveTK\LiveResourcesXDK.h">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\LiveTK\LiveInfoHUD.h">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\PlayFabSDK\PlayFabTK\PlayFabResourcesXDK.h">
+      <Filter>PlayFab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\SampleGUI.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\TextConsole.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\ControllerFont.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\CSVReader.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\DebugDraw.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="PlayFabAccountManagement.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="DeviceResources.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\LiveTK\LiveResourcesXDK.cpp">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\LiveTK\LiveInfoHUD.cpp">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\PlayFabSDK\PlayFabTK\PlayFabResourcesXDK.cpp">
+      <Filter>PlayFab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\ATGTK\SampleGUI.cpp">
+      <Filter>ATG Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\ATGTK\TextConsole.cpp">
+      <Filter>ATG Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\ATGTK\DebugDraw.cpp">
+      <Filter>ATG Tool Kit</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\GamerPic.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\WideLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Media\Fonts\Courier_16.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_36_Bold.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_36_Italic.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="Assets\SampleUI.csv">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\XboxOneController.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\XboxOneControllerLegend.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\XboxOneControllerLegendSmall.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\XboxOneControllerSmall.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="Readme.docx">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="PlayFabAccountManagement_Readme_ja-jp.docx">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="PlayFabAccountManagement_Readme_ko-kr.docx">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="PlayFabAccountManagement_Readme_zh-cn.docx">
+      <Filter>Documentation</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_18.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_18_Bold.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_18_Italic.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_22.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_22_Bold.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_22_Italic.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_24.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_34.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+    <Media Include="..\..\..\Media\Fonts\SegoeUI_36.spritefont">
+      <Filter>Assets</Filter>
+    </Media>
+  </ItemGroup>
+</Project>

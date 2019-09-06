@@ -1,0 +1,12 @@
+#ITEM,ID,X,Y,DX,DY,PARAMETERS
+OVERLAY,2000,0,0,1920,1080
+LEGEND,2001,100,645,525,500,[DPad] Select Scenario|[A] Run Scenario
+BUTTON,2101,100,150,525,50,Change Xbox profile
+BUTTON,2102,100,205,525,50,Create and link new PlayFab account
+BUTTON,2103,100,260,525,50,Link to existing PlayFab account
+BUTTON,2104,100,315,525,50,Unlink from PlayFab account
+BUTTON,2105,100,370,525,50,Set display name for this game
+BUTTON,2106,100,425,525,50,Add/update email address
+BUTTON,2107,100,480,525,50,Remove email address
+BUTTON,2110,100,535,525,50,Log into PlayFab account w/ Xbox
+BUTTON,2111,100,590,525,50,Log into PlayFab account w/ username

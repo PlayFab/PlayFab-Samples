@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>a6995e93-b0bf-43db-9edc-048d645e92d6</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>bf5c26f1-0457-4b62-9e44-0c423d56a5ad</UniqueIdentifier>
+      <Extensions>bmp;dds;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="ATG Tool Kit">
+      <UniqueIdentifier>60686189-3ed5-4f80-b6fa-6719914264ef</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Xbox Live Tool Kit">
+      <UniqueIdentifier>d1fbc134-c993-47c3-a52f-aca55f88b9f1</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{bdb8211f-660c-46b1-9489-5b5e44afc4d8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="PlayFabWebAuthBrokerFB.h" />
+    <ClInclude Include="StepTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Telemetry.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\ATGColors.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\LiveTK\LiveResourcesXDK.h">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\LiveTK\LiveInfoHUD.h">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="FacebookAuthHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\TextConsole.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\ControllerFont.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\CSVReader.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Kits\ATGTK\SampleGUI.h">
+      <Filter>ATG Tool Kit</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout.h" />
+    <ClInclude Include="PlayerProfileSummary.h" />
+    <ClInclude Include="SampleUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="PlayFabWebAuthBrokerFB.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="DeviceResources.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\LiveTK\LiveResourcesXDK.cpp">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\LiveTK\LiveInfoHUD.cpp">
+      <Filter>Xbox Live Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="FacebookAuthHelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\ATGTK\TextConsole.cpp">
+      <Filter>ATG Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Kits\ATGTK\SampleGUI.cpp">
+      <Filter>ATG Tool Kit</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerProfileSummary.cpp" />
+    <ClCompile Include="SampleUI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\GamerPic.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\WideLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\CheckMark.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\FailureX.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_18.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_18_Bold.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_36.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\Courier_16.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="Assets\Layout.csv">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_18_Italic.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_36_Bold.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_36_Italic.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\XboxOneControllerLegend.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\XboxOneControllerLegendSmall.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_24.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_22.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_22_Bold.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\..\Media\Fonts\SegoeUI_22_Italic.spritefont">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="Readme.docx">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="PlayFabWebAuthBrokerFB_Readme_ja-jp.docx">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="PlayFabWebAuthBrokerFB_Readme_ko-kr.docx">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="PlayFabWebAuthBrokerFB_Readme_zh-cn.docx">
+      <Filter>Documentation</Filter>
+    </None>
+  </ItemGroup>
+</Project>
