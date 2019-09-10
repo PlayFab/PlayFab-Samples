@@ -1,0 +1,8 @@
+#ITEM,ID,X,Y,DX,DY,PARAMETERS
+OVERLAY,2000,0,0,1920,1080
+LEGEND,2001,82,200,525,500,Use the[DPad] to select a scenario|Press[A] to run the scenario
+BUTTON,2101,82,300,525,50,Change Xbox profile
+BUTTON,2102,82,400,525,50,Add character
+BUTTON,2103,82,560,525,50,Delete character 1
+BUTTON,2105,82,720,525,50,Delete character 2
+BUTTON,2107,82,880,525,50,Delete character 3

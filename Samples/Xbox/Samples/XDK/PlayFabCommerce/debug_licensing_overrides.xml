@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This file is used to enable the Windows Service Store API to function, see Readme for details -->
+<LicenseOverrides>
+<!-- atg playfab economy -->
+  <ContentId>{f8b5cd0c-fea3-4cc5-bdbf-e433a89b3365}</ContentId>
+  <ProductId>{331512e6-bc91-44df-98fb-8414f8c0ec04}</ProductId>
+  <EKBID>{03EEC8D7-D6E4-45E9-8DA4-7E488150B900}</EKBID>
+</LicenseOverrides>
