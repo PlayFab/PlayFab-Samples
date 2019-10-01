@@ -214,7 +214,7 @@ void NetworkManager::CreateAndConnectToNetwork(std::vector<std::string>& playerI
     PartyNetworkDescriptor networkDescriptor = {};
 
     // Create a new network descriptor
-    PartyManager::GetSingleton().CreateNewNetwork(
+    err = PartyManager::GetSingleton().CreateNewNetwork(
         m_localUser,                                // Local User
         &cfg,                                       // Network Config
         0,                                          // Region List Count
