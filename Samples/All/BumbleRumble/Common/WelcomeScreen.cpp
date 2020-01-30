@@ -34,6 +34,7 @@ WelcomeScreen::WelcomeScreen() : MenuScreen()
                 {
                     if (success)
                     {
+                        Managers::Get<NetworkManager>()->Initialize();
                         Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<MainMenuScreen>());
                     }
                     else

@@ -50,8 +50,8 @@ public:
     bool IsGameHost();
     std::string& EntityId() { return m_entityKey.Id; }
     std::string& EntityToken() { return m_entityToken; }
-    void GetHostNetwork(std::function<void(std::string)> callback);
-    void WriteHostNetwork(std::string network);
+    void GetHostNetwork(std::function<void(std::string, std::string)> callback);
+    void WriteHostNetwork(std::string invite, std::string network);
     void ClearHostNetwork();
     void CancelMatchmaking();
 

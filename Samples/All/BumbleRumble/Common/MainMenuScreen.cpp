@@ -27,7 +27,6 @@ MainMenuScreen::MainMenuScreen() : MenuScreen()
     m_menuEntries.push_back(MenuEntry("Join a game",
         []()
         {
-            Managers::Get<NetworkManager>()->Initialize();
             Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<GameLobbyScreen>());
         }));
 

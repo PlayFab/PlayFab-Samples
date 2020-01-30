@@ -13,6 +13,7 @@
 #include "StepTimer.h"
 
 #include "playfab\PlayFabClientApi.h"
+#include "playfab\PlayFabApiSettings.h"
 #include "playfab\PlayFabSettings.h"
 #include "playfab\PlayFabAuthenticationApi.h"
 #include "playfab\PlayFabEventsApi.h"
@@ -37,7 +38,7 @@ PlayFabManager::~PlayFabManager()
 
 void PlayFabManager::Initialize()
 {
-    PlayFabSettings::titleId = c_pfTitleId;
+    PlayFabSettings::staticSettings->titleId = c_pfTitleId;
 
     m_matchTimer.SetTargetElapsedSeconds(13.0f);
     m_matchTimer.SetFixedTimeStep(true);
@@ -213,42 +214,19 @@ void PlayFabManager::PollMatchmaking()
         [this](const MultiplayerModels::GetMatchmakingTicketResult& result, void*)
         {
             // Check if the match was canceled
-
-            // Something seems broken in the API here; this code should work but doesn't
-            //if (result.pfCancellationReason.notNull())
-             //{
-             //   switch (result.pfCancellationReason)
-             //   {
-             //   case MultiplayerModels::CancellationReason::CancellationReasonInternal:
-             //       m_matchError = "Canceled by Internal";
-             //       break;
-
-             //   case MultiplayerModels::CancellationReason::CancellationReasonRequested:
-             //       m_matchError = "Canceled by Request";
-             //       break;
-
-             //   case MultiplayerModels::CancellationReason::CancellationReasonTimeout:
-             //       m_matchError = "Canceled by Timeout";
-             //       break;
-             //   }
-            if (result.Status == "Canceled")
+            if (!result.CancellationReasonString.empty())
             {
-                if (m_matchStatus == MatchmakingStatus::CancellingMatch)
-                {
-                    m_matchError = "Matchmaking canceled";
-                }
-                else
-                {
-                    m_matchError = "Matchmaking Timed Out";
-                }
+                m_matchError = "Canceled by " + result.CancellationReasonString;
                 m_matchStatus = MatchmakingStatus::MatchingFailed;
             }
-
-            // See if we have a match
-            if (!result.MatchId.empty())
+            else
             {
-                m_matchId = result.MatchId;
-                RetrieveMatchResults();
+                // See if we have a match
+                if (!result.MatchId.empty())
+                {
+                    m_matchId = result.MatchId;
+                    RetrieveMatchResults();
+                }
             }
 
             m_polling = false;
@@ -362,7 +340,7 @@ std::vector<std::string> PlayFabManager::MatchPlayerIds()
     return playerIds;
 }
 
-void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
+void PlayFabManager::GetHostNetwork(std::function<void(std::string, std::string)> callback)
 {
     DEBUGLOG("PlayFabManager::GetHostNetwork()\n");
 
@@ -371,7 +349,7 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
         if (callback != nullptr)
         {
             std::string empty;
-            callback(empty);
+            callback(empty, empty);
         }
 
         return;
@@ -397,7 +375,7 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
                 DEBUGLOG("CloudScript error occured: %hs\n", result.Error->Message.c_str());
                 if (callback != nullptr)
                 {
-                    callback(empty);
+                    callback(empty, empty);
                 }
             }
             else
@@ -406,7 +384,7 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
                 {
                     if (callback != nullptr)
                     {
-                        callback(empty);
+                        callback(empty, empty);
                     }
                 }
                 else
@@ -414,9 +392,10 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
                     if (callback != nullptr)
                     {
                         auto network = result.FunctionResult["network"]["Value"].asString();
+                        auto invite = result.FunctionResult["invite"]["Value"].asString();
 
-                        DEBUGLOG("GetHostNetwork: %hs\n", network.c_str());
-                        callback(network);
+                        DEBUGLOG("GetHostNetwork: %hs, %hs\n", invite.c_str(), network.c_str());
+                        callback(invite, network);
                     }
                 }
             }
@@ -427,12 +406,12 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
             if (callback != nullptr)
             {
                 std::string empty;
-                callback(empty);
+                callback(empty, empty);
             }
         });
 }
 
-void PlayFabManager::WriteHostNetwork(std::string network)
+void PlayFabManager::WriteHostNetwork(std::string invite, std::string network)
 {
     DEBUGLOG("PlayFabManager::WriteHostNetwork('%hs')\n", network.c_str());
 
@@ -440,6 +419,7 @@ void PlayFabManager::WriteHostNetwork(std::string network)
 
     param["entity"] = m_entityKey.ToJson();
     param["network"] = network;
+    param["invite"] = invite;
 
     ClientModels::ExecuteCloudScriptRequest request;
 

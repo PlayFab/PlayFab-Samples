@@ -78,7 +78,8 @@ handlers.set_game_network = function (args, context) {
   var updateRequest = {
     SharedGroupId: args["entity"].Id,
     Data: {
-      "network": args["network"]
+      "network": args["network"],
+      "invite": args["invite"]
     }
   };
 
@@ -98,7 +99,7 @@ handlers.clear_game_network = function (args, context) {
   try {
     var updateRequest = {
       SharedGroupId: args["entity"].Id,
-      KeysToRemove: [ "network" ]
+      KeysToRemove: [ "network", "invite" ]
     };
 
     server.UpdateSharedGroupData(updateRequest);
@@ -110,6 +111,7 @@ handlers.clear_game_network = function (args, context) {
 ### Update History
 
  - Apr 2019, Initial release
+ - Jan 2020, Update to the latest PlayFab Party and PlayFab SDKs
 
 ### Privacy Statement
 

@@ -18,6 +18,24 @@
 
 using namespace BumbleRumble;
 
+namespace
+{
+    std::string NewGuid()
+    {
+        GUID id = {};
+        char buf[64] = {};
+
+        CoCreateGuid(&id);
+
+        sprintf_s(buf, "%08lX-%04hX-%04hX-%02hhX%02hhX-%02hhX%02hhX%02hhX%02hhX%02hhX%02hhX",
+            id.Data1, id.Data2, id.Data3,
+            id.Data4[0], id.Data4[1], id.Data4[2], id.Data4[3],
+            id.Data4[4], id.Data4[5], id.Data4[6], id.Data4[7]);
+
+        return std::string(buf);
+    }
+}
+
 GameStateManager::GameStateManager() :
     m_state(GameState::Initialize),
     m_godMode(false),
@@ -117,7 +135,7 @@ void GameStateManager::Update()
         {
             m_gettingHost = true;
 
-            Managers::Get<PlayFabManager>()->GetHostNetwork([this](std::string network)
+            Managers::Get<PlayFabManager>()->GetHostNetwork([this](std::string invite, std::string network)
             {
                 if (!network.empty())
                 {
@@ -125,10 +143,14 @@ void GameStateManager::Update()
 
                     GotoConnectingToServer();
 
-                    Managers::Get<NetworkManager>()->ConnectToNetwork(network.c_str(), [this]()
-                    {
-                        GotoWaitingToStart();
-                    });
+                    Managers::Get<NetworkManager>()->ConnectToNetwork(
+                        invite.c_str(),
+                        network.c_str(),
+                        [this]()
+                        {
+                            GotoWaitingToStart();
+                        }
+                        );
                 }
                 else
                 {
@@ -341,14 +363,14 @@ void GameStateManager::GotoAllocatingServer()
     m_TimeUntilMatchStart = -1;
     m_state = GameState::AllocatingServer;
 
-    auto playerIds = Managers::Get<PlayFabManager>()->MatchPlayerIds();
+    auto inviteId = NewGuid();
 
     Managers::Get<NetworkManager>()->CreateAndConnectToNetwork(
-        playerIds,
-        [this](std::string descriptor)
+        inviteId.c_str(),
+        [this, inviteId](std::string descriptor)
         {
             DEBUGLOG("Network Created, send Descriptor to lobby service\n");
-            Managers::Get<PlayFabManager>()->WriteHostNetwork(descriptor);
+            Managers::Get<PlayFabManager>()->WriteHostNetwork(inviteId, descriptor);
             GotoWaitingToStart();
         }
         );
