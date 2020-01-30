@@ -47,6 +47,7 @@ void GamePlayScreen::HandleInput()
     if (localShip->Active() && !stateManager->IsGameWon())
     {
         localShip->Input = ShipInput(inputManager->CurrentGamePadState);
+        localShip->Input.Add(ShipInput(inputManager->CurrentKeyboardState()));
     }
     else
     {

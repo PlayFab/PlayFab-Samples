@@ -58,7 +58,7 @@ void GameLobbyScreen::HandleInput()
     auto inputManager = Managers::Get<InputManager>();
     auto localPlayerState = Managers::Get<GameStateManager>()->GetPlayerState(Managers::Get<PlayFabManager>()->EntityId());
 
-    if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::LeftShoulder))
+    if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::LeftShoulder) || inputManager->IsNewKeyPress(Keyboard::Keys::Left))
     {
         // change ship color
         localPlayerState->ShipColor((localPlayerState->ShipColor() + 1) % Ship::Colors.size());
@@ -70,7 +70,7 @@ void GameLobbyScreen::HandleInput()
                 )
             );
     }
-    else if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::RightShoulder))
+    else if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::RightShoulder) || inputManager->IsNewKeyPress(Keyboard::Keys::Right))
     {
         // change ship design
         localPlayerState->ShipVariation((localPlayerState->ShipVariation() + 1) % Ship::MaxVariations);
