@@ -43,40 +43,6 @@ static const char* s_languageNames[s_numberOfLanguages] =
     "Chinese (Mandarin, Traditional)", "Chinese (Taiwanese Mandarin)", "Thai (Thailand)"
 };
 
-static const char* s_languageProfiles[s_numberOfLanguages] =
-{
-    "Microsoft Server Speech Text to Speech Voice (ar-EG, Hoda)",
-    "Microsoft Server Speech Text to Speech Voice (ca-ES, HerenaRUS)", 
-    "Microsoft Server Speech Text to Speech Voice (da-DK, HelleRUS)",
-    "Microsoft Server Speech Text to Speech Voice (de-DE, Hedda)",
-    "Microsoft Server Speech Text to Speech Voice (en-AU, Catherine)",
-    "Microsoft Server Speech Text to Speech Voice (en-CA, Linda)",
-    "Microsoft Server Speech Text to Speech Voice (en-GB, Susan, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (en-IN, Heera, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (en-IE, Sean)",
-    "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-    "Microsoft Server Speech Text to Speech Voice (es-ES, Laura, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (es-MX, HildaRUS)",
-    "Microsoft Server Speech Text to Speech Voice (fi-FI, HeidiRUS)",
-    "Microsoft Server Speech Text to Speech Voice (fr-CA, Caroline)",
-    "Microsoft Server Speech Text to Speech Voice (fr-FR, Julie, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (hi-IN, Kalpana, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (it-IT, LuciaRUS)",
-    "Microsoft Server Speech Text to Speech Voice (ja-JP, Ayumi, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (ko-KR, HeamiRUS)",
-    "Microsoft Server Speech Text to Speech Voice (nb-NO, HuldaRUS)",
-    "Microsoft Server Speech Text to Speech Voice (nl-NL, HannaRUS)",
-    "Microsoft Server Speech Text to Speech Voice (pl-PL, PaulinaRUS)",
-    "Microsoft Server Speech Text to Speech Voice (pt-BR, HeloisaRUS)",
-    "Microsoft Server Speech Text to Speech Voice (pt-PT, HeliaRUS)",
-    "Microsoft Server Speech Text to Speech Voice (ru-RU, Irina, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (sv-SE, HedvigRUS)",
-    "Microsoft Server Speech Text to Speech Voice (zh-CN, Yaoyao, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (zh-HK, Tracy, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (zh-TW, Yating, Apollo)",
-    "Microsoft Server Speech Text to Speech Voice (th-TH, Pattara)"
-};
-
 enum MenuIndex
 {
     LANGUAGE_CODE
@@ -128,8 +94,7 @@ OptionsPopUpScreen::OptionsPopUpScreen() : MenuScreen()
 
             Managers::Get<NetworkManager>()->SetLanguageCode(
                 s_languageCodes[m_currentIndex],
-                s_languageNames[m_currentIndex],
-                s_languageProfiles[m_currentIndex]
+                s_languageNames[m_currentIndex]
                 );
         },
         value));

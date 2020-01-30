@@ -18,6 +18,8 @@ sysinfo.txt
 *.user
 *.unityproj
 *.booproj
+.vs/
+packages/
 # ============ #
 # OS generated #
 # ============ #

@@ -362,7 +362,7 @@ std::vector<std::string> PlayFabManager::MatchPlayerIds()
     return playerIds;
 }
 
-void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
+void PlayFabManager::GetHostNetwork(std::function<void(std::string, std::string)> callback)
 {
     DEBUGLOG("PlayFabManager::GetHostNetwork()\n");
 
@@ -371,7 +371,7 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
         if (callback != nullptr)
         {
             std::string empty;
-            callback(empty);
+            callback(empty, empty);
         }
 
         return;
@@ -397,7 +397,7 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
                 DEBUGLOG("CloudScript error occured: %hs\n", result.Error->Message.c_str());
                 if (callback != nullptr)
                 {
-                    callback(empty);
+                    callback(empty, empty);
                 }
             }
             else
@@ -406,7 +406,7 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
                 {
                     if (callback != nullptr)
                     {
-                        callback(empty);
+                        callback(empty, empty);
                     }
                 }
                 else
@@ -414,9 +414,10 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
                     if (callback != nullptr)
                     {
                         auto network = result.FunctionResult["network"]["Value"].asString();
+                        auto invite = result.FunctionResult["invite"]["Value"].asString();
 
-                        DEBUGLOG("GetHostNetwork: %hs\n", network.c_str());
-                        callback(network);
+                        DEBUGLOG("GetHostNetwork: %hs, %hs\n", invite.c_str(), network.c_str());
+                        callback(invite, network);
                     }
                 }
             }
@@ -427,12 +428,12 @@ void PlayFabManager::GetHostNetwork(std::function<void(std::string)> callback)
             if (callback != nullptr)
             {
                 std::string empty;
-                callback(empty);
+                callback(empty, empty);
             }
         });
 }
 
-void PlayFabManager::WriteHostNetwork(std::string network)
+void PlayFabManager::WriteHostNetwork(std::string invite, std::string network)
 {
     DEBUGLOG("PlayFabManager::WriteHostNetwork('%hs')\n", network.c_str());
 
@@ -440,6 +441,7 @@ void PlayFabManager::WriteHostNetwork(std::string network)
 
     param["entity"] = m_entityKey.ToJson();
     param["network"] = network;
+    param["invite"] = invite;
 
     ClientModels::ExecuteCloudScriptRequest request;
 
