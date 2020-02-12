@@ -1,4 +1,4 @@
-﻿Log file open, 02/11/20 14:00:53
+﻿Log file open, 02/12/20 14:05:54
 LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
 LogWindows: File 'aqProf.dll' does not exist
 LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
@@ -9,7 +9,7 @@ LogConsoleResponse: Display: Failed to find resolution value strings in scalabil
 LogInit: Display: Running engine for game: DemoBluePrint
 LogPlatformFile: Not using cached read wrapper
 LogTaskGraph: Started task graph with 5 named threads and 35 total threads with 3 sets of task threads.
-LogStats: Stats thread started at 0.155441
+LogStats: Stats thread started at 0.184608
 LogD3D11RHI: Loaded GFSDK_Aftermath_Lib.x64.dll
 LogICUInternationalization: ICU TimeZone Detection - Raw Offset: -8:00, Platform Override: ''
 LogPluginManager: Mounting plugin Paper2D
@@ -53,6 +53,7 @@ LogPluginManager: Mounting plugin SkeletalReduction
 LogPluginManager: Mounting plugin MagicLeap
 LogPluginManager: Mounting plugin MagicLeapMedia
 LogPluginManager: Mounting plugin MLSDK
+LogPluginManager: Mounting plugin PlayFab
 LogPluginManager: Mounting plugin AndroidMedia
 LogPluginManager: Mounting plugin AvfMedia
 LogPluginManager: Mounting plugin ImgMedia
@@ -130,7 +131,7 @@ LogInit: Compiled (64-bit): Jan 24 2020 02:05:53
 LogInit: Compiled with Visual C++: 19.16.27032.01
 LogInit: Build Configuration: Development
 LogInit: Branch Name: ++UE4+Release-4.24
-LogInit: Command Line:  -EpicPortal -epicusername=debohaldar -epicuserid=905b720696614500b62331df76f67cd9 -epiclocale=en-US
+LogInit: Command Line: 
 LogInit: Base Directory: C:/Program Files/Epic Games/UE_4.24/Engine/Binaries/Win64/
 LogInit: Installed Engine Build: 1
 LogDevObjectVersion: Number of dev versions registered: 25
@@ -163,441 +164,522 @@ LogInit: Presizing for max 25165824 objects, including 0 objects not considered 
 LogInit: Object subsystem initialized
 LogConfig: Setting CVar [[con.DebugEarlyDefault:1]]
 LogConfig: Setting CVar [[r.setres:1280x720]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[r.VSync:0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[r.RHICmdBypass:0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[r.GPUCrashDebugging:0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererOverrideSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
-[2020.02.11-22.00.53:513][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.AsyncLoadingThreadEnabled:0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.EventDrivenLoaderEnabled:1]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.WarnIfTimeLimitExceeded:0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMultiplier:1.5]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMinTime:0.005]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.UseBackgroundLevelStreaming:1]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
-[2020.02.11-22.00.53:513][  0]LogConfig: Setting CVar [[s.UnregisterComponentsTimeLimit:1.0]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[s.FlushStreamingOnExit:1]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.GarbageCollectionSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.MaxObjectsNotConsideredByGC:1]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.SizeOfPermanentObjectPool:0]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.FlushStreamingOnGC:0]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.NumRetriesBeforeForcingGC:10]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.AllowParallelGC:1]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.TimeBetweenPurgingPendingKillObjects:61.1]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.MaxObjectsInEditor:25165824]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.IncrementalBeginDestroyEnabled:1]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.CreateGCClusters:1]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.MinGCClusterSize:5]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.ActorClusteringEnabled:0]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.BlueprintClusteringEnabled:0]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Setting CVar [[gc.UseDisregardForGCOnDedicatedServers:0]]
-[2020.02.11-22.00.53:515][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.NetworkSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
-[2020.02.11-22.00.53:515][  0]LogConfig: Applying CVar settings from Section [/Script/UnrealEd.CookerSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
-[2020.02.11-22.00.53:528][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
-[2020.02.11-22.00.53:528][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
-[2020.02.11-22.00.53:529][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
-[2020.02.11-22.00.53:529][  0]LogInit: Selected Device Profile: [Windows]
-[2020.02.11-22.00.53:529][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
-[2020.02.11-22.00.53:533][  0]LogHAL: Display: Platform has ~ 48 GB [51436298240 / 68719476736 / 48], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
-[2020.02.11-22.00.53:533][  0]LogInit: Going up to parent DeviceProfile []
-[2020.02.11-22.00.53:533][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
-[2020.02.11-22.00.53:533][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Applying CVar settings from Section [Startup] File [../../../Engine/Config/ConsoleVariables.ini]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[net.UseAdaptiveNetUpdateFrequency:0]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Setting CVar [[p.chaos.AllowCreatePhysxBodies:1]]
-[2020.02.11-22.00.53:534][  0]LogConfig: Applying CVar settings from Section [ConsoleVariables] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
-[2020.02.11-22.00.53:534][  0]LogInit: Computer: DEBH-XBDEV2
-[2020.02.11-22.00.53:534][  0]LogInit: User: debh
-[2020.02.11-22.00.53:534][  0]LogInit: CPU Page size=4096, Cores=6
-[2020.02.11-22.00.53:534][  0]LogInit: High frequency timer resolution =10.000000 MHz
-[2020.02.11-22.00.53:534][  0]LogMemory: Memory total: Physical=47.9GB (48GB approx)
-[2020.02.11-22.00.53:534][  0]LogMemory: Platform Memory Stats for Windows
-[2020.02.11-22.00.53:534][  0]LogMemory: Process Physical Memory: 105.00 MB used, 105.00 MB peak
-[2020.02.11-22.00.53:534][  0]LogMemory: Process Virtual Memory: 101.92 MB used, 101.92 MB peak
-[2020.02.11-22.00.53:534][  0]LogMemory: Physical Memory: 19718.35 MB used,  29335.13 MB free, 49053.48 MB total
-[2020.02.11-22.00.53:536][  0]LogMemory: Virtual Memory: 5159.24 MB used,  134212568.00 MB free, 134217728.00 MB total
-[2020.02.11-22.00.53:539][  0]LogWindows: WindowsPlatformFeatures enabled
-[2020.02.11-22.00.53:566][  0]LogInit: Using OS detected language (en-US).
-[2020.02.11-22.00.53:566][  0]LogInit: Using OS detected locale (en-US).
-[2020.02.11-22.00.53:567][  0]LogTextLocalizationManager: No specific localization for 'en-US' exists, so the 'en' localization will be used.
-[2020.02.11-22.00.53:776][  0]LogInit: Setting process to per monitor DPI aware
-[2020.02.11-22.00.53:831][  0]LogSlate: New Slate User Created.  User Index 0, Is Virtual User: 0
-[2020.02.11-22.00.53:831][  0]LogSlate: Slate User Registered.  User Index 0, Is Virtual User: 0
-[2020.02.11-22.00.54:025][  0]LogHMD: Failed to initialize OpenVR with code 110
-[2020.02.11-22.00.54:025][  0]LogD3D11RHI: D3D11 min allowed feature level: 11_0
-[2020.02.11-22.00.54:025][  0]LogD3D11RHI: D3D11 max allowed feature level: 11_0
-[2020.02.11-22.00.54:025][  0]LogD3D11RHI: D3D11 adapters:
-[2020.02.11-22.00.54:092][  0]LogD3D11RHI:    0. 'NVIDIA GeForce GTX 970' (Feature Level 11_0)
-[2020.02.11-22.00.54:092][  0]LogD3D11RHI:       4043/0/24526 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:2, VendorId:0x10de
-[2020.02.11-22.00.54:096][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
-[2020.02.11-22.00.54:096][  0]LogD3D11RHI:       0/0/24526 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
-[2020.02.11-22.00.54:096][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
-[2020.02.11-22.00.54:107][  0]LogD3D11RHI: Creating new Direct3DDevice
-[2020.02.11-22.00.54:107][  0]LogD3D11RHI:     GPU DeviceId: 0x13c2 (for the marketing name, search the web for "GPU Device Id")
-[2020.02.11-22.00.54:107][  0]LogWindows: EnumDisplayDevices:
-[2020.02.11-22.00.54:107][  0]LogWindows:    0. 'NVIDIA GeForce GTX 970' (P:1 D:1)
-[2020.02.11-22.00.54:107][  0]LogWindows:    1. 'NVIDIA GeForce GTX 970' (P:0 D:1)
-[2020.02.11-22.00.54:107][  0]LogWindows:    2. 'NVIDIA GeForce GTX 970' (P:0 D:0)
-[2020.02.11-22.00.54:108][  0]LogWindows:    3. 'NVIDIA GeForce GTX 970' (P:0 D:0)
-[2020.02.11-22.00.54:108][  0]LogWindows: DebugString: FoundDriverCount:4 
-[2020.02.11-22.00.54:108][  0]LogD3D11RHI:     Adapter Name: NVIDIA GeForce GTX 970
-[2020.02.11-22.00.54:108][  0]LogD3D11RHI:   Driver Version: 432.00 (internal:26.21.14.3200, unified:432.00)
-[2020.02.11-22.00.54:108][  0]LogD3D11RHI:      Driver Date: 7-24-2019
-[2020.02.11-22.00.54:108][  0]LogRHI: Texture pool is 2830 MB (70% of 4043 MB)
-[2020.02.11-22.00.54:158][  0]LogD3D11RHI: RHI has support for 64 bit atomics
-[2020.02.11-22.00.54:158][  0]LogD3D11RHI: Async texture creation enabled
-[2020.02.11-22.00.54:277][  0]LogD3D11RHI: GPU Timing Frequency: 1000.000000 (Debug: 2 1)
-[2020.02.11-22.00.54:730][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AllDesktop'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTC'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATC'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXT'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1a'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTC'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AndroidClient'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTCClient'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATCClient'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXTClient'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1Client'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1aClient'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2Client'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTCClient'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_Multi'
-[2020.02.11-22.00.54:766][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_MultiClient'
-[2020.02.11-22.00.54:789][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOSClient'
-[2020.02.11-22.00.54:789][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOS'
-[2020.02.11-22.00.54:797][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxNoEditor'
-[2020.02.11-22.00.54:805][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxClient'
-[2020.02.11-22.00.54:814][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxServer'
-[2020.02.11-22.00.54:823][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64NoEditor'
-[2020.02.11-22.00.54:831][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Client'
-[2020.02.11-22.00.54:839][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Server'
-[2020.02.11-22.00.54:868][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Lumin'
-[2020.02.11-22.00.54:868][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LuminClient'
-[2020.02.11-22.00.54:885][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOSClient'
-[2020.02.11-22.00.54:885][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOS'
-[2020.02.11-22.00.54:893][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsNoEditor'
-[2020.02.11-22.00.54:901][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
-[2020.02.11-22.00.54:908][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
-[2020.02.11-22.00.54:918][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
-[2020.02.11-22.00.54:918][  0]LogTargetPlatformManager: Display: Building Assets For Windows
-[2020.02.11-22.00.54:922][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
-[2020.02.11-22.00.54:951][  0]LogShaderCompilers: Guid format shader working directory is -43 characters bigger than the processId version (../../../../../../Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Intermediate/Shaders/WorkingDirectory/36032/).
-[2020.02.11-22.00.54:952][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/debh.REDMOND/AppData/Local/Temp/UnrealShaderWorkingDir/9A3EAAD04E5ACDB97D7A288C4D3B289D/'.
-[2020.02.11-22.00.54:953][  0]LogShaderCompilers: Display: Using XGE Shader Compiler (Interception Interface).
-[2020.02.11-22.00.55:765][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
-[2020.02.11-22.00.55:833][  0]LogDerivedDataCache: Loaded boot cache 0.07s 79MB C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
-[2020.02.11-22.00.55:833][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc
-[2020.02.11-22.00.55:834][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../../../Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
-[2020.02.11-22.00.55:834][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
-[2020.02.11-22.00.55:834][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../../../Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
-[2020.02.11-22.00.55:834][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
-[2020.02.11-22.00.55:843][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
-[2020.02.11-22.00.55:843][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  EnterprisePak pak cache file ../../../Enterprise/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
-[2020.02.11-22.00.55:843][  0]LogDerivedDataCache: Unable to find inner node EnterprisePak for hierarchical cache Hierarchy.
-[2020.02.11-22.00.55:845][  0]LogDerivedDataCache: Using Local data cache path C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
-[2020.02.11-22.00.55:845][  0]LogDerivedDataCache: Shared data cache path not found in *engine.ini, will not use an Shared cache.
-[2020.02.11-22.00.55:845][  0]LogDerivedDataCache: Unable to find inner node Shared for hierarchical cache Hierarchy.
-[2020.02.11-22.00.55:872][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
-[2020.02.11-22.00.55:875][  0]LogSlate: Using FreeType 2.10.0
-[2020.02.11-22.00.55:875][  0]LogSlate: SlateFontServices - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
-[2020.02.11-22.00.55:952][  0]LogAssetRegistry: FAssetRegistry took 0.0043 seconds to start up
-[2020.02.11-22.00.56:298][  0]LogInit: Selected Device Profile: [Windows]
-[2020.02.11-22.00.56:496][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
-[2020.02.11-22.00.56:496][  0]LogMeshReduction: Using SimplygonMeshReduction for automatic skeletal mesh reduction
-[2020.02.11-22.00.56:496][  0]LogMeshReduction: Using ProxyLODMeshReduction for automatic mesh merging
-[2020.02.11-22.00.56:496][  0]LogMeshReduction: No distributed automatic mesh merging module available
-[2020.02.11-22.00.56:496][  0]LogMeshMerging: No distributed automatic mesh merging module available
-[2020.02.11-22.00.56:519][  0]LogNetVersion: DemoBluePrint 1.0.0, NetCL: 10570792, EngineNetVer: 13, GameNetVer: 0 (Checksum: 1553609491)
-[2020.02.11-22.00.57:734][  0]LogPackageLocalizationCache: Processed 10 localized package path(s) for 1 prioritized culture(s) in 0.055806 seconds
-[2020.02.11-22.00.57:740][  0]LogUObjectArray: 46750 objects as part of root set at end of initial load.
-[2020.02.11-22.00.57:740][  0]LogUObjectAllocator: 8137160 out of 0 bytes used by permanent object pool.
-[2020.02.11-22.00.57:740][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
-[2020.02.11-22.00.58:207][  0]LogTcpMessaging: Initializing TcpMessaging bridge
-[2020.02.11-22.00.58:263][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
-[2020.02.11-22.00.58:323][  0]SourceControl: Source control is disabled
-[2020.02.11-22.00.58:323][  0]SourceControl: Source control is disabled
-[2020.02.11-22.00.58:325][  0]SourceControl: Source control is disabled
-[2020.02.11-22.00.58:326][  0]SourceControl: Source control is disabled
-[2020.02.11-22.00.58:327][  0]SourceControl: Source control is disabled
-[2020.02.11-22.00.58:428][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
-[2020.02.11-22.00.58:440][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
-[2020.02.11-22.00.58:440][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
-[2020.02.11-22.00.58:532][  0]LogOcInput: OculusInput pre-init called
-[2020.02.11-22.00.58:542][  0]LogWindows: Failed to load 'OVRPlugin.dll' (GetLastError=126)
-[2020.02.11-22.00.58:542][  0]LogWindows: File 'OVRPlugin.dll' does not exist
-[2020.02.11-22.00.58:613][  0]LogEngine: Initializing Engine...
-[2020.02.11-22.00.58:616][  0]LogHMD: Failed to initialize OpenVR with code 110
-[2020.02.11-22.00.58:618][  0]LogStats: UGameplayTagsManager::InitializeManager -  0.000 s
-[2020.02.11-22.00.59:028][  0]LogInit: Initializing FReadOnlyCVARCache
-[2020.02.11-22.00.59:038][  0]LogAIModule: Creating AISystem for world Untitled
-[2020.02.11-22.00.59:065][  0]LogAudioMixer: Display: Audio Mixer Platform Settings:
-[2020.02.11-22.00.59:065][  0]LogAudioMixer: Display: 	Sample Rate:						  48000
-[2020.02.11-22.00.59:065][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
-[2020.02.11-22.00.59:065][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
-[2020.02.11-22.00.59:065][  0]LogAudioMixer: Display: 	Number of buffers to queue:			  2
-[2020.02.11-22.00.59:065][  0]LogAudioMixer: Display: 	Max Channels (voices):				  32
-[2020.02.11-22.00.59:065][  0]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
-[2020.02.11-22.00.59:065][  0]LogAudio: Display: AudioDevice MaxSources: 32
-[2020.02.11-22.00.59:065][  0]LogAudio: Display: Using built-in audio occlusion.
-[2020.02.11-22.00.59:066][  0]LogAudioMixer: Display: Initializing audio mixer.
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: Audio Device Output Speaker Info:
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: Name: Headset Earphone (GN 2000 USB OC)
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: Is Default: Yes
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: Sample Rate: 48000
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: Channel Count Used: 2
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: Device Channel Count: 2
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: Channel Order:
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: 0: FrontLeft
-[2020.02.11-22.00.59:114][  0]LogAudioMixer: Display: 1: FrontRight
-[2020.02.11-22.00.59:158][  0]LogAudioMixer: Display: Using Audio Device Headset Earphone (GN 2000 USB OC)
-[2020.02.11-22.00.59:169][  0]LogInit: FAudioDevice initialized.
-[2020.02.11-22.00.59:169][  0]LogNetVersion: Set ProjectVersion to 1.0.0.0. Version Checksum will be recalculated on next use.
-[2020.02.11-22.00.59:268][  0]LogDerivedDataCache: Saved boot cache 0.10s 79MB C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
-[2020.02.11-22.00.59:277][  0]LogInit: Texture streaming: Enabled
-[2020.02.11-22.00.59:289][  0]LogEngineSessionManager: EngineSessionManager initialized
-[2020.02.11-22.00.59:289][  0]LogEditorSessionSummary: Verbose: Initializing EditorSessionSummaryWriter for editor session tracking
-[2020.02.11-22.00.59:301][  0]LogEditorSessionSummary: EditorSessionSummaryWriter initialized
-[2020.02.11-22.00.59:327][  0]LogInit: Transaction tracking system initialized
-[2020.02.11-22.00.59:340][  0]BlueprintLog: New page: Editor Load
-[2020.02.11-22.00.59:416][  0]LocalizationService: Localization service is disabled
-[2020.02.11-22.00.59:895][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Content/' took 0.00s
-[2020.02.11-22.00.59:895][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
-[2020.02.11-22.00.59:895][  0]LogCook: Display: Mobile HDR setting 1
-[2020.02.11-22.01.00:843][  0]SourceControl: Source control is disabled
-[2020.02.11-22.01.00:844][  0]Cmd: MAP LOAD FILE="../../../Engine/Content/Maps/Templates/Template_Default.umap" TEMPLATE=1 SHOWPROGRESS=1 FEATURELEVEL=3
-[2020.02.11-22.01.00:844][  0]LightingResults: New page: Lighting Build
-[2020.02.11-22.01.00:845][  0]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
-[2020.02.11-22.01.00:845][  0]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
-[2020.02.11-22.01.00:845][  0]MapCheck: New page: Map Check
-[2020.02.11-22.01.00:845][  0]LightingResults: New page: Lighting Build
-[2020.02.11-22.01.00:885][  0]LogUObjectHash: Compacting FUObjectHashTables data took   2.00ms
-[2020.02.11-22.01.00:998][  0]LogAIModule: Creating AISystem for world Untitled_1
-[2020.02.11-22.01.01:003][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
-[2020.02.11-22.01.01:044][  0]LogUObjectHash: Compacting FUObjectHashTables data took   3.21ms
-[2020.02.11-22.01.01:044][  0]Cmd: MAP CHECKDEP NOCLEARLOG
-[2020.02.11-22.01.01:045][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.282ms to complete.
-[2020.02.11-22.01.01:045][  0]LogFileHelpers: Loading map 'Template_Default' took 0.201
-[2020.02.11-22.01.01:347][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
-[2020.02.11-22.01.01:356][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
-[2020.02.11-22.01.01:363][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
-[2020.02.11-22.01.01:369][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
-[2020.02.11-22.01.01:394][  0]LogCollectionManager: Loaded 0 collections in 0.003528 seconds
-[2020.02.11-22.01.01:427][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Collections/' took 0.00s
-[2020.02.11-22.01.01:427][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Content/Developers/debh/Collections/' took 0.00s
-[2020.02.11-22.01.01:427][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Content/Collections/' took 0.00s
-[2020.02.11-22.01.01:427][  0]LogContentBrowser: Native class hierarchy populated in 0.0088 seconds. Added 3015 classes and 717 folders.
-[2020.02.11-22.01.01:434][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0002 seconds. Added 0 classes and 0 folders.
-[2020.02.11-22.01.01:511][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0003 seconds. Added 0 classes and 0 folders.
-[2020.02.11-22.01.01:525][  0]LogContentBrowser: Native class hierarchy updated for 'SceneOutliner' in 0.0003 seconds. Added 2 classes and 3 folders.
-[2020.02.11-22.01.01:812][  0]LogSlate: Took 0.000316 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
-[2020.02.11-22.01.01:815][  0]LogSlate: Took 0.000178 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
-[2020.02.11-22.01.01:828][  0]LogSlate: Took 0.007148 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
-[2020.02.11-22.01.01:991][  0]LogRenderer: Reallocating scene render targets to support 1616x808 Format 10 NumSamples 1 (Frame:1).
-[2020.02.11-22.01.02:152][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0003 seconds. Added 0 classes and 0 folders.
-[2020.02.11-22.01.02:152][  0]LogLoad: (Engine Initialization) Total time: 10.86 seconds
-[2020.02.11-22.01.02:152][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
-[2020.02.11-22.01.02:210][  0]LogAssetRegistry: Asset discovery search completed in 6.2591 seconds
-[2020.02.11-22.01.02:213][  0]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000008 seconds (updated 0 objects)
-[2020.02.11-22.01.02:216][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2020.02.12-22.05.55:175][  0]LogConfig: Setting CVar [[r.VSync:0]]
+[2020.02.12-22.05.55:175][  0]LogConfig: Setting CVar [[r.RHICmdBypass:0]]
+[2020.02.12-22.05.55:175][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[r.GPUCrashDebugging:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererOverrideSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
+[2020.02.12-22.05.55:176][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.AsyncLoadingThreadEnabled:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.EventDrivenLoaderEnabled:1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.WarnIfTimeLimitExceeded:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMultiplier:1.5]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMinTime:0.005]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.UseBackgroundLevelStreaming:1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.UnregisterComponentsTimeLimit:1.0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[s.FlushStreamingOnExit:1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.GarbageCollectionSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.MaxObjectsNotConsideredByGC:1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.SizeOfPermanentObjectPool:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.FlushStreamingOnGC:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.NumRetriesBeforeForcingGC:10]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.AllowParallelGC:1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.TimeBetweenPurgingPendingKillObjects:61.1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.MaxObjectsInEditor:25165824]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.IncrementalBeginDestroyEnabled:1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.CreateGCClusters:1]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.MinGCClusterSize:5]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.ActorClusteringEnabled:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.BlueprintClusteringEnabled:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Setting CVar [[gc.UseDisregardForGCOnDedicatedServers:0]]
+[2020.02.12-22.05.55:176][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.NetworkSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
+[2020.02.12-22.05.55:176][  0]LogConfig: Applying CVar settings from Section [/Script/UnrealEd.CookerSettings] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
+[2020.02.12-22.05.55:186][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2020.02.12-22.05.55:186][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2020.02.12-22.05.55:187][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2020.02.12-22.05.55:188][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2020.02.12-22.05.55:188][  0]LogInit: Selected Device Profile: [Windows]
+[2020.02.12-22.05.55:188][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2020.02.12-22.05.55:199][  0]LogHAL: Display: Platform has ~ 64 GB [68616167424 / 68719476736 / 64], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2020.02.12-22.05.55:199][  0]LogInit: Going up to parent DeviceProfile []
+[2020.02.12-22.05.55:199][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2020.02.12-22.05.55:199][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:199][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2020.02.12-22.05.55:200][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:201][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2020.02.12-22.05.55:201][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2020.02.12-22.05.55:201][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Scalability.ini]
+[2020.02.12-22.05.55:201][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2020.02.12-22.05.55:201][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2020.02.12-22.05.55:201][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2020.02.12-22.05.55:201][  0]LogConfig: Applying CVar settings from Section [Startup] File [../../../Engine/Config/ConsoleVariables.ini]
+[2020.02.12-22.05.55:207][  0]LogConfig: Setting CVar [[net.UseAdaptiveNetUpdateFrequency:0]]
+[2020.02.12-22.05.55:207][  0]LogConfig: Setting CVar [[p.chaos.AllowCreatePhysxBodies:1]]
+[2020.02.12-22.05.55:207][  0]LogConfig: Applying CVar settings from Section [ConsoleVariables] File [C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Config/Windows/Engine.ini]
+[2020.02.12-22.05.55:208][  0]LogInit: Computer: DEBH-XBDEV2
+[2020.02.12-22.05.55:208][  0]LogInit: User: debh
+[2020.02.12-22.05.55:208][  0]LogInit: CPU Page size=4096, Cores=6
+[2020.02.12-22.05.55:208][  0]LogInit: High frequency timer resolution =10.000000 MHz
+[2020.02.12-22.05.55:208][  0]LogMemory: Memory total: Physical=63.9GB (64GB approx)
+[2020.02.12-22.05.55:208][  0]LogMemory: Platform Memory Stats for Windows
+[2020.02.12-22.05.55:208][  0]LogMemory: Process Physical Memory: 105.49 MB used, 105.50 MB peak
+[2020.02.12-22.05.55:208][  0]LogMemory: Process Virtual Memory: 102.03 MB used, 102.03 MB peak
+[2020.02.12-22.05.55:208][  0]LogMemory: Physical Memory: 18256.39 MB used,  47181.09 MB free, 65437.48 MB total
+[2020.02.12-22.05.55:208][  0]LogMemory: Virtual Memory: 5159.24 MB used,  134212568.00 MB free, 134217728.00 MB total
+[2020.02.12-22.05.55:215][  0]LogWindows: WindowsPlatformFeatures enabled
+[2020.02.12-22.05.55:395][  0]LogInit: Using OS detected language (en-US).
+[2020.02.12-22.05.55:395][  0]LogInit: Using OS detected locale (en-US).
+[2020.02.12-22.05.55:397][  0]LogTextLocalizationManager: No specific localization for 'en-US' exists, so the 'en' localization will be used.
+[2020.02.12-22.05.55:723][  0]LogInit: Setting process to per monitor DPI aware
+[2020.02.12-22.05.55:820][  0]LogSlate: New Slate User Created.  User Index 0, Is Virtual User: 0
+[2020.02.12-22.05.55:820][  0]LogSlate: Slate User Registered.  User Index 0, Is Virtual User: 0
+[2020.02.12-22.05.59:682][  0]LogHMD: Failed to initialize OpenVR with code 110
+[2020.02.12-22.05.59:682][  0]LogD3D11RHI: D3D11 min allowed feature level: 11_0
+[2020.02.12-22.05.59:682][  0]LogD3D11RHI: D3D11 max allowed feature level: 11_0
+[2020.02.12-22.05.59:682][  0]LogD3D11RHI: D3D11 adapters:
+[2020.02.12-22.05.59:778][  0]LogD3D11RHI:    0. 'NVIDIA GeForce GTX 970' (Feature Level 11_0)
+[2020.02.12-22.05.59:778][  0]LogD3D11RHI:       4043/0/32718 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:2, VendorId:0x10de
+[2020.02.12-22.05.59:782][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2020.02.12-22.05.59:782][  0]LogD3D11RHI:       0/0/32718 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2020.02.12-22.05.59:783][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2020.02.12-22.05.59:793][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2020.02.12-22.05.59:793][  0]LogD3D11RHI:     GPU DeviceId: 0x13c2 (for the marketing name, search the web for "GPU Device Id")
+[2020.02.12-22.05.59:793][  0]LogWindows: EnumDisplayDevices:
+[2020.02.12-22.05.59:793][  0]LogWindows:    0. 'NVIDIA GeForce GTX 970' (P:1 D:1)
+[2020.02.12-22.05.59:793][  0]LogWindows:    1. 'NVIDIA GeForce GTX 970' (P:0 D:1)
+[2020.02.12-22.05.59:794][  0]LogWindows:    2. 'NVIDIA GeForce GTX 970' (P:0 D:0)
+[2020.02.12-22.05.59:794][  0]LogWindows:    3. 'NVIDIA GeForce GTX 970' (P:0 D:0)
+[2020.02.12-22.05.59:794][  0]LogWindows: DebugString: FoundDriverCount:4 
+[2020.02.12-22.05.59:794][  0]LogD3D11RHI:     Adapter Name: NVIDIA GeForce GTX 970
+[2020.02.12-22.05.59:794][  0]LogD3D11RHI:   Driver Version: 432.00 (internal:26.21.14.3200, unified:432.00)
+[2020.02.12-22.05.59:794][  0]LogD3D11RHI:      Driver Date: 7-24-2019
+[2020.02.12-22.05.59:794][  0]LogRHI: Texture pool is 2830 MB (70% of 4043 MB)
+[2020.02.12-22.05.59:868][  0]LogD3D11RHI: RHI has support for 64 bit atomics
+[2020.02.12-22.05.59:868][  0]LogD3D11RHI: Async texture creation enabled
+[2020.02.12-22.05.59:977][  0]LogD3D11RHI: GPU Timing Frequency: 1000.000000 (Debug: 2 1)
+[2020.02.12-22.06.00:574][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AllDesktop'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTC'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATC'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXT'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1a'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2'
+[2020.02.12-22.06.00:625][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTC'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AndroidClient'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTCClient'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATCClient'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXTClient'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1Client'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1aClient'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2Client'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTCClient'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_Multi'
+[2020.02.12-22.06.00:626][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_MultiClient'
+[2020.02.12-22.06.00:677][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOSClient'
+[2020.02.12-22.06.00:677][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOS'
+[2020.02.12-22.06.00:689][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxNoEditor'
+[2020.02.12-22.06.00:699][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxClient'
+[2020.02.12-22.06.00:709][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxServer'
+[2020.02.12-22.06.00:718][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64NoEditor'
+[2020.02.12-22.06.00:727][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Client'
+[2020.02.12-22.06.00:737][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Server'
+[2020.02.12-22.06.00:782][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Lumin'
+[2020.02.12-22.06.00:782][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LuminClient'
+[2020.02.12-22.06.00:799][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOSClient'
+[2020.02.12-22.06.00:799][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOS'
+[2020.02.12-22.06.00:807][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsNoEditor'
+[2020.02.12-22.06.00:818][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2020.02.12-22.06.00:831][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2020.02.12-22.06.00:839][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2020.02.12-22.06.00:839][  0]LogTargetPlatformManager: Display: Building Assets For Windows
+[2020.02.12-22.06.00:886][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2020.02.12-22.06.00:956][  0]LogShaderCompilers: Guid format shader working directory is -42 characters bigger than the processId version (../../../../../../Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Intermediate/Shaders/WorkingDirectory/8124/).
+[2020.02.12-22.06.00:957][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/debh.REDMOND/AppData/Local/Temp/UnrealShaderWorkingDir/834D4DC8410E7AAB6F82CEAA08E1C68E/'.
+[2020.02.12-22.06.00:957][  0]LogXGEController: Cleaning working directory: C:/Users/debh.REDMOND/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2020.02.12-22.06.00:959][  0]LogShaderCompilers: Display: Using XGE Shader Compiler (Interception Interface).
+[2020.02.12-22.06.07:670][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
+[2020.02.12-22.06.07:842][  0]LogDerivedDataCache: Loaded boot cache 0.17s 78MB C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
+[2020.02.12-22.06.07:842][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc
+[2020.02.12-22.06.07:842][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../../../Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2020.02.12-22.06.07:842][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2020.02.12-22.06.07:843][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../../../Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2020.02.12-22.06.07:843][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2020.02.12-22.06.07:898][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2020.02.12-22.06.07:899][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  EnterprisePak pak cache file ../../../Enterprise/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2020.02.12-22.06.07:899][  0]LogDerivedDataCache: Unable to find inner node EnterprisePak for hierarchical cache Hierarchy.
+[2020.02.12-22.06.07:904][  0]LogDerivedDataCache: Using Local data cache path C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2020.02.12-22.06.07:904][  0]LogDerivedDataCache: Shared data cache path not found in *engine.ini, will not use an Shared cache.
+[2020.02.12-22.06.07:904][  0]LogDerivedDataCache: Unable to find inner node Shared for hierarchical cache Hierarchy.
+[2020.02.12-22.06.07:966][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
+[2020.02.12-22.06.07:971][  0]LogSlate: Using FreeType 2.10.0
+[2020.02.12-22.06.08:007][  0]LogSlate: SlateFontServices - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2020.02.12-22.06.08:507][  0]LogAssetRegistry: FAssetRegistry took 0.0043 seconds to start up
+[2020.02.12-22.06.09:284][  0]LogInit: Selected Device Profile: [Windows]
+[2020.02.12-22.06.09:912][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
+[2020.02.12-22.06.09:913][  0]LogMeshReduction: Using SimplygonMeshReduction for automatic skeletal mesh reduction
+[2020.02.12-22.06.09:913][  0]LogMeshReduction: Using ProxyLODMeshReduction for automatic mesh merging
+[2020.02.12-22.06.09:913][  0]LogMeshReduction: No distributed automatic mesh merging module available
+[2020.02.12-22.06.09:913][  0]LogMeshMerging: No distributed automatic mesh merging module available
+[2020.02.12-22.06.09:984][  0]LogNetVersion: DemoBluePrint 1.0.0, NetCL: 10570792, EngineNetVer: 13, GameNetVer: 0 (Checksum: 1553609491)
+[2020.02.12-22.06.16:021][  0]LogPackageLocalizationCache: Processed 10 localized package path(s) for 1 prioritized culture(s) in 0.118058 seconds
+[2020.02.12-22.06.16:033][  0]LogUObjectArray: 46750 objects as part of root set at end of initial load.
+[2020.02.12-22.06.16:033][  0]LogUObjectAllocator: 8137160 out of 0 bytes used by permanent object pool.
+[2020.02.12-22.06.16:033][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2020.02.12-22.06.17:230][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2020.02.12-22.06.17:234][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2020.02.12-22.06.17:310][  0]SourceControl: Source control is disabled
+[2020.02.12-22.06.17:311][  0]SourceControl: Source control is disabled
+[2020.02.12-22.06.17:312][  0]SourceControl: Source control is disabled
+[2020.02.12-22.06.17:314][  0]SourceControl: Source control is disabled
+[2020.02.12-22.06.17:315][  0]SourceControl: Source control is disabled
+[2020.02.12-22.06.17:442][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2020.02.12-22.06.17:457][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2020.02.12-22.06.17:458][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2020.02.12-22.06.17:594][  0]LogOcInput: OculusInput pre-init called
+[2020.02.12-22.06.17:605][  0]LogWindows: Failed to load 'OVRPlugin.dll' (GetLastError=126)
+[2020.02.12-22.06.17:605][  0]LogWindows: File 'OVRPlugin.dll' does not exist
+[2020.02.12-22.06.17:750][  0]LogEngine: Initializing Engine...
+[2020.02.12-22.06.17:754][  0]LogHMD: Failed to initialize OpenVR with code 110
+[2020.02.12-22.06.17:756][  0]LogStats: UGameplayTagsManager::InitializeManager -  0.000 s
+[2020.02.12-22.06.18:922][  0]LogInit: Initializing FReadOnlyCVARCache
+[2020.02.12-22.06.18:930][  0]LogAIModule: Creating AISystem for world Untitled
+[2020.02.12-22.06.18:934][  0]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2020.02.12-22.06.18:934][  0]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2020.02.12-22.06.18:934][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2020.02.12-22.06.18:934][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2020.02.12-22.06.18:934][  0]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2020.02.12-22.06.18:934][  0]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2020.02.12-22.06.18:934][  0]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2020.02.12-22.06.18:934][  0]LogAudio: Display: AudioDevice MaxSources: 32
+[2020.02.12-22.06.18:935][  0]LogAudio: Display: Using built-in audio occlusion.
+[2020.02.12-22.06.18:935][  0]LogAudioMixer: Display: Initializing audio mixer.
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: Name: Headset Earphone (GN 2000 USB OC)
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: Is Default: Yes
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: Sample Rate: 48000
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: Channel Count Used: 2
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: Device Channel Count: 2
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: Channel Order:
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: 0: FrontLeft
+[2020.02.12-22.06.18:984][  0]LogAudioMixer: Display: 1: FrontRight
+[2020.02.12-22.06.19:027][  0]LogAudioMixer: Display: Using Audio Device Headset Earphone (GN 2000 USB OC)
+[2020.02.12-22.06.19:029][  0]LogInit: FAudioDevice initialized.
+[2020.02.12-22.06.19:030][  0]LogNetVersion: Set ProjectVersion to 1.0.0.0. Version Checksum will be recalculated on next use.
+[2020.02.12-22.06.19:133][  0]LogDerivedDataCache: Saved boot cache 0.10s 78MB C:/Users/debh.REDMOND/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
+[2020.02.12-22.06.19:139][  0]LogInit: Texture streaming: Enabled
+[2020.02.12-22.06.19:155][  0]LogEngineSessionManager: EngineSessionManager initialized
+[2020.02.12-22.06.19:155][  0]LogEngineSessionManager: EngineSessionManager sent abnormal shutdown report. Type=Crashed, SessionId={EBA3BBD9-4C3B-2E90-029F-9C9B2EE793CE}
+[2020.02.12-22.06.19:155][  0]LogEditorSessionSummary: Verbose: Initializing EditorSessionSummaryWriter for editor session tracking
+[2020.02.12-22.06.19:158][  0]LogEditorSessionSummary: EditorSessionSummaryWriter initialized
+[2020.02.12-22.06.19:304][  0]LogInit: Transaction tracking system initialized
+[2020.02.12-22.06.19:342][  0]BlueprintLog: New page: Editor Load
+[2020.02.12-22.06.19:429][  0]LocalizationService: Localization service is disabled
+[2020.02.12-22.06.20:209][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Content/' took 0.01s
+[2020.02.12-22.06.20:209][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
+[2020.02.12-22.06.20:209][  0]LogCook: Display: Mobile HDR setting 1
+[2020.02.12-22.06.21:582][  0]SourceControl: Source control is disabled
+[2020.02.12-22.06.21:797][  0]LogSlate: Took 0.012728 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2020.02.12-22.37.44:337][  0]LogSlate: Window 'Restore Packages' being destroyed
+[2020.02.12-22.37.44:340][  0]LogWindowsTextInputMethodSystem: Display: IME system now deactivated.
+[2020.02.12-22.37.44:381][  0]LogWindowsTextInputMethodSystem: Display: IME system now deactivated.
+[2020.02.12-22.37.44:385][  0]Cmd: MAP LOAD FILE="../../../Engine/Content/Maps/Templates/Template_Default.umap" TEMPLATE=1 SHOWPROGRESS=1 FEATURELEVEL=3
+[2020.02.12-22.37.44:393][  0]LightingResults: New page: Lighting Build
+[2020.02.12-22.37.44:394][  0]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2020.02.12-22.37.44:394][  0]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2020.02.12-22.37.44:394][  0]MapCheck: New page: Map Check
+[2020.02.12-22.37.44:394][  0]LightingResults: New page: Lighting Build
+[2020.02.12-22.37.44:443][  0]LogUObjectHash: Compacting FUObjectHashTables data took   2.80ms
+[2020.02.12-22.37.44:661][  0]LogAIModule: Creating AISystem for world Untitled_1
+[2020.02.12-22.37.44:674][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2020.02.12-22.37.44:721][  0]LogUObjectHash: Compacting FUObjectHashTables data took   3.91ms
+[2020.02.12-22.37.44:722][  0]Cmd: MAP CHECKDEP NOCLEARLOG
+[2020.02.12-22.37.44:722][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.247ms to complete.
+[2020.02.12-22.37.44:722][  0]LogFileHelpers: Loading map 'Template_Default' took 0.338
+[2020.02.12-22.37.44:982][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2020.02.12-22.37.44:994][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2020.02.12-22.37.45:014][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2020.02.12-22.37.45:036][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2020.02.12-22.37.45:060][  0]LogCollectionManager: Loaded 0 collections in 0.004321 seconds
+[2020.02.12-22.37.45:076][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Saved/Collections/' took 0.00s
+[2020.02.12-22.37.45:076][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Content/Developers/debh/Collections/' took 0.00s
+[2020.02.12-22.37.45:076][  0]LogFileCache: Scanning file cache for directory 'C:/Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Content/Collections/' took 0.00s
+[2020.02.12-22.37.45:076][  0]LogContentBrowser: Native class hierarchy populated in 0.0095 seconds. Added 3044 classes and 722 folders.
+[2020.02.12-22.37.45:079][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0003 seconds. Added 0 classes and 0 folders.
+[2020.02.12-22.37.45:593][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0006 seconds. Added 0 classes and 0 folders.
+[2020.02.12-22.37.45:602][  0]LogContentBrowser: Native class hierarchy updated for 'SceneOutliner' in 0.0007 seconds. Added 2 classes and 3 folders.
+[2020.02.12-22.37.45:806][  0]LogSlate: Took 0.007314 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
+[2020.02.12-22.37.45:819][  0]LogSlate: Took 0.007984 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2020.02.12-22.37.46:003][  0]LogRenderer: Reallocating scene render targets to support 1616x808 Format 10 NumSamples 1 (Frame:1).
+[2020.02.12-22.37.46:145][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0006 seconds. Added 0 classes and 0 folders.
+[2020.02.12-22.37.46:145][  0]LogLoad: (Engine Initialization) Total time: 1915.40 seconds
+[2020.02.12-22.37.46:145][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
+[2020.02.12-22.37.46:223][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2020.02.12-22.37.47:376][ 16]LogSlate: Took 0.012758 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2020.02.12-22.37.47:615][ 18]LogAssetRegistry: Asset discovery search completed in 1899.1181 seconds
+[2020.02.12-22.37.47:620][ 18]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000012 seconds (updated 0 objects)
+[2020.02.12-22.59.32:954][ 70]LogSlate: Window 'Plugins' being destroyed
+[2020.02.12-22.59.32:964][ 70]LogSlate: Window 'Plugins' being destroyed
+[2020.02.12-22.59.32:964][ 70]LogDirectoryWatcher: A directory notification for '../../../Engine/Plugins/' was aborted.
+[2020.02.12-22.59.35:252][298]LogAIModule: Creating AISystem for world GettingStarted_LoginCall
+[2020.02.12-22.59.35:253][298]LogAssetEditorSubsystem: Opening Asset editor for World /Game/GettingStarted_LoginCall.GettingStarted_LoginCall
+[2020.02.12-22.59.35:298][298]LogUObjectHash: Compacting FUObjectHashTables data took   3.38ms
+[2020.02.12-22.59.35:300][298]Cmd: MAP LOAD FILE="../../../../../../Users/debh.REDMOND/Desktop/GDC_Samples/Samples/Unreal/BluePrint/DemoBluePrint/Content/GettingStarted_LoginCall.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2020.02.12-22.59.35:301][298]LightingResults: New page: Lighting Build
+[2020.02.12-22.59.35:301][298]LoadErrors: New page: Loading map: GettingStarted_LoginCall.umap
+[2020.02.12-22.59.35:302][298]LogWorld: UWorld::CleanupWorld for Untitled_1, bSessionEnded=true, bCleanupResources=true
+[2020.02.12-22.59.35:302][298]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2020.02.12-22.59.35:302][298]MapCheck: New page: Map Check
+[2020.02.12-22.59.35:302][298]LightingResults: New page: Lighting Build
+[2020.02.12-22.59.35:347][298]LogUObjectHash: Compacting FUObjectHashTables data took   2.31ms
+[2020.02.12-22.59.35:350][298]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2020.02.12-22.59.35:396][298]LogUObjectHash: Compacting FUObjectHashTables data took   2.23ms
+[2020.02.12-22.59.35:422][298]Cmd: MAP CHECKDEP NOCLEARLOG
+[2020.02.12-22.59.35:424][298]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 2.162ms to complete.
+[2020.02.12-22.59.35:425][298]LogFileHelpers: Loading map 'GettingStarted_LoginCall' took 0.125
+[2020.02.12-22.59.39:400][695]LogAssetEditorSubsystem: Opening Asset editor for LevelScriptBlueprint /Game/GettingStarted_LoginCall.GettingStarted_LoginCall:PersistentLevel.GettingStarted_LoginCall
+[2020.02.12-22.59.39:796][695]LogContentBrowser: Native class hierarchy updated for 'BlueprintGraph' in 0.0014 seconds. Added 121 classes and 0 folders.
+[2020.02.12-22.59.41:419][695]LogSlate: Took 0.011610 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2020.02.12-22.59.41:615][696]LogSlate: Took 0.011832 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Italic.ttf' (157K)
+[2020.02.12-23.00.51:376][661]LogTemp: Repeating last play command: Selected Viewport
+[2020.02.12-23.00.51:391][661]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall:PersistentLevel' has LevelScriptBlueprint '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall:PersistentLevel.GettingStarted_LoginCall' with GeneratedClass '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall_C' with ClassGeneratedBy '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall:PersistentLevel.GettingStarted_LoginCall'
+[2020.02.12-23.00.51:391][661]BlueprintLog: New page: Pre-Play auto-recompile
+[2020.02.12-23.00.51:392][661]LogPlayLevel: [PlayLevel] Compiling GettingStarted_LoginCall before play...
+[2020.02.12-23.00.51:725][661]LogUObjectHash: Compacting FUObjectHashTables data took   5.48ms
+[2020.02.12-23.00.51:725][661]LogPlayLevel: PlayLevel: Blueprint regeneration took 333 ms (1 blueprints)
+[2020.02.12-23.00.51:725][661]PIE: New page: PIE session: GettingStarted_LoginCall (Feb 12, 2020, 7:00:51 AM)
+[2020.02.12-23.00.51:726][661]LogOnline: OSS: Creating online subsystem instance for: NULL
+[2020.02.12-23.00.51:728][661]LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for module [NULL]
+[2020.02.12-23.00.51:730][661]LogPlayLevel: Creating play world package: /Game/UEDPIE_0_GettingStarted_LoginCall
+[2020.02.12-23.00.51:734][661]LogPlayLevel: PIE: StaticDuplicateObject took: (0.003716s)
+[2020.02.12-23.00.51:735][661]LogAIModule: Creating AISystem for world GettingStarted_LoginCall
+[2020.02.12-23.00.51:735][661]LogPlayLevel: PIE: World Init took: (0.001423s)
+[2020.02.12-23.00.51:735][661]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/GettingStarted_LoginCall.GettingStarted_LoginCall to /Game/UEDPIE_0_GettingStarted_LoginCall.GettingStarted_LoginCall (0.005520s)
+[2020.02.12-23.00.51:786][661]LogUObjectHash: Compacting FUObjectHashTables data took   3.30ms
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2020.02.12-23.00.51:787][661]LogAudio: Display: AudioDevice MaxSources: 32
+[2020.02.12-23.00.51:787][661]LogAudio: Display: Using built-in audio occlusion.
+[2020.02.12-23.00.51:787][661]LogAudioMixer: Display: Initializing audio mixer.
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: Name: Headset Earphone (GN 2000 USB OC)
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: Is Default: Yes
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: Sample Rate: 48000
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: Channel Count Used: 2
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: Device Channel Count: 2
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: Channel Order:
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: 0: FrontLeft
+[2020.02.12-23.00.51:821][661]LogAudioMixer: Display: 1: FrontRight
+[2020.02.12-23.00.51:841][661]LogAudioMixer: Display: Using Audio Device Headset Earphone (GN 2000 USB OC)
+[2020.02.12-23.00.51:844][661]LogInit: FAudioDevice initialized.
+[2020.02.12-23.00.51:869][661]LogLoad: Game class is 'GameModeBase'
+[2020.02.12-23.00.51:872][661]LogWorld: Bringing World /Game/UEDPIE_0_GettingStarted_LoginCall.GettingStarted_LoginCall up for play (max tick rate 0) at 2020.02.12-15.00.51
+[2020.02.12-23.00.51:872][661]LogWorld: Bringing up level for play took: 0.001650
+[2020.02.12-23.00.51:873][661]LogOnline: OSS: Creating online subsystem instance for: :Context_2
+[2020.02.12-23.00.51:877][661]LogContentBrowser: Native class hierarchy updated for 'MovieSceneCapture' in 0.0005 seconds. Added 20 classes and 0 folders.
+[2020.02.12-23.00.51:879][661]LogPlayFab: Request: {
+	"CreateAccount": true,
+	"CustomId": "GettingStartedGuide",
+	"EncryptedRequest": null,
+	"PlayerSecret": null,
+	"TitleId": "7C1D"
+}
+[2020.02.12-23.00.51:879][661]PIE: Play in editor start time for /Game/UEDPIE_0_GettingStarted_LoginCall 0.326
+[2020.02.12-23.00.51:880][661]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall:PersistentLevel' has LevelScriptBlueprint '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall:PersistentLevel.GettingStarted_LoginCall' with GeneratedClass '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall_C' with ClassGeneratedBy '/Game/GettingStarted_LoginCall.GettingStarted_LoginCall:PersistentLevel.GettingStarted_LoginCall'
+[2020.02.12-23.00.52:458][663]LogPlayFab: Response : {"code":200,"status":"OK","data":{"SessionTicket":"82C4A95B5995C028---7C1D-8D7B00F687AA0CD-rXt+mcKh5yUgtt6W3/Zcl/kvkYPK5jYmvhKwOqCkQfc=","PlayFabId":"82C4A95B5995C028","NewlyCreated":false,"SettingsForUser":{"NeedsAttribution":false,"GatherDeviceInfo":true,"GatherFocusInfo":true},"LastLoginTime":"2020-02-12T22:02:15.736Z","EntityToken":{"EntityToken":"Mnx7ImkiOiIyMDIwLTAyLTEyVDIzOjAwOjUyLjAyMzU3OTRaIiwiaWRwIjoiQ3VzdG9tIiwiZSI6IjIwMjAtMDItMTNUMjM6MDA6NTIuMDIzNTc5NFoiLCJoIjoiM0I4NjA4NTA3N0YxMjBFIiwicyI6IkJzMElTTEhtNVdKRnk2M0hndXN4cWl4aEhzY0RlVVlBYlZKUU9lRG83WXc9IiwiZWMiOiJ0aXRsZV9wbGF5ZXJfYWNjb3VudCE0QTJBNzQzRjU1RTQzNzZELzdDMUQvODJDNEE5NUI1OTk1QzAyOC9CQjY2NjBDNjExOTU2OUU5LyIsImVpIjoiQkI2NjYwQzYxMTk1NjlFOSIsImV0IjoidGl0bGVfcGxheWVyX2FjY291bnQifQ==","TokenExpiration":"2020-02-13T23:00:52.023Z","Entity":{"Id":"BB6660C6119569E9","Type":"title_player_account","TypeString":"title_player_account"}}}}
+[2020.02.12-23.00.52:459][663]LogBlueprintUserMessages: [GettingStarted_LoginCall_C_0] Congrat! You've successfully logged in!
