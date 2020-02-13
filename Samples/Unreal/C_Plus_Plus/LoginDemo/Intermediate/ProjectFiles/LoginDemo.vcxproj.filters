@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\LoginDemo.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{9023EEBD-BE74-4F55-93AA-A0E543710CDE}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\LoginDemo.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\LoginDemoEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{90243692-7B7B-484E-8A66-2FE581FE03F2}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\LoginDemo">
+      <UniqueIdentifier>{A375E40F-CA52-4DA3-887B-5CA3822F1E28}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\LoginDemo\LoginDemo.Build.cs">
+      <Filter>Source\LoginDemo</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\LoginDemo\LoginDemo.cpp">
+      <Filter>Source\LoginDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LoginDemo\LoginDemo.h">
+      <Filter>Source\LoginDemo</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\LoginDemo\LoginDemoGameModeBase.cpp">
+      <Filter>Source\LoginDemo</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\LoginDemo\LoginDemoGameModeBase.h">
+      <Filter>Source\LoginDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\LoginDemo\LoginActor.h">
+      <Filter>Source\LoginDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\LoginDemo\LoginActor.cpp">
+      <Filter>Source\LoginDemo</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "LoginDemo",
+			"Path": "C:\\Users\\debh.REDMOND\\Desktop\\GDC_Samples\\Samples\\Unreal\\C_Plus_Plus\\LoginDemo\\Source\\LoginDemo.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "LoginDemoEditor",
+			"Path": "C:\\Users\\debh.REDMOND\\Desktop\\GDC_Samples\\Samples\\Unreal\\C_Plus_Plus\\LoginDemo\\Source\\LoginDemoEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
