@@ -140,8 +140,8 @@ The app does these things in sequence
 * Enter a chat channel with the other player in the match
 
 ## Things to note
-* The SignalR service and the function app will spin down when not in use. That may mean you see delays an timeouts on first use or after idling for a while.
-* While the app is running, is actually listening for broadcasts of additional logins, you should see those pretty quickly
+* The function app will spin down when not in use. That may mean you see delays and timeouts on first use or after idling for a while. This can be mitigated by opting for the [Azure Functions Premium plan](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan) to avoid cold starts.
+* While the app is running, it's listening for broadcasts of additional logins and will display them as soon as they happen.
 * Once in chat, you can type lines of text to send to the other player.
-* If there are more than two instances, there may be multiple matches, but only 2 players per match
-* To exit after entering chat, just hit enter (send an empty chat line)
+* If there are more than two instances, there may be multiple matches, but only 2 players per match.
+* To exit after entering chat, just hit enter (send an empty chat line).
