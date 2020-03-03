@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayFab", "PlayFab.csproj", "{DEC9C2C3-C3D1-D200-95B6-0E0559508971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{3EB61856-86B5-D22E-BB04-C6EB1E283500}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayFabSDKEditor", "PlayFabSDKEditor.csproj", "{D3F7F7AA-061E-43E4-46BB-6734335C9DC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEC9C2C3-C3D1-D200-95B6-0E0559508971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC9C2C3-C3D1-D200-95B6-0E0559508971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC9C2C3-C3D1-D200-95B6-0E0559508971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC9C2C3-C3D1-D200-95B6-0E0559508971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB61856-86B5-D22E-BB04-C6EB1E283500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB61856-86B5-D22E-BB04-C6EB1E283500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB61856-86B5-D22E-BB04-C6EB1E283500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB61856-86B5-D22E-BB04-C6EB1E283500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3F7F7AA-061E-43E4-46BB-6734335C9DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F7F7AA-061E-43E4-46BB-6734335C9DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F7F7AA-061E-43E4-46BB-6734335C9DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F7F7AA-061E-43E4-46BB-6734335C9DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
