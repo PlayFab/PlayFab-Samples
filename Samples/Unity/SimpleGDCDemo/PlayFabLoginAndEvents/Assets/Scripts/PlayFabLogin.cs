@@ -58,7 +58,7 @@ public class PlayFabLogin : MonoBehaviour
         EventContents eventContents = new EventContents();
         string eventName = name + i;
         eventContents.Name = eventName;
-        eventContents.EventNamespace = "com.playfab.events.default";
+        eventContents.EventNamespace = "custom.playfab.events.default";
         eventContents.PayloadJSON = payload;
         return eventContents;
     }
@@ -69,8 +69,8 @@ public class PlayFabLogin : MonoBehaviour
         // Write the PlayFab Event
         var telemetryRequest = new WriteEventsRequest();
         telemetryRequest.Events = new List<EventContents>();
-        telemetryRequest.Events.Add(CreateEventsContents("event_A_", 0));
-        telemetryRequest.Events.Add(CreateEventsContents("event_B_", 1));
+        telemetryRequest.Events.Add(CreateEventsContents("event_Y_", 0));
+        telemetryRequest.Events.Add(CreateEventsContents("event_Z_", 1));
         PlayFabEventsAPI.WriteEvents(telemetryRequest, OnEventWriteSuccess, OnEventWriteError);
     }
 }
