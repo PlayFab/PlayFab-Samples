@@ -30,3 +30,4 @@ packages/
 Icon?
 ehthumbs.db
 [Tt]humbs.db 
+*.pubxml

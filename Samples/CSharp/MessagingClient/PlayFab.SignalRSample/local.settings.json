@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureSignalRConnectionString": "[Copy from Azure Portal]",
+    "AzureWebJobsStorage": "[Copy from Azure Portal]"
+  },
+  "Host": {
+    "LocalHttpPort": 7071,
+    "CORS": "http://localhost:8080",
+    "CORSCredentials": true
+  }
+}
