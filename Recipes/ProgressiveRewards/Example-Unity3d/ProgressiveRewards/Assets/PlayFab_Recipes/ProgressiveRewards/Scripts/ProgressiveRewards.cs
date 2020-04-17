@@ -70,7 +70,9 @@ public class ProgressiveRewards : MonoBehaviour {
 		}	
 
 		Debug.Log("CheckIn Results:");
-        List<ItemInstance> grantedItems = PlayFab.Json.JsonWrapper.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
+
+		var serializer = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer);
+		List<ItemInstance> grantedItems = serializer.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
 		
 		if(grantedItems != null && grantedItems.Count > 0)
 		{
