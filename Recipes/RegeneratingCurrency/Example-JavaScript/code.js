@@ -139,7 +139,7 @@ function GetInventoryCallback(response, error)
 
 function TryBuyLives()
 {
-	console.log("Purchaseing Lives...");
+	console.log("Purchasing Lives...");
 	var PurchaseItemRequest = {
 		"ItemId" : "extraLivesBundle",
 		"VirtualCurrency" : "GM",
@@ -166,7 +166,7 @@ function ToBattle()
 {
 	console.log("Battling...");
 	var ExecuteCloudScriptRequest = {
-		"FunctionName" : "Batttttle"
+		"FunctionName" : "Battle"
 	};
 
 	PlayFabClientSDK.ExecuteCloudScript(ExecuteCloudScriptRequest, ToBattleCallback);

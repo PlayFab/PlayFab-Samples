@@ -92,7 +92,7 @@ function CheckInCallback(response, error)
 	}	
 	else if (response.data.Error)
 	{
-		// Output any errors that occured in Cloud Script
+		// Output any errors that occurred in Cloud Script
 		OutputError(response.data.Error);
 	}
 	else
@@ -127,7 +127,7 @@ function OutputError(error)
 	console.error(error);
 }
 
-// creates a standard GUID string that will be used as our custom ID
+// creates a standard GUID string that is used as our custom ID
 function CreateGUID()
 {
 	//http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript

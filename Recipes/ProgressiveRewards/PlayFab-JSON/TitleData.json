@@ -1,3 +1,3 @@
 { 
-    "ProgressiveRewardTable": { "Level1" : { "MinStreak" : 2, "Reward" : "Bronze_CheckInChest" }, "Level2" : { "MinStreak" : 5, "Reward" : "Silver_CheckInChest" }, "Level3" : { "MinStreak" : 7, "Reward" : "Gold_CheckInChest" } }     
+    "ProgressiveRewardTable": "{ \"Level1\" : { \"MinStreak\" : 2, \"Reward\" : \"Bronze_CheckInChest\" }, \"Level2\" : { \"MinStreak\" : 5, \"Reward\" : \"Silver_CheckInChest\" }, \"Level3\" : { \"MinStreak\" : 7, \"Reward\" : \"Gold_CheckInChest\" } }"
 }

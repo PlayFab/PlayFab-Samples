@@ -11,7 +11,7 @@ A progressive reward system allows you to reward players for logging in over con
 At least one of the following:
 
 * To run the Unity sample, an installed copy of the Unity Editor. To install Unity for personal use via Unity Hub, or Unity+ for professional use, see [Download Unity](https://unity3d.com/get-unity/download).
-* A web server to run the Javascript sample
+* A web server to run the Javascript sample.
 
 ## How it works
 
@@ -39,7 +39,7 @@ Testing Level 2 and 3 rewards requires:
 
 ## Preparation
 
-Before you begin, locate the Catalog.json, TitleData.json, and code.js files. If you have downloaded the repo locally, the JSON files are located in the \Recipes\ProgressiveRewards\PlayFab-JSON folder. The code.js file is located in the \Recipes\ProgressiveRewards\ folder.
+Before you begin, locate the Catalog.json, TitleData.json, and CloudScript.js files. If you have downloaded the repo locally, the JSON files are located in the \Recipes\ProgressiveRewards\PlayFab-JSON folder. The CloudScript.js file is located in the \Recipes\ProgressiveRewards\ folder.
 
 1. Log in to [Game Manager](https://developer.playfab.com/).
 2. Select your title.
@@ -52,13 +52,14 @@ Before you begin, locate the Catalog.json, TitleData.json, and code.js files. If
     | Name | Gems | Name of our VC |
     | Initial Deposit | 5 | How many each player gets with a new account |
 
+5. Select **Save Currency**.
 5. Select the **Catalog** tab, the select **Upload JSON**.
 6. Select the Catalog.json file, then select **Upload File**.
 7. In left navigation pane, select **Content**.
 8. In the **Title Data** window, under **Title Data** select **Upload JSON**.
 9. Select the TitleData.json file, the select **Upload**.
 10. In left navigation pane, select **Automation**, then select **Revisions**.
-11. Select **Upload New Revision**, select the code.js file and then select **Save as revision**.
+11. Select **Upload New Revision**, select the CloudScript.js file and then select **Save as revision**.
 
 ## Unity 3d Example Setup Instructions
 
@@ -67,9 +68,9 @@ Download the [PlayFlab Unity 3D SDK](https://aka.ms/playfabunitysdkdownload) fro
 1. Open a new or existing project.
 2. Locate locate the PlayFlab Unity 3D SDK and import it into your Project.
 3. Locate the ProgressiveRewardsRecipe.unitypackage file and import it into your project. If you have downloaded the repo locally, it is located in the \Recipes\ProgressiveRewards\Example-Unity3d\ folder. Other wise you can download it from the [PlayFab-Samples GitHub repo](https://github.com/PlayFab/PlayFab-Samples/raw/master/Recipes/ProgressiveRewards/Example-Unity3d/ProgressiveRewardsRecipe.unitypackage).
-4. In the **Project** window, open **Assets &gt; PlayFab Recipes &gt; Progressive Rewards &gt; Scenes** and add the ProgressiveReward scene to your Hierarchy.
+4. In the **Project** window, open **Assets &gt; PlayFab Recipes &gt; ProgressiveRewards &gt; Scenes** and add the ProgressiveReward scene to your Hierarchy.
 5. In the **Hierarchy** windows, then select the Main Camera under the ProgressiveRewards scene.
-6. In the **Inspector** window, in the Progressive Rewards script component, set Play Fab Title Id to the Title ID for your PlayFab title.
+6. In the **Inspector** window, in the Progressive Rewards script component, set **Play Fab Title Id** to the Title ID for your PlayFab title.
 7. Run the scene. Call-by-call status updates are displayed in the console.
 
 ## JavaScript Example Setup Instructions
@@ -81,4 +82,8 @@ Download the [PlayFlab Unity 3D SDK](https://aka.ms/playfabunitysdkdownload) fro
     * After logging in, the ID is saved into your browser's localstorage
 4. Open your browser's developer console to see call-by-call status updates.
 
-For information about debugging CloudScript, see the "Advanced: Debugging CloudScript" section of [Writing custom CloudScript](https://docs.microsoft.com/en-us/gaming/playfab/features/automation/cloudscript/writing-custom-cloudscript#advanced-debugging-cloudscript).
+## Additional Resources
+
+* For information about debugging CloudScript, see the "Advanced: Debugging CloudScript" section of [Writing custom CloudScript](https://docs.microsoft.com/en-us/gaming/playfab/features/automation/cloudscript/writing-custom-cloudscript#advanced-debugging-cloudscript).
+* For information about Catalogs, see [Catalogs](https://docs.microsoft.com/en-us/gaming/playfab/features/commerce/items/catalogs).
+* For information about Title Data, see [Title Data](https://docs.microsoft.com/en-us/gaming/playfab/features/config/titledata/).

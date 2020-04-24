@@ -127,12 +127,16 @@ function RedeemReferralCodeCallback(response, error)
 	}	
 	else if(response.data.Error)
 	{
-		// Output any errors that occured in Cloud Script
+		// Output any errors that occurred in Cloud Script
 		OutputError(response.data.Error);
+	}
+	else if(response.data.FunctionResult.errorDetails)
+	{
+		OutputError(response.data.FunctionResult.errorDetails);
 	}
 	else
 	{
-		console.log("SUCCESS!...\nYou Just Recieved:");
+		console.log("SUCCESS!...\nYou Just Received:");
 		var grantedItems = response.data.Results;
 
 		if(grantedItems)
@@ -158,7 +162,7 @@ function RedeemReferralCodeCallback(response, error)
 		}
 		else
 		{
-			console.log("An error occured when attemtpting to deserialize the BattleResults.");
+			console.log("An error occurred when attempting to deserialize the BattleResults.");
 		}
 	}
 }
@@ -183,7 +187,7 @@ function OutputError(error)
 	console.error(error);
 }
 
-// creates a standard GUID string that will be used as our custom ID
+// creates a standard GUID string to use as our custom ID
 function CreateGUID()
 {
 	//http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript

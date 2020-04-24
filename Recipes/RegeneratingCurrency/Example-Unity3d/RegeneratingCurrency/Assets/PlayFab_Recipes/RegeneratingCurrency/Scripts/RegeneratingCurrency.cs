@@ -166,7 +166,9 @@ public class RegeneratingCurrency : MonoBehaviour {
 		}
 
 		Debug.Log("BATTLE REPORT:");
-		BattleResults grantedItems = PlayFab.Json.JsonWrapper.DeserializeObject<BattleResults>(result.FunctionResult.ToString());
+
+		var serializer = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer);
+		BattleResults grantedItems = serializer.DeserializeObject<BattleResults>(result.FunctionResult.ToString());
 		
 		if(grantedItems != null)
 		{
@@ -175,7 +177,7 @@ public class RegeneratingCurrency : MonoBehaviour {
 		}
 		else
 		{
-			Debug.LogError("An error occured when attemtpting to deserialize the BattleResults.");
+			Debug.LogError("An error occurred when attempting to deserialize the BattleResults.");
 		}
 	}
 	
