@@ -11,7 +11,7 @@ handlers.RedeemReferral = function(args) {
     try{
         if(args == null || typeof args.referralCode === undefined || args.referralCode === "")
         {
-            throw "Failed to redeem. args.referralCode is undefined or blank";
+            throw "Failed to redeem. args.referralCode is undefined or blank.";
         }
         else if(args.referralCode === currentPlayerId)
         {
@@ -52,7 +52,7 @@ handlers.RedeemReferral = function(args) {
             referralValues = JSON.parse(GetUserReadOnlyDataResult.Data[PLAYER_REFERRAL_KEY].Value);
             if(Array.isArray(referralValues))
             {
-                // need to ensure we have not exceded the MAXIMUM_REFERRALS
+                // need to ensure we have not exceeded the MAXIMUM_REFERRALS
                 if(referralValues.length < MAXIMUM_REFERRALS)
                 {
                     // here we know that the referrer has not exceeded the max, so we will add the current player 
@@ -62,13 +62,13 @@ handlers.RedeemReferral = function(args) {
                 else
                 {
                     // Referrer has exceeded the MAXIMUM_REFERRALS
-                    // this is not an error, but the referrer does not get thier reward.
+                    // this is not an error, but the referrer does not get their reward.
                     log.info("Player:" + args.referralCode + " has hit the maximum number of referrals (" + MAXIMUM_REFERRALS + ")." );
                 }
             }
             else
             {
-                throw "An error occured when parsing the referrer's player data.";
+                throw "An error occurred when parsing the referrer's player data.";
             }
         }
         // finally, reward the calling player
@@ -79,8 +79,6 @@ handlers.RedeemReferral = function(args) {
         return retObj;
     }
 };
-
-
 
 function ProcessReferrer(id, referrals)
 {
@@ -103,7 +101,6 @@ function ProcessReferrer(id, referrals)
     log.info(AddUserVirtualCurrencyRequest.Amount + " " + VIRTUAL_CURRENCY_CODE + " granted to " + id);
 }
 
-
 function GrantReferralBonus(code)
 {
     var GrantItemsToUserRequest = {
@@ -115,7 +112,3 @@ function GrantReferralBonus(code)
     var GrantItemsToUserResult = server.GrantItemsToUser(GrantItemsToUserRequest);
     return GrantItemsToUserResult.ItemGrantResults;
 }
-
-
-
-

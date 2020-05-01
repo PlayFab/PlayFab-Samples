@@ -75,7 +75,9 @@ public class CrossPromotional : MonoBehaviour {
 		
 		if(result.FunctionResult != null)
 		{
-			grantedItems = PlayFab.Json.JsonWrapper.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
+			var serializer = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer);
+			grantedItems = serializer.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
+			
 			Debug.Log(string.Format("You were granted {0} items:", grantedItems.Count));
 			
 			string output = string.Empty;

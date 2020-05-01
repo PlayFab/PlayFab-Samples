@@ -48,12 +48,12 @@ handlers.CheckIn = function(args) {
     	var rewardTable = JSON.parse(GetTitleDataResult.Data[CROSS_PROMOTIONAL_REWARDS]);
     	var grantedItems = [];
 
-    	// loop through each title logged to the tracker and make the neccessacery item grants given this title's settings
+    	// loop through each title logged to the tracker and make the necessary item grants given this title's settings
     	for(var title in trackedTitles)
     	{
     		if(title === CURRENT_TITLE_CODE)
     		{
-    			continue; // we dont reward for logging into this title; however, we should still track it so other titles can grant.
+    			continue; // we don't reward for logging into this title; however, we should still track it so other titles can grant.
     		}	
     		else if(trackedTitles[CURRENT_TITLE_CODE].Redeemed.indexOf(title) === -1)
     		{
@@ -81,8 +81,6 @@ handlers.CheckIn = function(args) {
     	return JSON.stringify(grantedItems);
     }
 };
-
-
 
 function UpdatePromoTracking(data)
 {

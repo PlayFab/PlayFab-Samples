@@ -137,7 +137,8 @@ public class ReferralCodeDemo : MonoBehaviour {
 	{	
 		Debug.Log("REDEEMING...");
 		ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest() { 
-			FunctionName = "RedeemReferral", 
+			FunctionName = "RedeemReferral",
+			GeneratePlayStreamEvent = true, 
 			FunctionParameter = new { 
 				referralCode = this.inputReferralCode.text 
 			}
@@ -148,29 +149,38 @@ public class ReferralCodeDemo : MonoBehaviour {
 	void OnRedeemReferralCodeCallback(ExecuteCloudScriptResult result) 
 	{
 		// output any errors that happend within cloud script
-		if(result.Error != null)
+		if(result.FunctionResult != null)
 		{
 			Debug.LogError(string.Format("{0} -- {1}", result.Error, result.Error.Message));
 			return;
 		}
 
-		List<ItemInstance> grantedItems = PlayFab.Json.JsonWrapper.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
-		if(grantedItems != null)
+		var serializer = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer);
+		List<ItemInstance> grantedItems = serializer.DeserializeObject<List<ItemInstance>>(result.FunctionResult.ToString());
+
+		if (grantedItems != null)
 		{
-			Debug.Log("SUCCESS!...\nYou Just Recieved:");
-			string output = string.Empty;
-			foreach(var itemInstance in grantedItems)
-			{			
-				output += string.Format("\t {0} \n", itemInstance.DisplayName); 
-			}
-			
-			this.inventory.AddRange(grantedItems);
-			SearchForReferralBadge();
-			ShowReferredGroup();
-			Debug.Log(output);
-			foreach(var statement in result.Logs)
+			if (grantedItems.Count > 0)
 			{
-				Debug.Log(statement.Message);
+				Debug.Log("SUCCESS!...\nYou Just Recieved:");
+				string output = string.Empty;
+				foreach (var itemInstance in grantedItems)
+				{
+					output += string.Format("\t {0} \n", itemInstance.DisplayName);
+				}
+
+				this.inventory.AddRange(grantedItems);
+				SearchForReferralBadge();
+				ShowReferredGroup();
+				Debug.Log(output);
+				foreach (var statement in result.Logs)
+				{
+					Debug.Log(statement.Message);
+				}
+			}
+			else 
+			{
+				Debug.Log("No items granted.");
 			}
 		}
 		else
