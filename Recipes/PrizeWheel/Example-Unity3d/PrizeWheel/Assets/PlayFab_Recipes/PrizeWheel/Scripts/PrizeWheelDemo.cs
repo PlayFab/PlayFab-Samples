@@ -11,17 +11,16 @@ public class PrizeWheelDemo : MonoBehaviour {
 	public Text spinTicketBalance;
 	public Text timeUntilNextFreeSpin;
 	public Text itemCount;
-	
-	// INSPECTOR TWEAKABLES
-	public string playFabTitleId = string.Empty;
+
+	// PlayFab User ID
+	private string PFID;
 	
 	// Use this for initialization
 	void Start () 
 	{
 		LockUI();
 		// set TitleID in the SDK
-		PlayFab.PlayFabSettings.TitleId = this.playFabTitleId;
-		if(string.IsNullOrEmpty(PlayFab.PlayFabSettings.TitleId))
+		if(string.IsNullOrEmpty(PlayFabSettings.TitleId))
 		{
 			Debug.LogWarning("Title Id was not set. To continue, enter your title id in the inspector.");
 		}
@@ -30,6 +29,7 @@ public class PrizeWheelDemo : MonoBehaviour {
 	
 	public void OnSpinClicked()
 	{
+		LockUI();
 		TryToSpin();
 	}
 	
@@ -60,7 +60,8 @@ public class PrizeWheelDemo : MonoBehaviour {
 	void AuthenticateWithPlayFab()
 	{
 		Debug.Log("Logging into PlayFab...");
-		LoginWithCustomIDRequest request = new LoginWithCustomIDRequest() { TitleId = this.playFabTitleId, CustomId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true };
+
+		LoginWithCustomIDRequest request = new LoginWithCustomIDRequest() { CustomId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true };
 		PlayFabClientAPI.LoginWithCustomID(request, OnLoginCallback, OnApiCallError, null);
 	}
 	
@@ -68,12 +69,15 @@ public class PrizeWheelDemo : MonoBehaviour {
 	{
 		Debug.Log(string.Format("Login Successful. Welcome Player:{0}!", result.PlayFabId));
 		Debug.Log(string.Format("Your session ticket is: {0}", result.SessionTicket));
+
+		PFID = result.PlayFabId;
 		GetInventory();
 	}
 	
 	void GetInventory()
 	{
 		Debug.Log("Getting the player inventory...");
+
 		GetUserInventoryRequest request = new GetUserInventoryRequest();
 		PlayFabClientAPI.GetUserInventory(request, GetInventoryCallback, OnApiCallError);
 	}
@@ -112,6 +116,7 @@ public class PrizeWheelDemo : MonoBehaviour {
 	void TryToSpin()
 	{
 		Debug.Log("Attempting to spin...");
+
 		PurchaseItemRequest request = new PurchaseItemRequest() { ItemId = "PrizeWheel1", VirtualCurrency = "ST", Price = 1 };
 		PlayFabClientAPI.PurchaseItem(request, TryToSpinCallback, OnApiCallError);
 	}
@@ -119,11 +124,11 @@ public class PrizeWheelDemo : MonoBehaviour {
 	void TryToSpinCallback (PurchaseItemResult result) 
 	{ 
 		Debug.Log("Ticket Accepted! \nSPINNING...");
-		Debug.Log(string.Format("SPIN RESULT: {0}", result.Items[1].DisplayName));
-		
+		Debug.Log(string.Format("SPIN RESULT: {0}", result.Items[0].BundleContents[0]));
+		Debug.Log("Note: Updated inventory might be one higher than expected due to PrizeWheel1 bundle not yet being consumed (set to consume after 3 seconds)");
+
 		GetInventory();
 	}
-	
 	
 	void OnApiCallError(PlayFabError err)
 	{
@@ -140,5 +145,7 @@ public class PrizeWheelDemo : MonoBehaviour {
 		}
 		
 		Debug.LogError(string.Format("{0}\n {1}\n {2}\n", http, message, details));
+
+		UnlockUI();
 	}
 }
