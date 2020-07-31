@@ -4,7 +4,7 @@
 This sample demonstrates the use of SignalR combined with Azure Functions integrated with PlayFab to push notifications to clients.
 
 ## Prerequisites
-* If you don’t already have Visual Studio 2019 installed, you can download and use the free [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/). Make sure that you enable Azure development during the Visual Studio setup.
+* If you donâ€™t already have Visual Studio 2019 installed, you can download and use the free [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/). Make sure that you enable Azure development during the Visual Studio setup.
 * If you don't have an [Azure subscription](https://docs.microsoft.com/en-us/azure/guides/developer/azure-developer-guide#understanding-accounts-subscriptions-and-billing), create a [free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) before you begin.
 * You'll also need a [free PlayFab account](https://developer.playfab.com/en-US/sign-up) with a title created for testing purposes.
 
@@ -61,6 +61,18 @@ Before we can build and deploy our solution, we need to configure a couple of th
 6. In the Publish Window click on "Start"
 7. Click on the "Import Profile..." in the bottom left
 8. Select the .PublishSettings file you downloaded earlier
+
+### Copy local settings to Azure
+The SignalR Connection String and Web Jobs Connection String that we set locally a few moments ago need to be copied into the Azure Portal
+(This can sometimes also be done via the later publish process, but it's consistent and easy to do it now via the portal)
+1. Open the Azure portal to your Function app
+2. Click on "Configuration" in the Settings section
+3. Under Application settings, click "New application setting"
+4. Provide a Name of AzureSignalRConnectionString
+5. For value, use the same value you copied into the local.settings.json file earlier
+6. Click OK
+7. Repeat steps 3-6 for the AzureWebJobsStorage settings
+8. Save your changes to the Application Settings in the Portal
 
 ## Build and Publish the Function app
 1. Build the PlayFab.SignalRSample
