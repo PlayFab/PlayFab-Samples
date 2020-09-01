@@ -112,6 +112,7 @@ handlers.clear_game_network = function (args, context) {
 
  - Apr 2019, Initial release
  - Jan 2020, Update to the latest PlayFab Party and PlayFab SDKs
+ - Sep 2020, Updated PlayFab Party NuGet Package version
 
 ### Privacy Statement
 
