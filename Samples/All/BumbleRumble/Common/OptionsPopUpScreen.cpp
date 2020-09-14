@@ -109,13 +109,12 @@ OptionsPopUpScreen::OptionsPopUpScreen() : MenuScreen()
 				adjustLeft;
 				bool bNewValue = !Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled();
 
-				m_menuEntries[MenuIndex::COGNITIVE_SERVICES].m_value = bNewValue ? "Eabled" : "Disabled";
+				m_menuEntries[MenuIndex::COGNITIVE_SERVICES].m_value = bNewValue ? "Enabled" : "Disabled";
 
 				Managers::Get<NetworkManager>()->SetCognitiveServicesEnabled(bNewValue);
 			},
 			value));
 	}
-	
 
     m_menuTextScale = 0.35f;
     SetTransitionDirections(false, false);

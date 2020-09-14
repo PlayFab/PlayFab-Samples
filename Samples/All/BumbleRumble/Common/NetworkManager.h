@@ -57,6 +57,7 @@ public:
 private:
     bool InternalConnectToNetwork(const char* networkId, Party::PartyNetworkDescriptor& descriptor);
     void CreateLocalUser();
+	void CreateLocalChatControl();
     std::string DisplayNameFromChatControl(Party::PartyChatControl* control);
     void UpdateTTSProfile();
 	void SetTextChatTranslationOptions(bool bTranslateToLocalLanguage);
