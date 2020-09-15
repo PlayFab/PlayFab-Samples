@@ -332,7 +332,7 @@ bool NetworkManager::InternalConnectToNetwork(const char* inviteId, Party::Party
         return false;
     }
 
-	CreateLocalChatControl();
+    CreateLocalChatControl();
 
     // Connect the local user chat control to the network so we can use VOIP
     err = m_network->ConnectChatControl(
@@ -1202,11 +1202,11 @@ PartyChatControl* NetworkManager::GetChatControl(std::string& peer)
 
 void NetworkManager::SetCognitiveServicesEnabled(bool bEnabled)
 {
-	m_enableCognitiveServices = bEnabled;
+    m_enableCognitiveServices = bEnabled;
 
-	// For the purposes of the sample, enable or disable all possible features
-	SetTextChatTranslationOptions(bEnabled);
-	SetVoiceChatTranscriptionOptions(bEnabled, bEnabled, bEnabled, bEnabled); 
+    // For the purposes of the sample, enable or disable all possible features
+    SetTextChatTranslationOptions(bEnabled);
+    SetVoiceChatTranscriptionOptions(bEnabled, bEnabled, bEnabled, bEnabled);
 }
 
 void NetworkManager::SetTextChatTranslationOptions(bool bTranslateToLocalLanguage)

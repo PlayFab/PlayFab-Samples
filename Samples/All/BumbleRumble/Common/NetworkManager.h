@@ -51,19 +51,19 @@ public:
     inline NetworkManagerState State() { return m_state; }
     inline bool IsConnected() const { return m_state == NetworkManagerState::NetworkConnected; }
 
-	inline bool IsCognitiveServicesEnabled() { return m_enableCognitiveServices; }
-	void SetCognitiveServicesEnabled(bool bEnabled);
+    inline bool IsCognitiveServicesEnabled() { return m_enableCognitiveServices; }
+    void SetCognitiveServicesEnabled(bool bEnabled);
 
 private:
     bool InternalConnectToNetwork(const char* networkId, Party::PartyNetworkDescriptor& descriptor);
     void CreateLocalUser();
-	void CreateLocalChatControl();
+    void CreateLocalChatControl();
     std::string DisplayNameFromChatControl(Party::PartyChatControl* control);
     void UpdateTTSProfile();
-	void SetTextChatTranslationOptions(bool bTranslateToLocalLanguage);
-	void SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bTranslateToLocalLanguage);
+    void SetTextChatTranslationOptions(bool bTranslateToLocalLanguage);
+    void SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bTranslateToLocalLanguage);
 
-	std::function<void(std::string)> m_onNetworkCreated;
+    std::function<void(std::string)> m_onNetworkCreated;
     std::function<void(void)> m_onNetworkConnected;
     std::function<void(void)> m_onNetworkDestroyed;
     NetworkManagerState m_state;
@@ -73,7 +73,7 @@ private:
     Party::PartyLocalUser* m_localUser;
     Party::PartyLocalChatControl* m_localChatControl;
     bool m_partyInitialized;
-	bool m_enableCognitiveServices;
+    bool m_enableCognitiveServices;
     std::string m_languageCode;
     std::string m_languageName;
     std::string m_localEntityId;
