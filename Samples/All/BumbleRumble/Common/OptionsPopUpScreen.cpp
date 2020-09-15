@@ -100,21 +100,21 @@ OptionsPopUpScreen::OptionsPopUpScreen() : MenuScreen()
         },
         value));
 
-	if (Managers::Get<NetworkManager>()->State() == NetworkManagerState::NetworkConnected)
-	{
-		value = Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled() ? "Enabled" : "Disabled";
-		m_menuEntries.push_back(MenuEntry("Cognitive Services:", nullptr,
-			[this](bool adjustLeft)
-			{
-				adjustLeft;
-				bool bNewValue = !Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled();
+    if (Managers::Get<NetworkManager>()->State() == NetworkManagerState::NetworkConnected)
+    {
+        value = Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled() ? "Enabled" : "Disabled";
+        m_menuEntries.push_back(MenuEntry("Cognitive Services:", nullptr,
+            [this](bool adjustLeft)
+            {
+                adjustLeft;
+                bool bNewValue = !Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled();
 
-				m_menuEntries[MenuIndex::COGNITIVE_SERVICES].m_value = bNewValue ? "Enabled" : "Disabled";
+                m_menuEntries[MenuIndex::COGNITIVE_SERVICES].m_value = bNewValue ? "Enabled" : "Disabled";
 
-				Managers::Get<NetworkManager>()->SetCognitiveServicesEnabled(bNewValue);
-			},
-			value));
-	}
+                Managers::Get<NetworkManager>()->SetCognitiveServicesEnabled(bNewValue);
+            },
+            value));
+    }
 
     m_menuTextScale = 0.35f;
     SetTransitionDirections(false, false);

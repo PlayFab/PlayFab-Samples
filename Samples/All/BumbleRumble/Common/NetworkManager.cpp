@@ -80,7 +80,7 @@ NetworkManager::NetworkManager() :
     m_localUser(nullptr),
     m_localChatControl(nullptr),
     m_partyInitialized(false),
-	m_enableCognitiveServices(false),
+    m_enableCognitiveServices(false),
     m_languageCode("en-US"),
     m_languageName("English (United States)")
 {
@@ -126,8 +126,8 @@ void NetworkManager::CreateLocalUser()
 {
     if (m_localUser == nullptr)
     {
-		auto& partyManager = PartyManager::GetSingleton();
-		PartyError err;
+        auto& partyManager = PartyManager::GetSingleton();
+        PartyError err;
         PartyString entityId = Managers::Get<PlayFabManager>()->EntityId().c_str();
         PartyString entityToken = Managers::Get<PlayFabManager>()->EntityToken().c_str();
 
@@ -148,68 +148,68 @@ void NetworkManager::CreateLocalUser()
 
 void NetworkManager::CreateLocalChatControl()
 {
-	if (m_localChatControl == nullptr)
-	{
-		auto& partyManager = PartyManager::GetSingleton();
-		PartyError err;
-		PartyLocalDevice* localDevice = nullptr;
+    if (m_localChatControl == nullptr)
+    {
+        auto& partyManager = PartyManager::GetSingleton();
+        PartyError err;
+        PartyLocalDevice* localDevice = nullptr;
 
-		// Retrieve the local device
-		err = partyManager.GetLocalDevice(&localDevice);
+        // Retrieve the local device
+        err = partyManager.GetLocalDevice(&localDevice);
 
-		if (PARTY_FAILED(err))
-		{
-			DEBUGLOG("GetLocalDevice failed: %hs\n", GetErrorMessage(err));
-			return;
-		}
+        if (PARTY_FAILED(err))
+        {
+            DEBUGLOG("GetLocalDevice failed: %hs\n", GetErrorMessage(err));
+            return;
+        }
 
-		// Create a chat control for the local user on the local device
-		err = localDevice->CreateChatControl(
-			m_localUser,                                // Local user object
-			m_languageCode.c_str(),                     // Language id
-			nullptr,                                    // Async identifier
-			&m_localChatControl                         // OUT local chat control
-		);
+        // Create a chat control for the local user on the local device
+        err = localDevice->CreateChatControl(
+            m_localUser,                                // Local user object
+            m_languageCode.c_str(),                     // Language id
+            nullptr,                                    // Async identifier
+            &m_localChatControl                         // OUT local chat control
+        );
 
-		if (PARTY_FAILED(err))
-		{
-			DEBUGLOG("CreateChatControl failed: %hs\n", GetErrorMessage(err));
-			return;
-		}
+        if (PARTY_FAILED(err))
+        {
+            DEBUGLOG("CreateChatControl failed: %hs\n", GetErrorMessage(err));
+            return;
+        }
 
-		// Use automatic settings for the audio input device
-		err = m_localChatControl->SetAudioInput(
-			PartyAudioDeviceSelectionType::SystemDefault,   // Selection type
-			nullptr,                                        // Device id
-			nullptr                                         // Async identifier
-		);
+        // Use automatic settings for the audio input device
+        err = m_localChatControl->SetAudioInput(
+            PartyAudioDeviceSelectionType::SystemDefault,   // Selection type
+            nullptr,                                        // Device id
+            nullptr                                         // Async identifier
+        );
 
-		if (PARTY_FAILED(err))
-		{
-			DEBUGLOG("SetAudioInput failed: %hs\n", GetErrorMessage(err));
-			return;
-		}
+        if (PARTY_FAILED(err))
+        {
+            DEBUGLOG("SetAudioInput failed: %hs\n", GetErrorMessage(err));
+            return;
+        }
 
-		// Use automatic settings for the audio output device
-		err = m_localChatControl->SetAudioOutput(
-			PartyAudioDeviceSelectionType::SystemDefault,   // Selection type
-			nullptr,                                        // Device id
-			nullptr                                         // Async identifier
-		);
+        // Use automatic settings for the audio output device
+        err = m_localChatControl->SetAudioOutput(
+            PartyAudioDeviceSelectionType::SystemDefault,   // Selection type
+            nullptr,                                        // Device id
+            nullptr                                         // Async identifier
+        );
 
-		if (PARTY_FAILED(err))
-		{
-			DEBUGLOG("SetAudioOutput failed: %hs\n", GetErrorMessage(err));
-		}
+        if (PARTY_FAILED(err))
+        {
+            DEBUGLOG("SetAudioOutput failed: %hs\n", GetErrorMessage(err));
+        }
 
-		// Get the available list of text to speech profiles
-		err = m_localChatControl->PopulateAvailableTextToSpeechProfiles(nullptr);
+        // Get the available list of text to speech profiles
+        err = m_localChatControl->PopulateAvailableTextToSpeechProfiles(nullptr);
 
-		if (PARTY_FAILED(err))
-		{
-			DEBUGLOG("Populating available TextToSpeechProfiles failed: %s \n", GetErrorMessage(err));
-		}
-	}
+        if (PARTY_FAILED(err))
+        {
+            DEBUGLOG("Populating available TextToSpeechProfiles failed: %s \n", GetErrorMessage(err));
+        }
+    }
 }
 
 void NetworkManager::Shutdown()
@@ -457,24 +457,24 @@ void NetworkManager::SendTextMessage(std::string text)
 
 void NetworkManager::SendTextAsVoice(std::string text)
 {
-	if (m_enableCognitiveServices)
-	{
-		if (m_localChatControl != nullptr)
-		{
-			DEBUGLOG("Requesting transcription of: %hs\n", text.c_str());
+    if (m_enableCognitiveServices)
+    {
+        if (m_localChatControl != nullptr)
+        {
+            DEBUGLOG("Requesting transcription of: %hs\n", text.c_str());
 
-			PartyError err = m_localChatControl->SynthesizeTextToSpeech(
-				PartySynthesizeTextToSpeechType::VoiceChat,
-				text.c_str(),                           // Text to synthesize
-				nullptr                                 // Async identifier
-			);
+            PartyError err = m_localChatControl->SynthesizeTextToSpeech(
+                PartySynthesizeTextToSpeechType::VoiceChat,
+                text.c_str(),                           // Text to synthesize
+                nullptr                                 // Async identifier
+            );
 
-			if (PARTY_FAILED(err))
-			{
-				DEBUGLOG("Failed to SynthesizeTextToSpeech: %hs\n", GetErrorMessage(err));
-			}
-		}
-	}
+            if (PARTY_FAILED(err))
+            {
+                DEBUGLOG("Failed to SynthesizeTextToSpeech: %hs\n", GetErrorMessage(err));
+            }
+        }
+    }
 }
 
 void NetworkManager::LeaveNetwork(std::function<void(void)> callback)
@@ -1200,7 +1200,7 @@ PartyChatControl* NetworkManager::GetChatControl(std::string& peer)
     return nullptr;
 }
 
-void BumbleRumble::NetworkManager::SetCognitiveServicesEnabled(bool bEnabled)
+void NetworkManager::SetCognitiveServicesEnabled(bool bEnabled)
 {
 	m_enableCognitiveServices = bEnabled;
 
@@ -1209,64 +1209,64 @@ void BumbleRumble::NetworkManager::SetCognitiveServicesEnabled(bool bEnabled)
 	SetVoiceChatTranscriptionOptions(bEnabled, bEnabled, bEnabled, false, bEnabled); 
 }
 
-void BumbleRumble::NetworkManager::SetTextChatTranslationOptions(bool bTranslateToLocalLanguage)
+void NetworkManager::SetTextChatTranslationOptions(bool bTranslateToLocalLanguage)
 {
-	DEBUGLOG("SetTextChatTranslationOptions: bTranslateToLocalLanguage = %s", bTranslateToLocalLanguage ? "Enabled" : "Disabled");
+    DEBUGLOG("SetTextChatTranslationOptions: bTranslateToLocalLanguage = %s", bTranslateToLocalLanguage ? "Enabled" : "Disabled");
 
-	// Enable translation to local language in chat controls.
-	PartyError err = m_localChatControl->SetTextChatOptions(
-		bTranslateToLocalLanguage ? PartyTextChatOptions::TranslateToLocalLanguage : PartyTextChatOptions::None,
-		nullptr
-	);
+    // Enable translation to local language in chat controls.
+    PartyError err = m_localChatControl->SetTextChatOptions(
+        bTranslateToLocalLanguage ? PartyTextChatOptions::TranslateToLocalLanguage : PartyTextChatOptions::None,
+        nullptr
+    );
 
-	if (PARTY_FAILED(err))
-	{
-		DEBUGLOG("SetTextChatOptions failed: %s\n", GetErrorMessage(err));
-	}
+    if (PARTY_FAILED(err))
+    {
+        DEBUGLOG("SetTextChatOptions failed: %s\n", GetErrorMessage(err));
+    }
 }
 
-void BumbleRumble::NetworkManager::SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bDisableHypothesisPhrases, bool bTranslateToLocalLanguage)
+void NetworkManager::SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bDisableHypothesisPhrases, bool bTranslateToLocalLanguage)
 {
-	if (m_localChatControl)
-	{
-		DEBUGLOG("Setting Speech-To-Text options.\n");
+    if (m_localChatControl)
+    {
+        DEBUGLOG("Setting Speech-To-Text options.\n");
 
-		PartyVoiceChatTranscriptionOptions Options = PartyVoiceChatTranscriptionOptions::None;
+        PartyVoiceChatTranscriptionOptions Options = PartyVoiceChatTranscriptionOptions::None;
 
-		if (bTranscribeSelf)
-		{
-			Options |= PartyVoiceChatTranscriptionOptions::TranscribeSelf;
-		}
+        if (bTranscribeSelf)
+        {
+            Options |= PartyVoiceChatTranscriptionOptions::TranscribeSelf;
+        }
 
-		if (bTranscribeOtherChatControlsWithMatchingLanguages)
-		{
-			Options |= PartyVoiceChatTranscriptionOptions::TranscribeOtherChatControlsWithMatchingLanguages;
-		}
+        if (bTranscribeOtherChatControlsWithMatchingLanguages)
+        {
+            Options |= PartyVoiceChatTranscriptionOptions::TranscribeOtherChatControlsWithMatchingLanguages;
+        }
 
-		if (bTranscribeOtherChatControlsWithNonMatchingLanguages)
-		{
-			Options |= PartyVoiceChatTranscriptionOptions::TranscribeOtherChatControlsWithNonMatchingLanguages;
-		}
+        if (bTranscribeOtherChatControlsWithNonMatchingLanguages)
+        {
+            Options |= PartyVoiceChatTranscriptionOptions::TranscribeOtherChatControlsWithNonMatchingLanguages;
+        }
 
-		if (bDisableHypothesisPhrases)
-		{
-			Options |= PartyVoiceChatTranscriptionOptions::DisableHypothesisPhrases;
-		}
+        if (bDisableHypothesisPhrases)
+        {
+            Options |= PartyVoiceChatTranscriptionOptions::DisableHypothesisPhrases;
+        }
 
-		if (bTranslateToLocalLanguage)
-		{
-			Options |= PartyVoiceChatTranscriptionOptions::TranslateToLocalLanguage;
-		}
+        if (bTranslateToLocalLanguage)
+        {
+            Options |= PartyVoiceChatTranscriptionOptions::TranslateToLocalLanguage;
+        }
 
-		// Set the transcription options on our chat control.
-		PartyError err = m_localChatControl->SetTranscriptionOptions(
-			Options, // Transcription options
-			nullptr  // Async identifier
-		);
+        // Set the transcription options on our chat control.
+        PartyError err = m_localChatControl->SetTranscriptionOptions(
+            Options, // Transcription options
+            nullptr  // Async identifier
+        );
 
-		if (PARTY_FAILED(err))
-		{
-			DEBUGLOG("SetTranscriptionOptions failed: %s\n", GetErrorMessage(err));
-		}
-	}
+        if (PARTY_FAILED(err))
+        {
+            DEBUGLOG("SetTranscriptionOptions failed: %s\n", GetErrorMessage(err));
+        }
+    }
 }

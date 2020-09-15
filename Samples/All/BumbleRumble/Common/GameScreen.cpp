@@ -106,31 +106,31 @@ void GameScreen::HandleInput()
     auto inputManager = Managers::Get<InputManager>();
 
 #if defined(_XBOX_ONE) && defined(_TITLE)
-	if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::View))
-	{
-		Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<OptionsPopUpScreen>());
-	}
-	else if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::View))
-	{
-		if (Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled())
-		{
-			concurrency::create_task(
-				Windows::Xbox::UI::SystemUI::ShowVirtualKeyboardAsync(
-					L"This is a text message",
-					L"Send Text Message",
-					L"Enter text to send:",
-					Windows::Xbox::UI::VirtualKeyboardInputScope::Default
-				)
-			).then([](Platform::String^ text)
-			{
-				Managers::Get<NetworkManager>()->SendTextAsVoice(BumbleRumble::WStrToStr(text->Data()));
-			});
-		}
-		else
-		{
-			Managers::Get<ScreenManager>()->ShowError("Cognitive Services must be enabled to use Text-To-Speech.");
-		}
-	}
+    if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::Menu))
+    {
+        Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<OptionsPopUpScreen>());
+    }
+    else if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::View))
+    {
+        if (Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled())
+        {
+            concurrency::create_task(
+                Windows::Xbox::UI::SystemUI::ShowVirtualKeyboardAsync(
+                    L"This is a text message",
+                    L"Send Text Message",
+                    L"Enter text to send:",
+                    Windows::Xbox::UI::VirtualKeyboardInputScope::Default
+                )
+            ).then([](Platform::String^ text)
+            {
+                Managers::Get<NetworkManager>()->SendTextAsVoice(BumbleRumble::WStrToStr(text->Data()));
+            });
+        }
+        else
+        {
+            Managers::Get<ScreenManager>()->ShowError("Cognitive Services must be enabled to use Text-To-Speech.");
+        }
+    }
 
     if (inputManager->IsNewButtonPress(InputManager::GamepadButtons::DPadUp))
     {
@@ -161,22 +161,22 @@ void GameScreen::HandleInput()
         }
     }
 
-	if (inputManager->IsNewKeyPress(DirectX::Keyboard::Escape))
-	{
-		Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<OptionsPopUpScreen>());
-	}
-	else if (inputManager->IsNewKeyPress(DirectX::Keyboard::Tab))
-	{
-		if (Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled())
-		{
-			Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<InputBoxScreen>());
-		}
-		else
-		{
-			Managers::Get<ScreenManager>()->ShowError("Cognitive Services must be enabled to use Text-To-Speech.");
-		}
-	}
-	
+    if (inputManager->IsNewKeyPress(DirectX::Keyboard::Escape))
+    {
+        Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<OptionsPopUpScreen>());
+    }
+    else if (inputManager->IsNewKeyPress(DirectX::Keyboard::Tab))
+    {
+        if (Managers::Get<NetworkManager>()->IsCognitiveServicesEnabled())
+        {
+            Managers::Get<ScreenManager>()->AddGameScreen(std::make_shared<InputBoxScreen>());
+        }
+        else
+        {
+            Managers::Get<ScreenManager>()->ShowError("Cognitive Services must be enabled to use Text-To-Speech.");
+        }
+    }
+
     if (inputManager->IsNewKeyPress(DirectX::Keyboard::D4) && inputManager->CurrentKeyboardState().IsKeyDown(DirectX::Keyboard::LeftAlt))
     {
         Managers::Get<NetworkManager>()->SendTextMessage("Great job!");
