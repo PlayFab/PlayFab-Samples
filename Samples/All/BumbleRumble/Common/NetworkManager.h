@@ -61,7 +61,7 @@ private:
     std::string DisplayNameFromChatControl(Party::PartyChatControl* control);
     void UpdateTTSProfile();
 	void SetTextChatTranslationOptions(bool bTranslateToLocalLanguage);
-	void SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bDisableHypothesisPhrases, bool bTranslateToLocalLanguage);
+	void SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bTranslateToLocalLanguage);
 
 	std::function<void(std::string)> m_onNetworkCreated;
     std::function<void(void)> m_onNetworkConnected;

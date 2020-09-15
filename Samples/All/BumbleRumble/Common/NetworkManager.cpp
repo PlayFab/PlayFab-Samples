@@ -1206,7 +1206,7 @@ void NetworkManager::SetCognitiveServicesEnabled(bool bEnabled)
 
 	// For the purposes of the sample, enable or disable all possible features
 	SetTextChatTranslationOptions(bEnabled);
-	SetVoiceChatTranscriptionOptions(bEnabled, bEnabled, bEnabled, false, bEnabled); 
+	SetVoiceChatTranscriptionOptions(bEnabled, bEnabled, bEnabled, bEnabled); 
 }
 
 void NetworkManager::SetTextChatTranslationOptions(bool bTranslateToLocalLanguage)
@@ -1225,7 +1225,7 @@ void NetworkManager::SetTextChatTranslationOptions(bool bTranslateToLocalLanguag
     }
 }
 
-void NetworkManager::SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bDisableHypothesisPhrases, bool bTranslateToLocalLanguage)
+void NetworkManager::SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool bTranscribeOtherChatControlsWithMatchingLanguages, bool bTranscribeOtherChatControlsWithNonMatchingLanguages, bool bTranslateToLocalLanguage)
 {
     if (m_localChatControl)
     {
@@ -1246,11 +1246,6 @@ void NetworkManager::SetVoiceChatTranscriptionOptions(bool bTranscribeSelf, bool
         if (bTranscribeOtherChatControlsWithNonMatchingLanguages)
         {
             Options |= PartyVoiceChatTranscriptionOptions::TranscribeOtherChatControlsWithNonMatchingLanguages;
-        }
-
-        if (bDisableHypothesisPhrases)
-        {
-            Options |= PartyVoiceChatTranscriptionOptions::DisableHypothesisPhrases;
         }
 
         if (bTranslateToLocalLanguage)
