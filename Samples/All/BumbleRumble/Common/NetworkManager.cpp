@@ -80,7 +80,7 @@ NetworkManager::NetworkManager() :
     m_localUser(nullptr),
     m_localChatControl(nullptr),
     m_partyInitialized(false),
-    m_enableCognitiveServices(false),
+    m_enableCognitiveServices(true),
     m_languageCode("en-US"),
     m_languageName("English (United States)")
 {
@@ -882,6 +882,7 @@ void NetworkManager::DoWork()
             auto result = static_cast<const PartyConnectChatControlCompletedStateChange*>(change);
             if (result->result == PartyStateChangeResult::Succeeded)
             {
+                SetCognitiveServicesEnabled(m_enableCognitiveServices);
                 DEBUGLOG("Succeeded\n");
             }
             else
@@ -981,7 +982,7 @@ void NetworkManager::DoWork()
             // Toast the text on the screen
             Managers::Get<ScreenManager>()->GetSTTWindow()->AddSTTString(
                 DisplayNameFromChatControl(result->senderChatControl),
-                result->chatText,
+                result->translationCount > 0 && result->translations[0].result == PartyStateChangeResult::Succeeded ? result->translations[0].translation : result->chatText,
                 false
             );
 
@@ -1010,7 +1011,7 @@ void NetworkManager::DoWork()
                 // Toast the text on the screen
                 Managers::Get<ScreenManager>()->GetSTTWindow()->AddSTTString(
                     DisplayNameFromChatControl(result->senderChatControl),
-                    result->transcription,
+                    result->translationCount > 0 && result->translations[0].result == PartyStateChangeResult::Succeeded ? result->translations[0].translation : result->transcription,
                     true,
                     result->type == PartyVoiceChatTranscriptionPhraseType::Hypothesis
                 );
