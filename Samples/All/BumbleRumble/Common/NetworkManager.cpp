@@ -980,9 +980,30 @@ void NetworkManager::DoWork()
             auto result = static_cast<const PartyChatTextReceivedStateChange*>(change);
 
             // Toast the text on the screen
+            std::string message;
+
+            // First look for translations
+            if (result->translationCount > 0)
+            {
+                // Since we only have one local chat control, there will only be one translation
+                if (result->translations[0].result == PartyStateChangeResult::Succeeded)
+                {
+                    message = result->translations[0].translation;
+                }
+                else
+                {
+                    DEBUGLOG("Translation failed: %hs\n", PartyStateChangeResultToReasonString(result->translations[0].result).c_str());
+                }
+            }
+
+            if (message.empty())
+            {
+                message = result->chatText;
+            }
+
             Managers::Get<ScreenManager>()->GetSTTWindow()->AddSTTString(
                 DisplayNameFromChatControl(result->senderChatControl),
-                result->translationCount > 0 && result->translations[0].result == PartyStateChangeResult::Succeeded ? result->translations[0].translation : result->chatText,
+                message,
                 false
             );
 
@@ -1009,9 +1030,30 @@ void NetworkManager::DoWork()
             else
             {
                 // Toast the text on the screen
+                std::string message;
+
+                // First look for translations
+                if (result->translationCount > 0)
+                {
+                    // Since we only have one local chat control, there will only be one translation
+                    if (result->translations[0].result == PartyStateChangeResult::Succeeded)
+                    {
+                        message = result->translations[0].translation;
+                    }
+                    else
+                    {
+                        DEBUGLOG("Translation failed: %hs\n", PartyStateChangeResultToReasonString(result->translations[0].result).c_str());
+                    }
+                }
+
+                if (message.empty())
+                {
+                    message = result->transcription;
+                }
+
                 Managers::Get<ScreenManager>()->GetSTTWindow()->AddSTTString(
                     DisplayNameFromChatControl(result->senderChatControl),
-                    result->translationCount > 0 && result->translations[0].result == PartyStateChangeResult::Succeeded ? result->translations[0].translation : result->transcription,
+                    message,
                     true,
                     result->type == PartyVoiceChatTranscriptionPhraseType::Hypothesis
                 );
