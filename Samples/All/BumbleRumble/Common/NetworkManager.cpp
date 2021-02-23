@@ -80,7 +80,7 @@ NetworkManager::NetworkManager() :
     m_localUser(nullptr),
     m_localChatControl(nullptr),
     m_partyInitialized(false),
-    m_enableCognitiveServices(true),
+    m_enableCognitiveServices(false),
     m_languageCode("en-US"),
     m_languageName("English (United States)")
 {
