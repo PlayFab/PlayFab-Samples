@@ -43,6 +43,18 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
 
 ----
 
+### JavaScript Example Setup Instructions
+
+1. Copy [this folder](/Recipes/SimpleCrossPromotion/Example-JavaScript) to your web server.
+1. Navigate to index.html  
+1. Enter in your title ID (the id of your PlayFab studio, e.g. 8AB4D)
+    * This example automatically generates a GUID for *User Id* on login; however, You may choose any id you like.
+    * After logging in whatever id was used will be saved into your browser's localstorage
+    * Please observe your browsers console for return messages
+    * For debugging, we recommend a price of 0 for your PriceWheel1 bundle. You have to set this in the Economy -> Catalogs -> Bundles -> PriceWheel1 under Prices
+    * Additionally, you need to adjust the price in the code.js file, under *PurchaseItemRequest* to 0
+1. Observe your browser's developer console for call-by-call status updates.
+
 ### Unity 3d Example Setup Instructions
 
 Import the following asset packages into a new or existing Unity project:
@@ -54,14 +66,3 @@ Import the following asset packages into a new or existing Unity project:
 1. Open the PrizeWheel scene.
 1. Add your title ID to the PrizeWheel.cs script via the Unity Inspector.
 1. Run the scene and observe the console for call-by-call status updates.
-
-----
-
-### JavaScript Example Setup Instructions
-
-1. Copy [this folder](/Recipes/SimpleCrossPromotion/Example-JavaScript) to your web server.
-1. Navigate to index.html  
-1. Enter in your title ID
-    * This example automatically generates a GUID on login; however, You may choose any id you like.
-    * After logging in whatever id was used will be saved into your browser's localstorage
-1. Observe your browser's developer console for call-by-call status updates.

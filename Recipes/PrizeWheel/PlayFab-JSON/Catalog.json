@@ -114,7 +114,7 @@
       "DisplayName": "Prize Wheel No. 1",
       "Description": "Press your luck at the prize wheel. Every spin is a winner. 1-in-100 win a free spin!",
       "VirtualCurrencyPrices": {
-        "ST": 1
+        "ST": 0
       },
       "RealCurrencyPrices": null,
       "Tags": null,
