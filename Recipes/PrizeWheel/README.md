@@ -23,7 +23,7 @@ This technique ensures that players can only 'spin' at most one time per 24 hour
   | Code | ST | Abbreviation for our VC |
   | Name | Spin Ticket | Name of our VC |
   | Initial Deposit | 1 | ensure that the player can spin on their first login |
-  | Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day |
+  | Recharge Rate | 1 | this sets the VC to regenerate 1 unit per day. You can set to 1440 to a recharge per minute or 86400 for a recharge per second. |
   | Recharge Max | 5 | this caps the regeneration to the specified number, this is useful for allowing players to bank up to 5 spin tickets at a time |
 
 1. Next, under the Catalog tab, choose Upload JSON and upload [this file](PlayFab-JSON/Catalog.json)
