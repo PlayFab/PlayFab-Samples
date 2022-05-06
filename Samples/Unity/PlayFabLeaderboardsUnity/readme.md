@@ -31,6 +31,11 @@ There are no known issues.
   * __Reset Frequency:__ Manually
   * __Aggregation Method:__ Sum
 * Copy the contents of 'cloudscript.js' to your cloud script
+* The following rule needs to be created to link the client calls to the cloud script
+  * __Name:__ update_statistic
+  * __Event type:__ Custom Event - update_statistic
+  * __Action:__ Execute Cloud Script
+  * __Cloud Script Function:__ updateStatistic
 
  ### Using the Sample
  
