@@ -70,8 +70,6 @@ public class SampleManager : MonoBehaviour
 		}
 
 		RefreshLeaderboards();
-
-		ShowLeaderboard(CurrentLeaderboard);
 	}
 
 	public void PrevLeaderboard()
