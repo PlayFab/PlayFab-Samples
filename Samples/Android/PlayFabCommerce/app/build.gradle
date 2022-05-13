@@ -39,6 +39,7 @@ android {
 
     productFlavors {
     }
+    namespace 'atg.xbox.PlayFabCommerce'
 }
 
 dependencies {
