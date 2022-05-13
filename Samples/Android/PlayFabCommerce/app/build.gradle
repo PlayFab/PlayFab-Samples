@@ -52,5 +52,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.android.billingclient:billing:1.2'
-    implementation 'com.playfab:client-sdk:0.81.181204'
+    implementation 'com.playfab:client-sdk:0.122.201027'
 }
