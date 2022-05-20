@@ -28,14 +28,11 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.SkuDetails;
 
-//import com.google.android.gms.auth.api.signin.GoogleSignIn;
-//import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-//import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.games.AuthenticationResult;
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
 import com.google.android.gms.games.PlayGamesSdk;
@@ -116,30 +113,25 @@ public class PlayFabMain extends AppCompatActivity
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        // https://developers.google.com/identity/sign-in/android/sign-in
-
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-
-        // server_client_id is the Web client (Auto-created...) Client ID from https://console.developers.google.com/apis/credentials
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestScopes(new Scope(Scopes.PROFILE))
-//                .requestServerAuthCode(getString(R.string.server_client_id))
-//                .requestEmail()
-//                .build();
-//
-//        // Build a GoogleSignInClient with the options specified by gso.
-//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        // Set the dimensions of the sign-in button.
+        SignInButton signInButton = findViewById(R.id.sign_in_button);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
 
         GamesSignInClient gamesSignInClient = PlayGames.getGamesSignInClient(this);
 
-        gamesSignInClient.isAuthenticated().addOnCompleteListener(isAuthenticatedTask -> {
+        com.google.android.gms.tasks.OnCompleteListener<AuthenticationResult> onAuthenticationComplete = isAuthenticatedTask -> {
             boolean taskCompletedSuccessfully = isAuthenticatedTask.isSuccessful();
             boolean isAuthenticated =
                     (taskCompletedSuccessfully &&
                             isAuthenticatedTask.getResult().isAuthenticated());
 
             if (isAuthenticated) {
+                ViewGroup layout = (ViewGroup) signInButton.getParent();
+                if (layout != null)
+                {
+                    layout.removeView(signInButton);
+                }
+
                 // Continue with Play Games Services
                 Log.d(TAG, "The user IS authenticated");
                 gamesSignInClient.requestServerSideAccess(getString(R.string.server_client_id), false).addOnCompleteListener( task -> {
@@ -154,11 +146,13 @@ public class PlayFabMain extends AppCompatActivity
                 // call GamesSignInClient.signIn().
                 Log.d(TAG, "The user is NOT authenticated");
             }
-        });
+        };
 
-        // Set the dimensions of the sign-in button.
-        SignInButton signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        // The Google Play Games SDK automatically signs in the current player.  All we need to do
+        // is check to see if the player is currently authenticated or not.  If so, then we're all
+        // set to use the Google Play Games APIs.  If not then we can keep the Sign In button
+        // on the screen and allow the player to manually sign in later.
+        gamesSignInClient.isAuthenticated().addOnCompleteListener(onAuthenticationComplete);
 
         signInButton.setOnClickListener(new View.OnClickListener()
         {
@@ -166,28 +160,7 @@ public class PlayFabMain extends AppCompatActivity
             public void onClick(View view)
             {
                 Log.d(TAG, "Click Google Sign In");
-                gamesSignInClient.signIn().addOnCompleteListener(isAuthenticatedTask -> {
-                    boolean taskCompletedSuccessfully = isAuthenticatedTask.isSuccessful();
-                    boolean isAuthenticated =
-                            (taskCompletedSuccessfully &&
-                                    isAuthenticatedTask.getResult().isAuthenticated());
-
-                    if (isAuthenticated) {
-                        // Continue with Play Games Services
-                        Log.d(TAG, "The user IS authenticated");
-                        gamesSignInClient.requestServerSideAccess(getString(R.string.server_client_id), false).addOnCompleteListener( task -> {
-                            if (task.isSuccessful()) {
-                                String serverAuthCode = task.getResult();
-                                Log.d(TAG, "Server auth code is: " + serverAuthCode);
-                            }
-                        });
-                    } else {
-                        // Disable your integration with Play Games Services or show a
-                        // login button to ask  players to sign-in. Clicking it should
-                        // call GamesSignInClient.signIn().
-                        Log.d(TAG, "The user is NOT authenticated");
-                    }
-                });
+                gamesSignInClient.signIn().addOnCompleteListener(onAuthenticationComplete);
 //                SetInProgress(true);
 //                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
 //                startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -555,63 +528,15 @@ public class PlayFabMain extends AppCompatActivity
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-//        if (requestCode == RC_SIGN_IN)
-//        {
-//            // The Task returned from this call is always completed, no need to attach
-//            // a listener.c
-//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            handleSignInResult(task);
-//        }
     }
 
-//    private void handleSignInResult(Task<GoogleSignInAccount> completedTask)
-//    {
-//        try
-//        {
-//            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-//
-//            Log.d(TAG, "signInResult:success = " + Objects.requireNonNull(account).getDisplayName() + " " + account.getEmail());
-//
-//            // Needed for LoginWithGoogleAccount
-//            String authCode = account.getServerAuthCode();
-//
-//            // Remove Google Signin button, replace with signed in user's email
-//            SignInButton b = findViewById(R.id.sign_in_button);
-//            ViewGroup layout = (ViewGroup) b.getParent();
-//            if (layout != null)
-//            {
-//                layout.removeView(b);
-//            }
-//
-//            TextView text = findViewById(R.id.text_google_email);
-//            text.setVisibility(View.VISIBLE);
-//            text.setText(account.getEmail());
-//
-//            SignInPlayFab(authCode);
-//        }
-//        catch (ApiException e)
-//        {
-//            // The ApiException status code indicates the detailed failure reason.
-//            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-//            Log.d(TAG, "signInResult:failed code=" + e.getStatusCode());
-//            AlertDialog.Builder popup = new AlertDialog.Builder(this);
-//            popup.setTitle("Signin error");
-//            popup.setMessage(e.getLocalizedMessage());
-//            popup.setPositiveButton("Doh", new DialogInterface.OnClickListener()
-//            {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which)
-//                {
-//                    dialog.cancel();
-//                    SetInProgress(false);
-//                }
-//            });
-//            popup.show();
-//        }
-//    }
-
+    // As of the time of this writing (05/20/2022) PlayFab does not support logging in via the
+    // Google Play Games SDK.  This is because the OAuth scopes requested by the Google Play Games
+    // SDK (GPG SDK) do not allow the PlayFab service to access the player's Google Account Id,
+    // they only allow the service to access the player's Google Play Games Player Id.  Therefore,
+    // this method is no longer called in this sample, but it remains here so that we can easily
+    // update it in the future if and when PlayFab adds support for logging in with a
+    // Google Play Games Player Id.
     private void SignInPlayFab(final String authCode)
     {
         PlayFabOpManager pfman = PlayFabOpManager.getInstance();
