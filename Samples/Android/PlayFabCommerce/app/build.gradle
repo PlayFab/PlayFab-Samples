@@ -14,7 +14,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("external/debug.keystore")
+            storeFile file("external/briantre.keystore")
         }
 //        release {
 //            Properties properties = new Properties()
@@ -50,8 +50,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    // implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    //implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'com.google.android.gms:play-services-games-v2:+'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.android.billingclient:billing:1.2'
+    //implementation 'com.android.billingclient:billing:1.2'
     implementation 'com.playfab:client-sdk:0.122.201027'
 }
