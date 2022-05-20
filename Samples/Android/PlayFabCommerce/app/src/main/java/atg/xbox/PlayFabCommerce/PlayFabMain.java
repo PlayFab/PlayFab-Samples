@@ -24,9 +24,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-//import com.android.billingclient.api.BillingClient;
-//import com.android.billingclient.api.Purchase;
-//import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.SkuDetails;
 
 //import com.google.android.gms.auth.api.signin.GoogleSignIn;
 //import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -55,18 +55,18 @@ public class PlayFabMain extends AppCompatActivity
 
     private final String TAG = getClass().getSimpleName();
 
-//    private BillingManager mBillingManager;
-//
-//    /**
-//     * Listener to the updates that happen when purchases list was updated or consumption of the
-//     * item was finished
-//     */
-//    public interface BillingUpdatesListener
-//    {
-//        void onBillingClientSetupFinished();
-//        void onConsumeFinished(String token, @BillingClient.BillingResponse int result);
-//        void onPurchasesUpdated(List<Purchase> purchases);
-//    }
+    private BillingManager mBillingManager;
+
+    /**
+     * Listener to the updates that happen when purchases list was updated or consumption of the
+     * item was finished
+     */
+    public interface BillingUpdatesListener
+    {
+        void onBillingClientSetupFinished();
+        void onConsumeFinished(String token, @BillingClient.BillingResponse int result);
+        void onPurchasesUpdated(List<Purchase> purchases);
+    }
 
     public interface PlayFabPurchaseListener
     {
@@ -194,26 +194,26 @@ public class PlayFabMain extends AppCompatActivity
             }
         });
 
-//        mBillingManager = new BillingManager(this, new BillingUpdatesListener()
-//        {
-//            @Override
-//            public void onBillingClientSetupFinished()
-//            {
-//
-//            }
-//
-//            @Override
-//            public void onConsumeFinished(String token, int result)
-//            {
-//
-//            }
-//
-//            @Override
-//            public void onPurchasesUpdated(List<Purchase> purchases)
-//            {
-//                UpdateUI();
-//            }
-//        });
+        mBillingManager = new BillingManager(this, new BillingUpdatesListener()
+        {
+            @Override
+            public void onBillingClientSetupFinished()
+            {
+
+            }
+
+            @Override
+            public void onConsumeFinished(String token, int result)
+            {
+
+            }
+
+            @Override
+            public void onPurchasesUpdated(List<Purchase> purchases)
+            {
+                UpdateUI();
+            }
+        });
     }
 
     @Override
@@ -221,7 +221,7 @@ public class PlayFabMain extends AppCompatActivity
     {
         super.onResume();
 
-//        mBillingManager.CheckOutstandingPurchases();
+        mBillingManager.CheckOutstandingPurchases();
     }
 
     private void SetInProgress(final boolean b)
@@ -245,26 +245,26 @@ public class PlayFabMain extends AppCompatActivity
         LinearLayout linearLayout = findViewById(R.id.playfab_items);
         linearLayout.removeAllViewsInLayout();
 
-//        for(Map.Entry<String, SkuDetails> entry : mBillingManager.getSkuDetailsMap().entrySet())
-//        {
-//            // List the real money In-app products first
-//            final SkuDetails detail = entry.getValue();
-//
-//            Button button = new Button(this);
-//
-//            button.setText(detail.getPrice());
-//
-//            button.setOnClickListener(new View.OnClickListener()
-//            {
-//                @Override
-//                public void onClick(View view)
-//                {
-//                    mBillingManager.PurchaseSku(PlayFabMain.this, detail);
-//                }
-//            });
-//
-//            AddItemRow(entry.getKey(), StripTitleFromAddOnTitle(detail.getTitle()), button);
-//        }
+        for(Map.Entry<String, SkuDetails> entry : mBillingManager.getSkuDetailsMap().entrySet())
+        {
+            // List the real money In-app products first
+            final SkuDetails detail = entry.getValue();
+
+            Button button = new Button(this);
+
+            button.setText(detail.getPrice());
+
+            button.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    mBillingManager.PurchaseSku(PlayFabMain.this, detail);
+                }
+            });
+
+            AddItemRow(entry.getKey(), StripTitleFromAddOnTitle(detail.getTitle()), button);
+        }
 
         final PlayFabOpManager pfman = PlayFabOpManager.getInstance();
 
