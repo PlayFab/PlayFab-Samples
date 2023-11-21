@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
-  DevAccountEmail: sspiller@microsoft.com
-  DevAccountToken: i4fkfdqe79y7sd1eaoub6u9bdwh1jjqqh1dq7m4cex6ot34nudjw9fsoz9og9yqiopc8sx4yephwxgfpwc41dcy1u71ofpieapuga6qo57xixz9e7sk4qf9zjw3sb57m8xd5k8y35kdebdx6gy8d449hickyx9wn6pjjgo1snpi1cxytz1mqzakaje35aq3rkt8u9cch
-  SelectedStudio: Microsoft Xbox ATG
+  DevAccountEmail: 
+  DevAccountToken: 
+  SelectedStudio: 
   SdkPath: Assets/PlayFabSdk
   EdExPath: 
   LocalCloudScriptPath: 
