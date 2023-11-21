@@ -9,8 +9,8 @@
       "Description": "This card bears three distinct red marks.",
       "VirtualCurrencyPrices": null,
       "RealCurrencyPrices": null,
-      "Tags": [],
-      "CustomData": "null",
+      "Tags": null,
+      "CustomData": null,
       "Consumable": {
         "UsageCount": null,
         "UsagePeriod": null,
@@ -21,7 +21,10 @@
       "CanBecomeCharacter": false,
       "IsStackable": false,
       "IsTradable": false,
-      "ItemImageUrl": null
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
     },
     {
       "ItemId": "Card2",
@@ -31,8 +34,8 @@
       "Description": "This card has two holes of equal volume.",
       "VirtualCurrencyPrices": null,
       "RealCurrencyPrices": null,
-      "Tags": [],
-      "CustomData": "null",
+      "Tags": null,
+      "CustomData": null,
       "Consumable": {
         "UsageCount": null,
         "UsagePeriod": null,
@@ -43,7 +46,10 @@
       "CanBecomeCharacter": false,
       "IsStackable": false,
       "IsTradable": false,
-      "ItemImageUrl": null
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
     },
     {
       "ItemId": "Card1",
@@ -53,8 +59,8 @@
       "Description": "This card is blank.",
       "VirtualCurrencyPrices": null,
       "RealCurrencyPrices": null,
-      "Tags": [],
-      "CustomData": "null",
+      "Tags": null,
+      "CustomData": null,
       "Consumable": {
         "UsageCount": null,
         "UsagePeriod": null,
@@ -65,7 +71,10 @@
       "CanBecomeCharacter": false,
       "IsStackable": false,
       "IsTradable": false,
-      "ItemImageUrl": null
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
     },
     {
       "ItemId": "SpinAgain",
@@ -75,7 +84,7 @@
       "Description": "You just got one free Spin Ticket!",
       "VirtualCurrencyPrices": null,
       "RealCurrencyPrices": null,
-      "Tags": [],
+      "Tags": null,
       "CustomData": "null",
       "Consumable": {
         "UsageCount": 1,
@@ -93,7 +102,10 @@
       "CanBecomeCharacter": false,
       "IsStackable": false,
       "IsTradable": false,
-      "ItemImageUrl": null
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
     },
     {
       "ItemId": "PrizeWheel1",
@@ -102,10 +114,10 @@
       "DisplayName": "Prize Wheel No. 1",
       "Description": "Press your luck at the prize wheel. Every spin is a winner. 1-in-100 win a free spin!",
       "VirtualCurrencyPrices": {
-        "ST": 1
+        "ST": 0
       },
       "RealCurrencyPrices": null,
-      "Tags": [],
+      "Tags": null,
       "CustomData": "null",
       "Consumable": {
         "UsageCount": 1,
@@ -115,15 +127,43 @@
       "Container": null,
       "Bundle": {
         "BundledItems": [],
-        "BundledResultTables": [
-          "PrizeWheel1"
-        ],
+        "BundledResultTables": [],
         "BundledVirtualCurrencies": null
       },
       "CanBecomeCharacter": false,
       "IsStackable": false,
       "IsTradable": false,
-      "ItemImageUrl": null
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    }
+  ],
+  "DropTables": [
+    {
+      "TableId": "PrizeWheel1",
+      "Nodes": [
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "Card1",
+          "Weight": 10000
+        },
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "Card2",
+          "Weight": 10000
+        },
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "Card3",
+          "Weight": 10000
+        },
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "SpinAgain",
+          "Weight": 303
+        }
+      ]
     }
   ]
 }
