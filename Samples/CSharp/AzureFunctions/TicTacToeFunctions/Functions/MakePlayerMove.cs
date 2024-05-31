@@ -1,57 +1,69 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PlayFab.Samples;
 using PlayFab.TicTacToeDemo.Models;
-using System.Net.Http;
-using PlayFab.Plugins.CloudScript;
 using PlayFab.TicTacToeDemo.Util;
+using FunctionContext = PlayFab.Plugins.CloudScript.FunctionContext;
 
-namespace PlayFab.TicTacToeDemo.Functions
-{
-    public static class MakePlayerMove
-    {
-        [FunctionName("MakePlayerMove")]
-        public static async Task<MakePlayerMoveResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage req,
-            ILogger log)
-        {
-            var context = await FunctionContext<MakePlayerMoveRequest>.Create(req);
-            var move = context.FunctionArgument.Move;
+namespace PlayFab.TicTacToeDemo.Functions {
+    public class MakePlayerMove {
+        private readonly ILogger _logger;
 
-            Settings.TrySetSecretKey(context.ApiSettings);
-            Settings.TrySetCloudName(context.ApiSettings);
+        public MakePlayerMove(ILoggerFactory loggerFactory) {
+            _logger = loggerFactory.CreateLogger<MakePlayerMove>();
+        }
 
-            var playFabId = context.FunctionArgument.PlayFabId;
+        [Function("MakePlayerMove")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "post")]
+            HttpRequestData requestData,
+            FunctionContext executionContext) {
+            
+            string zRequest = await requestData.ReadAsStringAsync() ?? string.Empty;
+            PlayerPlayStreamFunctionExecutionContext<dynamic>? context =
+                JsonConvert.DeserializeObject<PlayerPlayStreamFunctionExecutionContext<dynamic>>(zRequest);
+            
+            // Pretty print requestData
+            string prettyRequestBody = JObject.Parse(zRequest).ToString(Formatting.Indented);
+            _logger.LogInformation("Request Data: {prettyRequestBody}\n", prettyRequestBody);
+
+            // Pretty print executionContext
+            string executionContextString = JsonConvert.SerializeObject(context);
+            string prettyExecutionContext = JObject.Parse(executionContextString).ToString(Formatting.Indented);
+            _logger.LogInformation("Execution Context: {prettyExecutionContext}\n", prettyExecutionContext);
+            
+            if (context == null) {
+                return new BadRequestObjectResult("Invalid context");
+            }
+            
+            PlayFabApiSettings settings = new() { TitleId = context.TitleAuthenticationContext.Id, };
+            Settings.TrySetSecretKey(ref settings);
+            Settings.TrySetCloudName(ref settings);
+
+            MakePlayerMoveRequest moveRequest = context.FunctionArgument.ToObject<MakePlayerMoveRequest>();
 
             // Attempt to load the player's game state
-            var state = await GameStateUtil.GetCurrentGameState(playFabId, context.ApiSettings, context.AuthenticationContext);
+            TicTacToeState state = await GameStateUtil.GetCurrentGameState(moveRequest.PlayFabId, settings);
+            TicTacToeMove move = moveRequest.Move;
 
-            var oneDimMoveIndex = move.row * 3 + move.col;
+            int oneDimMoveIndex = move.row * 3 + move.col;
 
             // Move can only be made if spot was empty
             if (state.Data[oneDimMoveIndex] == (int) OccupantType.NONE)
             {
                 state.Data[oneDimMoveIndex] = (int) OccupantType.PLAYER;
-                await GameStateUtil.UpdateCurrentGameState(state, playFabId, context.ApiSettings, context.AuthenticationContext);
-                return new MakePlayerMoveResult()
-                {
-                    Valid = true
-                };
+                await GameStateUtil.UpdateCurrentGameState(state, moveRequest.PlayFabId, settings);
+                return new OkObjectResult(new MakePlayerMoveResult { Valid = true });
             }
+
             // Move attempt was invalid
-            else
-            {
-                return new MakePlayerMoveResult()
-                {
-                    Valid = false
-                };
-            }
+            return new OkObjectResult(new MakePlayerMoveResult { Valid = false });
         }
-
-        
-
     }
 }

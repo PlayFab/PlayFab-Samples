@@ -1,70 +1,113 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PlayFab;
+using PlayFab.Samples;
 using PlayFab.TicTacToeDemo.Models;
-using System.Net.Http;
-using PlayFab.Plugins.CloudScript;
 using PlayFab.TicTacToeDemo.Util;
+using FunctionContext = PlayFab.Plugins.CloudScript.FunctionContext;
 
-namespace TicTacToeFunctions.Functions
-{
-    public static class MakeAIMove
-    {
-        [FunctionName("MakeRandomAIMove")]
-        public static async Task<TicTacToeMove> MakeRandomAIMove(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage req,
-            ILogger log)
-        {
-            var context = await FunctionContext<PlayFabIdRequest>.Create(req);
+namespace Shuffle.TicTacToe.Functions {
+    public class MakeAiMove {
+        private readonly ILogger _logger;
 
-            Settings.TrySetSecretKey(context.ApiSettings);
-            Settings.TrySetCloudName(context.ApiSettings);
+        public MakeAiMove(ILoggerFactory loggerFactory) {
+            _logger = loggerFactory.CreateLogger<MakeAiMove>();
+        }
+        
+        [Function("MakeRandomAiMove")]
+        public async Task<IActionResult> MakeRandomAiMove(
+            [HttpTrigger(AuthorizationLevel.Function, "post")]
+            HttpRequestData requestData,
+            FunctionContext executionContext) {
+            
+            string zRequest = await requestData.ReadAsStringAsync() ?? string.Empty;
+            PlayerPlayStreamFunctionExecutionContext<dynamic>? context =
+                JsonConvert.DeserializeObject<PlayerPlayStreamFunctionExecutionContext<dynamic>>(zRequest);
 
-            var playFabId = context.FunctionArgument.PlayFabId;
+            // Pretty print requestData
+            string prettyRequestBody = JObject.Parse(zRequest).ToString(Formatting.Indented);
+            _logger.LogInformation("Request Data: {prettyRequestBody}\n", prettyRequestBody);
+
+            // Pretty print executionContext
+            string executionContextString = JsonConvert.SerializeObject(context);
+            string prettyExecutionContext = JObject.Parse(executionContextString).ToString(Formatting.Indented);
+            _logger.LogInformation("Execution Context: {prettyExecutionContext}\n", prettyExecutionContext);
+            
+            if (context == null) {
+                return new BadRequestObjectResult("Invalid context");
+            }
+
+            PlayFabApiSettings settings = new() { TitleId = context.TitleAuthenticationContext.Id, };
+            Settings.TrySetSecretKey(ref settings);
+            Settings.TrySetCloudName(ref settings);
+
+            PlayFabIdRequest playFabIdRequest = context.FunctionArgument.ToObject<PlayFabIdRequest>();
 
             // Attempt to load the player's game state
-            var state = await GameStateUtil.GetCurrentGameState(playFabId, context.ApiSettings, context.AuthenticationContext);
+            TicTacToeState state = await GameStateUtil.GetCurrentGameState(playFabIdRequest.PlayFabId, settings);
 
             // Look for a random AI move to make
-            var aiMove = TicTacToeAI.GetNextRandomMove(state);
+            TicTacToeMove aiMove = TicTacToeAI.GetNextRandomMove(state);
 
             // Store the AI move on the current game state
-            var oneDimMoveIndex = aiMove.row * 3 + aiMove.col;
-            state.Data[oneDimMoveIndex] = (int) OccupantType.AI;
-            await GameStateUtil.UpdateCurrentGameState(state, playFabId, context.ApiSettings, context.AuthenticationContext);
-            
+            int oneDimMoveIndex = aiMove.row * 3 + aiMove.col;
+            state.Data[oneDimMoveIndex] = (int)OccupantType.AI;
+            await GameStateUtil.UpdateCurrentGameState(state, playFabIdRequest.PlayFabId, settings);
+
             // Respond with the AI move
-            return aiMove;
+            return new OkObjectResult(aiMove);
         }
 
-        [FunctionName("MakeMinimaxAIMove")]
-        public static async Task<TicTacToeMove> MakeMinimaxAIMove(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage req,
-            ILogger log)
-        {
-            var context = await FunctionContext<PlayFabIdRequest>.Create(req);
 
-            Settings.TrySetSecretKey(context.ApiSettings);
-            Settings.TrySetCloudName(context.ApiSettings);
+        //[Function("MakeAiMove")]
+        [Function("MakeMinMaxAiMove")]
+        public async Task<IActionResult> MakeMinMaxAiMove(
+            [HttpTrigger(AuthorizationLevel.Function, "post")]
+            HttpRequestData requestData,
+            FunctionContext executionContext) {
+            
+            string zRequest = await requestData.ReadAsStringAsync() ?? string.Empty;
+            PlayerPlayStreamFunctionExecutionContext<dynamic>? context =
+                JsonConvert.DeserializeObject<PlayerPlayStreamFunctionExecutionContext<dynamic>>(zRequest);
 
-            var playFabId = context.FunctionArgument.PlayFabId;
+            // Pretty print requestData
+            string prettyRequestBody = JObject.Parse(zRequest).ToString(Formatting.Indented);
+            _logger.LogInformation("Request Data: \n" + prettyRequestBody);
+
+            // Pretty print executionContext
+            string executionContextString = JsonConvert.SerializeObject(context);
+            string prettyExecutionContext = JObject.Parse(executionContextString).ToString(Formatting.Indented);
+            _logger.LogInformation("Execution Context: \n" + prettyExecutionContext);
+            
+            if (context == null) {
+                return new BadRequestObjectResult("Invalid context");
+            }
+
+            PlayFabApiSettings settings = new() { TitleId = context.TitleAuthenticationContext.Id, };
+            Settings.TrySetSecretKey(ref settings);
+            Settings.TrySetCloudName(ref settings);
+
+            PlayFabIdRequest playFabIdRequest = context.FunctionArgument.ToObject<PlayFabIdRequest>();
 
             // Attempt to load the Player's game state
-            var state = await GameStateUtil.GetCurrentGameState(playFabId, context.ApiSettings, context.AuthenticationContext);
+            TicTacToeState state = await GameStateUtil.GetCurrentGameState(playFabIdRequest.PlayFabId, settings);
 
             // Look for a minimax AI move to make
-            var aiMove = TicTacToeAI.GetNextMinimaxMove(state);
+            TicTacToeMove aiMove = TicTacToeAI.GetNextMinimaxMove(state);
 
             // Store the AI move on the current game state
-            var oneDimMoveIndex = aiMove.row * 3 + aiMove.col;
-            state.Data[oneDimMoveIndex] = (int) OccupantType.AI;
-            await GameStateUtil.UpdateCurrentGameState(state, playFabId, context.ApiSettings, context.AuthenticationContext);
+            int oneDimMoveIndex = aiMove.row * 3 + aiMove.col;
+            state.Data[oneDimMoveIndex] = (int)OccupantType.AI;
+            await GameStateUtil.UpdateCurrentGameState(state, playFabIdRequest.PlayFabId, settings);
 
             // Respond with the AI move
-            return aiMove;
+            return new OkObjectResult(aiMove);
         }
     }
 }

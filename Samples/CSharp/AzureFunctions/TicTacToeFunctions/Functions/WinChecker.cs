@@ -1,52 +1,75 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PlayFab;
+using PlayFab.Samples;
 using PlayFab.TicTacToeDemo.Models;
-using System.Net.Http;
-using PlayFab.Plugins.CloudScript;
 using PlayFab.TicTacToeDemo.Util;
+using FunctionContext = PlayFab.Plugins.CloudScript.FunctionContext;
 
-namespace PlayFab.TicTacToeDemo.Functions
+namespace TicTacToeFunctions.Functions
 {
-    public static class WinChecker
+    public class WinChecker
     {
-        [FunctionName("WinCheck")]
-        public static async Task<WinCheckResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage entityRequest, HttpRequest httpRequest,
-            ILogger log)
-        {
-            // Extract the context from the incoming request
-            var context = await FunctionContext<PlayFabIdRequest>.Create(entityRequest);
+        private readonly ILogger _logger;
 
-            string playFabId = context.FunctionArgument.PlayFabId;
+        public WinChecker(ILoggerFactory loggerFactory) {
+            _logger = loggerFactory.CreateLogger<WinChecker>();
+        }
 
-            Settings.TrySetSecretKey(context.ApiSettings);
-            Settings.TrySetCloudName(context.ApiSettings);
+        [Function("WinCheck")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "post")]
+            HttpRequestData requestData,
+            FunctionContext executionContext) {
+            
+            string zRequest = await requestData.ReadAsStringAsync() ?? string.Empty;
+            PlayerPlayStreamFunctionExecutionContext<dynamic>? context =
+                JsonConvert.DeserializeObject<PlayerPlayStreamFunctionExecutionContext<dynamic>>(zRequest);
+            
+            // Pretty print requestData
+            string prettyRequestBody = JObject.Parse(zRequest).ToString(Formatting.Indented);
+            _logger.LogInformation("Request Data: {prettyRequestBody}\n", prettyRequestBody);
+
+            // Pretty print executionContext
+            string executionContextString = JsonConvert.SerializeObject(context);
+            string prettyExecutionContext = JObject.Parse(executionContextString).ToString(Formatting.Indented);
+            _logger.LogInformation("Execution Context: {prettyExecutionContext}\n", prettyExecutionContext);
+
+            if (context == null) {
+                return new BadRequestObjectResult("Invalid context");
+            }
+            
+            PlayFabApiSettings settings = new() { TitleId = context.TitleAuthenticationContext.Id, };
+            Settings.TrySetSecretKey(ref settings);
+            Settings.TrySetCloudName(ref settings);
+
+            PlayFabIdRequest playFabIdRequest = context.FunctionArgument.ToObject<PlayFabIdRequest>();
 
             // Grab the current player's game state
-            var state = await GameStateUtil.GetCurrentGameState(playFabId, context.ApiSettings, context.AuthenticationContext);
+            TicTacToeState state = await GameStateUtil.GetCurrentGameState(playFabIdRequest.PlayFabId, settings);
             
-            var winCheckResult = WinCheckUtil.Check(state);
+            WinCheckResult winCheckResult = WinCheckUtil.Check(state);
 
-            if (winCheckResult.Winner != GameWinnerType.NONE)
-            {
-                // Update the leaderboard accordingly
-                await LeaderboardUtils.UpdateLeaderboard(playFabId, winCheckResult.Winner);
-
-                // Store the game history
-                await GameStateUtil.AddGameStateHistory(state, playFabId, context.ApiSettings, context.AuthenticationContext);
-
-                // Clear the current game state
-                await GameStateUtil.UpdateCurrentGameState(new TicTacToeState(), playFabId, context.ApiSettings, context.AuthenticationContext);
+            if (winCheckResult.Winner == GameWinnerType.NONE) {
+                return new OkObjectResult(winCheckResult);
             }
-
             
+            // Update the leaderboard accordingly
+            await LeaderboardUtils.UpdateLeaderboard(playFabIdRequest.PlayFabId, winCheckResult.Winner);
 
-            return winCheckResult;
+            // Store the game history
+            await GameStateUtil.AddGameStateHistory(state, playFabIdRequest.PlayFabId, settings);
+
+            // Clear the current game state
+            await GameStateUtil.UpdateCurrentGameState(new TicTacToeState(), playFabIdRequest.PlayFabId, settings);
+
+            return new OkObjectResult(winCheckResult);
         }
     }
 }
