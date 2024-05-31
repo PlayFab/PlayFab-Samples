@@ -12,7 +12,7 @@ using PlayFab.TicTacToeDemo.Models;
 using PlayFab.TicTacToeDemo.Util;
 using FunctionContext = PlayFab.Plugins.CloudScript.FunctionContext;
 
-namespace Shuffle.TicTacToe.Functions {
+namespace TicTacToeFunctions.Functions {
     public class MakeAiMove {
         private readonly ILogger _logger;
 
@@ -38,7 +38,6 @@ namespace Shuffle.TicTacToe.Functions {
             string executionContextString = JsonConvert.SerializeObject(context);
             string prettyExecutionContext = JObject.Parse(executionContextString).ToString(Formatting.Indented);
             _logger.LogInformation("Execution Context: {prettyExecutionContext}\n", prettyExecutionContext);
-            
             if (context == null) {
                 return new BadRequestObjectResult("Invalid context");
             }

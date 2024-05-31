@@ -6,12 +6,13 @@ using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PlayFab;
 using PlayFab.Samples;
 using PlayFab.TicTacToeDemo.Models;
 using PlayFab.TicTacToeDemo.Util;
 using FunctionContext = PlayFab.Plugins.CloudScript.FunctionContext;
 
-namespace PlayFab.TicTacToeDemo.Functions {
+namespace TicTacToeDemo.Functions {
     public class MakePlayerMove {
         private readonly ILogger _logger;
 
