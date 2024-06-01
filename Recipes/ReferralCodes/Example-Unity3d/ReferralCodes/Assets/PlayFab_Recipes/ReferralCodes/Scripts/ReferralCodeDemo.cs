@@ -149,7 +149,7 @@ public class ReferralCodeDemo : MonoBehaviour {
 	void OnRedeemReferralCodeCallback(ExecuteCloudScriptResult result) 
 	{
 		// output any errors that happend within cloud script
-		if(result.FunctionResult != null)
+		if(result.FunctionResult == null)
 		{
 			Debug.LogError(string.Format("{0} -- {1}", result.Error, result.Error.Message));
 			return;
