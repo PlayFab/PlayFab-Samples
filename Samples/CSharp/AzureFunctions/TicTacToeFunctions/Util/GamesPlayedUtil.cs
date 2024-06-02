@@ -8,23 +8,24 @@ namespace PlayFab.TicTacToeDemo.Util
     {
         public static async Task<int> GetGamesPlayed(string playFabId, PlayFabApiSettings apiSettings)
         {
-            GetUserDataRequest request = new() {
-                                                   PlayFabId = playFabId,
-                                                   Keys = new List<string> { Constants.GAMES_PLAYED_KEY }
-                                               };
+            var request = new GetUserDataRequest
+            {
+                PlayFabId = playFabId,
+                Keys = new List<string> { Constants.GAMES_PLAYED_KEY }
+            };
 
-            PlayFabServerInstanceAPI serverApi = new(apiSettings);
+            var serverApi = new PlayFabServerInstanceAPI(apiSettings);
 
-            PlayFabResult<GetUserDataResult>? result = await serverApi.GetUserDataAsync(request);
+            var result = await serverApi.GetUserDataAsync(request);
 
             if (result.Error != null)
             {
                 throw new Exception($"An error occured while fetching the number of games played: Error: {result.Error.GenerateErrorReport()}");
             }
 
-            Dictionary<string, UserDataRecord>? resultData = result.Result.Data;
+            var resultData = result.Result.Data;
 
-            if (resultData.Count > 0 && resultData.TryGetValue(Constants.GAMES_PLAYED_KEY, out UserDataRecord? gamesPlayedRecord))
+            if (resultData.Count > 0 && resultData.TryGetValue(Constants.GAMES_PLAYED_KEY, out var gamesPlayedRecord))
             {
                 return int.Parse(gamesPlayedRecord.Value);
             }
@@ -36,14 +37,15 @@ namespace PlayFab.TicTacToeDemo.Util
 
         public static async Task SetGamesPlayed(int gamesPlayed, string playFabId, PlayFabApiSettings apiSettings)
         {
-            UpdateUserDataRequest request = new() {
-                                                      PlayFabId = playFabId,
-                                                      Data = new Dictionary<string, string> { { Constants.GAMES_PLAYED_KEY, gamesPlayed.ToString() } }
-                                                  };
+            var request = new UpdateUserDataRequest
+            {
+                PlayFabId = playFabId,
+                Data = new Dictionary<string, string> { { Constants.GAMES_PLAYED_KEY.ToString(), gamesPlayed.ToString() } }
+            };
 
-            PlayFabServerInstanceAPI serverApi = new(apiSettings);
+            var serverApi = new PlayFabServerInstanceAPI(apiSettings);
 
-            PlayFabResult<UpdateUserDataResult>? result = await serverApi.UpdateUserDataAsync(request);
+            var result = await serverApi.UpdateUserDataAsync(request);
 
             if (result.Error != null)
             {
