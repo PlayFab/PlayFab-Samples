@@ -1,12 +1,14 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
+using System;
+
 namespace PlayFab.TicTacToeDemo.Util
 {
     public static class Settings
     {
-        public static void TrySetSecretKey(ref PlayFabApiSettings settings)
+        public static void TrySetSecretKey(PlayFabApiSettings settings)
         {
-            string? secretKey = Environment.GetEnvironmentVariable(Constants.PLAYFAB_DEV_SECRET_KEY, EnvironmentVariableTarget.Process);
+            var secretKey = Environment.GetEnvironmentVariable(Constants.PLAYFAB_DEV_SECRET_KEY, EnvironmentVariableTarget.Process);
 
             if (!string.IsNullOrEmpty(secretKey))
             {
@@ -14,9 +16,9 @@ namespace PlayFab.TicTacToeDemo.Util
             }
         }
 
-        public static void TrySetCloudName(ref PlayFabApiSettings settings)
+        public static void TrySetCloudName(PlayFabApiSettings settings)
         {
-            string? cloud = Environment.GetEnvironmentVariable(Constants.PLAYFAB_CLOUD_NAME, EnvironmentVariableTarget.Process);
+            var cloud = Environment.GetEnvironmentVariable(Constants.PLAYFAB_CLOUD_NAME, EnvironmentVariableTarget.Process);
 
             if (!string.IsNullOrEmpty(cloud))
             {

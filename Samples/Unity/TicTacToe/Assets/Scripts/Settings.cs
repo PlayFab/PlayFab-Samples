@@ -7,8 +7,6 @@ namespace PlayFab.TicTacToeDemo
         public static void UpdateSettings()
         {
             PlayFabSettings.TitleId = Constants.TITLE_ID;
-            PlayFabSettings.VerticalName = Constants.CLOUD_NAME;
-            PlayFabSettings.CompressApiData = Constants.COMPRESS_API_DATA;
         }
     }
 }

@@ -4,56 +4,46 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using PlayFab;
-using PlayFab.Samples;
 using PlayFab.TicTacToeDemo.Models;
 using PlayFab.TicTacToeDemo.Util;
-using FunctionContext = PlayFab.Plugins.CloudScript.FunctionContext;
 
-namespace TicTacToeFunctions.Functions {
-    public class ResetGameState {
-        private readonly ILogger _logger;
-
-        public ResetGameState(ILoggerFactory loggerFactory) {
-            _logger = loggerFactory.CreateLogger<ResetGameState>();
-        }
-
+namespace TicTacToeFunctions.Functions
+{
+    public class ResetGameState
+    {
         [Function("ResetGameState")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post")]
-            HttpRequestData requestData,
-            FunctionContext executionContext) {
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestData req,
+            FunctionContext executionContext)
+        {
+            var context = await PlayFabFunctionHelper.GetContext(_logger, req);
+            if (context is null) return new BadRequestObjectResult("Invalid context");
 
-            string zRequest = await requestData.ReadAsStringAsync() ?? string.Empty;
-            FunctionExecutionContext<dynamic>? context =
-                JsonConvert.DeserializeObject<FunctionExecutionContext<dynamic>>(zRequest);
-
-            // Pretty print requestData
-            string prettyRequestBody = JObject.Parse(zRequest).ToString(Formatting.Indented);
-            _logger.LogInformation("Request Data: {prettyRequestBody}\n", prettyRequestBody);
-
-            // Pretty print executionContext
-            string executionContextString = JsonConvert.SerializeObject(context);
-            string prettyExecutionContext = JObject.Parse(executionContextString).ToString(Formatting.Indented);
-            _logger.LogInformation("Execution Context: {prettyExecutionContext}\n", prettyExecutionContext);
-            
-            if (context == null) {
-                return new BadRequestObjectResult("Invalid context");
-            }
-
-            PlayFabApiSettings settings = new() { TitleId = context.TitleAuthenticationContext.Id, };
-            Settings.TrySetSecretKey(ref settings);
-            Settings.TrySetCloudName(ref settings);
+            var settings = new PlayFabApiSettings { TitleId = context.TitleAuthenticationContext.Id, };
+            Settings.TrySetSecretKey(settings);
+            Settings.TrySetCloudName(settings);
 
             string playFabId = context.CallerEntityProfile.Lineage.MasterPlayerAccountId;
 
-            TicTacToeState newCurrentGameState = new() { Data = new int[9] };
+            var newCurrentGameState = new TicTacToeState
+            {
+                Data = new int[9]
+            };
 
-            await GameStateUtil.UpdateCurrentGameState(newCurrentGameState, playFabId, settings);
+            await GameStateUtil.UpdateCurrentGameState(
+                newCurrentGameState,
+                playFabId,
+                settings);
 
             return new OkResult();
+        }
+
+        private readonly ILogger _logger;
+
+        public ResetGameState(ILoggerFactory loggerFactory)
+        {
+            _logger = loggerFactory.CreateLogger<ResetGameState>();
         }
     }
 }
