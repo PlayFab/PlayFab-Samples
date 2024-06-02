@@ -12,6 +12,15 @@ namespace TicTacToeFunctions.Functions
 {
     public class MakeAIMove(ILoggerFactory loggerFactory)
     {
+        [Function("MakeAIMove")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]
+            HttpRequestData req,
+            FunctionContext executionContext)
+        {
+            return await MakeMinMaxAIMove(req, executionContext);
+        }
+        
         [Function("MakeRandomAIMove")]
         public async Task<IActionResult> MakeRandomAIMove(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestData req,
