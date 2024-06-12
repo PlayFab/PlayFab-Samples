@@ -109,15 +109,13 @@
       "CustomData": "null",
       "Consumable": {
         "UsageCount": 1,
-        "UsagePeriod": null,
+        "UsagePeriod": 3,
         "UsagePeriodGroup": null
       },
       "Container": null,
       "Bundle": {
         "BundledItems": [],
-        "BundledResultTables": [
-          "PrizeWheel1"
-        ],
+        "BundledResultTables": [],
         "BundledVirtualCurrencies": null
       },
       "CanBecomeCharacter": false,
