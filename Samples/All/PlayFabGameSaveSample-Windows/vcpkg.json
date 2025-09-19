@@ -1,0 +1,12 @@
+{
+  "name": "simple-game",
+  "version": "1.0.0",
+  "builtin-baseline": "a7b6122f6b6504d16d96117336a0562693579933",
+  "dependencies": [
+    "sdl2",
+    {
+      "name": "imgui",
+      "features": ["sdl2-binding", "opengl3-binding"]
+    }
+  ]
+}
