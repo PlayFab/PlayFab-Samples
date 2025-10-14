@@ -16,15 +16,17 @@ namespace PlayFab.TicTacToeDemo.Handlers
             // Create the reset request
             var request = new ExecuteFunctionRequest
             {
+                Entity = new EntityKey
+                {
+                    Id = PlayFabSettings.staticPlayer.EntityId,
+                    Type = PlayFabSettings.staticPlayer.EntityType,
+                },
                 FunctionName = Constants.RESET_GAME_STATE_FUNCTION_NAME,
                 FunctionParameter = new PlayFabIdRequest
                 {
                     PlayFabId = Player.PlayFabId
                 },
-                AuthenticationContext = new PlayFabAuthenticationContext
-                {
-                    EntityToken = Player.EntityToken
-                }
+                GeneratePlayStreamEvent = true
             };
 
             // Execute the reset request

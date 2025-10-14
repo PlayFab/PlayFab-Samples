@@ -1,52 +1,50 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using PlayFab;
 using PlayFab.TicTacToeDemo.Models;
-using System.Net.Http;
-using PlayFab.Plugins.CloudScript;
 using PlayFab.TicTacToeDemo.Util;
 
-namespace PlayFab.TicTacToeDemo.Functions
+namespace TicTacToeFunctions.Functions
 {
-    public static class WinChecker
+    public class WinChecker
     {
-        [FunctionName("WinCheck")]
-        public static async Task<WinCheckResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage entityRequest, HttpRequest httpRequest,
-            ILogger log)
+        [Function("WinCheck")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestData req,
+            FunctionContext executionContext)
         {
-            // Extract the context from the incoming request
-            var context = await FunctionContext<PlayFabIdRequest>.Create(entityRequest);
+            var context = await PlayFabFunctionHelper.GetContext(_logger, req);
+            if (context is null) return new BadRequestObjectResult("Invalid context");
 
-            string playFabId = context.FunctionArgument.PlayFabId;
-
-            Settings.TrySetSecretKey(context.ApiSettings);
-            Settings.TrySetCloudName(context.ApiSettings);
-
+            // TODO: check if can be done with currentplayerid directly from context
+            // Extract the Player's PlayFabId from the request
+            string playFabId = context.FunctionArgument.ToObject<PlayFabIdRequest>().PlayFabId;
+            
             // Grab the current player's game state
-            var state = await GameStateUtil.GetCurrentGameState(playFabId, context.ApiSettings, context.AuthenticationContext);
+            PlayFabApiSettings settings = new() { TitleId = context.TitleAuthenticationContext.Id, };
+            Settings.TrySetSecretKey(settings);
+            Settings.TrySetCloudName(settings);
             
-            var winCheckResult = WinCheckUtil.Check(state);
-
-            if (winCheckResult.Winner != GameWinnerType.NONE)
-            {
-                // Update the leaderboard accordingly
-                await LeaderboardUtils.UpdateLeaderboard(playFabId, winCheckResult.Winner);
-
-                // Store the game history
-                await GameStateUtil.AddGameStateHistory(state, playFabId, context.ApiSettings, context.AuthenticationContext);
-
-                // Clear the current game state
-                await GameStateUtil.UpdateCurrentGameState(new TicTacToeState(), playFabId, context.ApiSettings, context.AuthenticationContext);
-            }
-
+            var state = await GameStateUtil.GetCurrentGameState(playFabId, settings);
             
+            // Determine the winner (if any)
+            var winResult = WinCheckUtil.Check(state);
 
-            return winCheckResult;
+            // Update the leaderboard accordingly
+            await LeaderboardUtils.UpdateLeaderboard(playFabId, winResult.Winner);
+            
+            return new OkObjectResult(winResult);
+        }
+
+        private readonly ILogger _logger;
+
+        public WinChecker(ILoggerFactory loggerFactory)
+        {
+            _logger = loggerFactory.CreateLogger<WinChecker>();
         }
     }
 }

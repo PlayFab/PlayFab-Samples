@@ -23,16 +23,18 @@ namespace PlayFab.TicTacToeDemo.Handlers
             // Create the move request
             var request = new ExecuteFunctionRequest
             {
+                Entity = new EntityKey
+                {
+                    Id = PlayFabSettings.staticPlayer.EntityId,
+                    Type = PlayFabSettings.staticPlayer.EntityType,
+                },
                 FunctionName = Constants.PLAYER_MOVE_FUNCTION_NAME,
                 FunctionParameter = new MakePlayerMoveRequest
                 {
                     PlayFabId = Player.PlayFabId,
                     Move = MoveToExecute
                 },
-                AuthenticationContext = new PlayFabAuthenticationContext
-                {
-                    EntityToken = Player.EntityToken
-                }
+                GeneratePlayStreamEvent = true
             };
 
             // Execute the move request
