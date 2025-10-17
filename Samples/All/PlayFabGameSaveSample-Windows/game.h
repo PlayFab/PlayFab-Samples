@@ -27,6 +27,7 @@ struct GameState
     
     // Advanced options UI state
     bool showAdvancedOptions{ false };
+    bool forceInproc{ false };
     bool setUiCallbacks{ false };
     
     // Dialog states
@@ -46,3 +47,11 @@ extern GameState g_gameState;
 // Global function to add log messages
 void AddLog(const std::string& message);
 void AddLog(const char* format, ...);
+
+// Debug trace callback used to forward libHttpClient traces to the debugger
+void MyDebugTrace(
+    _In_z_ const char* areaName,
+    _In_ HCTraceLevel level,
+    _In_ uint64_t threadId,
+    _In_ uint64_t timestamp,
+    _In_z_ const char* message);

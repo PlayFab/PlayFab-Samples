@@ -842,11 +842,11 @@ void CloseCloudDataConfirmationDialog()
     memset(&g_gameState.cloudDataConfirmationDialog.remoteGameSave, 0, sizeof(PFGameSaveDescriptor));
 }
 
-void ShowSpopPromptDialogForXUserOnSteamDeck(uint32_t userIdentifier, XUserPlatformOperation operation, const std::string& modernGamertag, const std::string& modernGamertagSuffix)
+void ShowSpopPromptDialogForXUserOnSteamDeck(uint32_t userIdentifier, XUserPlatformOperation* operation, const std::string& modernGamertag, const std::string& modernGamertagSuffix)
 {
     g_gameState.spopPromptDialog.showDialog = true;
     g_gameState.spopPromptDialog.userIdentifier = userIdentifier;
-    g_gameState.spopPromptDialog.operation = operation;
+    g_gameState.spopPromptDialog.operation = operation ? *operation : nullptr;
     g_gameState.spopPromptDialog.modernGamertag = modernGamertag;
     g_gameState.spopPromptDialog.modernGamertagSuffix = modernGamertagSuffix;
     

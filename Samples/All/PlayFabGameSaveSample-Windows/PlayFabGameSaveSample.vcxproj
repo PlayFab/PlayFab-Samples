@@ -62,7 +62,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>HC_PLATFORM=HC_PLATFORM_GDK;HC_DATAMODEL=HC_DATAMODEL_LLP64;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_GAMING_DESKTOP;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)vcpkg_installed\x64-windows\include;$(VCInstallDir)vcpkg\installed\x64-windows\include;$(VcpkgRoot)installed\x64-windows\include;$(DXSDK_DIR)Include;$(SteamworksSDKPath)\public;$(GDKPath)\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -73,23 +73,25 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)vcpkg_installed\x64-windows\debug\lib;$(ProjectDir)vcpkg_installed\x64-windows\debug\lib\manual-link;$(GDKPath)\windows\lib\x64;$(GDKPath)\windows\lib\x64\Debug;$(DXSDK_DIR)Lib\x64;$(SteamworksSDKPath)\redistributable_bin\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2d.lib;imguid.lib;opengl32.lib;Microsoft.Xbox.Services.142.GDK.C.lib;Appnotify.lib;PlayFabGameSave.GDK.lib;PlayFabServices.GDK.lib;PlayFabCore.GDK.lib;libHttpClient.GDK.lib;xgameruntime.lib;legacy_stdio_definitions.lib;uuid.lib;steam_api64.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2d.lib;imguid.lib;opengl32.lib;Microsoft.Xbox.Services.142.C.lib;Appnotify.lib;PlayFabGameSave.lib;PlayFabServices.lib;PlayFabCore.lib;libHttpClient.lib;xgameruntime.lib;legacy_stdio_definitions.lib;uuid.lib;steam_api64.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo Copying debug DLLs...
 copy "$(ProjectDir)vcpkg_installed\x64-windows\debug\bin\SDL2d.dll" "$(TargetDir)" &gt;nul 2&gt;&amp;1
 if exist "$(ProjectDir)vcpkg_installed\x64-windows\debug\bin\SDL2d.pdb" copy "$(ProjectDir)vcpkg_installed\x64-windows\debug\bin\SDL2d.pdb" "$(TargetDir)" &gt;nul 2&gt;&amp;1
 echo Copying PlayFab and GDK DLLs...
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\Release\Microsoft.Xbox.Services.142.GDK.C.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.dll" "$(TargetDir)"
 xcopy /Y /D "$(GDKPath)\windows\bin\x64\XCurl.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\XCurl.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\Release\Microsoft.Xbox.Services.142.C.pdb" "$(TargetDir)"
 xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.dll" "$(TargetDir)"
 xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.pdb" "$(TargetDir)"
 xcopy /Y /D "$(SteamworksSDKPath)\redistributable_bin\win64\steam_api64.dll" "$(TargetDir)"
@@ -110,7 +112,7 @@ echo DLLs copied successfully.</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>HC_PLATFORM=HC_PLATFORM_GDK;HC_DATAMODEL=HC_DATAMODEL_LLP64;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_GAMING_DESKTOP;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)vcpkg_installed\x64-windows\include;$(VCInstallDir)vcpkg\installed\x64-windows\include;$(VcpkgRoot)installed\x64-windows\include;$(DXSDK_DIR)Include;$(SteamworksSDKPath)\public;$(GDKPath)\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -123,22 +125,22 @@ echo DLLs copied successfully.</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)vcpkg_installed\x64-windows\lib;$(ProjectDir)vcpkg_installed\x64-windows\lib\manual-link;$(GDKPath)\windows\lib\x64;$(GDKPath)\windows\lib\x64\Release;$(DXSDK_DIR)Lib\x64;$(SteamworksSDKPath)\redistributable_bin\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;imgui.lib;opengl32.lib;Microsoft.Xbox.Services.142.GDK.C.lib;Appnotify.lib;PlayFabGameSave.GDK.lib;PlayFabServices.GDK.lib;PlayFabCore.GDK.lib;libHttpClient.GDK.lib;xgameruntime.lib;legacy_stdio_definitions.lib;uuid.lib;steam_api64.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;imgui.lib;opengl32.lib;Microsoft.Xbox.Services.142.C.lib;Appnotify.lib;PlayFabGameSave.lib;PlayFabServices.lib;PlayFabCore.lib;libHttpClient.lib;xgameruntime.lib;legacy_stdio_definitions.lib;uuid.lib;steam_api64.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo Copying release DLLs...
 copy "$(ProjectDir)vcpkg_installed\x64-windows\bin\SDL2.dll" "$(TargetDir)" &gt;nul 2&gt;&amp;1
 if exist "$(ProjectDir)vcpkg_installed\x64-windows\bin\SDL2.pdb" copy "$(ProjectDir)vcpkg_installed\x64-windows\bin\SDL2.pdb" "$(TargetDir)" &gt;nul 2&gt;&amp;1
 echo Copying PlayFab and GDK DLLs...
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.GDK.dll" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.GDK.pdb" "$(TargetDir)"
-xcopy /Y /D "$(GDKPath)\windows\bin\x64\Release\Microsoft.Xbox.Services.142.GDK.C.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\Release\Microsoft.Xbox.Services.142.C.pdb" "$(TargetDir)"
 xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.dll" "$(TargetDir)"
 xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.pdb" "$(TargetDir)"
 xcopy /Y /D "$(SteamworksSDKPath)\redistributable_bin\win64\steam_api64.dll" "$(TargetDir)"
@@ -192,7 +194,6 @@ echo MGC build completed successfully.</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SteamIntegration.cpp" />
-    <ClCompile Include="XUserFileStorage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -200,7 +201,6 @@ echo MGC build completed successfully.</Command>
     <ClInclude Include="GameSaveIntegrationUI.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SteamIntegration.h" />
-    <ClInclude Include="XUserFileStorage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

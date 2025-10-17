@@ -2,8 +2,8 @@
 #include "GameSaveIntegration.h"
 #include "GameSaveIntegrationUI.h"
 #include "SteamIntegration.h"
-#include "XUserFileStorage.h"
 #include "Game.h"
+#include <windows.h>
 
 void OnPFGameSaveFilesUiProgress(
     _In_ PFLocalUserHandle localUserHandle, 
@@ -91,6 +91,69 @@ void OnPFGameSaveFilesActiveDeviceChanged(
     AddLog("This event can be ignored as the gamesaves will automatically go offline.");
 }
 
+void SetForceInprocGameSavesRegistry(bool enable)
+{
+    // This is just for testing, and don't use this in production code.
+    // Set or deletes the registry to force PlayFab Game Save to run in-process instead of using out-of-process GRTS
+    // 
+    // Windows Registry Editor Version 5.00
+    // [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\GamingServices]
+    // "ForceUseInprocGameSaves"=dword:00000001
+    const wchar_t* keyPath = L"SOFTWARE\\Microsoft\\GamingServices";
+    const wchar_t* valueName = L"ForceUseInprocGameSaves";
+    
+    HKEY hKey;
+    LONG result = RegOpenKeyExW(HKEY_LOCAL_MACHINE, keyPath, 0, KEY_SET_VALUE, &hKey);
+    
+    if (result != ERROR_SUCCESS)
+    {
+        // Try to create the key if it doesn't exist
+        result = RegCreateKeyExW(HKEY_LOCAL_MACHINE, keyPath, 0, nullptr, 
+                                REG_OPTION_NON_VOLATILE, KEY_SET_VALUE, nullptr, &hKey, nullptr);
+    }
+    
+    if (result != ERROR_SUCCESS)
+    {
+        if (enable)
+        {
+            AddLog("Failed to open/create registry key HKLM\\%ls, error: %ld (try running as administrator)", keyPath, result);
+        }
+        return;
+    }
+    
+    if (enable)
+    {
+        DWORD value = 1;
+        result = RegSetValueExW(hKey, valueName, 0, REG_DWORD, reinterpret_cast<const BYTE*>(&value), sizeof(value));
+        if (result == ERROR_SUCCESS)
+        {
+            AddLog("Successfully set ForceUseInprocGameSaves registry value to 1");
+        }
+        else
+        {
+            AddLog("Failed to set ForceUseInprocGameSaves registry value, error: %ld (try running as administrator)", result);
+        }
+    }
+    else
+    {
+        result = RegDeleteValueW(hKey, valueName);
+        if (result == ERROR_SUCCESS)
+        {
+            AddLog("Successfully deleted ForceUseInprocGameSaves registry value");
+        }
+        else if (result == ERROR_FILE_NOT_FOUND)
+        {
+            AddLog("ForceUseInprocGameSaves registry value does not exist, nothing to delete");
+        }
+        else
+        {
+            AddLog("Failed to delete ForceUseInprocGameSaves registry value, error: %ld (try running as administrator)", result);
+        }
+    }
+    
+    RegCloseKey(hKey);
+}
+
 HRESULT GameSaveIntegration::Initialize()
 {
     AddLog("GameSaveIntegration::Initialize");
@@ -104,6 +167,9 @@ HRESULT GameSaveIntegration::Initialize()
 
     RETURN_IF_FAILED(XGameRuntimeInitialize());
     RETURN_IF_FAILED(PFInitialize(nullptr));
+    // Hook libHttpClient tracing to debugger for easier diagnostics
+    HCTraceSetClientCallback(MyDebugTrace);
+    HCSettingsSetTraceLevel(HCTraceLevel::Information);
     RETURN_IF_FAILED(PFServicesInitialize(nullptr));
     RETURN_IF_FAILED(PFServiceConfigCreateHandle(
         "https://E18D7.playfabapi.com",    // PlayFab API endpoint - obtained in the Game Manager
@@ -120,9 +186,13 @@ HRESULT GameSaveIntegration::Initialize()
     return S_OK;
 }
 
-HRESULT GameSaveIntegration::InitializeGameSaves(_In_ bool setUiCallbacks)
+HRESULT GameSaveIntegration::InitializeGameSaves(_In_ bool setUiCallbacks, _In_ bool forceInproc)
 {
     PFGameSaveInitArgs gsargs{};
+    
+    // Set or delete the ForceUseInprocGameSaves registry key based on forceInproc parameter
+    // This is just for testing, and don't use this in production code.
+    SetForceInprocGameSavesRegistry(forceInproc);
     
     // Define where the root for your game saves on for platforms that require it such as Steam Deck.
     // On other platforms such as Windows and Xbox, the path is provided to you and this path is ignored.
@@ -243,7 +313,7 @@ HRESULT GameSaveIntegration::AddUserToPFGameSave()
     if (!g_gameState.gameSavesInitialized)
     {
         bool setUiCallbacks = g_gameState.isSteamDeck || g_gameState.setUiCallbacks;
-        RETURN_IF_FAILED(InitializeGameSaves(setUiCallbacks));
+        RETURN_IF_FAILED(InitializeGameSaves(setUiCallbacks, g_gameState.forceInproc));
     }
 
     if (g_gameState.userAddedToGameSavePending)
