@@ -109,7 +109,7 @@ void RenderCloudDataConfirmationDialog();
 void CloseCloudDataConfirmationDialog();
 
 // SPOP prompt UI for XUser on Steam Deck
-void ShowSpopPromptDialogForXUserOnSteamDeck(uint32_t userIdentifier, XUserPlatformOperation operation, const std::string& modernGamertag, const std::string& modernGamertagSuffix);
+void ShowSpopPromptDialogForXUserOnSteamDeck(uint32_t userIdentifier, XUserPlatformOperation* operation, const std::string& modernGamertag, const std::string& modernGamertagSuffix);
 void RenderSpopPromptDialogForXUserOnSteamDeck();
 void CloseSpopPromptDialogForXUserOnSteamDeck();
 

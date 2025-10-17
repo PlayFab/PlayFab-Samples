@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "XUserFileStorage.h"
 #include "SteamIntegration.h"
 #include "GameSaveIntegrationUI.h"
 #include "game.h"
@@ -44,7 +43,7 @@ void OnSpopPrompt(
     // Show the SPOP prompt dialog for user to choose an action
     ShowSpopPromptDialogForXUserOnSteamDeck(
         userIdentifier, 
-        operation, 
+        &operation, 
         modernGamertag ? std::string(modernGamertag) : "", 
         modernGamertagSuffix ? std::string(modernGamertagSuffix) : ""
     );
@@ -91,21 +90,6 @@ HRESULT SteamIntegration::InitializeXUserForSteamDeck()
 {
     if (g_gameState.isSteamDeck)
     {
-        // Define where the XUserFileStorage will store its files.
-        // In this sample, we'll use the Windows temp directory and append "xuser"
-        char tempPath[MAX_PATH];
-        DWORD tempPathLength = GetTempPathA(MAX_PATH, tempPath);
-        if (tempPathLength == 0 || tempPathLength > MAX_PATH)
-        {
-            // fall back
-            RETURN_IF_FAILED(XUserFileStorage::Init(nullptr, "C:\\temp\\xuser"));
-        }
-        else
-        {
-            std::string xuserPath = std::string(tempPath) + "xuser\\";
-            RETURN_IF_FAILED(XUserFileStorage::Init(nullptr, xuserPath.c_str()));
-        }
-
         XUserPlatformRemoteConnectEventHandlers remoteConnect{};
         remoteConnect.context = nullptr;
         remoteConnect.show = &OnRemoteConnectShow;

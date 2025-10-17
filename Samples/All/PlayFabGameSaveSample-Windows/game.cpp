@@ -44,6 +44,28 @@ void AddLog(const char* format, ...)
     }
 }
 
+static bool g_verboseLogs = true;
+
+void MyDebugTrace(
+    _In_z_ const char* /*areaName*/,
+    _In_ HCTraceLevel /*level*/,
+    _In_ uint64_t /*threadId*/,
+    _In_ uint64_t /*timestamp*/,
+    _In_z_ const char* message)
+{
+    if (!message)
+    {
+        return;
+    }
+    
+    if (g_verboseLogs)
+    {
+        // Mirror to debugger
+        OutputDebugStringA(message);
+        OutputDebugStringA("\n");
+    }
+}
+
 class SimpleGame
 {
 private:
@@ -499,6 +521,15 @@ void SimpleGame::Update()
         {
             ImGui::Indent();
             
+            // Force Inproc option
+            ImGui::Checkbox("Force Inproc", &g_gameState.forceInproc);
+            ImGui::SameLine();
+            ImGui::TextDisabled("(?)");
+            if (ImGui::IsItemHovered())
+            {
+                ImGui::SetTooltip("[Debugging only] Forces PlayFab Game Save to run in-process instead of using out-of-process GRTS");
+            }
+            
             // Set UI Callbacks option
             ImGui::Checkbox("Set UI Callbacks", &g_gameState.setUiCallbacks);
             ImGui::SameLine();
@@ -569,7 +600,8 @@ void SimpleGame::Update()
             if (ImGui::Button("Test SPOP Dialog", ImVec2(150, 30)))
             {
                 // Create a mock operation for testing
-                ShowSpopPromptDialogForXUserOnSteamDeck(12345, nullptr, "TestGamertag", "#1234");
+                static XUserPlatformOperation mockOperation = {};
+                ShowSpopPromptDialogForXUserOnSteamDeck(12345, &mockOperation, "TestGamertag", "#1234");
             }
             
             ImGui::Unindent();

@@ -52,7 +52,5 @@
 #define RETURN_LAST_ERROR_IF(condition)                         do { if (condition) { RETURN_LAST_ERROR(); }} while (0, 0)
 #define RETURN_LAST_ERROR_IF_NULL(ptr)                          do { if ((ptr) == nullptr) { RETURN_LAST_ERROR(); }} while (0, 0)
 
-#define PFGAMESAVE_INIT_OPTIONS_FORCE_INPROC 0x00000001
-
 // Link libraries that are commonly used
 #pragma comment(lib, "advapi32.lib")
