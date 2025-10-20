@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{12345678-1234-1234-1234-123456789012}</ProjectGuid>
+    <RootNamespace>SimpleGame</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <VcpkgEnabled>true</VcpkgEnabled>
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <GDKPath>C:\Program Files (x86)\Microsoft GDK\251000</GDKPath>
+    <SteamworksSDKPath Condition="'$(SteamworksSDKPath)'==''">C:\steamworks_sdk</SteamworksSDKPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)x64\Debug\</OutDir>
+    <IntDir>$(ProjectDir)x64\Debug\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)x64\Release\</OutDir>
+    <IntDir>$(ProjectDir)x64\Release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_GAMING_DESKTOP;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)vcpkg_installed\x64-windows\include;$(VCInstallDir)vcpkg\installed\x64-windows\include;$(VcpkgRoot)installed\x64-windows\include;$(DXSDK_DIR)Include;$(SteamworksSDKPath)\public;$(GDKPath)\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)vcpkg_installed\x64-windows\debug\lib;$(ProjectDir)vcpkg_installed\x64-windows\debug\lib\manual-link;$(GDKPath)\windows\lib\x64;$(GDKPath)\windows\lib\x64\Debug;$(DXSDK_DIR)Lib\x64;$(SteamworksSDKPath)\redistributable_bin\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2d.lib;imguid.lib;opengl32.lib;Microsoft.Xbox.Services.142.C.lib;Appnotify.lib;PlayFabGameSave.lib;PlayFabServices.lib;PlayFabCore.lib;libHttpClient.lib;xgameruntime.lib;legacy_stdio_definitions.lib;uuid.lib;steam_api64.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Copying debug DLLs...
+copy "$(ProjectDir)vcpkg_installed\x64-windows\debug\bin\SDL2d.dll" "$(TargetDir)" &gt;nul 2&gt;&amp;1
+if exist "$(ProjectDir)vcpkg_installed\x64-windows\debug\bin\SDL2d.pdb" copy "$(ProjectDir)vcpkg_installed\x64-windows\debug\bin\SDL2d.pdb" "$(TargetDir)" &gt;nul 2&gt;&amp;1
+echo Copying PlayFab and GDK DLLs...
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\XCurl.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\XCurl.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\Release\Microsoft.Xbox.Services.142.C.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.pdb" "$(TargetDir)"
+xcopy /Y /D "$(SteamworksSDKPath)\redistributable_bin\win64\steam_api64.dll" "$(TargetDir)"
+xcopy /Y /D "$(SteamworksSDKPath)\public\steam\lib\win64\sdkencryptedappticket64.dll" "$(TargetDir)"
+xcopy /Y /D "$(SystemRoot)\System32\msvcp140d.dll" "$(TargetDir)"
+xcopy /Y /D "$(SystemRoot)\System32\vcruntime140d.dll" "$(TargetDir)"
+xcopy /Y /D "$(SystemRoot)\System32\vcruntime140_1d.dll" "$(TargetDir)"
+xcopy /Y /D "$(SystemRoot)\System32\ucrtbased.dll" "$(TargetDir)"
+xcopy /Y /D "$(ProjectDir)\*.png" "$(TargetDir)"
+xcopy /Y /D "$(ProjectDir)\steam_appid.txt" "$(TargetDir)"
+echo DLLs copied successfully.</Command>
+      <Message>Copying required debug DLLs to output directory</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_GAMING_DESKTOP;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)vcpkg_installed\x64-windows\include;$(VCInstallDir)vcpkg\installed\x64-windows\include;$(VcpkgRoot)installed\x64-windows\include;$(DXSDK_DIR)Include;$(SteamworksSDKPath)\public;$(GDKPath)\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)vcpkg_installed\x64-windows\lib;$(ProjectDir)vcpkg_installed\x64-windows\lib\manual-link;$(GDKPath)\windows\lib\x64;$(GDKPath)\windows\lib\x64\Release;$(DXSDK_DIR)Lib\x64;$(SteamworksSDKPath)\redistributable_bin\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;imgui.lib;opengl32.lib;Microsoft.Xbox.Services.142.C.lib;Appnotify.lib;PlayFabGameSave.lib;PlayFabServices.lib;PlayFabCore.lib;libHttpClient.lib;xgameruntime.lib;legacy_stdio_definitions.lib;uuid.lib;steam_api64.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Copying release DLLs...
+copy "$(ProjectDir)vcpkg_installed\x64-windows\bin\SDL2.dll" "$(TargetDir)" &gt;nul 2&gt;&amp;1
+if exist "$(ProjectDir)vcpkg_installed\x64-windows\bin\SDL2.pdb" copy "$(ProjectDir)vcpkg_installed\x64-windows\bin\SDL2.pdb" "$(TargetDir)" &gt;nul 2&gt;&amp;1
+echo Copying PlayFab and GDK DLLs...
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabCore.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabServices.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\libHttpClient.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\PlayFabGameSave.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\Release\Microsoft.Xbox.Services.142.C.pdb" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.dll" "$(TargetDir)"
+xcopy /Y /D "$(GDKPath)\windows\bin\x64\xgameruntime.pdb" "$(TargetDir)"
+xcopy /Y /D "$(SteamworksSDKPath)\redistributable_bin\win64\steam_api64.dll" "$(TargetDir)"
+xcopy /Y /D "$(SteamworksSDKPath)\public\steam\lib\win64\sdkencryptedappticket64.dll" "$(TargetDir)"
+xcopy /Y /D "$(ProjectDir)\*.png" "$(TargetDir)"
+xcopy /Y /D "$(ProjectDir)\steam_appid.txt" "$(TargetDir)"
+echo DLLs copied successfully.</Command>
+      <Message>Copying required release DLLs to output directory</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="MicrosoftGame.config">
+      <Command>echo Starting MGC build process...
+echo Copying MicrosoftGame.config to output directory...
+copy %(Identity) "$(OutDir)MicrosoftGame.config"
+if errorlevel 1 (
+  echo ERROR: Failed to copy MicrosoftGame.config
+  exit /b 1
+)
+echo Running makepkg.exe...
+echo Full command line: "$(GDKPath)\..\bin\makepkg.exe" localize /d "$(OutDir)." /pd "$(OutDir)." /gc "$(OutDir)MicrosoftGame.config"
+echo GDKPath resolved to: $(GDKPath)
+echo OutDir resolved to: $(OutDir)
+echo Checking if makepkg.exe exists...
+if exist "$(GDKPath)\..\bin\makepkg.exe" (
+  echo Found makepkg.exe at: "$(GDKPath)\..\bin\makepkg.exe"
+) else (
+  echo ERROR: makepkg.exe NOT FOUND at: "$(GDKPath)\..\bin\makepkg.exe"
+  exit /b 1
+)
+echo Executing makepkg.exe now...
+"$(GDKPath)\..\bin\makepkg.exe" localize /d "$(OutDir)." /pd "$(OutDir)." /gc "$(OutDir)MicrosoftGame.config"
+set MAKEPKG_ERROR=%errorlevel%
+echo makepkg.exe completed with exit code: %MAKEPKG_ERROR%
+if %MAKEPKG_ERROR% neq 0 (
+  echo ERROR: makepkg.exe failed with error code %MAKEPKG_ERROR%
+  exit /b %MAKEPKG_ERROR%
+)
+echo MGC build completed successfully.</Command>
+      <Message>MGC Compile</Message>
+      <Inputs>%(Identity)</Inputs>
+      <Outputs>$(OutDir)MicrosoftGame.config</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameSaveIntegration.cpp" />
+    <ClCompile Include="GameSaveIntegrationUI.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SteamIntegration.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameSaveIntegration.h" />
+    <ClInclude Include="GameSaveIntegrationUI.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="SteamIntegration.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
