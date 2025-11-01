@@ -1,30 +1,32 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
-using System.Net.Http;
-using PlayFab.TicTacToeDemo.Util;
-using PlayFab.Plugins.CloudScript;
+using PlayFab;
 using PlayFab.TicTacToeDemo.Models;
+using PlayFab.TicTacToeDemo.Util;
 
 namespace TicTacToeFunctions.Functions
 {
-    public static class ResetGameState
+    public class ResetGameState
     {
-        [FunctionName("ResetGameState")]
-        public static async Task Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage req,
-            ILogger log)
+        [Function("ResetGameState")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestData req,
+            FunctionContext executionContext)
         {
-            var context = await FunctionContext<PlayFabIdRequest>.Create(req);
-            var playFabId = context.FunctionArgument.PlayFabId;
+            var context = await PlayFabFunctionHelper.GetContext(_logger, req);
+            if (context is null) return new BadRequestObjectResult("Invalid context");
 
-            Settings.TrySetSecretKey(context.ApiSettings);
-            Settings.TrySetCloudName(context.ApiSettings);
+            var settings = new PlayFabApiSettings { TitleId = context.TitleAuthenticationContext.Id, };
+            Settings.TrySetSecretKey(settings);
+            Settings.TrySetCloudName(settings);
 
-            var newCurrentGameState = new TicTacToeState()
+            string playFabId = context.CallerEntityProfile.Lineage.MasterPlayerAccountId;
+
+            var newCurrentGameState = new TicTacToeState
             {
                 Data = new int[9]
             };
@@ -32,9 +34,16 @@ namespace TicTacToeFunctions.Functions
             await GameStateUtil.UpdateCurrentGameState(
                 newCurrentGameState,
                 playFabId,
-                context.ApiSettings,
-                context.AuthenticationContext);
+                settings);
 
+            return new OkResult();
+        }
+
+        private readonly ILogger _logger;
+
+        public ResetGameState(ILoggerFactory loggerFactory)
+        {
+            _logger = loggerFactory.CreateLogger<ResetGameState>();
         }
     }
 }

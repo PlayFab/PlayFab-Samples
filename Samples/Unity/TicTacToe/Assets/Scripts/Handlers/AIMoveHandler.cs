@@ -18,15 +18,17 @@ namespace PlayFab.TicTacToeDemo.Handlers
         {
             var request = new ExecuteFunctionRequest
             {
+                Entity = new EntityKey
+                {
+                    Id = PlayFabSettings.staticPlayer.EntityId,
+                    Type = PlayFabSettings.staticPlayer.EntityType,
+                },
                 FunctionName = Constants.AI_MOVE_FUNCTION_NAME,
                 FunctionParameter = new PlayFabIdRequest
                 {
                     PlayFabId = Player.PlayFabId
                 },
-                AuthenticationContext = new PlayFabAuthenticationContext
-                {
-                    EntityToken = Player.EntityToken
-                }
+                GeneratePlayStreamEvent = true
             };
 
             PlayFabCloudScriptAPI.ExecuteFunction(request,
