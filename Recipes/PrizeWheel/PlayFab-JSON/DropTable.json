@@ -4,22 +4,22 @@
     {
       "ResultItemType": "ItemId",
       "ResultItem": "Card1",
-      "Weight": 10000
+      "Weight": 33
     },
     {
       "ResultItemType": "ItemId",
       "ResultItem": "Card2",
-      "Weight": 10000
+      "Weight": 33
     },
     {
       "ResultItemType": "ItemId",
       "ResultItem": "Card3",
-      "Weight": 10000
+      "Weight": 33
     },
     {
       "ResultItemType": "ItemId",
       "ResultItem": "SpinAgain",
-      "Weight": 303
+      "Weight": 1
     }
   ]
 }]
