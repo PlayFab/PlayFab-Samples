@@ -2,6 +2,479 @@
 #include "GameSaveIntegrationUI.h"
 #include "game.h"
 
+#include <httpClient/httpClient.h>
+
+using Microsoft::WRL::ComPtr;
+
+namespace
+{
+    constexpr size_t c_maxThumbnailBytes = 5 * 1024 * 1024; // 5 MB safety limit
+    constexpr float c_maxThumbnailWidth = 220.0f;
+    constexpr float c_maxThumbnailHeight = 140.0f;
+
+    std::mutex g_textureDeletionMutex;
+    std::vector<uint32_t> g_texturesPendingDeletion;
+
+    struct ThumbnailTexture
+    {
+        uint32_t textureId = 0;
+        float width = 0.0f;
+        float height = 0.0f;
+    };
+
+    void EnqueueTextureDeletion(uint32_t textureId)
+    {
+        if (textureId == 0)
+        {
+            return;
+        }
+
+        std::lock_guard<std::mutex> guard(g_textureDeletionMutex);
+        g_texturesPendingDeletion.push_back(textureId);
+    }
+
+    void FlushPendingTextureDeletes()
+    {
+        std::vector<uint32_t> pending;
+        {
+            std::lock_guard<std::mutex> guard(g_textureDeletionMutex);
+            if (g_texturesPendingDeletion.empty())
+            {
+                return;
+            }
+
+            pending.swap(g_texturesPendingDeletion);
+        }
+
+        for (uint32_t textureId : pending)
+        {
+            GLuint glId = static_cast<GLuint>(textureId);
+            glDeleteTextures(1, &glId);
+        }
+    }
+
+    IWICImagingFactory* GetWicFactory()
+    {
+        static std::once_flag onceFlag;
+        static ComPtr<IWICImagingFactory> factory;
+
+        std::call_once(onceFlag, []()
+        {
+            ComPtr<IWICImagingFactory> localFactory;
+            HRESULT hr = CoCreateInstance(
+                CLSID_WICImagingFactory,
+                nullptr,
+                CLSCTX_INPROC_SERVER,
+                IID_PPV_ARGS(&localFactory));
+
+            if (SUCCEEDED(hr))
+            {
+                factory = localFactory;
+            }
+            else
+            {
+                AddLog("Failed to create WIC imaging factory (0x%08X)", hr);
+            }
+        });
+
+        return factory.Get();
+    }
+
+    void TrimWhitespace(std::string& value)
+    {
+        auto notSpace = [](unsigned char ch) noexcept
+        {
+            return !std::isspace(ch);
+        };
+
+        value.erase(
+            value.begin(),
+            std::find_if(value.begin(), value.end(), notSpace));
+
+        value.erase(
+            std::find_if(value.rbegin(), value.rend(), notSpace).base(),
+            value.end());
+    }
+
+    bool StartsWithIgnoreCase(const std::string& value, const char* prefix)
+    {
+        const size_t prefixLength = strlen(prefix);
+        if (value.size() < prefixLength)
+        {
+            return false;
+        }
+
+        for (size_t i = 0; i < prefixLength; ++i)
+        {
+            if (std::tolower(static_cast<unsigned char>(value[i])) !=
+                std::tolower(static_cast<unsigned char>(prefix[i])))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    std::wstring Utf8ToWide(const std::string& value)
+    {
+        if (value.empty())
+        {
+            return {};
+        }
+
+        int required = MultiByteToWideChar(CP_UTF8, 0, value.c_str(), -1, nullptr, 0);
+        if (required <= 0)
+        {
+            return {};
+        }
+
+        std::wstring wide(static_cast<size_t>(required - 1), L'\0');
+        MultiByteToWideChar(CP_UTF8, 0, value.c_str(), -1, wide.data(), required);
+        return wide;
+    }
+
+    std::string NormalizeLocalPath(const std::string& uri)
+    {
+        std::string normalized = uri;
+        TrimWhitespace(normalized);
+
+        if (StartsWithIgnoreCase(normalized, "file://"))
+        {
+            normalized.erase(0, 7);
+            if (!normalized.empty() && normalized.front() == '/' && normalized.size() > 2 && normalized[2] == ':')
+            {
+                normalized.erase(0, 1);
+            }
+        }
+
+        return normalized;
+    }
+
+    bool ReadFileToBuffer(const std::string& path, std::vector<uint8_t>& buffer)
+    {
+        std::wstring widePath = Utf8ToWide(path);
+        if (widePath.empty())
+        {
+            AddLog("Failed to convert thumbnail path to wide characters: %s", path.c_str());
+            return false;
+        }
+
+        HANDLE fileHandle = CreateFileW(
+            widePath.c_str(),
+            GENERIC_READ,
+            FILE_SHARE_READ,
+            nullptr,
+            OPEN_EXISTING,
+            FILE_ATTRIBUTE_NORMAL,
+            nullptr);
+
+        if (fileHandle == INVALID_HANDLE_VALUE)
+        {
+            AddLog("Failed to open thumbnail file: %s", path.c_str());
+            return false;
+        }
+
+        LARGE_INTEGER fileSize{};
+        bool sizeOk = GetFileSizeEx(fileHandle, &fileSize) != 0;
+        if (!sizeOk || fileSize.QuadPart <= 0 || fileSize.QuadPart > static_cast<LONGLONG>(c_maxThumbnailBytes))
+        {
+            CloseHandle(fileHandle);
+            AddLog("Thumbnail file is too large or unreadable: %s", path.c_str());
+            return false;
+        }
+
+        buffer.resize(static_cast<size_t>(fileSize.QuadPart));
+
+        DWORD totalRead = 0;
+        while (totalRead < buffer.size())
+        {
+            DWORD bytesRead = 0;
+            if (!ReadFile(fileHandle, buffer.data() + totalRead, static_cast<DWORD>(buffer.size() - totalRead), &bytesRead, nullptr) || bytesRead == 0)
+            {
+                break;
+            }
+
+            totalRead += bytesRead;
+        }
+
+        CloseHandle(fileHandle);
+
+        if (totalRead == 0)
+        {
+            AddLog("Failed to read thumbnail file contents: %s", path.c_str());
+            buffer.clear();
+            return false;
+        }
+
+        buffer.resize(totalRead);
+        return true;
+    }
+
+    HRESULT DownloadUriToBuffer(const std::string& uri, std::vector<uint8_t>& buffer)
+    {
+        HCCallHandle callHandle = nullptr;
+        RETURN_IF_FAILED(HCHttpCallCreate(&callHandle));
+
+        // Ensure handle is cleaned up on exit
+        std::unique_ptr<std::remove_pointer<HCCallHandle>::type, decltype(&HCHttpCallCloseHandle)> call(callHandle, &HCHttpCallCloseHandle);
+
+        RETURN_IF_FAILED(HCHttpCallRequestSetUrl(call.get(), "GET", uri.c_str()));
+
+        XAsyncBlock async{};
+        RETURN_IF_FAILED(HCHttpCallPerformAsync(call.get(), &async));
+        RETURN_IF_FAILED(XAsyncGetStatus(&async, true));
+
+        HRESULT networkError = S_OK;
+        uint32_t platformError = 0;
+        RETURN_IF_FAILED(HCHttpCallResponseGetNetworkErrorCode(call.get(), &networkError, &platformError));
+        if (FAILED(networkError))
+        {
+            RETURN_HR(networkError);
+        }
+
+        uint32_t statusCode = 0;
+        RETURN_IF_FAILED(HCHttpCallResponseGetStatusCode(call.get(), &statusCode));
+        if (statusCode != 200)
+        {
+            RETURN_HR(E_FAIL);
+        }
+
+        size_t responseSize = 0;
+        RETURN_IF_FAILED(HCHttpCallResponseGetResponseBodyBytesSize(call.get(), &responseSize));
+        if (responseSize == 0 || responseSize > c_maxThumbnailBytes)
+        {
+            RETURN_HR(E_FAIL);
+        }
+
+        buffer.resize(responseSize);
+        size_t bytesUsed = 0;
+        RETURN_IF_FAILED(HCHttpCallResponseGetResponseBodyBytes(call.get(), responseSize, buffer.data(), &bytesUsed));
+        buffer.resize(bytesUsed);
+
+        return S_OK;
+    }
+
+    bool DecodeImageWithWic(const std::vector<uint8_t>& encoded, std::vector<uint8_t>& rgbaPixels, UINT& width, UINT& height)
+    {
+        IWICImagingFactory* factory = GetWicFactory();
+        if (!factory)
+        {
+            return false;
+        }
+
+        if (encoded.empty())
+        {
+            return false;
+        }
+
+        ComPtr<IWICStream> stream;
+        HRESULT hr = factory->CreateStream(&stream);
+        if (FAILED(hr))
+        {
+            AddLog("Failed to create WIC stream (0x%08X)", hr);
+            return false;
+        }
+
+        hr = stream->InitializeFromMemory(const_cast<BYTE*>(reinterpret_cast<const BYTE*>(encoded.data())), static_cast<DWORD>(encoded.size()));
+        if (FAILED(hr))
+        {
+            AddLog("Failed to initialize WIC stream from memory (0x%08X)", hr);
+            return false;
+        }
+
+        ComPtr<IWICBitmapDecoder> decoder;
+        hr = factory->CreateDecoderFromStream(stream.Get(), nullptr, WICDecodeMetadataCacheOnDemand, &decoder);
+        if (FAILED(hr))
+        {
+            AddLog("Failed to create WIC decoder (0x%08X)", hr);
+            return false;
+        }
+
+        ComPtr<IWICBitmapFrameDecode> frame;
+        hr = decoder->GetFrame(0, &frame);
+        if (FAILED(hr))
+        {
+            AddLog("Failed to obtain WIC frame (0x%08X)", hr);
+            return false;
+        }
+
+        ComPtr<IWICFormatConverter> converter;
+        hr = factory->CreateFormatConverter(&converter);
+        if (FAILED(hr))
+        {
+            AddLog("Failed to create WIC format converter (0x%08X)", hr);
+            return false;
+        }
+
+        hr = converter->Initialize(
+            frame.Get(),
+            GUID_WICPixelFormat32bppRGBA,
+            WICBitmapDitherTypeNone,
+            nullptr,
+            0.0f,
+            WICBitmapPaletteTypeCustom);
+
+        if (FAILED(hr))
+        {
+            AddLog("Failed to initialize WIC format converter (0x%08X)", hr);
+            return false;
+        }
+
+        hr = converter->GetSize(&width, &height);
+        if (FAILED(hr) || width == 0 || height == 0)
+        {
+            AddLog("Failed to obtain thumbnail dimensions (0x%08X)", hr);
+            return false;
+        }
+
+        const uint64_t totalBytes = static_cast<uint64_t>(width) * static_cast<uint64_t>(height) * 4ull;
+        if (totalBytes == 0 || totalBytes > c_maxThumbnailBytes * 4ull)
+        {
+            AddLog("Thumbnail dimensions are too large: %ux%u", width, height);
+            return false;
+        }
+
+        rgbaPixels.resize(static_cast<size_t>(totalBytes));
+        hr = converter->CopyPixels(nullptr, width * 4, static_cast<UINT>(rgbaPixels.size()), rgbaPixels.data());
+        if (FAILED(hr))
+        {
+            AddLog("Failed to copy thumbnail pixels (0x%08X)", hr);
+            rgbaPixels.clear();
+            return false;
+        }
+
+        return true;
+    }
+
+    bool TryLoadThumbnailTexture(const std::string& uri, ThumbnailTexture& outTexture)
+    {
+        if (uri.empty())
+        {
+            return false;
+        }
+
+        std::string trimmedUri = uri;
+        TrimWhitespace(trimmedUri);
+
+        const bool isRemote = StartsWithIgnoreCase(trimmedUri, "http://") || StartsWithIgnoreCase(trimmedUri, "https://");
+        std::string normalizedUri = isRemote ? trimmedUri : NormalizeLocalPath(trimmedUri);
+
+        std::vector<uint8_t> encoded;
+        if (isRemote)
+        {
+            if (FAILED(DownloadUriToBuffer(normalizedUri, encoded)))
+            {
+                AddLog("Failed to download thumbnail: %s", normalizedUri.c_str());
+                return false;
+            }
+        }
+        else
+        {
+            if (!ReadFileToBuffer(normalizedUri, encoded))
+            {
+                return false;
+            }
+        }
+
+        std::vector<uint8_t> rgbaPixels;
+        UINT width = 0;
+        UINT height = 0;
+        if (!DecodeImageWithWic(encoded, rgbaPixels, width, height))
+        {
+            return false;
+        }
+
+        GLuint textureId = 0;
+        glGenTextures(1, &textureId);
+        if (textureId == 0)
+        {
+            AddLog("Failed to allocate OpenGL texture for thumbnail");
+            return false;
+        }
+
+        glBindTexture(GL_TEXTURE_2D, textureId);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+        glTexImage2D(
+            GL_TEXTURE_2D,
+            0,
+            GL_RGBA,
+            static_cast<GLsizei>(width),
+            static_cast<GLsizei>(height),
+            0,
+            GL_RGBA,
+            GL_UNSIGNED_BYTE,
+            rgbaPixels.data());
+
+        glBindTexture(GL_TEXTURE_2D, 0);
+
+        float displayWidth = static_cast<float>(width);
+        float displayHeight = static_cast<float>(height);
+
+        if (displayWidth > c_maxThumbnailWidth || displayHeight > c_maxThumbnailHeight)
+        {
+            const float widthScale = c_maxThumbnailWidth / displayWidth;
+            const float heightScale = c_maxThumbnailHeight / displayHeight;
+            const float scale = std::min(widthScale, heightScale);
+            displayWidth *= scale;
+            displayHeight *= scale;
+        }
+
+        outTexture.textureId = static_cast<uint32_t>(textureId);
+        outTexture.width = displayWidth;
+        outTexture.height = displayHeight;
+        return true;
+    }
+
+    void ResetConflictThumbnailState(ConflictDialogState& state)
+    {
+        EnqueueTextureDeletion(state.localThumbnailTextureId);
+        EnqueueTextureDeletion(state.remoteThumbnailTextureId);
+
+        state.localThumbnailTextureId = 0;
+        state.remoteThumbnailTextureId = 0;
+        state.localThumbnailWidth = 0.0f;
+        state.localThumbnailHeight = 0.0f;
+        state.remoteThumbnailWidth = 0.0f;
+        state.remoteThumbnailHeight = 0.0f;
+        state.localThumbnailLoadAttempted = false;
+        state.remoteThumbnailLoadAttempted = false;
+    }
+
+    void EnsureConflictThumbnailLoaded(
+        const std::string& uri,
+        uint32_t& textureId,
+        float& width,
+        float& height,
+        bool& attempted)
+    {
+        if (attempted)
+        {
+            return;
+        }
+
+        attempted = true;
+        if (uri.empty())
+        {
+            return;
+        }
+
+        ThumbnailTexture texture;
+        if (TryLoadThumbnailTexture(uri, texture))
+        {
+            textureId = texture.textureId;
+            width = texture.width;
+            height = texture.height;
+        }
+    }
+}
+
+#ifdef ENABLE_STEAM_SDK
 void ShowRemoteConnectDialogForXUserOnSteamDeck(const std::string& url, const std::string& code, uint32_t userIdentifier)
 {
     g_gameState.remoteConnectDialog.showDialog = true;
@@ -108,6 +581,7 @@ void CloseRemoteConnectDialogForXUserOnSteamDeck()
     g_gameState.remoteConnectDialog.code.clear();
     g_gameState.remoteConnectDialog.userIdentifier = 0;
 }
+#endif // ENABLE_STEAM_SDK
 
 void ShowSyncProgressDialog(PFLocalUserHandle localUserHandle, PFGameSaveFilesSyncState syncState, uint64_t currentBytes, uint64_t totalBytes)
 {
@@ -454,6 +928,8 @@ void ShowConflictDialog(PFLocalUserHandle localUserHandle, PFGameSaveDescriptor*
         CloseSyncProgressDialog();
     }
 
+    ResetConflictThumbnailState(g_gameState.conflictDialog);
+
     g_gameState.conflictDialog.showDialog = true;
     g_gameState.conflictDialog.localUserHandle = localUserHandle;
     
@@ -462,12 +938,34 @@ void ShowConflictDialog(PFLocalUserHandle localUserHandle, PFGameSaveDescriptor*
         g_gameState.conflictDialog.localGameSave = *localGameSave;
     if (remoteGameSave)
         g_gameState.conflictDialog.remoteGameSave = *remoteGameSave;
+
+    auto sanitizeUri = [](const char* source) -> std::string
+    {
+        if (!source)
+        {
+            return {};
+        }
+
+        std::string value = source;
+        TrimWhitespace(value);
+        return value;
+    };
+
+    g_gameState.conflictDialog.localThumbnailUri = (localGameSave && localGameSave->thumbnailUri[0] != '\0')
+        ? sanitizeUri(localGameSave->thumbnailUri)
+        : std::string{};
+
+    g_gameState.conflictDialog.remoteThumbnailUri = (remoteGameSave && remoteGameSave->thumbnailUri[0] != '\0')
+        ? sanitizeUri(remoteGameSave->thumbnailUri)
+        : std::string{};
     
     AddLog("Showing conflict dialog");
 }
 
 void RenderConflictDialog()
 {
+    FlushPendingTextureDeletes();
+
     if (!g_gameState.conflictDialog.showDialog)
         return;
 
@@ -519,6 +1017,27 @@ void RenderConflictDialog()
                 strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", &timeInfo);
                 ImGui::BulletText("Modified: %s", timeStr);
             }
+
+            EnsureConflictThumbnailLoaded(
+                g_gameState.conflictDialog.localThumbnailUri,
+                g_gameState.conflictDialog.localThumbnailTextureId,
+                g_gameState.conflictDialog.localThumbnailWidth,
+                g_gameState.conflictDialog.localThumbnailHeight,
+                g_gameState.conflictDialog.localThumbnailLoadAttempted);
+
+            if (g_gameState.conflictDialog.localThumbnailTextureId != 0)
+            {
+                ImGui::Spacing();
+                ImGui::Text("Thumbnail:");
+                ImGui::Image(
+                    reinterpret_cast<ImTextureID>(static_cast<intptr_t>(g_gameState.conflictDialog.localThumbnailTextureId)),
+                    ImVec2(g_gameState.conflictDialog.localThumbnailWidth, g_gameState.conflictDialog.localThumbnailHeight));
+            }
+            else if (g_gameState.conflictDialog.localThumbnailLoadAttempted && !g_gameState.conflictDialog.localThumbnailUri.empty())
+            {
+                ImGui::Spacing();
+                ImGui::TextDisabled("Thumbnail unavailable");
+            }
             
             // Remote save column
             ImGui::TableNextColumn();
@@ -534,6 +1053,27 @@ void RenderConflictDialog()
             {
                 strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", &timeInfo);
                 ImGui::BulletText("Modified: %s", timeStr);
+            }
+
+            EnsureConflictThumbnailLoaded(
+                g_gameState.conflictDialog.remoteThumbnailUri,
+                g_gameState.conflictDialog.remoteThumbnailTextureId,
+                g_gameState.conflictDialog.remoteThumbnailWidth,
+                g_gameState.conflictDialog.remoteThumbnailHeight,
+                g_gameState.conflictDialog.remoteThumbnailLoadAttempted);
+
+            if (g_gameState.conflictDialog.remoteThumbnailTextureId != 0)
+            {
+                ImGui::Spacing();
+                ImGui::Text("Thumbnail:");
+                ImGui::Image(
+                    reinterpret_cast<ImTextureID>(static_cast<intptr_t>(g_gameState.conflictDialog.remoteThumbnailTextureId)),
+                    ImVec2(g_gameState.conflictDialog.remoteThumbnailWidth, g_gameState.conflictDialog.remoteThumbnailHeight));
+            }
+            else if (g_gameState.conflictDialog.remoteThumbnailLoadAttempted && !g_gameState.conflictDialog.remoteThumbnailUri.empty())
+            {
+                ImGui::Spacing();
+                ImGui::TextDisabled("Thumbnail unavailable");
             }
             
             ImGui::EndTable();
@@ -604,10 +1144,14 @@ void RenderConflictDialog()
 
 void CloseConflictDialog()
 {
+    ResetConflictThumbnailState(g_gameState.conflictDialog);
+
     g_gameState.conflictDialog.showDialog = false;
     g_gameState.conflictDialog.localUserHandle = nullptr;
     memset(&g_gameState.conflictDialog.localGameSave, 0, sizeof(PFGameSaveDescriptor));
     memset(&g_gameState.conflictDialog.remoteGameSave, 0, sizeof(PFGameSaveDescriptor));
+    g_gameState.conflictDialog.localThumbnailUri.clear();
+    g_gameState.conflictDialog.remoteThumbnailUri.clear();
 }
 
 // Out of Storage Dialog Functions
@@ -842,6 +1386,7 @@ void CloseCloudDataConfirmationDialog()
     memset(&g_gameState.cloudDataConfirmationDialog.remoteGameSave, 0, sizeof(PFGameSaveDescriptor));
 }
 
+#ifdef ENABLE_STEAM_SDK
 void ShowSpopPromptDialogForXUserOnSteamDeck(uint32_t userIdentifier, XUserPlatformOperation* operation, const std::string& modernGamertag, const std::string& modernGamertagSuffix)
 {
     g_gameState.spopPromptDialog.showDialog = true;
@@ -935,3 +1480,4 @@ void CloseSpopPromptDialogForXUserOnSteamDeck()
     g_gameState.spopPromptDialog.modernGamertag.clear();
     g_gameState.spopPromptDialog.modernGamertagSuffix.clear();
 }
+#endif // ENABLE_STEAM_SDK

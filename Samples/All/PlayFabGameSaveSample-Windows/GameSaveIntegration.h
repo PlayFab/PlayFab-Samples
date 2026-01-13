@@ -6,9 +6,11 @@ public:
     static HRESULT Initialize();
     static HRESULT InitializeGameSaves(_In_ bool setUiCallbacks, _In_ bool forceInproc = false);
     static HRESULT CleanupPFGameSave();
+#ifdef ENABLE_STEAM_SDK
     static void CleanupSteam();
 
     static HRESULT SignInViaSteam();
+#endif
     static HRESULT SignInViaXbox();
     static HRESULT SignOutViaXbox();
 

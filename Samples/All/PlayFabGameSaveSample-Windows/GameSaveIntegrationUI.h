@@ -39,6 +39,16 @@ struct ConflictDialogState
     PFLocalUserHandle localUserHandle = nullptr;
     PFGameSaveDescriptor localGameSave = {};
     PFGameSaveDescriptor remoteGameSave = {};
+    std::string localThumbnailUri;
+    std::string remoteThumbnailUri;
+    uint32_t localThumbnailTextureId = 0;
+    uint32_t remoteThumbnailTextureId = 0;
+    float localThumbnailWidth = 0.0f;
+    float localThumbnailHeight = 0.0f;
+    float remoteThumbnailWidth = 0.0f;
+    float remoteThumbnailHeight = 0.0f;
+    bool localThumbnailLoadAttempted = false;
+    bool remoteThumbnailLoadAttempted = false;
 };
 
 struct OutOfStorageDialogState
@@ -73,10 +83,12 @@ struct SpopPromptDialogState
 
 // Note: Dialog states are part of the global GameState struct
 
+#ifdef ENABLE_STEAM_SDK
 // Remote connection UI for XUser on Steam Deck
 void ShowRemoteConnectDialogForXUserOnSteamDeck(const std::string& url, const std::string& code, uint32_t userIdentifier);
 void RenderRemoteConnectDialogForXUserOnSteamDeck();
 void CloseRemoteConnectDialogForXUserOnSteamDeck();
+#endif
 
 // Sync progress dialog functions
 void ShowSyncProgressDialog(PFLocalUserHandle localUserHandle, PFGameSaveFilesSyncState syncState, uint64_t currentBytes, uint64_t totalBytes);
@@ -108,8 +120,10 @@ void ShowCloudDataConfirmationDialog(PFLocalUserHandle localUserHandle, PFGameSa
 void RenderCloudDataConfirmationDialog();
 void CloseCloudDataConfirmationDialog();
 
+#ifdef ENABLE_STEAM_SDK
 // SPOP prompt UI for XUser on Steam Deck
 void ShowSpopPromptDialogForXUserOnSteamDeck(uint32_t userIdentifier, XUserPlatformOperation* operation, const std::string& modernGamertag, const std::string& modernGamertagSuffix);
 void RenderSpopPromptDialogForXUserOnSteamDeck();
 void CloseSpopPromptDialogForXUserOnSteamDeck();
+#endif
 
