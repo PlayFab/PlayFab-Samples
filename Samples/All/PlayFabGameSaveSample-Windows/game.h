@@ -12,8 +12,10 @@ struct GameState
     PFServiceConfigHandle serviceConfigHandle{ nullptr };
     XUserHandle xuser{ nullptr };
     PFLocalUserHandle localUserHandle{ nullptr };
+#ifdef ENABLE_STEAM_SDK
     bool steamAvailable{ false };
     bool isSteamDeck{ false };
+#endif
     bool gameSavesInitialized{ false };
     bool userSignedIn{ false };
     bool userSignedInViaXbox{ false };

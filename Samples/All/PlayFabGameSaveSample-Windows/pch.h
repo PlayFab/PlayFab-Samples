@@ -2,6 +2,7 @@
 
 // Windows headers
 #define _CRT_SECURE_NO_WARNINGS
+#define NOMINMAX
 #include <windows.h>
 #include <objbase.h>
 #include <shlobj.h>
@@ -12,10 +13,17 @@
 #include <vector>
 #include <string>
 #include <cstdarg>
+#include <cstring>
+#include <cstdint>
 #include <sstream>
 #include <fstream>
 #include <cassert>
 #include <memory>
+#include <algorithm>
+#include <filesystem>
+#include <mutex>
+#include <cctype>
+#include <type_traits>
 
 // Third-party library headers
 #include <SDL2/SDL.h>
@@ -24,10 +32,15 @@
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
 
-// Steam headers
+#include <wrl/client.h>
+#include <wincodec.h>
+
+// Steam headers (optional - define ENABLE_STEAM_SDK to enable Steam integration)
+#ifdef ENABLE_STEAM_SDK
 #include <steam/steam_api.h>
 #include <steam/steam_api_common.h>
 #include <steam/isteamutils.h>
+#endif
 
 // Xbox/GDK headers
 #include <XGameRuntime.h>
@@ -54,3 +67,4 @@
 
 // Link libraries that are commonly used
 #pragma comment(lib, "advapi32.lib")
+#pragma comment(lib, "windowscodecs.lib")

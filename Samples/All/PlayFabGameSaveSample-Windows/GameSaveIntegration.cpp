@@ -1,9 +1,83 @@
 #include "pch.h"
 #include "GameSaveIntegration.h"
 #include "GameSaveIntegrationUI.h"
+#ifdef ENABLE_STEAM_SDK
 #include "SteamIntegration.h"
+#endif
 #include "Game.h"
 #include <windows.h>
+
+// Helper structure to hold title configuration
+struct TitleConfig
+{
+    std::string titleId;
+    std::string connectionString;
+};
+
+// Helper function to extract a JSON string value by key (simple parsing, no external JSON library needed)
+static std::string ExtractJsonStringValue(const std::string& json, const std::string& key)
+{
+    std::string searchKey = "\"" + key + "\"";
+    size_t keyPos = json.find(searchKey);
+    if (keyPos == std::string::npos)
+        return "";
+    
+    size_t colonPos = json.find(':', keyPos + searchKey.length());
+    if (colonPos == std::string::npos)
+        return "";
+    
+    size_t startQuote = json.find('"', colonPos + 1);
+    if (startQuote == std::string::npos)
+        return "";
+    
+    size_t endQuote = json.find('"', startQuote + 1);
+    if (endQuote == std::string::npos)
+        return "";
+    
+    return json.substr(startQuote + 1, endQuote - startQuote - 1);
+}
+
+// Load title configuration from testTitleData.json if it exists
+static TitleConfig LoadTitleConfig()
+{
+    TitleConfig config;
+    config.titleId = "YOURTITLEID";
+    config.connectionString = "https://YOURTITLEID.playfabapi.com";
+    
+    // Try to find testTitleData.json relative to the executable or in common locations
+    std::vector<std::string> searchPaths = {
+        "..\\..\\..\\Test\\testTitleData.json",           // From x64\Debug or x64\Release
+        "..\\..\\Test\\testTitleData.json",               // Alternative relative path
+        "..\\Test\\testTitleData.json",                   // Another alternative
+        "testTitleData.json",                              // Same directory as executable
+    };
+    
+    for (const auto& path : searchPaths)
+    {
+        std::ifstream file(path);
+        if (file.is_open())
+        {
+            std::stringstream buffer;
+            buffer << file.rdbuf();
+            std::string jsonContent = buffer.str();
+            file.close();
+            
+            std::string titleId = ExtractJsonStringValue(jsonContent, "titleId");
+            std::string connectionString = ExtractJsonStringValue(jsonContent, "connectionString");
+            
+            if (!titleId.empty() && !connectionString.empty())
+            {
+                config.titleId = titleId;
+                config.connectionString = connectionString;
+                AddLog("Loaded title config from: %s (TitleId: %s)", path.c_str(), titleId.c_str());
+                return config;
+            }
+        }
+    }
+    
+    AddLog("Warning: testTitleData.json not found. Using default placeholder values. Please update YOURTITLEID in GameSaveIntegration.cpp or provide testTitleData.json");
+    return config;
+}
 
 void OnPFGameSaveFilesUiProgress(
     _In_ PFLocalUserHandle localUserHandle, 
@@ -158,12 +232,14 @@ HRESULT GameSaveIntegration::Initialize()
 {
     AddLog("GameSaveIntegration::Initialize");
 
+#ifdef ENABLE_STEAM_SDK
     g_gameState.steamAvailable = SteamIntegration::CheckSteamAvailability();
     g_gameState.isSteamDeck = SteamIntegration::CheckIfSteamDeck();
     if( g_gameState.isSteamDeck )
     {
         RETURN_IF_FAILED(SteamIntegration::SetSandboxForSteamDeck("XDKS.1"));
     }
+#endif
 
     RETURN_IF_FAILED(XGameRuntimeInitialize());
     RETURN_IF_FAILED(PFInitialize(nullptr));
@@ -171,17 +247,23 @@ HRESULT GameSaveIntegration::Initialize()
     HCTraceSetClientCallback(MyDebugTrace);
     HCSettingsSetTraceLevel(HCTraceLevel::Information);
     RETURN_IF_FAILED(PFServicesInitialize(nullptr));
+    
+    // Load title configuration from testTitleData.json if available, otherwise use defaults
+    TitleConfig titleConfig = LoadTitleConfig();
+    
     RETURN_IF_FAILED(PFServiceConfigCreateHandle(
-        "https://<titleid>.playfabapi.com",    // PlayFab API endpoint - obtained in the Game Manager.  Replace <titleid> with your title id.
-        "<titleid>",                           // PlayFab Title id - obtained in the Game Manager. Replace <titleid> with your title id.
+        titleConfig.connectionString.c_str(),    // PlayFab API endpoint - obtained from testTitleData.json or Game Manager
+        titleConfig.titleId.c_str(),             // PlayFab Title id - obtained from testTitleData.json or Game Manager
         &g_gameState.serviceConfigHandle));
 
     RETURN_IF_FAILED(XTaskQueueCreate(XTaskQueueDispatchMode::ThreadPool, XTaskQueueDispatchMode::ThreadPool, &g_gameState.queue));
 
+#ifdef ENABLE_STEAM_SDK
     if (g_gameState.isSteamDeck)
     {
         RETURN_IF_FAILED(SteamIntegration::InitializeXUserForSteamDeck());
     }
+#endif
 
     return S_OK;
 }
@@ -231,6 +313,7 @@ HRESULT GameSaveIntegration::InitializeGameSaves(_In_ bool setUiCallbacks, _In_ 
     return S_OK;
 }
 
+#ifdef ENABLE_STEAM_SDK
 void GameSaveIntegration::CleanupSteam()
 {
     SteamIntegration::CleanupSteam();
@@ -241,6 +324,7 @@ HRESULT GameSaveIntegration::SignInViaSteam()
     SteamIntegration::SignInViaSteam();
     return S_OK;
 }
+#endif
 
 HRESULT GameSaveIntegration::SignInViaXbox()
 {
@@ -300,10 +384,12 @@ HRESULT GameSaveIntegration::SignInViaXbox()
 
 HRESULT GameSaveIntegration::SignOutViaXbox()
 {
+#ifdef ENABLE_STEAM_SDK
     if (g_gameState.isSteamDeck && g_gameState.userSignedIn)
     {
         SteamIntegration::SignOutViaXboxOnSteamDeck();
     }
+#endif
    
     return S_OK;
 }
@@ -312,7 +398,11 @@ HRESULT GameSaveIntegration::AddUserToPFGameSave()
 {
     if (!g_gameState.gameSavesInitialized)
     {
+#ifdef ENABLE_STEAM_SDK
         bool setUiCallbacks = g_gameState.isSteamDeck || g_gameState.setUiCallbacks;
+#else
+        bool setUiCallbacks = g_gameState.setUiCallbacks;
+#endif
         RETURN_IF_FAILED(InitializeGameSaves(setUiCallbacks, g_gameState.forceInproc));
     }
 

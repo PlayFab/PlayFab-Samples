@@ -304,11 +304,13 @@ void SimpleGame::HandleEvents()
 
 void SimpleGame::Update()
 {
+#ifdef ENABLE_STEAM_SDK
     if (g_gameState.steamAvailable)
     {
         // Run Steam client callbacks
         SteamAPI_RunCallbacks();
     }
+#endif
 
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
@@ -324,6 +326,7 @@ void SimpleGame::Update()
         // Game Save Integration buttons
         ImGui::Text("Game Save Operations:");
         
+#ifdef ENABLE_STEAM_SDK
         // Disable sign-in buttons if user is already signed in
         ImGui::BeginDisabled(g_gameState.userSignedIn || !g_gameState.steamAvailable);
         if (ImGui::Button("Sign In (Steam)", ImVec2(150, 30)))
@@ -342,6 +345,7 @@ void SimpleGame::Update()
         ImGui::EndDisabled();
 
         ImGui::SameLine();
+#endif
 
         ImGui::BeginDisabled(g_gameState.userSignedIn);
         if (ImGui::Button("Sign In (Xbox)", ImVec2(150, 30)))
@@ -358,6 +362,7 @@ void SimpleGame::Update()
         }
         ImGui::EndDisabled();
 
+#ifdef ENABLE_STEAM_SDK
         ImGui::SameLine();
 
         // Only enable Xbox sign-out if we're on Steam Deck and signed in via Xbox
@@ -376,6 +381,7 @@ void SimpleGame::Update()
             }
         }
         ImGui::EndDisabled();
+#endif
 
         
         // PlayFab Game Save setup buttons
@@ -536,7 +542,11 @@ void SimpleGame::Update()
             ImGui::TextDisabled("(?)");
             if (ImGui::IsItemHovered())
             {
+#ifdef ENABLE_STEAM_SDK
                 ImGui::SetTooltip("Enables UI callbacks for sync progress, conflicts, and storage dialogs. Always enabled on Steam Deck.");
+#else
+                ImGui::SetTooltip("Enables UI callbacks for sync progress, conflicts, and storage dialogs.");
+#endif
             }
             
             ImGui::Separator();
@@ -556,12 +566,14 @@ void SimpleGame::Update()
                 ShowSyncFailedDialog(g_gameState.localUserHandle, E_FAIL);
             }
             
+#ifdef ENABLE_STEAM_SDK
             ImGui::SameLine();
             
             if (ImGui::Button("Test Remote Connect", ImVec2(150, 30)))
             {
                 ShowRemoteConnectDialogForXUserOnSteamDeck("https://aka.ms/xboxremoteconnect", "ABC123", 12345);
             }
+#endif
             
             if (ImGui::Button("Test Active Device Contention", ImVec2(200, 30)))
             {
@@ -595,6 +607,7 @@ void SimpleGame::Update()
                 ShowCloudDataConfirmationDialog(g_gameState.localUserHandle, &remoteSave);
             }
             
+#ifdef ENABLE_STEAM_SDK
             ImGui::SameLine();
             
             if (ImGui::Button("Test SPOP Dialog", ImVec2(150, 30)))
@@ -603,6 +616,7 @@ void SimpleGame::Update()
                 static XUserPlatformOperation mockOperation = {};
                 ShowSpopPromptDialogForXUserOnSteamDeck(12345, &mockOperation, "TestGamertag", "#1234");
             }
+#endif
             
             ImGui::Unindent();
         }
@@ -619,6 +633,7 @@ void SimpleGame::Update()
     }
     ImGui::End();
 
+#ifdef ENABLE_STEAM_SDK
     // Render Remote Connect Dialog
     RenderRemoteConnectDialogForXUserOnSteamDeck();
     
@@ -636,6 +651,7 @@ void SimpleGame::Update()
     {
         ImGui::OpenPopup("Xbox Sign-In Prompt");
     }
+#endif
 
     // Render Sync Progress Dialog
     RenderSyncProgressDialog();
@@ -727,7 +743,9 @@ void SimpleGame::Cleanup()
 {
     // Cleanup game save integration
     GameSaveIntegration::CleanupPFGameSave();
+#ifdef ENABLE_STEAM_SDK
     GameSaveIntegration::CleanupSteam();
+#endif
 
     // Cleanup
     ImGui_ImplOpenGL3_Shutdown();

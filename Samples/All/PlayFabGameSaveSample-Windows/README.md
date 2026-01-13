@@ -57,77 +57,165 @@ The sample includes complete UI implementations for:
 
 Make sure you have Visual Studio 2022 with the **Desktop development with C++** workload installed. This includes vcpkg automatically.
 
-### 2. Install Dependencies (Automated)
+### 2. Install Dependencies (Required)
 
-The easiest way is to run the provided setup script:
+This sample requires SDL2 and Dear ImGui which are installed via vcpkg. You **must** run this step before building.
+
+**Option A: Using the setup script (Recommended)**
 
 ```powershell
 # Navigate to the project directory
-cd "c:\git\PlayFabGameSaves\samples\PlayFabGameSaveSample-Windows"
+cd "C:\git\PlayFab.C\Samples\PlayFabGameSaveSample-Windows"
 
 # Run the setup script (will automatically find Visual Studio's vcpkg)
-setup_vcpkg.bat
+.\setup_vcpkg.bat
 ```
 
-### 3. Manual Installation (Alternative)
-
-If you prefer to install dependencies manually:
+**Option B: Manual installation**
 
 ```powershell
 # Navigate to the project directory first (important for manifest mode)
-cd "c:\git\PlayFabGameSaves\samples\PlayFabGameSaveSample-Windows"
+cd "C:\git\PlayFab.C\Samples\PlayFabGameSaveSample-Windows"
 
 # Use Visual Studio's built-in vcpkg in manifest mode
 # Option 1: Use VSINSTALLDIR environment variable (recommended)
-"%VSINSTALLDIR%VC\vcpkg\vcpkg.exe" install --triplet x64-windows
-"%VSINSTALLDIR%VC\vcpkg\vcpkg.exe" integrate install
+"%VSINSTALLDIR%\VC\vcpkg\vcpkg.exe" install --triplet x64-windows
+"%VSINSTALLDIR%\VC\vcpkg\vcpkg.exe" integrate install
 
 # Option 2: Use default VS 2022 Community path (if VSINSTALLDIR not set)
-# "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe" install --triplet x64-windows
-# "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe" integrate install
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe" install --triplet x64-windows
+"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\vcpkg.exe" integrate install
+
+# Option 3: Use default VS 2022 Enterprise path
+"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg\vcpkg.exe" install --triplet x64-windows
+"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg\vcpkg.exe" integrate install
 ```
 
-### 4. Open the Project
-There is no solution (.sln) file in this sample. Open the project file directly:
-1. In Visual Studio select: File > Open > Project/Solution...
-2. Choose `PlayFabGameSaveSample.vcxproj` in this folder.
-3. Visual Studio will generate a temporary solution hosting this project.
+This will install the following packages into the `vcpkg_installed` folder:
+- SDL2
+- imgui with SDL2 and OpenGL3 backends
 
-(Alternatively you can double-click `PlayFabGameSaveSample.vcxproj` in Explorer to open it.)
+### 3. Build the Project
 
-### 5. Build the Project
-1. Ensure the platform is set to `x64` (Debug or Release).
-2. Build (Ctrl+Shift+B).
+**Using Visual Studio**
+1. Open `PlayFabGameSaveSample.sln` in Visual Studio
+2. Select the x64 platform (Debug or Release)
+3. Build the solution (Ctrl+Shift+B)
 
-### 6. Configure PlayFab
+### 4. Configure PlayFab
 
-Before running the sample, you'll need to configure your PlayFab title:
-1. Update the PlayFab API endpoint and Title ID in `GameSaveIntegration.cpp`
-2. Ensure your PlayFab title has GameSave features enabled
+The sample automatically loads PlayFab configuration from `testTitleData.json` if it exists. The sample searches for this file in these locations (in order):
 
-### 7. Configure Steamworks SDK Path
-The project expects the Steamworks SDK to be available for Steam / Steam Deck authentication scenarios.
+1. `..\..\..\Test\testTitleData.json` (relative to executable - works when running from x64\Debug or x64\Release)
+2. `..\..\Test\testTitleData.json`
+3. `..\Test\testTitleData.json`
+4. `testTitleData.json` (same directory as executable)
+5. `C:\git\PlayFab.C\Test\testTitleData.json` (absolute fallback)
 
-The Visual C++ project defines a user macro in the *.vcxproj* file:
+**If using the existing testTitleData.json:**
+
+The repository includes a `Test\testTitleData.json` file that will be automatically loaded.
+
+**If creating your own configuration:**
+
+Create a `testTitleData.json` file with the following format:
+
+```json
+{
+  "titleId": "YOURTITLEID",
+  "connectionString": "https://YOURTITLEID.playfabapi.com"
+}
 ```
-<PropertyGroup Label="UserMacros">
-  <SteamworksSDKPath Condition="'$(SteamworksSDKPath)'==''">C:\steamworks_sdk</SteamworksSDKPath>
-</PropertyGroup>
+
+Replace `YOURTITLEID` with your actual PlayFab Title ID from the [PlayFab Game Manager](https://developer.playfab.com/).
+
+**If no testTitleData.json is found:**
+
+The sample will use placeholder values (`YOURTITLEID`) and you'll see a warning in the log. You'll need to either:
+- Create a `testTitleData.json` file, or
+- Manually update the values in `GameSaveIntegration.cpp`
+
+Additionally, ensure your PlayFab title has GameSave features enabled.
+
+## Steam SDK Integration (Optional)
+
+The Steam SDK integration is **optional** and disabled by default. The sample will compile and run without the Steam SDK - you will only be able to use Xbox Live authentication.
+
+### Enabling Steam SDK Support
+
+If you want to enable Steam functionality (including Steam Deck support), follow these steps:
+
+#### 1. Download the Steamworks SDK
+
+1. Download the Steamworks SDK from [Steamworks Partner Portal](https://partner.steamgames.com/doc/sdk)
+2. Extract the SDK to a location on your system (e.g., `C:\steamworks_sdk`)
+
+The expected folder structure should be:
 ```
-If your Steamworks SDK is not located at `C:\steamworks_sdk`, do ONE of the following:
-- Set an environment variable `SteamworksSDKPath` pointing to the root of your extracted Steamworks SDK before launching Visual Studio.
-- OR edit `PlayFabGameSaveSample.vcxproj` and change the value of `<SteamworksSDKPath>` under the `UserMacros` group.
+C:\steamworks_sdk\
+├── public\
+│   └── steam\
+│       ├── steam_api.h
+│       ├── isteamutils.h
+│       └── ...
+├── redistributable_bin\
+│   └── win64\
+│       └── steam_api64.dll
+└── ...
+```
 
-Required subfolders used by the build:
-- Headers: `$(SteamworksSDKPath)\public`
-- Libraries / DLL copy: `$(SteamworksSDKPath)\redistributable_bin\win64`
-- Encrypted app ticket DLL: `$(SteamworksSDKPath)\public\steam\lib\win64`
+#### 2. Enable Steam SDK in the Project
 
-During the post-build step the following DLLs are copied into the output directory:
-- `steam_api64.dll`
-- `sdkencryptedappticket64.dll`
+You can enable Steam SDK support using one of the following methods:
 
-Make sure these files exist in your SDK installation; otherwise adjust the path or update to a current Steamworks SDK.
+**Method 1: Edit the .vcxproj file directly**
+
+Open `PlayFabGameSaveSample.vcxproj` and change:
+```xml
+<EnableSteamSDK Condition="'$(EnableSteamSDK)'==''">false</EnableSteamSDK>
+```
+to:
+```xml
+<EnableSteamSDK Condition="'$(EnableSteamSDK)'==''">true</EnableSteamSDK>
+```
+
+**Method 2: Set MSBuild property via command line**
+
+Build with the property set:
+```powershell
+msbuild PlayFabGameSaveSample.vcxproj /p:EnableSteamSDK=true /p:Configuration=Debug /p:Platform=x64
+```
+
+**Method 3: Set environment variable**
+
+Set the environment variable before building:
+```powershell
+$env:EnableSteamSDK = "true"
+```
+
+#### 3. Configure the Steam SDK Path (if needed)
+
+By default, the project expects the Steam SDK at `C:\steamworks_sdk`. If you extracted it elsewhere, update the `SteamworksSDKPath` property in the `.vcxproj` file:
+
+```xml
+<SteamworksSDKPath Condition="'$(SteamworksSDKPath)'==''">YOUR_PATH_HERE</SteamworksSDKPath>
+```
+
+Or set it via environment variable:
+```powershell
+$env:SteamworksSDKPath = "D:\SDKs\steamworks_sdk"
+```
+
+### What Steam SDK Enables
+
+When `ENABLE_STEAM_SDK` is defined, the following features become available:
+- **Sign In via Steam**: Authenticate users through Steam
+- **Steam Deck Support**: Full Steam Deck integration including:
+  - Xbox Remote Connect dialog for Xbox Live sign-in on Steam Deck
+  - SPOP (Single Point of Presence) prompts for multi-device scenarios
+  - Steam Deck detection and platform-specific behavior
+
+Without Steam SDK, the sample works with Xbox Live authentication only.
 
 ## Implementation Guide
 
@@ -167,7 +255,42 @@ RETURN_IF_FAILED(PFGameSaveFilesUploadWithUiAsync(localUserHandle, uploadOption,
 
 - `GameSaveIntegration.cpp`: Core PlayFab GameSave implementation
 - `GameSaveIntegrationUI.cpp`: Complete UI dialog implementations
-- `SteamIntegration.cpp`: Steam-specific authentication handling
-- `XUserFileStorage.cpp`: Platform-specific file storage logic for XUser on Steam Deck
+- `SteamIntegration.cpp`: Steam-specific authentication handling (only when `ENABLE_STEAM_SDK` is defined)
 
 This sample provides a production-ready foundation for implementing PlayFab GameSaves in your own games.
+
+## Troubleshooting
+
+### Error: Cannot open include file: 'SDL2/SDL.h'
+
+```
+error C1083: Cannot open include file: 'SDL2/SDL.h': No such file or directory
+```
+
+**Cause**: The vcpkg dependencies (SDL2, imgui) have not been installed.
+
+**Solution**: Run the vcpkg installation as described in "Setup Instructions > Step 2":
+
+```powershell
+cd "C:\git\PlayFab.C\Samples\PlayFabGameSaveSample-Windows"
+.\setup_vcpkg.bat
+```
+
+Or manually:
+```powershell
+"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg\vcpkg.exe" install --triplet x64-windows
+```
+
+After installation, you should see a `vcpkg_installed\x64-windows\include\SDL2` folder containing the SDL2 headers.
+
+### Error: Cannot open include file: 'steam/steam_api.h'
+
+```
+error C1083: Cannot open include file: 'steam/steam_api.h': No such file or directory
+```
+
+**Cause**: Steam SDK is enabled but the Steamworks SDK is not installed.
+
+**Solution**: Either:
+1. **Disable Steam SDK** (default): Ensure `EnableSteamSDK` is set to `false` in the `.vcxproj` file
+2. **Install the Steamworks SDK**: See "Steam SDK Integration (Optional)" section above

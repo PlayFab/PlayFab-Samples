@@ -1,4 +1,7 @@
 #include "pch.h"
+
+#ifdef ENABLE_STEAM_SDK
+
 #include "SteamIntegration.h"
 #include "GameSaveIntegrationUI.h"
 #include "game.h"
@@ -248,3 +251,5 @@ void SteamIntegration::SignOutViaXboxOnSteamDeck()
 
     g_gameState.userSignedIn = false;
 }
+
+#endif // ENABLE_STEAM_SDK

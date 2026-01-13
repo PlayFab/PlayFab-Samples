@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef ENABLE_STEAM_SDK
+
 class SteamIntegration
 {
 public:
@@ -12,3 +14,5 @@ public:
     static HRESULT SetSandboxForSteamDeck(const std::string& sandbox);
     static void SignOutViaXboxOnSteamDeck();
 };
+
+#endif // ENABLE_STEAM_SDK
