@@ -141,6 +141,7 @@ function TryBuyLives()
 {
 	console.log("Purchasing Lives...");
 	var PurchaseItemRequest = {
+		"CatalogVersion": "RegeneratingCurrency",
 		"ItemId" : "extraLivesBundle",
 		"VirtualCurrency" : "GM",
 		"Price" : 50
@@ -186,7 +187,7 @@ function ToBattleCallback(response, error)
 	else
 	{
 		console.log("BATTLE REPORT:");
-		var grantedItems = response.data.FunctionResult;
+		var grantedItems = JSON.parse(response.data.FunctionResult);
 
 		if(grantedItems)
 		{
