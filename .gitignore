@@ -3,23 +3,70 @@
 # =============== #
 [Tt]emp/
 [Oo]bj/
-[Bb]uild
-[Bb]uilds
+[Bb]uild/
+[Bb]uilds/
 [Ll]ibrary/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
 sysinfo.txt
+
+# MemoryCaptures can get excessive in size.
+# They also could contain extremely sensitive data
+/[Mm]emoryCaptures/
+
+# Recordings can get excessive in size
+/[Rr]ecordings/
+
+/[Aa]ssets/AssetStoreTools*
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Unity3D generated file on crash reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Crashlytics generated file
+crashlytics-build.properties
+
+# Packed Addressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Temporary auto-generated Android Assets
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
 [Ee]xported[Oo]bj/
-*.userprefs
 *.csproj
+*.mdb
+*.opendb
+*.pdb
 *.pidb
+*.sln
 *.suo
+*.svd
+*.tmp
 *.user
 *.unityproj
+*.userprefs
 *.booproj
+*.VC.db
 .vs/
 packages/
+
+# Gradle cache directory
+.gradle/
+
 # ============ #
 # OS generated #
 # ============ #
