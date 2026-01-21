@@ -127,9 +127,9 @@ function TryToSpin()
 {
 	console.log("Attempting to spin...");
 	var PurchaseItemRequest = {
-		"ItemId" : "PrizeWheel1",
-		"VirtualCurrency" : "ST",
-		"Price" : 1
+		"ItemId": "PrizeWheel1",
+		"VirtualCurrency": "ST",
+		"Price": 0
 	};
 	PlayFabClientSDK.PurchaseItem(PurchaseItemRequest, TryToSpinCallback);
 }
