@@ -1,15 +1,12 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
 using PlayFab.ServerModels;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace PlayFab.TicTacToeDemo.Util
 {
     public static class GameDataUtil
     {
-        public static async Task<int> GetGamesPlayed(string playFabId, PlayFabApiSettings apiSettings, PlayFabAuthenticationContext authenticationContext)
+        public static async Task<int> GetGamesPlayed(string playFabId, PlayFabApiSettings apiSettings)
         {
             var request = new GetUserDataRequest
             {
@@ -17,7 +14,7 @@ namespace PlayFab.TicTacToeDemo.Util
                 Keys = new List<string> { Constants.GAMES_PLAYED_KEY }
             };
 
-            var serverApi = new PlayFabServerInstanceAPI(apiSettings, authenticationContext);
+            var serverApi = new PlayFabServerInstanceAPI(apiSettings);
 
             var result = await serverApi.GetUserDataAsync(request);
 
@@ -34,11 +31,11 @@ namespace PlayFab.TicTacToeDemo.Util
             }
 
             // Set the number of games played to be 0 since the record doesn't exist
-            await SetGamesPlayed(0, playFabId, apiSettings, authenticationContext);
+            await SetGamesPlayed(0, playFabId, apiSettings);
             return 0;
         }
 
-        public static async Task SetGamesPlayed(int gamesPlayed, string playFabId, PlayFabApiSettings apiSettings, PlayFabAuthenticationContext authenticationContext)
+        public static async Task SetGamesPlayed(int gamesPlayed, string playFabId, PlayFabApiSettings apiSettings)
         {
             var request = new UpdateUserDataRequest
             {
@@ -46,7 +43,7 @@ namespace PlayFab.TicTacToeDemo.Util
                 Data = new Dictionary<string, string> { { Constants.GAMES_PLAYED_KEY.ToString(), gamesPlayed.ToString() } }
             };
 
-            var serverApi = new PlayFabServerInstanceAPI(apiSettings, authenticationContext);
+            var serverApi = new PlayFabServerInstanceAPI(apiSettings);
 
             var result = await serverApi.UpdateUserDataAsync(request);
 

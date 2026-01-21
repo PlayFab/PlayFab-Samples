@@ -3,15 +3,12 @@
 using PlayFab.Json;
 using PlayFab.ServerModels;
 using PlayFab.TicTacToeDemo.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace PlayFab.TicTacToeDemo.Util
 {
     public static class GameStateUtil
     {
-        public static async Task<TicTacToeState> GetCurrentGameState(string playFabId, PlayFabApiSettings apiSettings, PlayFabAuthenticationContext authenticationContext)
+        public static async Task<TicTacToeState> GetCurrentGameState(string playFabId, PlayFabApiSettings apiSettings)
         {
             var request = new GetUserDataRequest()
             {
@@ -19,7 +16,7 @@ namespace PlayFab.TicTacToeDemo.Util
                 Keys = new List<string>() { Constants.GAME_CURRENT_STATE_KEY }
             };
 
-            var serverApi = new PlayFabServerInstanceAPI(apiSettings, authenticationContext);
+            var serverApi = new PlayFabServerInstanceAPI(apiSettings);
 
             var result = await serverApi.GetUserDataAsync(request);
 
@@ -31,30 +28,30 @@ namespace PlayFab.TicTacToeDemo.Util
             var resultData = result.Result.Data;
 
             // Current state found
-            if (resultData.Count > 0 && resultData.TryGetValue(Constants.GAME_CURRENT_STATE_KEY, out var currentGameStateRecord))
+            if (resultData.Count > 0 && resultData.TryGetValue(Constants.GAME_CURRENT_STATE_KEY, out UserDataRecord? currentGameStateRecord))
             {
                 return PlayFabSimpleJson.DeserializeObject<TicTacToeState>(currentGameStateRecord.Value);
             }
             // Current game record does not exist and so must be created
             else
             {
-                var newState = new TicTacToeState() { Data = new int[9] };
-                await UpdateCurrentGameState(newState, playFabId, apiSettings, authenticationContext);
+                var newState = new TicTacToeState { Data = new int[9] };
+                await UpdateCurrentGameState(newState, playFabId, apiSettings);
                 return newState;
             }
         }
 
-        public static async Task UpdateCurrentGameState(TicTacToeState state, string playFabId, PlayFabApiSettings apiSettings, PlayFabAuthenticationContext authenticationContext)
+        public static async Task UpdateCurrentGameState(TicTacToeState state, string entityId, PlayFabApiSettings apiSettings)
         {
             var serializedNewGameState = PlayFabSimpleJson.SerializeObject(state);
 
             var request = new UpdateUserDataRequest()
             {
-                PlayFabId = playFabId,
-                Data = new Dictionary<string, string>() { { Constants.GAME_CURRENT_STATE_KEY,  serializedNewGameState} }
+                PlayFabId = entityId,
+                Data = new Dictionary<string, string>() { { Constants.GAME_CURRENT_STATE_KEY, serializedNewGameState } }
             };
 
-            var serverApi = new PlayFabServerInstanceAPI(apiSettings, authenticationContext);
+            var serverApi = new PlayFabServerInstanceAPI(apiSettings);
 
             var result = await serverApi.UpdateUserDataAsync(request);
 
@@ -64,9 +61,9 @@ namespace PlayFab.TicTacToeDemo.Util
             }
         }
 
-        public static async Task AddGameStateHistory(TicTacToeState gameState, string playFabId, PlayFabApiSettings apiSettings, PlayFabAuthenticationContext authenticationContext)
+        public static async Task AddGameStateHistory(TicTacToeState gameState, string playFabId, PlayFabApiSettings apiSettings)
         {
-            var gamesPlayed = await GameDataUtil.GetGamesPlayed(playFabId, apiSettings, authenticationContext);
+            var gamesPlayed = await GameDataUtil.GetGamesPlayed(playFabId, apiSettings);
 
             var key = $"{Constants.GAME_STATE_KEY}_{gamesPlayed + 1}";
 
@@ -78,7 +75,7 @@ namespace PlayFab.TicTacToeDemo.Util
                 Data = new Dictionary<string, string>() { { key, serializedGameState } }
             };
 
-            var serverApi = new PlayFabServerInstanceAPI(apiSettings, authenticationContext);
+            var serverApi = new PlayFabServerInstanceAPI(apiSettings);
 
             var result = await serverApi.UpdateUserDataAsync(request);
 
@@ -87,7 +84,7 @@ namespace PlayFab.TicTacToeDemo.Util
                 throw new Exception($"An error occured while updating the game state: Error: {result.Error.GenerateErrorReport()}");
             }
 
-            await GameDataUtil.SetGamesPlayed(gamesPlayed + 1, playFabId, apiSettings, authenticationContext);
+            await GameDataUtil.SetGamesPlayed(gamesPlayed + 1, playFabId, apiSettings);
         }
     }
 }
